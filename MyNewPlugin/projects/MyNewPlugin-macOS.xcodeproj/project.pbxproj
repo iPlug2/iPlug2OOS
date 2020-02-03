@@ -1332,7 +1332,7 @@
 				4F8157DE205D50EA00393585 /* source */,
 			);
 			name = public.sdk;
-			path = ../../iPlug2/Dependencies/IPlug/VST3_SDK/public.sdk;
+			path = ../../vst3sdk/public.sdk;
 			sourceTree = "<group>";
 		};
 		4F8157DE205D50EA00393585 /* source */ = {
@@ -1409,7 +1409,7 @@
 				4F8158D5205D50EB00393585 /* thread */,
 			);
 			name = base;
-			path = ../../iPlug2/Dependencies/IPlug/VST3_SDK/base;
+			path = ../../vst3sdk/base;
 			sourceTree = "<group>";
 		};
 		4F8158BE205D50EB00393585 /* source */ = {
@@ -1478,7 +1478,7 @@
 				4F8158FF205D50EB00393585 /* vst */,
 			);
 			name = pluginterfaces;
-			path = ../../iPlug2/Dependencies/IPlug/VST3_SDK/pluginterfaces;
+			path = ../../vst3sdk/pluginterfaces;
 			sourceTree = "<group>";
 		};
 		4F8158DD205D50EB00393585 /* base */ = {
