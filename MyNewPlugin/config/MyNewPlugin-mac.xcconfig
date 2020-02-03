@@ -5,7 +5,7 @@
 
 IPLUG2_ROOT = ../../iPlug2
 
-#include "../../iPlug2/common-mac.xcconfig"
+#include "../../my-common-mac.xcconfig"
 
 //------------------------------
 // Global build settings
