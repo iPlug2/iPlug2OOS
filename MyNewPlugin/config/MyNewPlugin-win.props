@@ -12,7 +12,7 @@
     <CREATE_BUNDLE_SCRIPT>$(IPLUG2_ROOT)\Scripts\create_bundle.bat</CREATE_BUNDLE_SCRIPT>
   </PropertyGroup>
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(IPLUG2_ROOT)\common-win.props" />
+    <Import Project="$(IPLUG2_ROOT)\..\my-common-win.props" />
   </ImportGroup>
   <PropertyGroup>
     <TargetName>$(BINARY_NAME)</TargetName>
