@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>MyNewPlugin</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MyNewPlugin v1.0.0 Copyright 2019 Acme Inc</string>
+	<string>MyNewPlugin v1.0.0 Copyright 2020 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.MyManufacturerName.aax.MyNewPlugin</string>
+	<string>com.AcmeInc.aax.MyNewPlugin</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

@@ -222,6 +222,9 @@
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugPluginBase.h">
       <Filter>IPlug</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h">
+      <Filter>IGraphics</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugProcessor.h">
       <Filter>IPlug</Filter>
     </ClInclude>

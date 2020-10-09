@@ -478,7 +478,7 @@
 				<key>CONCLUSION_ACTION</key>
 				<integer>0</integer>
 				<key>IDENTIFIER</key>
-				<string>com.MyManufacturerName.app.pkg.MyNewPlugin</string>
+				<string>com.AcmeInc.app.pkg.MyNewPlugin</string>
 				<key>NAME</key>
 				<string>Application</string>
 				<key>OVERWRITE_PERMISSIONS</key>
@@ -1014,7 +1014,7 @@
 				<key>CONCLUSION_ACTION</key>
 				<integer>0</integer>
 				<key>IDENTIFIER</key>
-				<string>com.MyManufacturerName.vst.pkg.MyNewPlugin</string>
+				<string>com.AcmeInc.vst.pkg.MyNewPlugin</string>
 				<key>LOCATION</key>
 				<integer>0</integer>
 				<key>NAME</key>
@@ -1554,7 +1554,7 @@
 				<key>CONCLUSION_ACTION</key>
 				<integer>0</integer>
 				<key>IDENTIFIER</key>
-				<string>com.MyManufacturerName.vst3.pkg.MyNewPlugin</string>
+				<string>com.AcmeInc.vst3.pkg.MyNewPlugin</string>
 				<key>LOCATION</key>
 				<integer>0</integer>
 				<key>NAME</key>
@@ -2094,7 +2094,7 @@
 				<key>CONCLUSION_ACTION</key>
 				<integer>0</integer>
 				<key>IDENTIFIER</key>
-				<string>com.MyManufacturerName.au.pkg.MyNewPlugin</string>
+				<string>com.AcmeInc.au.pkg.MyNewPlugin</string>
 				<key>LOCATION</key>
 				<integer>0</integer>
 				<key>NAME</key>
@@ -2634,7 +2634,7 @@
 				<key>CONCLUSION_ACTION</key>
 				<integer>0</integer>
 				<key>IDENTIFIER</key>
-				<string>com.MyManufacturerName.aax.pkg.MyNewPlugin</string>
+				<string>com.AcmeInc.aax.pkg.MyNewPlugin</string>
 				<key>LOCATION</key>
 				<integer>0</integer>
 				<key>NAME</key>

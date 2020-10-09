@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>MyNewPlugin</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MyNewPlugin v1.0.0 Copyright 2019 Acme Inc</string>
+	<string>MyNewPlugin v1.0.0 Copyright 2020 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.MyManufacturerName.app.MyNewPlugin.AUv3</string>
+	<string>com.AcmeInc.app.MyNewPlugin.AUv3</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>AudioComponentBundle</key>
-			<string>com.MyManufacturerName.app.MyNewPlugin.AUv3Framework</string>
+			<string>com.AcmeInc.app.MyNewPlugin.AUv3Framework</string>
 			<key>AudioComponents</key>
 			<array>
 				<dict>
@@ -36,11 +36,11 @@
 					<key>manufacturer</key>
 					<string>Acme</string>
 					<key>name</key>
-					<string>MyManufacturerName: MyNewPlugin</string>
+					<string>AcmeInc: MyNewPlugin</string>
 					<key>sandboxSafe</key>
 					<true/>
 					<key>subtype</key>
-					<string>EuNw</string>
+					<string>tZU7</string>
 					<key>tags</key>
 					<array>
 						<string>Effects</string>

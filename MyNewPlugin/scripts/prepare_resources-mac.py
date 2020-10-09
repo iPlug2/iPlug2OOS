@@ -16,7 +16,7 @@ projectpath = os.path.abspath(os.path.join(scriptpath, os.pardir))
 
 IPLUG2_ROOT = "../../iPlug2"
 
-sys.path.insert(0, os.path.join(os.getcwd(), IPLUG2_ROOT + '/scripts'))
+sys.path.insert(0, os.path.join(os.getcwd(), IPLUG2_ROOT + '/Scripts'))
 
 from parse_config import parse_config, parse_xcconfig
 
@@ -90,7 +90,7 @@ def main():
 
 # AUDIOUNIT v2
 
-  plistpath = projectpath + "/resources/" + config['BUNDLE_NAME'] + "-au-Info.plist"
+  plistpath = projectpath + "/resources/" + config['BUNDLE_NAME'] + "-AU-Info.plist"
   auv2 = plistlib.readPlist(plistpath)
   auv2['CFBundleExecutable'] = config['BUNDLE_NAME']
   auv2['CFBundleGetInfoString'] = CFBundleGetInfoString
@@ -145,7 +145,7 @@ def main():
   auv3['CFBundlePackageType'] = "XPC!"
   auv3['NSExtension'] = dict(
   NSExtensionAttributes = dict(
-                               AudioComponentBundle = "com.MyManufacturerName.app." + config['BUNDLE_NAME'] + ".AUv3Framework",
+                               AudioComponentBundle = "com.AcmeInc.app." + config['BUNDLE_NAME'] + ".AUv3Framework",
                                AudioComponents = [{}]),
 #                               NSExtensionServiceRoleType = "NSExtensionServiceRoleTypeEditor",
   NSExtensionPointIdentifier = NSEXTENSIONPOINTIDENTIFIER,

@@ -2,7 +2,7 @@
 
 #include "IPlug_include_in_plug_hdr.h"
 
-const int kNumPrograms = 1;
+const int kNumPresets = 1;
 
 enum EParams
 {
@@ -13,12 +13,12 @@ enum EParams
 using namespace iplug;
 using namespace igraphics;
 
-class MyNewPlugin : public Plugin
+class MyNewPlugin final : public Plugin
 {
 public:
   MyNewPlugin(const InstanceInfo& info);
 
-#if IPLUG_DSP // All DSP methods and member variables should be within an IPLUG_DSP guard, should you want distributed UI
+#if IPLUG_DSP // http://bit.ly/2S64BDd
   void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
 #endif
 };
