@@ -1,0 +1,13 @@
+{
+    "name": "WASM",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "forwardPorts": [
+            6931
+        ],
+    },
+    "extensions": [
+        "ms-vscode.cpptools",
+    ],
+    "postCreateCommand": "echo 'emcc=$(emcc --version)'"
+}
