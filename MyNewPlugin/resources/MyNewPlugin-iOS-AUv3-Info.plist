@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>MyNewPluginAppExtension</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.MyManufacturerName.app.MyNewPlugin.AUv3</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -36,7 +36,7 @@
 					<key>manufacturer</key>
 					<string>Acme</string>
 					<key>name</key>
-					<string>MyManufacturerName: MyNewPlugin</string>
+					<string>AcmeInc: MyNewPlugin</string>
 					<key>sandboxSafe</key>
 					<true/>
 					<key>subtype</key>
@@ -44,6 +44,7 @@
 					<key>tags</key>
 					<array>
 						<string>Effects</string>
+						<string>size:{600,600}</string>
 					</array>
 					<key>type</key>
 					<string>aufx</string>

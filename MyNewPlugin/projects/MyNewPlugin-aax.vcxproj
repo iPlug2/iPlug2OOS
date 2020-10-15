@@ -509,6 +509,7 @@
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_include_in_plug_hdr.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_include_in_plug_src.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_select.h" />
+    <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsLinux.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsMac.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsMac_view.h" />

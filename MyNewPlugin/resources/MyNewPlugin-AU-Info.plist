@@ -12,11 +12,11 @@
 			<key>manufacturer</key>
 			<string>Acme</string>
 			<key>name</key>
-			<string>MyManufacturerName: MyNewPlugin</string>
+			<string>AcmeInc: MyNewPlugin</string>
 			<key>sandboxSafe</key>
 			<true/>
 			<key>subtype</key>
-			<string>EuNw</string>
+			<string>tZU7</string>
 			<key>type</key>
 			<string>aufx</string>
 			<key>version</key>
@@ -30,9 +30,9 @@
 	<key>CFBundleExecutable</key>
 	<string>MyNewPlugin</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MyNewPlugin v1.0.0 Copyright 2019 Acme Inc</string>
+	<string>MyNewPlugin v1.0.0 Copyright 2020 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.MyManufacturerName.audiounit.MyNewPlugin</string>
+	<string>com.AcmeInc.audiounit.MyNewPlugin</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -42,7 +42,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
-	<string>EuNw</string>
+	<string>tZU7</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>CSResourcesFileMapped</key>
