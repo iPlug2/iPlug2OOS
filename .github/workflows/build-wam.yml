@@ -15,10 +15,10 @@ jobs:
  
     runs-on: ubuntu-latest
  
-  - name: Check out repository
-    uses: actions/checkout@v2
-    with:
-      submodules: recursive
+    - name: Check out repository
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
     
     # - name: Setup Emscripten
     #   uses: lovasoa/setup-emscripten@master
