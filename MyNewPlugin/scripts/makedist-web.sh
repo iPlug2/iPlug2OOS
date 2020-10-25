@@ -14,6 +14,8 @@ IPLUG2_ROOT=$SCRIPT_DIR/$IPLUG2_ROOT
 FILE_PACKAGER=$EMSDK/upstream/emscripten/tools/file_packager.py
 
 PROJECT_NAME=MyNewPlugin
+BUILD_DSP=1
+BUILD_EDITOR=1
 WEBSOCKET_MODE=0
 EMRUN_BROWSER=chrome
 LAUNCH_EMRUN=1
@@ -26,6 +28,7 @@ cd $PROJECT_ROOT
 
 if [ "$1" = "ws" ]; then
   LAUNCH_EMRUN=0
+  BUILD_DSP=0
   WEBSOCKET_MODE=1
 elif [ "$1" = "off" ]; then
   LAUNCH_EMRUN=0
@@ -44,11 +47,21 @@ fi
 # check to see if the build web folder has its own git repo
 if [ -d build-web/.git ]
 then
-  # if so trash only the scripts folder
-  if [ -d build-web/scripts ]; then rm -r build-web/scripts; fi
+  # if so trash only the scripts
+  if [ -d build-web/scripts ]; then
+    if [ "$BUILD_DSP" -eq "1" ]; then
+      rm build-web/scripts/*-wam.js
+    fi
+
+    if [ "$BUILD_EDITOR" -eq "1" ]; then
+      rm build-web/scripts/*-web.*
+    fi
+  fi
 else
   # otherwise trash the whole build-web folder
-  if [ -d build-web ]; then rm -r build-web; fi
+  if [ -d build-web ]; then 
+    rm -r build-web
+  fi
 
   mkdir build-web
 fi
@@ -97,7 +110,7 @@ fi
 
 cd ..
 
-if [ "$WEBSOCKET_MODE" -eq "0" ]; then
+if [ "$BUILD_DSP" -eq "1" ]; then
   echo MAKING  - WAM WASM MODULE -----------------------------
   cd $PROJECT_ROOT/projects
   emmake make --makefile $PROJECT_NAME-wam-processor.mk
@@ -131,7 +144,7 @@ if [ "$WEBSOCKET_MODE" -eq "0" ]; then
 
   rm *.bak
 else
-  echo "WAM not being built in websocket mode"
+  echo "WAM not being built, BUILD_DSP = 0"
 fi
 
 cd $PROJECT_ROOT/build-web

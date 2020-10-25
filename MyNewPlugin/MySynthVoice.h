@@ -23,6 +23,7 @@ public:
   
   void Trigger(double level, bool isRetrigger) override
   {
+    mEnv.SetStageTime(ADSREnvelope<sample>::EStage::kAttack, 10.);
     mEnv.Start(level);
   }
 

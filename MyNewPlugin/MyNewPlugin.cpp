@@ -27,10 +27,13 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
-    pGraphics->AttachPanelBackground(COLOR_GRAY);
+    pGraphics->AttachPanelBackground(COLOR_ORANGE);
+    auto smileyBitmap = pGraphics->LoadBitmap(SMILEY_FN);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     IRECT controlsArea = pGraphics->GetBounds();
     const IRECT keyboardArea = controlsArea.ReduceFromBottom(100);
+    pGraphics->AttachControl(new IBitmapControl(controlsArea.GetFromTRHC(50,50), smileyBitmap));
+    pGraphics->AttachControl(new ITextControl(controlsArea.GetFromTop(100), "Hello", DEFAULT_TEXT.WithSize(100)));
     pGraphics->AttachControl(new IVKnobControl(controlsArea.GetCentredInside(100), kGain));
     pGraphics->AttachControl(new IVKeyboardControl(keyboardArea));
   };
