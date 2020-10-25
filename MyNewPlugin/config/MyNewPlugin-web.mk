@@ -6,7 +6,7 @@ include ../../iPlug2/common-web.mk
 
 SRC += $(PROJECT_ROOT)/MyNewPlugin.cpp
 
-# WAM_SRC +=
+WAM_SRC += $(PROJECT_ROOT)/MidiSynth.cpp
 
 # WAM_CFLAGS +=
 
