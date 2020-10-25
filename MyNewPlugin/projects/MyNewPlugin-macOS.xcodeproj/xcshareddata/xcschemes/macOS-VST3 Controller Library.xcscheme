@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4FD16A0813B63081001D0217"
-               BuildableName = "MyNewPlugin.app"
-               BlueprintName = "APP"
+               BlueprintIdentifier = "4FC3EFC32086C0A600BD11FA"
+               BuildableName = "MyNewPluginVST3Controller.a"
+               BlueprintName = "VST3C"
                ReferencedContainer = "container:MyNewPlugin-macOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,15 +27,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4FD16A0813B63081001D0217"
-            BuildableName = "MyNewPlugin.app"
-            BlueprintName = "APP"
-            ReferencedContainer = "container:MyNewPlugin-macOS.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
       </Testables>
    </TestAction>
@@ -48,19 +39,16 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      enableGPUFrameCaptureMode = "3"
-      enableGPUValidationMode = "1"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4FD16A0813B63081001D0217"
-            BuildableName = "MyNewPlugin.app"
-            BlueprintName = "APP"
+            BlueprintIdentifier = "4FC3EFC32086C0A600BD11FA"
+            BuildableName = "MyNewPluginVST3Controller.a"
+            BlueprintName = "VST3C"
             ReferencedContainer = "container:MyNewPlugin-macOS.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -68,16 +56,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4FD16A0813B63081001D0217"
-            BuildableName = "MyNewPlugin.app"
-            BlueprintName = "APP"
+            BlueprintIdentifier = "4FC3EFC32086C0A600BD11FA"
+            BuildableName = "MyNewPluginVST3Controller.a"
+            BlueprintName = "VST3C"
             ReferencedContainer = "container:MyNewPlugin-macOS.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

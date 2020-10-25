@@ -5,7 +5,6 @@ IPLUG2_ROOT = ../../iPlug2
 include ../../iPlug2/common-web.mk
 
 SRC += $(PROJECT_ROOT)/MyNewPlugin.cpp
-WAM_SRC += $(PROJECT_ROOT)/MidiSynth.cpp
 
 # WAM_SRC +=
 
