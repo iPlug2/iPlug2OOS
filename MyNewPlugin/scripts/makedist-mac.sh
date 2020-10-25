@@ -12,7 +12,7 @@ fi
 #variables
 
 IPLUG2_ROOT=../..
-XCCONFIG=$IPLUG2_ROOT/common-mac.xcconfig
+XCCONFIG=$IPLUG2_ROOT/../my-common-mac.xcconfig
 SCRIPTS=$IPLUG2_ROOT/Scripts
 
 DEMO=0

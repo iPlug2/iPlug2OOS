@@ -17,9 +17,9 @@ jobs:
           - os: macos-latest
             build_dir: build-mac
             artifact_ext: mac
-          - os: windows-latest
-            build_dir: build-win
-            artifact_ext: win
+          # - os: windows-latest
+          #   build_dir: build-win
+          #   artifact_ext: win
 
     steps:
     # - name: Checkout iPlug2
