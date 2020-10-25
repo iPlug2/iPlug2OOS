@@ -449,6 +449,7 @@
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugPluginBase.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugProcessor.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugTimer.cpp" />
+    <ClCompile Include="..\MidiSynth.cpp" />
     <ClCompile Include="..\MyNewPlugin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -536,7 +537,9 @@
     <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_hdr.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_src.h" />
     <ClInclude Include="..\config.h" />
+    <ClInclude Include="..\MidiSynth.h" />
     <ClInclude Include="..\MyNewPlugin.h" />
+    <ClInclude Include="..\MySynthVoice.h" />
     <ClInclude Include="..\resources\resource.h" />
   </ItemGroup>
   <ItemGroup>

@@ -143,6 +143,7 @@
     <ClCompile Include="..\..\iPlug2\IGraphics\IGraphicsEditorDelegate.cpp">
       <Filter>IGraphics</Filter>
     </ClCompile>
+    <ClCompile Include="..\MidiSynth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../config.h" />
@@ -384,6 +385,8 @@
     <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h">
       <Filter>IGraphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\MySynthVoice.h" />
+    <ClInclude Include="..\MidiSynth.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="resources">

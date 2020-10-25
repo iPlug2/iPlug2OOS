@@ -29,9 +29,10 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->AttachPanelBackground(COLOR_GRAY);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
-    const IRECT b = pGraphics->GetBounds();
-    pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100), kGain));
-    pGraphics->AttachControl(new IVKeyboardControl(b.GetFromBottom(100)));
+    IRECT controlsArea = pGraphics->GetBounds();
+    const IRECT keyboardArea = controlsArea.ReduceFromBottom(100);
+    pGraphics->AttachControl(new IVKnobControl(controlsArea.GetCentredInside(100), kGain));
+    pGraphics->AttachControl(new IVKeyboardControl(keyboardArea));
   };
 #endif
 }
