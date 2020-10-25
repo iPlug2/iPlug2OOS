@@ -6,7 +6,7 @@ on:
  #      - "v*"
 
 env:
-  PROJECT_NAME: GithubActionsTest
+  PROJECT_NAME: MyNewPlugin
   URL: https://iPlug2.github.io/MyNewPlugin/
 
 jobs:
