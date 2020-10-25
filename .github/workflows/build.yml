@@ -37,25 +37,24 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v2
       with:
-        path: Project
         submodules: true
 
     - name: Get VST3 SDK
       run: |
-        cd Project/iPlug2/Dependencies/IPlug
+        cd iPlug2/Dependencies/IPlug
         ./download-iplug-libs.sh
       shell: bash
 
     - name: Get Prebuilt Libs
       run: |
-        cd Project/iPlug2/Dependencies
+        cd iPlug2/Dependencies
         ./download-prebuilt-libs.sh
       shell: bash
 
     - name: Build macOS
       if: matrix.os == 'macOS-latest'
       run: |
-        cd Project/${{env.PROJECT_NAME}}/scripts
+        cd ${{env.PROJECT_NAME}}/scripts
         ./makedist-mac.sh full zip
       shell: bash
 
@@ -66,15 +65,15 @@ jobs:
     - name: Build Windows
       if: matrix.os == 'windows-latest'
       run: |
-        cd Project\${{env.PROJECT_NAME}}\scripts
+        cd ${{env.PROJECT_NAME}}\scripts
         .\makedist-win.bat full zip
       shell: pwsh
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1
       with:
-        name: Project/${{env.PROJECT_NAME}}-${{matrix.artifact_ext}}
-        path: Project/${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out
+        name: ${{env.PROJECT_NAME}}-${{matrix.artifact_ext}}
+        path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out
 
   # test:
   #   name: Test
@@ -82,8 +81,7 @@ jobs:
   #   runs-on: ${{ matrix.os }}
   #   strategy:
   #     matrix:
-  #       os: [macos-latest]
-  #       # os: [macos-latest, windows-latest]
+  #       os: [macos-latest, windows-latest]
   #       include:
   #         - os: macos-latest
   #           artifact_ext: mac
@@ -94,7 +92,7 @@ jobs:
   #     - name: Download artifact
   #       uses: actions/download-artifact@v2
   #       with:
-  #         name: Project/${{env.PROJECT_NAME}}-${{matrix.artifact_ext}}
+  #         name: ${{env.PROJECT_NAME}}-${{matrix.artifact_ext}}
 
   #     - name: Display structure of downloaded files
   #       run: ls -R
