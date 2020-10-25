@@ -61,6 +61,7 @@ jobs:
         run: |
           cd emsdk
           source ./emsdk_env.sh
+          cd ..
           cd ${{env.PROJECT_NAME}}/scripts
           ./makedist-web.sh off $URL
           
