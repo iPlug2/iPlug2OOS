@@ -16,14 +16,13 @@ public:
   {
     for (auto s = startIdx; s < startIdx + nFrames; s++)
     {
-      outputs[0][s] += mEnv.Process() * mOsc.Process(midi2CPS(mKey + pitchBend));
+      outputs[0][s] += mEnv.Process(mSustainLevel) * mOsc.Process(midi2CPS(mKey + pitchBend));
       outputs[1][s] = outputs[0][s];
     }
   }
   
   void Trigger(double level, bool isRetrigger) override
   {
-    mEnv.SetStageTime(ADSREnvelope<sample>::EStage::kAttack, 10.);
     mEnv.Start(level);
   }
 
@@ -42,7 +41,8 @@ public:
     return mEnv.GetReleased();
   }
   
-private:
+public:
   FastSinOscillator<sample> mOsc;
   ADSREnvelope<sample> mEnv;
+  sample mSustainLevel = 0.;
 };
