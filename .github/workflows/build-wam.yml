@@ -63,11 +63,11 @@ jobs:
           source ./emsdk_env.sh
           cd ..
           cd ${{env.PROJECT_NAME}}/scripts
-          ./makedist-web.sh off https://${{GITHUB_ACTOR}}.github.io/${{URL_NAME}}/
+          ./makedist-web.sh off https://${{env.GITHUB_ACTOR}}.github.io/${{env.URL_NAME}}/
           
       # - name: Compile WAM
       #   run: |
-      #     sudo docker run --rm -v iPlug2:/src -e URL=https://${{GITHUB_ACTOR}}.github.io/${{URL_NAME}}/ trzeci/emscripten /bin/bash -c "cd Projects/${{env.PROJECT_NAME}}/scripts;./makedist-web.sh off $URL"
+      #     sudo docker run --rm -v iPlug2:/src -e URL=https://${{env.GITHUB_ACTOR}}.github.io/${{env.URL_NAME}}/ trzeci/emscripten /bin/bash -c "cd Projects/${{env.PROJECT_NAME}}/scripts;./makedist-web.sh off $URL"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1
