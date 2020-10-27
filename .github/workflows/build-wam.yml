@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_NAME: MyNewPlugin
-  URL: https://olilarkin.github.io/iPlug2OutOfSourceExample/
+  URL: https://${GITHUB_ACTOR}.github.io/iPlug2OutOfSourceExample/
 
 jobs:
   build:
