@@ -53,3 +53,4 @@
 
 #define ROBOTO_FN "Roboto-Regular.ttf"
 #define SMILEY_FN "smiley.png"
+#define SMILEY2X_FN "smiley@2x.png"
