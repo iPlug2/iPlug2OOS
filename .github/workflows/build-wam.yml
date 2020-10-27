@@ -8,7 +8,8 @@ on:
 env:
   PROJECT_NAME: MyNewPlugin
   URL_NAME: iPlug2OutOfSourceExample
-  URL_BASE: ${{GITHUB_ACTOR}}
+  # URL_BASE.github.io/URL_NAME
+  URL_BASE: iPlug2
 
 jobs:
   build:
