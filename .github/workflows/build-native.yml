@@ -1,7 +1,8 @@
 name: Build Native
 
 on:
-  push:
+  workflow_dispatch
+  # push:
     # tags:
     #   - "v*"
 
