@@ -112,8 +112,8 @@ jobs:
           pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ${{env.PROJECT_NAME}}.vst3 || exit 1
           mkdir -p ~/Library/Audio/Plug-Ins/Components
           mv ${{env.PROJECT_NAME}}.component ~/Library/Audio/Plug-Ins/Components
-          #pgrep -x AudioComponentRegistrar >/dev/null && killall -9 AudioComponentRegistrar; echo "killed AudioComponentRegistrar" || echo "AudioComponentRegistrar Process not found"
-          #pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ~/Library/Audio/Plug-Ins/Components/${{env.PROJECT_NAME}}.component || exit 1
+          pgrep -x AudioComponentRegistrar >/dev/null && killall -9 AudioComponentRegistrar; echo "killed AudioComponentRegistrar" || echo "AudioComponentRegistrar Process not found"
+          pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ~/Library/Audio/Plug-Ins/Components/${{env.PROJECT_NAME}}.component || exit 1
         shell: bash
 
       - name: Pluginval (Windows)
