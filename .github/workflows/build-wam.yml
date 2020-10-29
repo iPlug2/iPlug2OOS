@@ -9,7 +9,7 @@ env:
   PROJECT_NAME: MyNewPlugin
   URL_NAME: iPlug2OutOfSourceExample
   # URL_BASE.github.io/URL_NAME
-  URL_BASE: iPlug2
+  URL_BASE: ${{secrets.USERNAME}}
 
 jobs:
   build:
