@@ -15,10 +15,14 @@ jobs:
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
+      # - name: Check out repository
+      #   uses: actions/checkout@v2
+      #   with:
+      #     path: ${{env.PROJECT_NAME}}
       - name: Check out repository
-        uses: actions/checkout@v2
-        with:
-          path: ${{env.PROJECT_NAME}}
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
       - name: Create release
         id: create_release
@@ -56,12 +60,16 @@ jobs:
     #   uses: actions/checkout@v2
     #   with:
     #     path: ${{env.PROJECT_NAME}}
+    - name: Check out repository
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
 
-    - name: Get VST3 SDK
-      run: |
-        cd iPlug2/Dependencies/IPlug
-        ./download-iplug-libs.sh
-      shell: bash
+    # - name: Get VST3 SDK
+    #   run: |
+    #     cd iPlug2/Dependencies/IPlug
+    #     ./download-iplug-libs.sh
+    #   shell: bash
 
     - name: Get Prebuilt Libs
       run: |
@@ -83,7 +91,7 @@ jobs:
     - name: Build Windows
       if: matrix.os == 'windows-latest'
       run: |
-        cd iPlug2\Projects\${{env.PROJECT_NAME}}\scripts
+        cd ${{env.PROJECT_NAME}}\scripts
         .\makedist-win.bat full installer
       shell: pwsh
 
