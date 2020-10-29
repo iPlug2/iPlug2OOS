@@ -119,13 +119,10 @@ jobs:
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
 
-        FOR /F "tokens=* USEBACKQ" %%F IN (`.\makedist-win.bat full installer`) DO (
-        SET ARCHIVE_NAME=%%F
-        )
-        ECHO %ARCHIVE_NAME%
-        echo "::set-output name=archive_name::%ARCHIVE_NAME%"
-        
-      shell: cmd
+        $ARCHIVE_NAME = .\makedist-win.bat full installer
+        echo $ARCHIVE_NAME
+        echo "::set-output name=archive_name::$ARCHIVE_NAME"
+      shell: pwsh
 
     - name: Upload Windows pdb release asset
       if: matrix.os == 'windows-latest'
