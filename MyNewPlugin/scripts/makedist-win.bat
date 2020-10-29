@@ -122,7 +122,9 @@ echo Making Installer ...
   echo Making Zip File ...
 )
 
-call python scripts\makezip-win.py %DEMO% %ZIP%
+FOR /F "tokens=* USEBACKQ" %%F IN (`call python scripts\makezip-win.py %DEMO% %ZIP%`) DO (
+SET ZIP_NAME=%%F
+)
 
 echo ------------------------------------------------------------------
 echo Printing log file to console...
@@ -131,9 +133,10 @@ type build-win.log
 goto SUCCESS
 
 :USAGE
-@echo Usage: %0 [demo/full] [zip/installer]
+echo Usage: %0 [demo/full] [zip/installer]
 exit /B 1
 
 :SUCCESS
-@echo done
+echo %ZIP_NAME%
+
 exit /B 0

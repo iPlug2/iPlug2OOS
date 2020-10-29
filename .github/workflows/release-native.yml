@@ -87,17 +87,6 @@ jobs:
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: bash
 
-    - name: Add msbuild to PATH (Windows)
-      if: matrix.os == 'windows-latest'
-      uses: microsoft/setup-msbuild@v1.0.0
-
-    - name: Build Windows
-      if: matrix.os == 'windows-latest'
-      run: |
-        cd ${{env.PROJECT_NAME}}\scripts
-        .\makedist-win.bat full installer
-      shell: pwsh
-
     - name: Upload mac DSYMs release asset
       if: matrix.os == 'macOS-latest'
       uses: actions/upload-release-asset@v1
@@ -120,24 +109,42 @@ jobs:
         asset_name: ${{ steps.build_mac_step.outputs.archive_name }}.dmg
         asset_content_type: application/octet-stream
 
-    # - name: Upload Windows pdb release asset
-    #   if: matrix.os == 'windows-latest'
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ needs.create_release.outputs.upload_url }}
-    #     asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
-    #     asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
-    #     asset_content_type: application/zip
+    - name: Add msbuild to PATH (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: microsoft/setup-msbuild@v1.0.0
 
-    # - name: Upload Windows zip release asset
-    #   if: matrix.os == 'windows-latest'
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #     upload_url: ${{ needs.create_release.outputs.upload_url }}
-    #     asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win.zip
-    #     asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win.zip
-    #     asset_content_type: application/zip
+    - name: Build Windows
+      id: build_win_step
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd ${{env.PROJECT_NAME}}\scripts
+
+        FOR /F "tokens=* USEBACKQ" %%F IN (`.\makedist-win.bat full installer`) DO (
+        SET ARCHIVE_NAME=%%F
+        )
+        ECHO %ARCHIVE_NAME%
+        echo "::set-output name=archive_name::%ARCHIVE_NAME%"
+        
+      shell: pwsh
+
+    - name: Upload Windows pdb release asset
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.build_win_step.outputs.archive_name }}-pdbs.zip
+        asset_name: ${{ steps.build_win_step.outputs.archive_name }}-pdbs.zip
+        asset_content_type: application/zip
+
+    - name: Upload Windows zip release asset
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.build_win_step.outputs.archive_name }}.zip
+        asset_name: ${{ steps.build_win_step.outputs.archive_name }}.zip
+        asset_content_type: application/zip

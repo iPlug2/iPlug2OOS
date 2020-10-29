@@ -79,7 +79,8 @@ def main():
     zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
 
   zf.close()
-  print("wrote " + zipname)
+  print (zipname)
+  # print("wrote " + zipname)
 
 
 
