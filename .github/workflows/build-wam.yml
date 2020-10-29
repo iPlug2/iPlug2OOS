@@ -7,9 +7,7 @@ on:
 
 env:
   PROJECT_NAME: MyNewPlugin
-  URL_NAME: iPlug2OutOfSourceExample
-  # URL_BASE.github.io/URL_NAME
-  URL_BASE: ${{secrets.USERNAME}}
+  URL: https://${{github.repository_owner}}.github.io/iPlug2OutOfSourceExample/
 
 jobs:
   build:
@@ -65,11 +63,11 @@ jobs:
           source ./emsdk_env.sh
           cd ..
           cd ${{env.PROJECT_NAME}}/scripts
-          ./makedist-web.sh off https://${{env.URL_BASE}}.github.io/${{env.URL_NAME}}/
+          ./makedist-web.sh off ${{env.URL}}
           
       # - name: Compile WAM
       #   run: |
-      #     sudo docker run --rm -v iPlug2:/src -e URL=https://${{env.URL_BASE}}.github.io/${{env.URL_NAME}}/ trzeci/emscripten /bin/bash -c "cd Projects/${{env.PROJECT_NAME}}/scripts;./makedist-web.sh off $URL"
+      #     sudo docker run --rm -v iPlug2:/src -e URL=${{env.URL}} trzeci/emscripten /bin/bash -c "cd Projects/${{env.PROJECT_NAME}}/scripts;./makedist-web.sh off $URL"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1
