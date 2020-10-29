@@ -293,4 +293,4 @@ mv ./build-mac/*.zip ./build-mac/out
 #  git checkout resources/img/AboutBox.png
 #fi
 
-echo "done"
+echo $ARCHIVE_NAME
