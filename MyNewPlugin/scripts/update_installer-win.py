@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# this script will update the versions in packages and innosetup installer files to match that in config.h
+# this script will update the version and text in the innosetup installer files, based on config.h and demo 1/0
 
 import plistlib, os, datetime, fileinput, glob, sys, string
 scriptpath = os.path.dirname(os.path.realpath(__file__))

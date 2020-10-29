@@ -789,7 +789,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python ../scripts/prepare_plists.py\n";
+			shellScript = "python ../scripts/update_version-ios.py\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
