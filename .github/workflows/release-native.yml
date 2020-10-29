@@ -2,8 +2,8 @@ name: Release Native
 
 on:
   push:
-    # tags:
-    #   - "v*"
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: MyNewPlugin
@@ -15,10 +15,6 @@ jobs:
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
-      # - name: Check out repository
-      #   uses: actions/checkout@v2
-      #   with:
-      #     path: ${{env.PROJECT_NAME}}
       - name: Check out repository
         uses: actions/checkout@v2
         with:
@@ -41,26 +37,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, macos-latest]
         include:
-          # - os: macos-latest
-          #   build_dir: build-mac
-          #   artifact_ext: mac
+          - os: macos-latest
+            build_dir: build-mac
+            artifact_ext: mac
           - os: windows-latest
             build_dir: build-win
             artifact_ext: win
 
     steps:
-    # - name: Checkout iPlug2
-    #   uses: actions/checkout@v2
-    #   with:
-    #     repository: iPlug2/iPlug2
-    #     path: iPlug2
-
-    # - name: Check out repository
-    #   uses: actions/checkout@v2
-    #   with:
-    #     path: ${{env.PROJECT_NAME}}
     - name: Check out repository
       uses: actions/checkout@v2
       with:
@@ -111,7 +97,7 @@ jobs:
 
     - name: Add msbuild to PATH (Windows)
       if: matrix.os == 'windows-latest'
-      uses: microsoft/setup-msbuild@v1.0.0
+      uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Build Windows
       id: build_win_step
