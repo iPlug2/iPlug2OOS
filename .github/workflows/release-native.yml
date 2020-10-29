@@ -119,8 +119,8 @@ jobs:
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
 
-        $SCRIPT_OUTPUT = .\makedist-win.bat full installer
-        $ARCHIVE_NAME = Get-Content $SCRIPT_OUTPUT -Tail 1
+        .\makedist-win.bat full installer > out.txt
+        $ARCHIVE_NAME = Get-Content out.txt -Tail 1
         echo $ARCHIVE_NAME
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: pwsh
