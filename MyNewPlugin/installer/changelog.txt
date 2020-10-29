@@ -1,4 +1,4 @@
 MyNewPlugin changelog
 www.acmeinc.com
 
-00/00/00 - v1.00 initial release
+29/10/2020 - v0.0.1 initial release
