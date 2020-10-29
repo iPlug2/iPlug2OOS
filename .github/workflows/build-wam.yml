@@ -2,8 +2,8 @@ name: Build WAM
 
 on:
   push:
- #    tags:
- #      - "v*"
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: MyNewPlugin
