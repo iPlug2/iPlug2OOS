@@ -20,9 +20,9 @@ jobs:
       #   with:
       #     path: ${{env.PROJECT_NAME}}
       - name: Check out repository
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Create release
         id: create_release
