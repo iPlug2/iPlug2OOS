@@ -120,24 +120,24 @@ jobs:
         asset_name: ${{ steps.build_mac_step.outputs.archive_name }}.dmg
         asset_content_type: application/octet-stream
 
-    - name: Upload Windows pdb release asset
-      if: matrix.os == 'windows-latest'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
-        asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
-        asset_content_type: application/zip
+    # - name: Upload Windows pdb release asset
+    #   if: matrix.os == 'windows-latest'
+    #   uses: actions/upload-release-asset@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     upload_url: ${{ needs.create_release.outputs.upload_url }}
+    #     asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
+    #     asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
+    #     asset_content_type: application/zip
 
-    - name: Upload Windows zip release asset
-      if: matrix.os == 'windows-latest'
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win.zip
-        asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win.zip
-        asset_content_type: application/zip
+    # - name: Upload Windows zip release asset
+    #   if: matrix.os == 'windows-latest'
+    #   uses: actions/upload-release-asset@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     upload_url: ${{ needs.create_release.outputs.upload_url }}
+    #     asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win.zip
+    #     asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win.zip
+    #     asset_content_type: application/zip
