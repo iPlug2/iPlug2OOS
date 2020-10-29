@@ -125,7 +125,7 @@ jobs:
         ECHO %ARCHIVE_NAME%
         echo "::set-output name=archive_name::%ARCHIVE_NAME%"
         
-      shell: pwsh
+      shell: cmd
 
     - name: Upload Windows pdb release asset
       if: matrix.os == 'windows-latest'
