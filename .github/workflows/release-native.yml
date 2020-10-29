@@ -65,11 +65,11 @@ jobs:
       with:
         submodules: recursive
 
-    # - name: Get VST3 SDK
-    #   run: |
-    #     cd iPlug2/Dependencies/IPlug
-    #     ./download-iplug-libs.sh
-    #   shell: bash
+    - name: Get VST3 SDK
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-iplug-libs.sh
+      shell: bash
 
     - name: Get Prebuilt Libs
       run: |
