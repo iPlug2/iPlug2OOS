@@ -41,11 +41,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [windows-latest]
         include:
-          - os: macos-latest
-            build_dir: build-mac
-            artifact_ext: mac
+          # - os: macos-latest
+          #   build_dir: build-mac
+          #   artifact_ext: mac
           - os: windows-latest
             build_dir: build-win
             artifact_ext: win
@@ -119,7 +119,8 @@ jobs:
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
 
-        $ARCHIVE_NAME = .\makedist-win.bat full installer
+        $SCRIPT_OUTPUT = .\makedist-win.bat full installer
+        $ARCHIVE_NAME = Get-Content $SCRIPT_OUTPUT -Tail 1
         echo $ARCHIVE_NAME
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: pwsh
