@@ -1,0 +1,132 @@
+name: Release Native
+
+on:
+  push:
+    tags:
+      - "v*"
+
+env:
+  PROJECT_NAME: MyNewPlugin
+
+jobs:
+  create_release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          path: ${{env.PROJECT_NAME}}
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body_path: ${{env.PROJECT_NAME}}/installer/changelog.txt
+
+  build:
+    name: Build
+    needs: create_release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+        include:
+          - os: macos-latest
+            build_dir: build-mac
+            artifact_ext: mac
+          - os: windows-latest
+            build_dir: build-win
+            artifact_ext: win
+
+    steps:
+    # - name: Checkout iPlug2
+    #   uses: actions/checkout@v2
+    #   with:
+    #     repository: iPlug2/iPlug2
+    #     path: iPlug2
+
+    # - name: Check out repository
+    #   uses: actions/checkout@v2
+    #   with:
+    #     path: ${{env.PROJECT_NAME}}
+
+    - name: Get VST3 SDK
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-iplug-libs.sh
+      shell: bash
+
+    - name: Get Prebuilt Libs
+      run: |
+        cd iPlug2/Dependencies
+        ./download-prebuilt-libs.sh
+      shell: bash
+
+    - name: Build macOS
+      if: matrix.os == 'macOS-latest'
+      run: |
+        cd ${{env.PROJECT_NAME}}/scripts
+        ./makedist-mac.sh full installer
+      shell: bash
+
+    - name: Add msbuild to PATH (Windows)
+      if: matrix.os == 'windows-latest'
+      uses: microsoft/setup-msbuild@v1.0.0
+
+    - name: Build Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd iPlug2\Projects\${{env.PROJECT_NAME}}\scripts
+        .\makedist-win.bat full installer
+      shell: pwsh
+
+    - name: Upload mac DSYMs release asset
+      if: matrix.os == 'macOS-latest'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-mac-dSYMs.zip
+        asset_name: ${{env.PROJECT_NAME}}-v1.0.0-mac-dSYMs.zip
+        asset_content_type: application/zip
+
+    - name: Upload mac dmg release asset
+      if: matrix.os == 'macOS-latest'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-mac.dmg
+        asset_name: ${{env.PROJECT_NAME}}-v1.0.0-mac.dmg
+        asset_content_type: application/octet-stream
+
+    - name: Upload Windows pdb release asset
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
+        asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win-pdbs.zip
+        asset_content_type: application/zip
+
+    - name: Upload Windows zip release asset
+      if: matrix.os == 'windows-latest'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{env.PROJECT_NAME}}-v1.0.0-win.zip
+        asset_name: ${{env.PROJECT_NAME}}-v1.0.0-win.zip
+        asset_content_type: application/zip
