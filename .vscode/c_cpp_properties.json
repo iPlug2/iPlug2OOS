@@ -16,7 +16,7 @@
             "IGRAPHICS_NANOVG",
             "NOMINMAX"
         ]
-      },
+    },
     "configurations": [
         {
             "name": "Mac",
@@ -30,10 +30,13 @@
                 "IGRAPHICS_METAL"
             ],
             "macFrameworkPath": [
-                "/System/Library/Frameworks",
-                "/Library/Frameworks"
+                // "/System/Library/Frameworks",
+                // "/Library/Frameworks"
             ],
-            "cppStandard": "c++14"
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Win32",
@@ -44,13 +47,12 @@
                 "${commonDefs}",
                 "OS_WIN",
                 "IGRAPHICS_GL2"
-            ]
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         }
     ],
-    "version": 4,
-    "folders": [
-        {
-            "path": "."
-        }
-    ]
+    "version": 4
 }
