@@ -55,7 +55,7 @@ def main():
 
   print("\n\n--------------------");
 
-  print("TODO: Update changelog.txt then\ngit commit -a -m \"update changelog\" then \ngit tag v" + config['FULL_VER_STR'] + "then \ngit push origin")
+  print("TODO: Update changelog.txt then\ngit commit -a -m \"update changelog\" then \ngit tag v" + config['FULL_VER_STR'] + " then \ngit push --follow-tags origin")
 
 if __name__ == '__main__':
   main()
