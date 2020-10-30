@@ -29,17 +29,29 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
-    pGraphics->AttachPanelBackground(COLOR_ORANGE);
+    pGraphics->AttachTextEntryControl();
+
+
     auto smileyBitmap = pGraphics->LoadBitmap(SMILEY_FN);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
-    IRECT controlsArea = pGraphics->GetBounds();
-    const IRECT keyboardArea = controlsArea.ReduceFromBottom(100);
+    IRECT bounds = pGraphics->GetBounds();
+    const IRECT keyboardArea = bounds.ReduceFromBottom(100);
+    IRECT controlsArea = bounds.GetPadded(-10);
+    
+    
+    pGraphics->AttachPanelBackground(COLOR_ORANGE);
     pGraphics->AttachControl(new IBitmapControl(controlsArea.GetFromTRHC(50,50), smileyBitmap));
     pGraphics->AttachControl(new IVKnobControl(controlsArea.GetGridCell(0,4,4), kGain));
     pGraphics->AttachControl(new IVMultiSliderControl<4>(controlsArea.GetGridCell(1,4,4), "Env", DEFAULT_STYLE, kParamAttack, 0, EDirection::Horizontal));
     pGraphics->AttachControl(new IVKeyboardControl(keyboardArea), kCtrlTagKeyboard);
-    pGraphics->AttachTextEntryControl();
     pGraphics->AttachControl(new IVScopeControl<1>(controlsArea.GetGridCell(2,4,4)), kCtrlTagScope);
+
+    WDL_String versionStr;
+    GetPluginVersionStr(versionStr);
+    WDL_String buildDateStr;
+    buildDateStr.SetFormatted(100, "Version %s %s %s, built on %s at %.5s ", versionStr.Get(), GetArchStr(), GetAPIStr(), __DATE__, __TIME__);
+    pGraphics->AttachControl(new ITextControl(controlsArea.GetFromBRHC(300, 10), buildDateStr.Get()));
+
     pGraphics->SetQwertyMidiKeyHandlerFunc([pGraphics](const IMidiMsg& msg) { pGraphics->GetControlWithTag(kCtrlTagKeyboard)->As<IVKeyboardControl>()->SetNoteFromMidi(msg.NoteNumber(), msg.StatusMsg() == IMidiMsg::kNoteOn); });
   };
 #endif
