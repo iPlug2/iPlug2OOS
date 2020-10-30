@@ -20,17 +20,17 @@
 			<key>type</key>
 			<string>aumu</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>256</integer>
 		</dict>
 	</array>
 	<key>AudioUnit Version</key>
-	<string>0x00000001</string>
+	<string>0x00000100</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>MyNewPlugin</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MyNewPlugin v0.0.1 Copyright 2020 Acme Inc</string>
+	<string>MyNewPlugin v0.1.0 Copyright 2020 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.AcmeInc.audiounit.MyNewPlugin</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -40,11 +40,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.1</string>
+	<string>0.1.0</string>
 	<key>CFBundleSignature</key>
 	<string>lQhx</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.1</string>
+	<string>0.1.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
