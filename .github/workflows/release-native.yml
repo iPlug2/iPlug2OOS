@@ -2,8 +2,8 @@ name: Release Native
 
 on:
   push:
-    # tags:
-    #   - "v*"
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: MyNewPlugin
