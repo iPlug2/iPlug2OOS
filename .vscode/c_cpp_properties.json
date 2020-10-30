@@ -1,7 +1,8 @@
 {
     "env": {
         "commonIncludePaths": [
-            "${workspaceFolder}/iPlug2/**",
+            "${workspaceFolder}/MyNewPlugin/.",
+            "${workspaceFolder}/MyNewPlugin/**",
             "${workspaceFolder}/iPlug2/WDL/**",
             "${workspaceFolder}/iPlug2/IPlug/**",
             "${workspaceFolder}/iPlug2/IGraphics/**",
@@ -22,7 +23,8 @@
             "name": "Mac",
             "includePath": [
                 "${commonIncludePaths}",
-                "${workspaceFolder}/iPlug2/Dependencies/Build/mac/include/**"
+                "${workspaceFolder}/iPlug2/Dependencies/Build/mac/include/**",
+                "${workspaceFolder}/iPlug2/Dependencies/IGraphics/MetalNanoVG/src/"
             ],
             "defines": [
                 "${commonDefs}",
