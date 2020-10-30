@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # this script will copy the project's resources (pngs, ttfs, svgs etc) to the correct place
 # depending on the value of PLUG_SHARED_RESOURCES in config.h

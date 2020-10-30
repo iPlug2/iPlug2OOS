@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # this script will create/update info plist files based on config.h
 
@@ -14,7 +14,7 @@ kAudioUnitType_MusicEffect      = "aumf"
 kAudioUnitType_Effect           = "aufx"
 kAudioUnitType_MIDIProcessor    = "aumi"
 
-sys.path.insert(0, os.path.join(os.getcwd(), IPLUG2_ROOT + '/scripts'))
+sys.path.insert(0, os.path.join(os.getcwd(), IPLUG2_ROOT + '/Scripts'))
 
 from parse_config import parse_config, parse_xcconfig
 

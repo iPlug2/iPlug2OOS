@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # this script will update the version and text in the innosetup installer files, based on config.h and demo 1/0
 
