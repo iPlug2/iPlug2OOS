@@ -776,7 +776,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python ../scripts/prepare_resources-ios.py app\n";
+			shellScript = "python3 ../scripts/prepare_resources-ios.py app\n";
 		};
 		B87FD2072351C91100CF7307 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -789,7 +789,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python ../scripts/update_version-ios.py\n";
+			shellScript = "python3 ../scripts/update_version-ios.py\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
