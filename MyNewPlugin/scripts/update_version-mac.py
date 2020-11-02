@@ -70,7 +70,7 @@ def main():
 
 # AUDIOUNIT v2
 
-  plistpath = projectpath + "/resources/" + config['BUNDLE_NAME'] + "-au-Info.plist"
+  plistpath = projectpath + "/resources/" + config['BUNDLE_NAME'] + "-AU-Info.plist"
   with open(plistpath, 'rb') as f:
     auv2 = plistlib.load(f)  
     auv2['CFBundleExecutable'] = config['BUNDLE_NAME']
