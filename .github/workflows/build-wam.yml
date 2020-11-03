@@ -21,6 +21,12 @@ jobs:
           submodules: recursive
           persist-credentials: false
 
+
+      - name: Create branch
+        run: |
+          git switch -c deploy
+        shell: bash
+
       # - name: Setup Emscripten
       #   uses: lovasoa/setup-emscripten@master
       #   with:
@@ -70,6 +76,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BASE_BRANCH: master
+          BASE_BRANCH: deploy
           BRANCH: gh-pages
           FOLDER: ${{env.PROJECT_NAME}}/build-web
