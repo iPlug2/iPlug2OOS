@@ -9,5 +9,6 @@
     "extensions": [
         "ms-vscode.cpptools",
     ],
-    "postCreateCommand": "echo 'emcc=$(emcc --version)'; cd iPlug2/Dependencies/IPlug; ./download-iplug-sdks.sh; pip3 install semver"
+    "postCreateCommand": "echo 'emcc=$(emcc --version)'",
+    "postStartCommand":  "cd iPlug2/Dependencies/IPlug; ./download-iplug-sdks.sh; pip3 install semver",
 }
