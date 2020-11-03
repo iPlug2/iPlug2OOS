@@ -45,7 +45,7 @@ jobs:
       - name: Get WAM SDKS
         run: |
           cd iPlug2/Dependencies/IPlug
-          ./download-iplug-libs.sh
+          ./download-iplug-sdks.sh
         shell: bash
 
       - name: Compile WAM

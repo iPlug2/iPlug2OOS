@@ -55,7 +55,7 @@ jobs:
     - name: Get VST3 SDK
       run: |
         cd iPlug2/Dependencies/IPlug
-        ./download-iplug-libs.sh
+        ./download-iplug-sdks.sh
       shell: bash
 
     - name: Get Prebuilt Libs
