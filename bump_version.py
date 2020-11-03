@@ -58,7 +58,7 @@ def main():
   os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
   print("\n\n--------------------");
 
-  edit = input("\nEdit changelog? Y/N")
+  edit = input("\nEdit changelog? Y/N: ")
 
   if edit == 'y' or edit == 'Y':
     os.system("vim " + PROJECT_ROOT + "/installer/changelog.txt")
@@ -67,7 +67,7 @@ def main():
     os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
     print("\n\n--------------------");
 
-  edit = input("\nTag version and push to origin? Y/N")
+  edit = input("\nTag version and push to origin? Y/N: ")
 
   if edit == 'y' or edit == 'Y':
     if newVersion:
