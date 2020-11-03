@@ -1,7 +1,9 @@
 name: Build WAM
 
 on:
-  workflow_dispatch
+  push:
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: MyNewPlugin
