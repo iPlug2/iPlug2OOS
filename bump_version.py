@@ -49,13 +49,25 @@ def main():
   os.system("cd " + PROJECT_SCRIPTS + "; python3 update_version-ios.py")
   os.system("cd " + PROJECT_SCRIPTS + "; python3 update_installer-win.py 0")
   
-  print("Current changelog: \n--------------------");
-
+  print("\nCurrent changelog: \n--------------------");
   os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
-
   print("\n\n--------------------");
 
-  print("TODO: Update changelog.txt then\ngit commit -a -m \"update changelog\" then \ngit tag v" + str(newVersionInfo) + " then \ngit push --follow-tags origin")
+  edit = input("\nEdit changelog? Y/N")
+
+  if edit == 'y' or edit == 'Y':
+    os.system("vim " + PROJECT_ROOT + "/installer/changelog.txt")
+
+    print("\nNew changelog: \n--------------------");
+    os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
+    print("\n\n--------------------");
+
+  edit = input("\nTag version and push to origin? Y/N")
+
+  if edit == 'y' or edit == 'Y':
+    os.system("git commit -a -m \"update changelog for v" + str(newVersionInfo) + "\"")
+    os.system("git tag v" + str(newVersionInfo))
+    os.system("git push refs/{v" + str(newVersionInfo) + ", master")
 
 if __name__ == '__main__':
   main()
