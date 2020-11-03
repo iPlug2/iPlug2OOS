@@ -73,7 +73,7 @@ def main():
     os.system("git commit -a -m \"update changelog for v" + str(newVersionInfo) + "\"")
     if newVersion:
       os.system("git tag v" + str(newVersionInfo))
-    os.system("git push origin refs/{\"v" + str(newVersionInfo) + "\",master}")
+    os.system("git push origin refs/{\"v" + str(newVersionInfo) + "\",master}/*")
 
 if __name__ == '__main__':
   main()
