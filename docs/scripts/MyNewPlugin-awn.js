@@ -14,7 +14,7 @@ class MyNewPluginController extends WAMController
   }
 
   static importScripts (actx) {
-    var origin = "/";
+    var origin = "https://iplug2.github.io/iPlug2OOS/";
 
     return new Promise( (resolve) => {
       actx.audioWorklet.addModule(origin + "scripts/MyNewPlugin-wam.js").then(() => {
