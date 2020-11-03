@@ -6,8 +6,10 @@ https://github.com/iPlug2/iPlug2/wiki/Out-of-source-builds
 
 In order to set up this repo, you need to initialize the submodule, and download the plug-in SDKs... 
 
+```
 cd iPlug2OOS
 git submodule init
 git submodule update
 cd iPlug2/Dependencies/IPlug
 ./download-iplug-sdks.sh
+```
