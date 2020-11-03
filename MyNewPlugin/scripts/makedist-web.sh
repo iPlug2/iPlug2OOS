@@ -45,28 +45,28 @@ if [ "$#" -eq 3 ]; then
 fi
 
 # check to see if the build web folder has its own git repo
-if [ -d build-web/.git ]
-then
-  # if so trash only the scripts
-  if [ -d build-web/scripts ]; then
-    if [ "$BUILD_DSP" -eq "1" ]; then
+# if [ -d build-web/.git ]
+# then
+#   # if so trash only the scripts
+#   if [ -d build-web/scripts ]; then
+#     if [ "$BUILD_DSP" -eq "1" ]; then
       rm build-web/scripts/*-wam.js
-    fi
+#     fi
 
-    if [ "$BUILD_EDITOR" -eq "1" ]; then
+#     if [ "$BUILD_EDITOR" -eq "1" ]; then
       rm build-web/scripts/*-web.*
-    fi
-  fi
-else
-  # otherwise trash the whole build-web folder
-  if [ -d build-web ]; then 
-    rm -r build-web
-  fi
+#     fi
+#   fi
+# else
+#   # otherwise trash the whole build-web folder
+#   if [ -d build-web ]; then 
+#     rm -r build-web
+#   fi
 
-  mkdir build-web
-fi
+#   mkdir build-web
+# fi
 
-mkdir build-web/scripts
+# mkdir build-web/scripts
 
 echo BUNDLING RESOURCES -----------------------------
 
@@ -150,8 +150,8 @@ fi
 cd $PROJECT_ROOT/build-web
 
 # copy in the template HTML - comment this out if you have customised the HTML
-cp $IPLUG2_ROOT/IPlug/WEB/Template/index.html index.html
-sed -i.bak s/NAME_PLACEHOLDER/$PROJECT_NAME/g index.html
+# cp $IPLUG2_ROOT/IPlug/WEB/Template/index.html index.html
+# sed -i.bak s/NAME_PLACEHOLDER/$PROJECT_NAME/g index.html
 
 if [ $FOUND_FONTS -eq "0" ]; then sed -i.bak s/'<script async src="fonts.js"><\/script>'/'<!--<script async src="fonts.js"><\/script>-->'/g index.html; fi
 if [ $FOUND_SVGS -eq "0" ]; then sed -i.bak s/'<script async src="svgs.js"><\/script>'/'<!--<script async src="svgs.js"><\/script>-->'/g index.html; fi
