@@ -1,7 +1,7 @@
 #define PLUG_NAME "MyNewPlugin"
 #define PLUG_MFR "AcmeInc"
-#define PLUG_VERSION_HEX 0x00000500
-#define PLUG_VERSION_STR "0.5.0"
+#define PLUG_VERSION_HEX 0x00000600
+#define PLUG_VERSION_STR "0.6.0"
 #define PLUG_UNIQUE_ID 'lQhx'
 #define PLUG_MFR_ID 'Acme'
 #define PLUG_URL_STR "https://iplug2.github.io"

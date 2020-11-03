@@ -32,8 +32,6 @@
                 "IGRAPHICS_METAL"
             ],
             "macFrameworkPath": [
-                // "/System/Library/Frameworks",
-                // "/Library/Frameworks"
             ],
             "intelliSenseMode": "clang-x64",
             "compilerPath": "/usr/bin/clang",
