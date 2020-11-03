@@ -28,13 +28,18 @@ def main():
   currentVersionInfo = semver.VersionInfo.parse(versionStr)
   print("current version in config.h: v" + versionStr)
 
+  newVersion = False
+
   if len(sys.argv) == 2:
     if sys.argv[1] == 'major':
       newVersionInfo = currentVersionInfo.bump_major()
+      newVersion = True
     elif sys.argv[1] == 'minor':
       newVersionInfo = currentVersionInfo.bump_minor()
+      newVersion = True
     elif sys.argv[1] == 'patch':
       newVersionInfo = currentVersionInfo.bump_patch()
+      newVersion = True
     else:
       newVersionInfo = currentVersionInfo
   else:
@@ -66,7 +71,8 @@ def main():
 
   if edit == 'y' or edit == 'Y':
     os.system("git commit -a -m \"update changelog for v" + str(newVersionInfo) + "\"")
-    os.system("git tag v" + str(newVersionInfo))
+    if newVersion:
+      os.system("git tag v" + str(newVersionInfo))
     os.system("git push origin refs/{v" + str(newVersionInfo) + ", master")
 
 if __name__ == '__main__':
