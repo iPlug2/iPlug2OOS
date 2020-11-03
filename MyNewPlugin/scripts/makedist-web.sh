@@ -79,28 +79,28 @@ if [ -f fonts.js ]; then rm fonts.js; fi
 
 #package fonts
 FOUND_FONTS=0
-if [ "$(ls -A ../resources/fonts/*.ttf)" ]; then
+if [ "$(ls -A ../resources/fonts/*.ttf 2> /dev/null)" ]; then
   FOUND_FONTS=1
   python3 $FILE_PACKAGER fonts.data --preload ../resources/fonts/ --exclude *DS_Store --js-output=fonts.js
 fi
 
 #package svgs
 FOUND_SVGS=0
-if [ "$(ls -A ../resources/img/*.svg)" ]; then
+if [ "$(ls -A ../resources/img/*.svg 2> /dev/null)" ]; then
   FOUND_SVGS=1
   python3 $FILE_PACKAGER svgs.data --preload ../resources/img/ --exclude *.png --exclude *DS_Store --js-output=svgs.js
 fi
 
 #package @1x pngs
 FOUND_PNGS=0
-if [ "$(ls -A ../resources/img/*.png)" ]; then
+if [ "$(ls -A ../resources/img/*.png 2> /dev/null)" ]; then
   FOUND_PNGS=1
   python3 $FILE_PACKAGER imgs.data --use-preload-plugins --preload ../resources/img/ --use-preload-cache --indexedDB-name="/$PROJECT_NAME_pkg" --exclude *DS_Store --exclude  *@2x.png --exclude  *.svg >> imgs.js
 fi
 
 # package @2x pngs into separate .data file
 FOUND_2XPNGS=0
-if [ "$(ls -A ../resources/img/*@2x*.png)" ]; then
+if [ "$(ls -A ../resources/img/*@2x*.png 2> /dev/null)" ]; then
   FOUND_2XPNGS=1
   mkdir ./2x/
   cp ../resources/img/*@2x* ./2x
