@@ -37,7 +37,7 @@ echo ------------------------------------------------------------------
 echo Updating version numbers ...
 
 call python prepare_resources-win.py %DEMO%
-call python update_installer_version.py %DEMO%
+call python update_installer-win.py %DEMO%
 
 cd ..\
 

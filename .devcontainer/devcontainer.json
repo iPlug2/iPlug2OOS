@@ -9,5 +9,6 @@
     "extensions": [
         "ms-vscode.cpptools",
     ],
-    "postCreateCommand": "echo 'emcc=$(emcc --version)'"
+    "postCreateCommand": "echo 'emcc=$(emcc --version)'",
+    "postCreateCommand": "cd iPlug2/Dependencies/IPlug; ./download-iplug-libs.sh"
 }
