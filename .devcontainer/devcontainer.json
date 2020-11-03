@@ -1,5 +1,5 @@
 {
-    "name": "WASM",
+    "name": "iPlug2WAM",
     "build": {
         "dockerfile": "Dockerfile",
         "forwardPorts": [
@@ -9,6 +9,5 @@
     "extensions": [
         "ms-vscode.cpptools",
     ],
-    "postCreateCommand": "echo 'emcc=$(emcc --version)'",
-    "postCreateCommand": "cd iPlug2/Dependencies/IPlug; ./download-iplug-libs.sh"
+    "postCreateCommand": "echo 'emcc=$(emcc --version)'; cd iPlug2/Dependencies/IPlug; ./download-iplug-sdks.sh; pip3 install semver"
 }
