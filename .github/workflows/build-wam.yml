@@ -2,8 +2,8 @@ name: Build WAM
 
 on:
   push:
-    # tags:
-    #   - "v*"
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: MyNewPlugin
@@ -16,10 +16,11 @@ jobs:
   
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: aactions/checkout@v2.3.1
         with:
           submodules: recursive
-      
+          persist-credentials: false
+
       # - name: Setup Emscripten
       #   uses: lovasoa/setup-emscripten@master
       #   with:
