@@ -153,36 +153,36 @@ cd $PROJECT_ROOT/build-web
 # cp $IPLUG2_ROOT/IPlug/WEB/Template/index.html index.html
 # sed -i.bak s/NAME_PLACEHOLDER/$PROJECT_NAME/g index.html
 
-if [ $FOUND_FONTS -eq "0" ]; then sed -i.bak s/'<script async src="fonts.js"><\/script>'/'<!--<script async src="fonts.js"><\/script>-->'/g index.html; fi
-if [ $FOUND_SVGS -eq "0" ]; then sed -i.bak s/'<script async src="svgs.js"><\/script>'/'<!--<script async src="svgs.js"><\/script>-->'/g index.html; fi
-if [ $FOUND_PNGS -eq "0" ]; then sed -i.bak s/'<script async src="imgs.js"><\/script>'/'<!--<script async src="imgs.js"><\/script>-->'/g index.html; fi
-if [ $FOUND_2XPNGS -eq "0" ]; then sed -i.bak s/'<script async src="imgs@2x.js"><\/script>'/'<!--<script async src="imgs@2x.js"><\/script>-->'/g index.html; fi
-if [ $WEBSOCKET_MODE -eq "1" ]; then
-  cp $IPLUG2_ROOT/Dependencies/IPlug/WAM_SDK/wamsdk/wam-controller.js scripts/wam-controller.js
-  cp $IPLUG2_ROOT/IPlug/WEB/Template/scripts/websocket.js scripts/websocket.js
-  sed -i.bak s/'<script src="scripts\/audioworklet.js"><\/script>'/'<!--<script src="scripts\/audioworklet.js"><\/script>-->'/g index.html;
-  sed -i.bak s/'let WEBSOCKET_MODE=false;'/'let WEBSOCKET_MODE=true;'/g index.html;
-else
-  sed -i.bak s/'<script src="scripts\/websocket.js"><\/script>'/'<!--<script src="scripts\/websocket.js"><\/script>-->'/g index.html;
+# if [ $FOUND_FONTS -eq "0" ]; then sed -i.bak s/'<script async src="fonts.js"><\/script>'/'<!--<script async src="fonts.js"><\/script>-->'/g index.html; fi
+# if [ $FOUND_SVGS -eq "0" ]; then sed -i.bak s/'<script async src="svgs.js"><\/script>'/'<!--<script async src="svgs.js"><\/script>-->'/g index.html; fi
+# if [ $FOUND_PNGS -eq "0" ]; then sed -i.bak s/'<script async src="imgs.js"><\/script>'/'<!--<script async src="imgs.js"><\/script>-->'/g index.html; fi
+# if [ $FOUND_2XPNGS -eq "0" ]; then sed -i.bak s/'<script async src="imgs@2x.js"><\/script>'/'<!--<script async src="imgs@2x.js"><\/script>-->'/g index.html; fi
+# if [ $WEBSOCKET_MODE -eq "1" ]; then
+#   cp $IPLUG2_ROOT/Dependencies/IPlug/WAM_SDK/wamsdk/wam-controller.js scripts/wam-controller.js
+#   cp $IPLUG2_ROOT/IPlug/WEB/Template/scripts/websocket.js scripts/websocket.js
+#   sed -i.bak s/'<script src="scripts\/audioworklet.js"><\/script>'/'<!--<script src="scripts\/audioworklet.js"><\/script>-->'/g index.html;
+#   sed -i.bak s/'let WEBSOCKET_MODE=false;'/'let WEBSOCKET_MODE=true;'/g index.html;
+# else
+#   sed -i.bak s/'<script src="scripts\/websocket.js"><\/script>'/'<!--<script src="scripts\/websocket.js"><\/script>-->'/g index.html;
 
-  # update the i/o details for the AudioWorkletNodeOptions parameter, based on config.h channel io str
-  MAXNINPUTS=$(python3 $IPLUG2_ROOT/Scripts/parse_iostr.py "$PROJECT_ROOT" inputs)
-  MAXNOUTPUTS=$(python3 $IPLUG2_ROOT/Scripts/parse_iostr.py "$PROJECT_ROOT" outputs)
+#   # update the i/o details for the AudioWorkletNodeOptions parameter, based on config.h channel io str
+#   MAXNINPUTS=$(python3 $IPLUG2_ROOT/Scripts/parse_iostr.py "$PROJECT_ROOT" inputs)
+#   MAXNOUTPUTS=$(python3 $IPLUG2_ROOT/Scripts/parse_iostr.py "$PROJECT_ROOT" outputs)
 
-  if [ $MAXNINPUTS -eq "0" ]; then 
-    MAXNINPUTS="";
-    sed -i.bak '181,203d' index.html; # hack to remove GetUserMedia() from code, and allow WKWebKitView usage for instruments
-  fi
-  sed -i.bak s/"MAXNINPUTS_PLACEHOLDER"/"$MAXNINPUTS"/g index.html;
-  sed -i.bak s/"MAXNOUTPUTS_PLACEHOLDER"/"$MAXNOUTPUTS"/g index.html;
-fi
+#   if [ $MAXNINPUTS -eq "0" ]; then 
+#     MAXNINPUTS="";
+#     sed -i.bak '181,203d' index.html; # hack to remove GetUserMedia() from code, and allow WKWebKitView usage for instruments
+#   fi
+#   sed -i.bak s/"MAXNINPUTS_PLACEHOLDER"/"$MAXNINPUTS"/g index.html;
+#   sed -i.bak s/"MAXNOUTPUTS_PLACEHOLDER"/"$MAXNOUTPUTS"/g index.html;
+# fi
 
-rm *.bak
+# rm *.bak
 
 # copy the style & WAM favicon
-mkdir styles
-cp $IPLUG2_ROOT/IPlug/WEB/Template/styles/style.css styles/style.css
-cp $IPLUG2_ROOT/IPlug/WEB/Template/favicon.ico favicon.ico
+# mkdir styles
+# cp $IPLUG2_ROOT/IPlug/WEB/Template/styles/style.css styles/style.css
+# cp $IPLUG2_ROOT/IPlug/WEB/Template/favicon.ico favicon.ico
 
 echo MAKING  - WEB WASM MODULE -----------------------------
 

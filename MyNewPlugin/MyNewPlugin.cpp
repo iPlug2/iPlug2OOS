@@ -61,17 +61,18 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
 void MyNewPlugin::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
   const double gain = GetParam(kGain)->Value() / 100.;
-  const int nChans = NOutChansConnected();
 
-  mSynth.ProcessBlock(inputs, outputs, 0, 2, nFrames);
+  mSynth.ProcessBlock(inputs, outputs, 0, 1, nFrames);
   
-  for (int s = 0; s < nFrames; s++) {
-    for (int c = 0; c < nChans; c++) {
-      outputs[c][s] *= gain;
-    }
+  for (int s = 0; s < nFrames; s++)
+  {
+    outputs[0][s] *= gain;
   }
 
   mScopeSender.ProcessBlock(outputs, nFrames, kCtrlTagScope);
+
+  // copy left hand channel audio to right hand channel
+  memcpy(outputs[1], outputs[0], nFrames * sizeof(sample));
 }
 
 void MyNewPlugin::ProcessMidiMsg(const IMidiMsg& msg)
@@ -98,7 +99,6 @@ void MyNewPlugin::OnParamChange(int paramIdx)
   case kParamDecay:   for(auto* voice : mVoices) { voice->mEnv.SetStageTime(ADSREnvelope<sample>::EStage::kDecay,   value); } break;
   case kParamSustain: for(auto* voice : mVoices) { voice->mSustainLevel = value / 100.0; } break;
   case kParamRelease: for(auto* voice : mVoices) { voice->mEnv.SetStageTime(ADSREnvelope<sample>::EStage::kRelease, value); } break;
-
   default:
     break;
   }

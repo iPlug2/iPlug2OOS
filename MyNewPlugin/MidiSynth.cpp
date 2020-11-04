@@ -33,8 +33,9 @@ bool MidiSynth::ProcessBlock(sample** inputs, sample** outputs, int nInputs, int
 {
   assert(NVoices()); // you didn't add any voices to the synth!
   
-  memset(outputs[0], 0, nFrames * sizeof(sample) );
-  memset(outputs[1], 0, nFrames * sizeof(sample) );
+  for (int c=0; c<nOutputs; c++) {
+    memset(outputs[c], 0, nFrames * sizeof(sample) );
+  }
 
   if (mVoicesAreActive | !mMidiQueue.Empty())
   {
