@@ -32,7 +32,18 @@ public:
     return mEnv.GetReleased();
   }
   
-  void ProcessSamples(sample** inputs, sample** outputs, int nInputs, int nOutputs, int startIdx, int nFrames, double pitchBend) override;
+  void ProcessSamples(sample** inputs, sample** outputs, int nInputs, int nOutputs, int startIdx, int nFrames, double pitchBend) override
+  {
+    // for each sample in this block, starting at startIdx
+    for (auto s = startIdx; s < startIdx + nFrames; s++)
+    {
+      // generate 1 samples worth of audio
+      sample y = mEnv.Process(mSustainLevel) * mOsc.Process(midi2CPS(mBasePitch + pitchBend));
+      
+      outputs[0][s] = outputs[0][s] + y; // accumulate the output of this voice into the
+    }
+  }
+
 
 public:
   FastSinOscillator<sample> mOsc;
