@@ -31,13 +31,11 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->AttachTextEntryControl();
 
-
     auto smileyBitmap = pGraphics->LoadBitmap(SMILEY_FN);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     IRECT bounds = pGraphics->GetBounds();
     const IRECT keyboardArea = bounds.ReduceFromBottom(100);
     IRECT controlsArea = bounds.GetPadded(-10);
-    
     
     pGraphics->AttachPanelBackground(COLOR_RED);
     pGraphics->AttachControl(new IBitmapControl(controlsArea.GetFromTRHC(50,50), smileyBitmap));
