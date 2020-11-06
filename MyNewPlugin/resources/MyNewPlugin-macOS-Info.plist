@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>MyNewPlugin</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MyNewPlugin v0.9.0 Copyright 2020 Acme Inc</string>
+	<string>MyNewPlugin v0.0.0 Copyright 2020 Acme Inc</string>
 	<key>CFBundleIconFile</key>
 	<string>MyNewPlugin.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -19,11 +19,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.9.0</string>
+	<string>0.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>lQhx</string>
 	<key>CFBundleVersion</key>
-	<string>0.9.0</string>
+	<string>0.0.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSApplicationCategoryType</key>
