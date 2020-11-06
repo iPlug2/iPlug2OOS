@@ -7,4 +7,5 @@ cd iPlug2/Dependencies/IPlug/
 cd ../../..
 python duplicate.py MyNewPlugin $1 $2
 rm -r MyNewPlugin
+git add $1
 git commit -a -m "Renamed template project"
