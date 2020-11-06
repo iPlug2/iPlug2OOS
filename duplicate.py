@@ -53,7 +53,8 @@ SUBFOLDERS_TO_SEARCH = [
 "xcuserdata",
 "en-osx.lproj",
 "project.xcworkspace",
-"Images.xcassets"
+"Images.xcassets",
+"build-web"
 ]
 
 def randomFourChar(chars=string.ascii_letters + string.digits):
