@@ -1,10 +1,10 @@
 name: Release Native
 
 on:
-  workflow_dispatch
-  # push:
-    # tags:
-    #   - "v*"
+  # workflow_dispatch
+  push:
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: MyNewPlugin
@@ -105,8 +105,8 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
-
         .\makedist-win.bat full installer > out.txt
+        type out.txt
         $ARCHIVE_NAME = Get-Content out.txt -Tail 1
         echo $ARCHIVE_NAME
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
