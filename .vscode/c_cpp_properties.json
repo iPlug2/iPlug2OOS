@@ -52,6 +52,22 @@
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17"
+        },
+        {
+            "name": "WASM",
+            "includePath": [
+                "${commonIncludePaths}",
+                "/emsdk/upstream/emscripten/system/include"
+            ],
+            "defines": [
+                "${commonDefs}",
+                "OS_WEB",
+                "IGRAPHICS_GLES2"
+            ],
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "/emsdk/upstream/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
