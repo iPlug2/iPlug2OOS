@@ -8,7 +8,7 @@ on:
 
 env:
   PROJECT_NAME: MyNewPlugin
-  URL: https://${{github.repository_owner}}.github.io/iPlug2OOS/
+  URL: https://${{github.repository_owner}}.github.io/${{github.event.repository.name}}/
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
       # - name: Get emscripten
       #   run: docker pull trzeci/emscripten
         
-      - name: setup python3.5
+      - name: setup python3
         uses: actions/setup-python@v2
         with:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
