@@ -13,7 +13,7 @@ const int kNumVoices = 32;
 
 enum EParams
 {
-  kGain = 0,
+  kParamGain = 0,
   kParamAttack,
   kParamDecay,
   kParamSustain,
@@ -24,7 +24,6 @@ enum EParams
 enum ECtrlTags
 {
   kCtrlTagKeyboard = 0,
-  kCtrlTagScope
 };
 
 using namespace iplug;
@@ -39,10 +38,8 @@ public:
   void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
   void ProcessMidiMsg(const IMidiMsg& msg) override;
   void OnReset() override;
-  void OnIdle() override;
   void OnParamChange(int paramIdx) override;
   MidiSynth mSynth;
   std::vector<MySynthVoice*> mVoices;
-  IBufferSender<1> mScopeSender;
 #endif
 };

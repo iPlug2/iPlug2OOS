@@ -8,7 +8,7 @@
 MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPresets))
 {
-  GetParam(kGain)->InitDouble("Gain", 0., 0., 100.0, 0.01, "%");
+  GetParam(kParamGain)->InitDouble("Gain", 0., 0., 100.0, 0.01, "%");
   GetParam(kParamAttack)->InitDouble("Attack", 10., 1., 1000., 0.1, "ms", IParam::kFlagsNone, "ADSR", IParam::ShapePowCurve(3.));
   GetParam(kParamDecay)->InitDouble("Decay", 10., 1., 1000., 0.1, "ms", IParam::kFlagsNone, "ADSR", IParam::ShapePowCurve(3.));
   GetParam(kParamSustain)->InitDouble("Sustain", 50., 0., 100., 1, "%", IParam::kFlagsNone, "ADSR");
@@ -31,21 +31,21 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->AttachTextEntryControl();
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
-    IRECT bounds = pGraphics->GetBounds();
-    const IRECT keyboardArea = bounds.ReduceFromBottom(100);
-    IRECT controlsArea = bounds.GetPadded(-10);
+    const IRECT bounds = pGraphics->GetBounds();
+    const IRECT keyboardArea = bounds.GetFromBottom(100);
+    IRECT controlsArea = bounds.GetReducedFromBottom(100).GetPadded(-10);
     
-    pGraphics->AttachPanelBackground(COLOR_RED);
-    pGraphics->AttachControl(new IVKnobControl(controlsArea.GetGridCell(0,4,4), kGain));
-    pGraphics->AttachControl(new IVMultiSliderControl<4>(controlsArea.GetGridCell(1,4,4), "Env", DEFAULT_STYLE, kParamAttack, 0, EDirection::Vertical));
-    pGraphics->AttachControl(new IVKeyboardControl(keyboardArea), kCtrlTagKeyboard);
-    pGraphics->AttachControl(new IVScopeControl<1>(controlsArea.GetGridCell(2,4,4)), kCtrlTagScope);
+    pGraphics->AttachPanelBackground(COLOR_LIGHT_GRAY);
+    pGraphics->AttachControl(new IVGroupControl(controlsArea, "Controls"));
+    // pGraphics->AttachControl(new IVKnobControl(controlsArea.GetGridCell(0,4,4), kParamGain));
+    // pGraphics->AttachControl(new IVMultiSliderControl<4>(controlsArea.GetGridCell(1,4,4), "Env", DEFAULT_STYLE, kParamAttack, 0, EDirection::Vertical));
+    pGraphics->AttachControl(new IVKeyboardControl(keyboardArea, 36, 64), kCtrlTagKeyboard);
 
     WDL_String versionStr;
     GetPluginVersionStr(versionStr);
     WDL_String buildDateStr;
     buildDateStr.SetFormatted(100, "Version %s %s %s, built on %s at %.5s ", versionStr.Get(), GetArchStr(), GetAPIStr(), __DATE__, __TIME__);
-    pGraphics->AttachControl(new ITextControl(controlsArea.GetFromBRHC(300, 10), buildDateStr.Get()));
+    pGraphics->AttachControl(new ITextControl(bounds.GetFromTRHC(300, 12), buildDateStr.Get()));
 
     pGraphics->SetQwertyMidiKeyHandlerFunc([pGraphics](const IMidiMsg& msg) { pGraphics->GetControlWithTag(kCtrlTagKeyboard)->As<IVKeyboardControl>()->SetNoteFromMidi(msg.NoteNumber(), msg.StatusMsg() == IMidiMsg::kNoteOn); });
   };
@@ -55,16 +55,16 @@ MyNewPlugin::MyNewPlugin(const InstanceInfo& info)
 #if IPLUG_DSP
 void MyNewPlugin::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
-  const double gain = GetParam(kGain)->Value() / 100.;
-
   mSynth.ProcessBlock(inputs, outputs, 0, 1, nFrames);
-  
+
+  /*
+  const double gain = GetParam(kParamGain)->Value() / 100.;
+ 
   for (int s = 0; s < nFrames; s++)
   {
     outputs[0][s] *= gain;
   }
-
-  mScopeSender.ProcessBlock(outputs, nFrames, kCtrlTagScope);
+  */
 
   // copy left hand channel audio to right hand channel
   memcpy(outputs[1], outputs[0], nFrames * sizeof(sample));
@@ -80,16 +80,10 @@ void MyNewPlugin::OnReset()
   mSynth.SetSampleRateAndBlockSize(GetSampleRate(), GetBlockSize());
 }
 
-void MyNewPlugin::OnIdle()
-{
-  mScopeSender.TransmitData(*this);
-}
-
 void MyNewPlugin::OnParamChange(int paramIdx)
 {
   auto value = GetParam(paramIdx)->Value();
-  switch (paramIdx)
-  {
+  switch (paramIdx) {
   case kParamAttack:  for(auto* voice : mVoices) { voice->mEnv.SetStageTime(ADSREnvelope<sample>::EStage::kAttack,  value) ; } break;
   case kParamDecay:   for(auto* voice : mVoices) { voice->mEnv.SetStageTime(ADSREnvelope<sample>::EStage::kDecay,   value); } break;
   case kParamSustain: for(auto* voice : mVoices) { voice->mSustainLevel = value / 100.0; } break;
