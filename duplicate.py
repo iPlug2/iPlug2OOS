@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-# Python shell script for Duplicating WDL-OL IPlug Projects
-# Oli Larkin 2012-2019 http://www.AcmeInc.co.uk
+# Python shell script for Duplicating IPlug Projects
+# Oli Larkin 2012-2019
 # License: WTFPL http://sam.zoy.org/wtfpl/COPYING
 # Modified from this script by Bibha Tripathi http://code.activestate.com/recipes/435904-sedawk-python-script-to-rename-subdirectories-of-a/
 # Author accepts no responsibilty for wiping your hd
@@ -37,7 +37,8 @@ from parse_config import parse_config, parse_xcconfig, set_uniqueid
 VERSION = "0.95"
 
 # binary files that we don't want to do find and replace inside
-FILTERED_FILE_EXTENSIONS = [".ico",".icns", ".pdf", ".png", ".zip", ".exe", ".wav", ".aif", ".DS_Store"]
+FILTERED_FILE_EXTENSIONS = [".ico",".icns", ".pdf", ".png", ".zip", ".exe", ".wav", ".aif", ".data", ".wasm"]
+FILTERED_FILE_NAMES = [".DS_Store"]
 # files that we don't want to duplicate
 DONT_COPY = (".vs", "*.exe", "*.dmg", "*.pkg", "*.mpkg", "*.svn", "*.ncb", "*.suo", "*sdf", "ipch", "*.layout", "*.depend", ".DS_Store", "xcuserdata", "*.aps")
 
@@ -127,7 +128,7 @@ def dirwalk(dir, searchproject, replaceproject, searchman, replaceman, oldroot= 
       newfilename = filename.replace(searchproject, replaceproject)
       base, extension = os.path.splitext(filename)
 
-      if (not(extension in FILTERED_FILE_EXTENSIONS)):
+      if (not(extension in FILTERED_FILE_EXTENSIONS) and not(filename in FILTERED_FILE_NAMES)):
 
         print("Replacing project name strings in file " + filename)
         replacestrs(fullpath, searchproject, replaceproject)
@@ -257,8 +258,6 @@ def main():
   pp.pprint(config)
 
   print("\ndone - don't forget to change PLUG_MFR_UID in config.h")
-
-  rmtree(inputprojectname)
 
 if __name__ == '__main__':
   main()
