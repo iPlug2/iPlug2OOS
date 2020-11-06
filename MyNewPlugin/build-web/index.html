@@ -5,7 +5,6 @@
     <title>MyNewPlugin WAM</title>
     <link href="styles/style.css" rel="stylesheet" type="text/css"/>
     <script src="scripts/audioworklet.js"></script>
-    <!--<script src="scripts/websocket.js"></script>-->
     <script async src="fonts.js"></script>
     <!--<script async src="svgs.js"></script>-->
     <script async src="imgs.js"></script>
@@ -25,56 +24,13 @@
         <div id="status">downloading...</div>
       </div>
       <div id="wam" hidden=true>
-        <!-- <div id="wamheader">MyNewPlugin WAM</div> -->
         <canvas class="pluginArea" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
       </div>
     <script type='text/javascript'>
       var MyNewPlugin_WAM; // the WAM controller
-      let WEBSOCKET_MODE=false; // this constant will be set by the makedist-web.sh script 
-
-      if(WEBSOCKET_MODE==true) {
-        document.getElementById('buttons').style.display = 'none';
-      }
 
       document.addEventListener("keydown", function(e) { if(e.keyCode == 9) {e.preventDefault(); }});
       document.addEventListener("touchmove", function(e) { e.preventDefault(); }, {passive: false});
-
-      // drag WAM element, from https://www.w3schools.com/howto/howto_js_draggable.asp
-      // dragElement(document.getElementById("wam"));
-
-      // function dragElement(elmnt) {
-      //   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      //   if (document.getElementById(elmnt.id + "header")) {
-      //     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-      //   } else {
-      //     elmnt.onmousedown = dragMouseDown;
-      //   }
-
-      //   function dragMouseDown(e) {
-      //     e = e || window.event;
-      //     e.preventDefault();
-      //     pos3 = e.clientX;
-      //     pos4 = e.clientY;
-      //     document.onmouseup = closeDragElement;
-      //     document.onmousemove = elementDrag;
-      //   }
-
-      //   function elementDrag(e) {
-      //     e = e || window.event;
-      //     e.preventDefault();
-      //     pos1 = pos3 - e.clientX;
-      //     pos2 = pos4 - e.clientY;
-      //     pos3 = e.clientX;
-      //     pos4 = e.clientY;
-      //     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      //     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      //   }
-
-      //   function closeDragElement() {
-      //     document.onmouseup = null;
-      //     document.onmousemove = null;
-      //   }
-      // }
 
       function toggleFullScreen() {
         if ((document.fullScreenElement && document.fullScreenElement !== null) ||
@@ -209,12 +165,6 @@
           document.getElementById('startWebAudioButton').removeAttribute("disabled");
         },
         onRuntimeInitialized: function() {
-          
-          if(WEBSOCKET_MODE==true) {
-            setupWebSocket(function() {
-              document.getElementById('wam').hidden = false;
-            });
-          }
         },
         setStatus: function(text) {
           if (!Module.setStatus.last) Module.setStatus.last = { time: Date.now(), text: '' };
