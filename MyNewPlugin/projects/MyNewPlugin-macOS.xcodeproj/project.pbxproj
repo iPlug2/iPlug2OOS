@@ -814,7 +814,6 @@
 		4FC46E57231440B4000045E7 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; name = web; path = ../resources/web; sourceTree = "<group>"; };
 		4FC82B4520BD522B00722133 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; name = img; path = ../resources/img; sourceTree = "<group>"; };
 		4FC82B4620BD522B00722133 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../resources/fonts; sourceTree = "<group>"; };
-		4FCA1F1B255402D400EDDB9E /* MySynthVoice.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MySynthVoice.cpp; path = ../MySynthVoice.cpp; sourceTree = "<group>"; };
 		4FCA1F1C255402D400EDDB9E /* MySynthVoice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MySynthVoice.h; path = ../MySynthVoice.h; sourceTree = "<group>"; };
 		4FCDB64822C849D200698A4B /* IGraphicsSkia.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsSkia.cpp; sourceTree = "<group>"; };
 		4FCDB64922C849D200698A4B /* IGraphicsSkia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGraphicsSkia.h; sourceTree = "<group>"; };
@@ -950,7 +949,6 @@
 			isa = PBXGroup;
 			children = (
 				52FBBED30D0CF143001C8B8A /* config.h */,
-				4FCA1F1B255402D400EDDB9E /* MySynthVoice.cpp */,
 				4FCA1F1C255402D400EDDB9E /* MySynthVoice.h */,
 				4F3862EE2014BBEC0009F402 /* MyNewPlugin.h */,
 				4F3862ED2014BBEC0009F402 /* MyNewPlugin.cpp */,

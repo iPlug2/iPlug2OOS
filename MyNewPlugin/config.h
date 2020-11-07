@@ -52,3 +52,9 @@
 #define APP_SIGNAL_VECTOR_SIZE 64
 
 #define ROBOTO_FN "Roboto-Regular.ttf"
+#define LOGO_FONT_FN "MicrochipRegular-ExWg.ttf"
+#define BEFACO_BIGKNOB_FN "BefacoBigKnob.svg"
+#define BEFACO_TINYKNOB_FN "BefacoTinyKnob.svg"
+#define BEFACO_SLIDEPOT_FN "BefacoSlidePot.svg"
+#define BEFACO_SLIDEPOTHANDLE_FN "BefacoSlidePotHandle.svg"
+#define BEFACO_SLIDEPOTHANDLE_FN "BefacoSlidePotHandle.svg"

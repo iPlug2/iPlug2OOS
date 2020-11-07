@@ -44,7 +44,6 @@ public:
     }
   }
 
-
 public:
   FastSinOscillator<sample> mOsc;
   ADSREnvelope<sample> mEnv;

@@ -14,10 +14,14 @@ const int kNumVoices = 32;
 enum EParams
 {
   kParamGain = 0,
-  kParamAttack,
-  kParamDecay,
-  kParamSustain,
-  kParamRelease,
+  kParamAmpAttack,
+  kParamAmpDecay,
+  kParamAmpSustain,
+  kParamAmpRelease,
+//  kParamFilterAttack,
+//  kParamFilterDecay,
+//  kParamFilterSustain,
+//  kParamFilterRelease,
   kNumParams
 };
 
