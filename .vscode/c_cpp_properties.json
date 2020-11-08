@@ -1,8 +1,8 @@
 {
     "env": {
         "commonIncludePaths": [
-            "${workspaceFolder}/MyNewPlugin/.",
-            "${workspaceFolder}/MyNewPlugin/**",
+            "${workspaceFolder}/TemplateProject/.",
+            "${workspaceFolder}/TemplateProject/**",
             "${workspaceFolder}/iPlug2/WDL/**",
             "${workspaceFolder}/iPlug2/IPlug/**",
             "${workspaceFolder}/iPlug2/IGraphics/**",

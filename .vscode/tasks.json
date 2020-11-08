@@ -7,7 +7,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/MyNewPlugin/projects/MyNewPlugin-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "APP",
                 "-configuration",
@@ -27,7 +27,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/MyNewPlugin/projects/MyNewPlugin-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "VST2",
                 "-configuration",
@@ -41,7 +41,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/MyNewPlugin/projects/MyNewPlugin-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "VST3",
                 "-configuration",
@@ -56,7 +56,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/MyNewPlugin/projects/MyNewPlugin-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "AU",
                 "-configuration",
@@ -68,7 +68,7 @@
         {
             "label": "build WAM",
             "type": "shell",
-            "command": "${workspaceFolder}/MyNewPlugin/scripts/makedist-web.sh",
+            "command": "${workspaceFolder}/TemplateProject/scripts/makedist-web.sh",
             "args": [],
             "group": "build"
         }

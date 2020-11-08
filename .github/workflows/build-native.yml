@@ -7,7 +7,7 @@ on:
     #   - "v*"
 
 env:
-  PROJECT_NAME: MyNewPlugin
+  PROJECT_NAME: TemplateProject
 
 jobs:
   build:

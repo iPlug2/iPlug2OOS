@@ -1,4 +1,0 @@
-MyNewPlugin changelog
-www.acmeinc.com
-
-00/00/0000 - v0.1.0 initial release

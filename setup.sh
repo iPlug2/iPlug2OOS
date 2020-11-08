@@ -6,8 +6,8 @@ if [ "$#" -eq 2 ]; then
     cd iPlug2/Dependencies/IPlug/
     ./download-iplug-sdks.sh
     cd ../../..
-    python3 duplicate.py MyNewPlugin $1 $2
-    rm -r MyNewPlugin
+    python3 duplicate.py TemplateProject $1 $2
+    rm -r TemplateProject
     git add $1
     git commit -a -m "Renamed template project"
 else
