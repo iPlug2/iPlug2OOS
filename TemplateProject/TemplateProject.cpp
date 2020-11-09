@@ -8,7 +8,7 @@
 TemplateProject::TemplateProject(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPresets))
 {
-  GetParam(kParamGain)->InitDouble("Gain", 0., 0., 100.0, 0.01, "%"); // TASK_04
+  GetParam(kParamGain)->InitDouble("Gain", 0., 0., 100.0, 0.01, "%");
 
 #if IPLUG_EDITOR // http://bit.ly/2S64BDd
   mMakeGraphicsFunc = [&]() {
@@ -27,6 +27,7 @@ TemplateProject::TemplateProject(const InstanceInfo& info)
 void TemplateProject::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 { 
   const int nChans = NOutChansConnected();
+  const double gain = GetParam(kParamGain)->Value();
   
   for (int s = 0; s < nFrames; s++) {
     for (int c = 0; c < nChans; c++) {
