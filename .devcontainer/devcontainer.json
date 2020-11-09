@@ -8,6 +8,7 @@
     },
     "extensions": [
         "ms-vscode.cpptools",
+        "cschlosser.doxdocgen"
     ],
     "postCreateCommand": "echo 'emcc=$(emcc --version)'"
 }
