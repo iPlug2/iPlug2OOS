@@ -132,8 +132,8 @@ if [ "$BUILD_DSP" -eq "1" ]; then
   cp $IPLUG2_ROOT/Dependencies/IPlug/WAM_AWP/*.js .
 
   # copy in template scripts
-  cp $IPLUG2_ROOT/IPlug/WEB/TemplateProject/scripts/IPlugWAM-awn.js $PROJECT_NAME-awn.js
-  cp $IPLUG2_ROOT/IPlug/WEB/TemplateProject/scripts/IPlugWAM-awp.js $PROJECT_NAME-awp.js
+  cp $IPLUG2_ROOT/IPlug/WEB/Template/scripts/IPlugWAM-awn.js $PROJECT_NAME-awn.js
+  cp $IPLUG2_ROOT/IPlug/WEB/Template/scripts/IPlugWAM-awp.js $PROJECT_NAME-awp.js
 
   # replace NAME_PLACEHOLDER in the template -awn.js and -awp.js scripts
   sed -i.bak s/NAME_PLACEHOLDER/$PROJECT_NAME/g $PROJECT_NAME-awn.js
@@ -150,7 +150,7 @@ fi
 cd $PROJECT_ROOT/build-web
 
 # copy in the template HTML - comment this out if you have customised the HTML
-cp $IPLUG2_ROOT/IPlug/WEB/TemplateProject/index.html index.html
+cp $IPLUG2_ROOT/IPlug/WEB/Template/index.html index.html
 sed -i.bak s/NAME_PLACEHOLDER/$PROJECT_NAME/g index.html
 
 if [ $FOUND_FONTS -eq "0" ]; then sed -i.bak s/'<script async src="fonts.js"><\/script>'/'<!--<script async src="fonts.js"><\/script>-->'/g index.html; fi
@@ -159,7 +159,7 @@ if [ $FOUND_PNGS -eq "0" ]; then sed -i.bak s/'<script async src="imgs.js"><\/sc
 if [ $FOUND_2XPNGS -eq "0" ]; then sed -i.bak s/'<script async src="imgs@2x.js"><\/script>'/'<!--<script async src="imgs@2x.js"><\/script>-->'/g index.html; fi
 if [ $WEBSOCKET_MODE -eq "1" ]; then
   cp $IPLUG2_ROOT/Dependencies/IPlug/WAM_SDK/wamsdk/wam-controller.js scripts/wam-controller.js
-  cp $IPLUG2_ROOT/IPlug/WEB/TemplateProject/scripts/websocket.js scripts/websocket.js
+  cp $IPLUG2_ROOT/IPlug/WEB/Template/scripts/websocket.js scripts/websocket.js
   sed -i.bak s/'<script src="scripts\/audioworklet.js"><\/script>'/'<!--<script src="scripts\/audioworklet.js"><\/script>-->'/g index.html;
   sed -i.bak s/'let WEBSOCKET_MODE=false;'/'let WEBSOCKET_MODE=true;'/g index.html;
 else
@@ -181,8 +181,8 @@ rm *.bak
 
 # copy the style & WAM favicon
 mkdir styles
-cp $IPLUG2_ROOT/IPlug/WEB/TemplateProject/styles/style.css styles/style.css
-cp $IPLUG2_ROOT/IPlug/WEB/TemplateProject/favicon.ico favicon.ico
+cp $IPLUG2_ROOT/IPlug/WEB/Template/styles/style.css styles/style.css
+cp $IPLUG2_ROOT/IPlug/WEB/Template/favicon.ico favicon.ico
 
 echo MAKING  - WEB WASM MODULE -----------------------------
 
