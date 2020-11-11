@@ -16,9 +16,12 @@ TemplateProject::TemplateProject(const InstanceInfo& info)
   };
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
+    const IRECT b = pGraphics->GetBounds();
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     pGraphics->AttachPanelBackground(COLOR_LIGHT_GRAY);
+    pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50), "Hello TemplateProject!", IText(50)));
+    pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-100), kParamGain));
   };
 #endif
 }
