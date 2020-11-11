@@ -1,10 +1,10 @@
 name: Build WAM
 
 on:
-  # workflow_dispatch
-  push:
-    tags:
-      - "v*"
+  workflow_dispatch
+  # push:
+  #   tags:
+  #     - "v*"
 
 env:
   PROJECT_NAME: TemplateProject
@@ -22,26 +22,23 @@ jobs:
           submodules: recursive
           persist-credentials: false
 
-      # - name: Setup Emscripten
-      #   uses: lovasoa/setup-emscripten@master
-      #   with:
-      #     emscripten-version: '1.38.47'
-      
-      # - name: Get emscripten
-      #   run: docker pull trzeci/emscripten
-        
       - name: setup python3
         uses: actions/setup-python@v2
         with:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
-      - name: Get emscripten
-        run: |
-          git clone https://github.com/emscripten-core/emsdk.git
-          cd emsdk
-          ./emsdk install latest 
-          ./emsdk activate latest
+      - name: Setup Emscripten
+      - uses: mymindstorm/setup-emsdk@v7
+        with:
+          version: '2.0.8'
+
+      # - name: Get emscripten
+      #   run: |
+      #     git clone https://github.com/emscripten-core/emsdk.git
+      #     cd emsdk
+      #     ./emsdk install latest 
+      #     ./emsdk activate latest
 
       - name: Get WAM SDKS
         run: |

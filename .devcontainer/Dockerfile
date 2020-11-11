@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:2.0.3
+FROM emscripten/emsdk:2.0.8
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends vim \
