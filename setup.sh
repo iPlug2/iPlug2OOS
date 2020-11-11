@@ -6,6 +6,11 @@ if [ "$#" -eq 2 ]; then
     cd iPlug2/Dependencies/IPlug/
     ./download-iplug-sdks.sh
     cd ../../..
+
+    wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-linux-amd64 -o mkcert
+    ./mkcert install
+    ./mkcert localhost
+
     python3 duplicate.py TemplateProject $1 $2
     rm -r TemplateProject
     git add $1
