@@ -143,7 +143,6 @@
     <ClCompile Include="..\..\iPlug2\IGraphics\IGraphicsEditorDelegate.cpp">
       <Filter>IGraphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\MidiSynth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../config.h" />

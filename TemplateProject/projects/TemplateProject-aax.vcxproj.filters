@@ -74,7 +74,6 @@
     <ClCompile Include="..\..\iPlug2\IGraphics\Drawing\IGraphicsSkia.cpp">
       <Filter>IGraphics\Drawing</Filter>
     </ClCompile>
-    <ClCompile Include="..\MidiSynth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\TemplateProject.h" />

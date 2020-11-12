@@ -426,7 +426,6 @@
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugTimer.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\VST3\IPlugVST3.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\VST3\IPlugVST3_ProcessorBase.cpp" />
-    <ClCompile Include="..\MidiSynth.cpp" />
     <ClCompile Include="..\TemplateProject.cpp" />
   </ItemGroup>
   <ItemGroup>
