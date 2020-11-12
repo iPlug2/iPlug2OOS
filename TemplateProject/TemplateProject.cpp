@@ -34,7 +34,7 @@ void TemplateProject::ProcessBlock(sample** inputs, sample** outputs, int nFrame
   
   for (int s = 0; s < nFrames; s++) {
     for (int c = 0; c < nChans; c++) {
-      outputs[c][s] = inputs[c][s];
+      outputs[c][s] = inputs[c][s] * gain;
     }
   }
 }
