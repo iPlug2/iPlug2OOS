@@ -49,9 +49,9 @@ jobs:
 
       - name: Compile WAM
         run: |
-          cd emsdk
-          source ./emsdk_env.sh
-          cd ..
+          #cd emsdk
+          #source ./emsdk_env.sh
+          #cd ..
           cd ${{env.PROJECT_NAME}}/scripts
           ./makedist-web.sh off ${{env.URL}}
           
