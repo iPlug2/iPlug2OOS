@@ -34,13 +34,6 @@ jobs:
           version: '2.0.8'
           actions-cache-folder: 'emsdk'
 
-      # - name: Get emscripten
-      #   run: |
-      #     git clone https://github.com/emscripten-core/emsdk.git
-      #     cd emsdk
-      #     ./emsdk install latest 
-      #     ./emsdk activate latest
-
       - name: Get WAM SDKS
         run: |
           cd iPlug2/Dependencies/IPlug
@@ -49,16 +42,9 @@ jobs:
 
       - name: Compile WAM
         run: |
-          #cd emsdk
-          #source ./emsdk_env.sh
-          #cd ..
           cd ${{env.PROJECT_NAME}}/scripts
           ./makedist-web.sh off ${{env.URL}}
           
-      # - name: Compile WAM
-      #   run: |
-      #     sudo docker run --rm -v iPlug2:/src -e URL=${{env.URL}} trzeci/emscripten /bin/bash -c "cd Projects/${{env.PROJECT_NAME}}/scripts;./makedist-web.sh off $URL"
-
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
