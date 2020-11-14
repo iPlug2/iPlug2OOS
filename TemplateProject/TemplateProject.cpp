@@ -12,16 +12,19 @@ TemplateProject::TemplateProject(const InstanceInfo& info)
 
 #if IPLUG_EDITOR // http://bit.ly/2S64BDd
   mMakeGraphicsFunc = [&]() {
-    return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, GetScaleForScreen(PLUG_HEIGHT));
+    return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, GetScaleForScreen(PLUG_WIDTH, PLUG_HEIGHT));
   };
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
-    const IRECT b = pGraphics->GetBounds();
+    const IRECT bounds = pGraphics->GetBounds().GetPadded(-10);
     pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     pGraphics->AttachPanelBackground(COLOR_LIGHT_GRAY);
-    pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50), "Hello TemplateProject!", IText(50)));
-    pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-100), kParamGain));
+    pGraphics->AttachControl(new IVSliderControl(bounds.GetGridCell(0, 2, 2).GetCentredInside(50, 150), kParamGain));
+    pGraphics->AttachControl(new ITextControl(bounds.GetFromTLHC(200, 50), "TemplateProject", IText(30)));
+    WDL_String buildInfoStr;
+    GetBuildInfoStr(buildInfoStr, __DATE__, __TIME__);
+    pGraphics->AttachControl(new ITextControl(bounds.GetFromTRHC(300, 20), buildInfoStr.Get(), DEFAULT_TEXT.WithAlign(EAlign::Far)));
   };
 #endif
 }
