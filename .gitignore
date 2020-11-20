@@ -3,3 +3,7 @@ xcuserdata
 *.RPP-bak
 build-*
 
+*.ipch
+*.db
+*.suo
+TemplateProject/.vs
