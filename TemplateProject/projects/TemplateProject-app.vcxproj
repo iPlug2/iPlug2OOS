@@ -318,9 +318,7 @@
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugUtilities.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_hdr.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_src.h" />
-    <ClInclude Include="..\MidiSynth.h" />
     <ClInclude Include="..\TemplateProject.h" />
-    <ClInclude Include="..\MySynthVoice.h" />
     <ClInclude Include="..\resources\resource.h" />
   </ItemGroup>
   <ItemGroup>

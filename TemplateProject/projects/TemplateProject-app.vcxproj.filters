@@ -261,8 +261,6 @@
     <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h">
       <Filter>IGraphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\MidiSynth.h" />
-    <ClInclude Include="..\MySynthVoice.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="resources">
