@@ -22,7 +22,8 @@ if [ "$#" -eq 2 ]; then
     wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-linux-amd64
     chmod +x mkcert-v1.4.2-linux-amd64
     ./mkcert-v1.4.2-linux-amd64 install
-    ./mkcert-v1.4.2-linux-amd64 localhost    
+    ./mkcert-v1.4.2-linux-amd64 localhost
+    rm mkcert-v1.4.2-linux-amd64
 else
     echo "usage: setup.sh PROJECT_NAME MANUFACTURER_NAME"
 fi
