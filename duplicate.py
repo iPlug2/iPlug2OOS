@@ -37,7 +37,7 @@ from parse_config import parse_config, parse_xcconfig, set_uniqueid
 VERSION = "0.95"
 
 # binary files that we don't want to do find and replace inside
-FILTERED_FILE_EXTENSIONS = [".ico",".icns", ".pdf", ".png", ".zip", ".exe", ".wav", ".aif", ".data", ".wasm"]
+FILTERED_FILE_EXTENSIONS = [".ico",".icns", ".pdf", ".png", ".zip", ".exe", ".wav", ".aif", ".data", ".wasm", "mkcert"]
 FILTERED_FILE_NAMES = [".DS_Store"]
 # files that we don't want to duplicate
 DONT_COPY = (".vs", "*.exe", "*.dmg", "*.pkg", "*.mpkg", "*.svn", "*.ncb", "*.suo", "*sdf", "ipch", "*.layout", "*.depend", ".DS_Store", "xcuserdata", "*.aps")
