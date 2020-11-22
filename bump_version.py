@@ -71,7 +71,7 @@ def main():
 
   if edit == 'y' or edit == 'Y':
     if newVersion:
-      os.system("git commit -a -m \"update changelog for v" + str(newVersionInfo) + "\"")
+      os.system("git commit -a")
       os.system("git tag v" + str(newVersionInfo))
     os.system("git push && git push --tags")
     #os.system("git push origin refs/{\"v" + str(newVersionInfo) + "\",master}/*")
