@@ -90,9 +90,6 @@
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsLiveEdit.h">
       <Filter>IGraphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsPathBase.h">
-      <Filter>IGraphics</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsPopupMenu.h">
       <Filter>IGraphics</Filter>
     </ClInclude>
