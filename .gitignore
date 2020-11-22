@@ -6,4 +6,6 @@ build-*
 *.ipch
 *.db
 *.suo
-TemplateProject/.vs
+*/.vs
+*.pem
+mkcert*
