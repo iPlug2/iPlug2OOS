@@ -14,10 +14,7 @@
                 "Debug",
                 "SYMROOT=~/Library/Developer/Xcode/DerivedData"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": []
         },
         {
@@ -68,9 +65,12 @@
         {
             "label": "build WAM",
             "type": "shell",
-            "command": "${workspaceFolder}/TestOOS/scripts/makedist-web.sh",
+            "command": "${workspaceFolder}/TestOOS/scripts/makedist-web.sh container",
             "args": [],
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
         }
     ]
 }
