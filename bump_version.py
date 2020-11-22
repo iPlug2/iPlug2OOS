@@ -54,7 +54,7 @@ def main():
   os.system("cd " + PROJECT_SCRIPTS + "; python3 update_version-ios.py")
   os.system("cd " + PROJECT_SCRIPTS + "; python3 update_installer-win.py 0")
   
-  print("\nCurrent changelog: \n--------------------");
+  print("\nCurrent changelog: \n--------------------")
   os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
   print("\n\n--------------------");
 
@@ -63,7 +63,7 @@ def main():
   if edit == 'y' or edit == 'Y':
     os.system("vim " + PROJECT_ROOT + "/installer/changelog.txt")
 
-    print("\nNew changelog: \n--------------------");
+    print("\nNew changelog: \n--------------------")
     os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
     print("\n\n--------------------");
 
