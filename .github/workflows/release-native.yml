@@ -75,7 +75,7 @@ jobs:
 
     - name: Get Archive Name
       run: |
-        $ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
+        $ARCHIVE_NAME=`./iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: bash
 
