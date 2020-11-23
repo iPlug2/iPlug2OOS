@@ -38,7 +38,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [macos-latest] #windows-latest, 
         include:
           - os: macos-latest
             build_dir: build-mac
