@@ -70,7 +70,11 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         cd ${{env.PROJECT_NAME}}/scripts
-        ARCHIVE_NAME=`./makedist-mac.sh zip full installer| tail -n 1`
+        makedist-mac.sh zip full installer
+      shell: bash
+
+    - name: Get Archive Name
+        $ARCHIVE_NAME=`python iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: bash
 
@@ -106,10 +110,6 @@ jobs:
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
         .\makedist-win.bat full installer
-        #type out.txt
-        #$ARCHIVE_NAME = Get-Content out.txt -Tail 1
-        #echo $ARCHIVE_NAME
-        echo "::set-output name=archive_name::TEMP"
       shell: pwsh
 
     - name: Upload Windows pdb release asset
