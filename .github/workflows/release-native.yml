@@ -38,14 +38,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest] #windows-latest, 
+        os: [windows-latest] #[macos-latest]
         include:
-          - os: macos-latest
-            build_dir: build-mac
-            artifact_ext: mac
-#           - os: windows-latest
-#             build_dir: build-win
-#             artifact_ext: win
+#           - os: macos-latest
+#             build_dir: build-mac
+#             artifact_ext: mac
+          - os: windows-latest
+            build_dir: build-win
+            artifact_ext: win
 
     steps:
     - name: Check out repository
