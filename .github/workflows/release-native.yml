@@ -3,8 +3,8 @@ name: Release Native
 on:
   # workflow_dispatch
   push:
-    # tags:
-    #   - "v*"
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: TemplateProject
@@ -38,14 +38,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest] #[macos-latest]
+        os: [macos-latest, windows-latest]
         include:
-#           - os: macos-latest
-#             build_dir: build-mac
-#             artifact_ext: mac
+          - os: macos-latest
+            build_dir: build-mac
           - os: windows-latest
             build_dir: build-win
-            artifact_ext: win
 
     steps:
     - name: Check out repository
@@ -65,7 +63,7 @@ jobs:
         ./download-prebuilt-libs.sh
       shell: bash
 
-    - name: Get Archive Name mac
+    - name: Get Archive Name macOS
       id: mac_archivename_step
       if: matrix.os == 'macOS-latest'
       run: |
@@ -106,14 +104,14 @@ jobs:
       if: matrix.os == 'windows-latest'
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: setup python3
+    - name: Setup Python3
       if: matrix.os == 'windows-latest'
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
         architecture: 'x64'
 
-    - name: Get Archive Name win
+    - name: Get Archive Name Windows
       id: win_archivename_step
       if: matrix.os == 'windows-latest'
       run: |

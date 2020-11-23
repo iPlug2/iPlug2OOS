@@ -2,9 +2,9 @@ name: Build WAM
 
 on:
   workflow_dispatch
-  # push:
-  #   tags:
-  #     - "v*"
+  push:
+    tags:
+      - "v*"
 
 env:
   PROJECT_NAME: TemplateProject
