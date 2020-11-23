@@ -117,7 +117,7 @@ jobs:
       id: win_archivename_step
       if: matrix.os == 'windows-latest'
       run: |
-        ARCHIVE_NAME=`python3.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
+        ARCHIVE_NAME=`python.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: bash
 
