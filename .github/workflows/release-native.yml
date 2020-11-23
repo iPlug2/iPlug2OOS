@@ -65,18 +65,19 @@ jobs:
         ./download-prebuilt-libs.sh
       shell: bash
 
+    - name: Get Archive Name mac
+      if: matrix.os == 'macOS-latest'
+      id: mac_archivename_step
+      run: |
+        $ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
+        echo "::set-output name=archive_name::$ARCHIVE_NAME"
+      shell: bash
+
     - name: Build macOS
-      id: build_mac_step
       if: matrix.os == 'macOS-latest'
       run: |
         cd ${{env.PROJECT_NAME}}/scripts
         ./makedist-mac.sh zip full installer
-      shell: bash
-
-    - name: Get Archive Name
-      run: |
-        $ARCHIVE_NAME=`./iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
-        echo "::set-output name=archive_name::$ARCHIVE_NAME"
       shell: bash
 
     - name: Upload mac DSYMs release asset
@@ -86,8 +87,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.build_mac_step.outputs.archive_name }}-dSYMs.zip
-        asset_name: ${{ steps.build_mac_step.outputs.archive_name }}-dSYMs.zip
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.mac_archivename_step.outputs.archive_name }}-dSYMs.zip
+        asset_name: ${{ steps.mac_archivename_step.outputs.archive_name }}-dSYMs.zip
         asset_content_type: application/zip
 
     - name: Upload mac dmg release asset
@@ -105,8 +106,22 @@ jobs:
       if: matrix.os == 'windows-latest'
       uses: microsoft/setup-msbuild@v1.0.2
 
+    - name: setup python3
+      if: matrix.os == 'windows-latest'
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+
+    - name: Get Archive Name win
+      if: matrix.os == 'windows-latest'
+      id: win_archivename_step
+      run: |
+        $ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
+        echo "::set-output name=archive_name::$ARCHIVE_NAME"
+      shell: bash
+
     - name: Build Windows
-      id: build_win_step
       if: matrix.os == 'windows-latest'
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
@@ -120,8 +135,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.build_win_step.outputs.archive_name }}-pdbs.zip
-        asset_name: ${{ steps.build_win_step.outputs.archive_name }}-pdbs.zip
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.win_archivename_step.outputs.archive_name }}-pdbs.zip
+        asset_name: ${{ steps.win_archivename_step.outputs.archive_name }}-pdbs.zip
         asset_content_type: application/zip
 
     - name: Upload Windows zip release asset
