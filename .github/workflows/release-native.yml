@@ -98,8 +98,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.build_mac_step.outputs.archive_name }}.dmg
-        asset_name: ${{ steps.build_mac_step.outputs.archive_name }}.dmg
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.mac_archivename_step.outputs.archive_name }}.dmg
+        asset_name: ${{ steps.mac_archivename_step.outputs.archive_name }}.dmg
         asset_content_type: application/octet-stream
 
     - name: Add msbuild to PATH (Windows)
@@ -146,6 +146,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.build_win_step.outputs.archive_name }}.zip
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.win_archivename_step.outputs.archive_name }}.zip
         asset_name: ${{ steps.build_win_step.outputs.archive_name }}.zip
         asset_content_type: application/zip
