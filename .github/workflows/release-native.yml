@@ -66,8 +66,8 @@ jobs:
       shell: bash
 
     - name: Get Archive Name mac
-      if: matrix.os == 'macOS-latest'
       id: mac_archivename_step
+      if: matrix.os == 'macOS-latest'
       run: |
         $ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
@@ -114,8 +114,8 @@ jobs:
         architecture: 'x64'
 
     - name: Get Archive Name win
-      if: matrix.os == 'windows-latest'
       id: win_archivename_step
+      if: matrix.os == 'windows-latest'
       run: |
         $ARCHIVE_NAME=`python3.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} ${{env.ARTIFACT_EXT}} full`
         echo "::set-output name=archive_name::$ARCHIVE_NAME"
