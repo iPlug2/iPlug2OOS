@@ -14,7 +14,7 @@ if [ "$#" -eq 2 ]; then
 
     echo "Duplicating template project..."
     python3 duplicate.py TemplateProject $1 $2
-    rm -r TestOOS
+    rm -r TemplateProject
     git add $1
     git commit -a -m "Renamed template project"
     
