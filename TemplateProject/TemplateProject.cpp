@@ -33,7 +33,7 @@ TemplateProject::TemplateProject(const InstanceInfo& info)
 void TemplateProject::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 { 
   const int nChans = NOutChansConnected();
-  const double gain = GetParam(kParamGain)->Value();
+  const double gain = GetParam(kParamGain)->Value() / 100.;
   
   for (int s = 0; s < nFrames; s++) {
     for (int c = 0; c < nChans; c++) {
