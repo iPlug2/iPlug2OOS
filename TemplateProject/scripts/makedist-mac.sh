@@ -17,6 +17,20 @@ IPLUG2_ROOT=../iPlug2
 XCCONFIG=$IPLUG2_ROOT/../iPlug2OOS-common-mac.xcconfig
 SCRIPTS=$IPLUG2_ROOT/Scripts
 
+# CODESIGN disabled by default. 
+CODESIGN=0
+
+# macOS codesigning/notarization
+NOTARIZE_BUNDLE_ID=com.AcmeInc.TemplateProject
+NOTARIZE_BUNDLE_ID_DEMO=com.AcmeInc.TemplateProject.DEMO
+APP_SPECIFIC_ID=TODO
+APP_SPECIFIC_PWD=TODO
+
+# AAX/PACE wraptool codesigning
+ILOK_ID=TODO
+ILOK_PWD=TODO
+WRAP_GUID=TODO
+
 DEMO=0
 if [ "$1" == "demo" ]; then
   DEMO=1
@@ -48,6 +62,13 @@ if [ $DEMO == 1 ]; then
   ARCHIVE_NAME=$ARCHIVE_NAME-demo
 fi
 
+# TODO: use get_archive_name script
+# if [ $DEMO == 1 ]; then
+#   ARCHIVE_NAME=`python3 ${SCRIPTS}/get_archive_name.py ${PLUGIN_NAME} mac demo`
+# else
+#   ARCHIVE_NAME=`python3 ${SCRIPTS}/get_archive_name.py ${PLUGIN_NAME} mac full`
+# fi
+
 VST2=`echo | grep VST2_PATH $XCCONFIG`
 VST2=$HOME${VST2//\VST2_PATH = \$(HOME)}/$PLUGIN_NAME.vst
 
@@ -70,6 +91,8 @@ PKG_US="build-mac/installer/$PLUGIN_NAME Installer.unsigned.pkg"
 
 CERT_ID=`echo | grep CERTIFICATE_ID $XCCONFIG`
 CERT_ID=${CERT_ID//\CERTIFICATE_ID = }
+DEV_ID_APP_STR="Developer ID Application: ${CERT_ID}"
+DEV_ID_INST_STR="Developer ID Installer: ${CERT_ID}"
 
 echo $VST2
 echo $VST3
@@ -122,18 +145,18 @@ if [ -d "${AAX_FINAL}" ]; then
 fi
 
 #---------------------------------------------------------------------------------------------------------
-# build xcode project. Change target to build individual formats
+# build xcode project. Change target to build individual formats, or add to All target in the xcode project
 
 xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -target "All" -UseModernBuildSystem=NO -configuration Release | tee build-mac.log | xcpretty #&& exit ${PIPESTATUS[0]}
 
-# if [ -s build-mac.log ]; then
-#   echo "build failed due to following errors:"
-#   echo ""
-#   cat build-mac.log
-#   exit 1
-# else
-#   rm build-mac.log
-# fi
+if [ "${PIPESTATUS[0]}" -ne "0" ]; then
+  echo "ERROR: build failed, aborting"
+  echo ""
+  # cat build-mac.log
+  exit 1
+else
+  rm build-mac.log
+fi
 
 #---------------------------------------------------------------------------------------------------------
 # set bundle icons - http://www.hamsoftengineering.com/codeSharing/SetFileIcon/SetFileIcon.html
@@ -183,17 +206,32 @@ if [ -d "${AAX}" ]; then
   strip -x "${AAX}/Contents/MacOS/$PLUGIN_NAME"
 fi
 
-#---------------------------------------------------------------------------------------------------------
-# code sign AAX binary
+if [ $CODESIGN == 1 ]; then
+  #---------------------------------------------------------------------------------------------------------
+  # code sign AAX binary
 
-#echo "copying AAX ${PLUGIN_NAME} from 3PDev to main AAX folder"
-#sudo cp -p -R "${AAX}" "${AAX_FINAL}"
-#mkdir "${AAX_FINAL}/Contents/Factory Presets/"
-#
-#echo "code sign AAX binary"
-#/Applications/PACEAntiPiracy/Eden/Fusion/Current/bin/wraptool sign --verbose --account XXXX --wcguid XXXX --signid "Developer ID Application: ""${CERT_ID}" --in "${AAX_FINAL}" --out "${AAX_FINAL}"
+  # echo "copying AAX ${PLUGIN_NAME} from 3PDev to main AAX folder"
+  # sudo cp -p -R "${AAX}" "${AAX_FINAL}"
+  # mkdir "${AAX_FINAL}/Contents/Factory Presets/"
+  
+  # echo "code sign AAX binary"
+  # /Applications/PACEAntiPiracy/Eden/Fusion/Current/bin/wraptool sign --verbose --account $ILOK_ID --password $ILOK_PWD --wcguid $WRAP_GUID --signid "${DEV_ID_APP_STR}" --in "${AAX_FINAL}" --out "${AAX_FINAL}"
 
-#---------------------------------------------------------------------------------------------------------
+  #---------------------------------------------------------------------------------------------------------
+
+  #---------------------------------------------------------------------------------------------------------
+  echo "code-sign binaries with hardened runtime"
+  echo ""
+
+  codesign --force -s "${DEV_ID_APP_STR}" -v $APP --deep --strict --options=runtime
+  xattr -cr $AU 
+  codesign --force -s "${DEV_ID_APP_STR}" -v $AU --deep --strict --options=runtime
+  # xattr -cr $VST2 
+  # codesign --force -s "${DEV_ID_APP_STR}" -v $VST2 --deep --strict --options=runtime
+  xattr -cr $VST3 
+  codesign --force -s "${DEV_ID_APP_STR}" -v $VST3 --deep --strict --options=runtime
+  #---------------------------------------------------------------------------------------------------------
+fi
 
 if [ $BUILD_INSTALLER == 1 ]; then
   #---------------------------------------------------------------------------------------------------------
@@ -206,17 +244,19 @@ if [ $BUILD_INSTALLER == 1 ]; then
 
   ./scripts/makeinstaller-mac.sh $FULL_VERSION
 
-  # echo "code-sign installer for Gatekeeper on macOS 10.8+"
-  # echo ""
-  # mv "${PKG}" "${PKG_US}"
-  # productsign --sign "Developer ID Installer: ""${CERT_ID}" "${PKG_US}" "${PKG}"
-  # rm -R -f "${PKG_US}"
+  if [ $CODESIGN == 1 ]; then
+    echo "code-sign installer for Gatekeeper on macOS 10.8+"
+    echo ""
+    mv "${PKG}" "${PKG_US}"
+    productsign --sign "${DEV_ID_INST_STR}" "${PKG_US}" "${PKG}"
+    rm -R -f "${PKG_US}"
+  fi
 
   #set installer icon
   ./$SCRIPTS/SetFileIcon -image resources/$PLUGIN_NAME.icns -file "${PKG}"
 
   #---------------------------------------------------------------------------------------------------------
-  # dmg, can use dmgcanvas http://www.araelium.com/dmgcanvas/ to make a nice dmg
+  # make dmg, can use dmgcanvas http://www.araelium.com/dmgcanvas/ to make a nice dmg, fallback to hdiutil
   echo "building dmg"
   echo ""
 
@@ -230,6 +270,29 @@ if [ $BUILD_INSTALLER == 1 ]; then
   fi
 
   sudo rm -R -f build-mac/installer/
+
+  if [ $CODESIGN == 1 ]; then
+    #---------------------------------------------------------------------------------------------------------
+    #notarize dmg
+    echo "notarizing"
+    echo ""
+    # you need to create an app-specific id/password https://support.apple.com/en-us/HT204397
+    # arg 1 Set to the dmg path
+    # arg 2 Set to a bundle ID (doesn't have to match your )
+    # arg 3 Set to the app specific Apple ID username/email
+    # arg 4 Set to the app specific Apple password  
+    if [ $DEMO == 1 ]; then
+      ./$SCRIPTS/notarise.sh build-mac/$ARCHIVE_NAME.dmg $NOTARIZE_BUNDLE_ID_DEMO $APP_SPECIFIC_ID $APP_SPECIFIC_PWD
+    else
+      ./$SCRIPTS/notarise.sh build-mac/$ARCHIVE_NAME.dmg $NOTARIZE_BUNDLE_ID $APP_SPECIFIC_ID $APP_SPECIFIC_PWD
+    fi
+
+    if [ "${PIPESTATUS[0]}" -ne "0" ]; then
+      echo "ERROR: notarize script failed, aborting"
+      exit 1
+    fi
+
+  fi
 else
   #---------------------------------------------------------------------------------------------------------
   # zip
@@ -295,4 +358,5 @@ mv ./build-mac/*.zip ./build-mac/out
 #  git checkout resources/img/AboutBox.png
 #fi
 
-echo $ARCHIVE_NAME
+echo "done!"
+echo ""
