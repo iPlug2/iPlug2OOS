@@ -7,7 +7,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/TestOOS/projects/TestOOS-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "APP",
                 "-configuration",
@@ -24,7 +24,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/TestOOS/projects/TestOOS-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "VST2",
                 "-configuration",
@@ -38,7 +38,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/TestOOS/projects/TestOOS-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "VST3",
                 "-configuration",
@@ -53,7 +53,7 @@
             "command": "xcodebuild",
             "args": [
                 "-project",
-                "${workspaceFolder}/TestOOS/projects/TestOOS-macOS.xcodeproj",
+                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
                 "AU",
                 "-configuration",
@@ -65,7 +65,7 @@
         {
             "label": "build WAM",
             "type": "shell",
-            "command": "${workspaceFolder}/TestOOS/scripts/makedist-web.sh container",
+            "command": "${workspaceFolder}/TemplateProject/scripts/makedist-web.sh container",
             "args": [],
             "group": {
                 "kind": "build",
