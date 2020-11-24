@@ -12,7 +12,7 @@ env:
 jobs:
   build:
     name: Build-native-plugins
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
@@ -25,17 +25,6 @@ jobs:
             artifact_ext: win
 
     steps:
-    # - name: Checkout iPlug2
-    #   uses: actions/checkout@v2
-    #   with:
-    #     repository: iPlug2/iPlug2
-    #     path: iPlug2
-
-    # - name: Check out repository
-    #   uses: actions/checkout@v2
-    #   with:
-    #     path: iPlug2/Projects/${{env.PROJECT_NAME}}
-
     - name: Check out repository
       uses: actions/checkout@v2
       with:
@@ -80,7 +69,7 @@ jobs:
   test:
     name: Test Native
     needs: build
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
@@ -95,9 +84,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{env.PROJECT_NAME}}-${{matrix.artifact_ext}}
-
-      # - name: Display structure of downloaded files
-      #   run: ls -R
 
       - name: Unzip files
         run: |

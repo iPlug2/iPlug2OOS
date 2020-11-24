@@ -14,7 +14,7 @@ jobs:
     name: Create release
     runs-on: ubuntu-latest
     outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      upload_url: ${{steps.create_release.outputs.upload_url}}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -25,17 +25,17 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           draft: true
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{github.ref}}
+          release_name: Release ${{github.ref}}
           body_path: ${{env.PROJECT_NAME}}/installer/changelog.txt
 
   build:
     name: Build
     needs: create_release
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
@@ -82,22 +82,22 @@ jobs:
       if: matrix.os == 'macOS-latest'
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.mac_archivename_step.outputs.archive_name }}-dSYMs.zip
-        asset_name: ${{ steps.mac_archivename_step.outputs.archive_name }}-dSYMs.zip
+        upload_url: ${{needs.create_release.outputs.upload_url}}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{steps.mac_archivename_step.outputs.archive_name}}-dSYMs.zip
+        asset_name: ${{steps.mac_archivename_step.outputs.archive_name}}-dSYMs.zip
         asset_content_type: application/zip
 
     - name: Upload mac dmg release asset
       if: matrix.os == 'macOS-latest'
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.mac_archivename_step.outputs.archive_name }}.dmg
-        asset_name: ${{ steps.mac_archivename_step.outputs.archive_name }}.dmg
+        upload_url: ${{needs.create_release.outputs.upload_url}}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{steps.mac_archivename_step.outputs.archive_name}}.dmg
+        asset_name: ${{steps.mac_archivename_step.outputs.archive_name}}.dmg
         asset_content_type: application/octet-stream
 
     - name: Add msbuild to PATH (Windows)
@@ -130,20 +130,20 @@ jobs:
       if: matrix.os == 'windows-latest'
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.win_archivename_step.outputs.archive_name }}-pdbs.zip
-        asset_name: ${{ steps.win_archivename_step.outputs.archive_name }}-pdbs.zip
+        upload_url: ${{needs.create_release.outputs.upload_url}}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{steps.win_archivename_step.outputs.archive_name}}-pdbs.zip
+        asset_name: ${{steps.win_archivename_step.outputs.archive_name}}-pdbs.zip
         asset_content_type: application/zip
 
     - name: Upload Windows zip release asset
       if: matrix.os == 'windows-latest'
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       with:
-        upload_url: ${{ needs.create_release.outputs.upload_url }}
-        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{ steps.win_archivename_step.outputs.archive_name }}.zip
-        asset_name: ${{ steps.win_archivename_step.outputs.archive_name }}.zip
+        upload_url: ${{needs.create_release.outputs.upload_url}}
+        asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{steps.win_archivename_step.outputs.archive_name}}.zip
+        asset_name: ${{steps.win_archivename_step.outputs.archive_name}}.zip
         asset_content_type: application/zip
