@@ -225,11 +225,11 @@ if [ $CODESIGN == 1 ]; then
 
   codesign --force -s "${DEV_ID_APP_STR}" -v $APP --deep --strict --options=runtime
   xattr -cr $AU 
-  codesign --force -s "${DEV_ID_APP_STR}" -v $AU --deep --strict --options=runtime
+  codesign --force -s "${DEV_ID_APP_STR}" -v $AU --deep --strict
   # xattr -cr $VST2 
-  # codesign --force -s "${DEV_ID_APP_STR}" -v $VST2 --deep --strict --options=runtime
+  # codesign --force -s "${DEV_ID_APP_STR}" -v $VST2 --deep --strict
   xattr -cr $VST3 
-  codesign --force -s "${DEV_ID_APP_STR}" -v $VST3 --deep --strict --options=runtime
+  codesign --force -s "${DEV_ID_APP_STR}" -v $VST3 --deep --strict
   #---------------------------------------------------------------------------------------------------------
 fi
 
