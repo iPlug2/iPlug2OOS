@@ -281,10 +281,12 @@ if [ $BUILD_INSTALLER == 1 ]; then
     # arg 2 Set to a bundle ID (doesn't have to match your )
     # arg 3 Set to the app specific Apple ID username/email
     # arg 4 Set to the app specific Apple password  
+    PWD=`pwd`
+
     if [ $DEMO == 1 ]; then
-      ./$SCRIPTS/notarise.sh build-mac/$ARCHIVE_NAME.dmg $NOTARIZE_BUNDLE_ID_DEMO $APP_SPECIFIC_ID $APP_SPECIFIC_PWD
+      ./$SCRIPTS/notarise.sh "${PWD}/build-mac" "${PWD}/build-mac/${ARCHIVE_NAME}.dmg" $NOTARIZE_BUNDLE_ID $APP_SPECIFIC_ID $APP_SPECIFIC_PWD
     else
-      ./$SCRIPTS/notarise.sh build-mac/$ARCHIVE_NAME.dmg $NOTARIZE_BUNDLE_ID $APP_SPECIFIC_ID $APP_SPECIFIC_PWD
+      ./$SCRIPTS/notarise.sh "${PWD}/build-mac" "${PWD}/build-mac/${ARCHIVE_NAME}.dmg" $NOTARIZE_BUNDLE_ID_DEMO $APP_SPECIFIC_ID $APP_SPECIFIC_PWD
     fi
 
     if [ "${PIPESTATUS[0]}" -ne "0" ]; then
