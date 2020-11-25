@@ -75,7 +75,7 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         cd ${{env.PROJECT_NAME}}/scripts
-        ./makedist-mac.sh zip full installer
+        ./makedist-mac.sh full installer
       shell: bash
 
     - name: Upload mac DSYMs release asset
