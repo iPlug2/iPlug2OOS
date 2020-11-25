@@ -208,7 +208,7 @@ fi
 
 if [ $CODESIGN == 1 ]; then
   #---------------------------------------------------------------------------------------------------------
-  # code sign AAX binary
+  # code sign AAX binary with wraptool
 
   # echo "copying AAX ${PLUGIN_NAME} from 3PDev to main AAX folder"
   # sudo cp -p -R "${AAX}" "${AAX_FINAL}"
@@ -220,10 +220,10 @@ if [ $CODESIGN == 1 ]; then
   #---------------------------------------------------------------------------------------------------------
 
   #---------------------------------------------------------------------------------------------------------
-  echo "code-sign binaries with hardened runtime"
+  echo "code-sign binaries"
   echo ""
 
-  codesign --force -s "${DEV_ID_APP_STR}" -v $APP --deep --strict --options=runtime
+  codesign --force -s "${DEV_ID_APP_STR}" -v $APP --deep --strict --options=runtime #hardened runtime for app
   xattr -cr $AU 
   codesign --force -s "${DEV_ID_APP_STR}" -v $AU --deep --strict
   # xattr -cr $VST2 
