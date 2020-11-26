@@ -84,6 +84,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "TemplateProject"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

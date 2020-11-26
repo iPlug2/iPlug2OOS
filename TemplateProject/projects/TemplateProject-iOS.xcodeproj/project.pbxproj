@@ -63,6 +63,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4F4BC304256FE5C200134EA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91D3DA0C1B023C03008FFFBB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FA61F6D22E899B500A92C58;
+			remoteInfo = AUv3Framework;
+		};
 		4FA61F7322E899B500A92C58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91D3DA0C1B023C03008FFFBB /* Project object */;
@@ -745,6 +752,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4F4BC305256FE5C200134EA9 /* PBXTargetDependency */,
 			);
 			name = AUv3;
 			productName = "FilterDemoAppExtension-iOS";
@@ -929,6 +937,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4F4BC305256FE5C200134EA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FA61F6D22E899B500A92C58 /* AUv3Framework */;
+			targetProxy = 4F4BC304256FE5C200134EA9 /* PBXContainerItemProxy */;
+		};
 		4FA61F7422E899B500A92C58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4FA61F6D22E899B500A92C58 /* AUv3Framework */;
