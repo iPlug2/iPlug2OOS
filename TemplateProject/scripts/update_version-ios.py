@@ -42,7 +42,10 @@ def main():
   elif config['PLUG_TYPE'] == 2:
     COMPONENT_TYPE = kAudioUnitType_MIDIProcessor
 
-  NSEXTENSIONPOINTIDENTIFIER  = "com.apple.AudioUnit-UI"
+  if config['PLUG_HAS_UI'] == 1:
+    NSEXTENSIONPOINTIDENTIFIER  = "com.apple.AudioUnit-UI"
+  else:
+    NSEXTENSIONPOINTIDENTIFIER  = "com.apple.AudioUnit"
 
   plistpath = projectpath + "/resources/" + config['BUNDLE_NAME'] + "-iOS-AUv3-Info.plist"
   with open(plistpath, 'rb') as f:
@@ -55,13 +58,10 @@ def main():
     auv3['CFBundleShortVersionString'] = CFBundleVersion
     auv3['CFBundlePackageType'] = "XPC!"
     auv3['NSExtension'] = dict(
-    NSExtensionAttributes = dict(AudioComponents = [{}]),
-                                NSExtensionMainStoryboard = config['BUNDLE_NAME'] + "-iOS-MainInterface",
-                                NSExtensionPointIdentifier = NSEXTENSIONPOINTIDENTIFIER)
+    NSExtensionAttributes = dict(AudioComponents = [{}]), NSExtensionPointIdentifier = NSEXTENSIONPOINTIDENTIFIER)
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'] = [{}]
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['description'] = config['PLUG_NAME']
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['manufacturer'] = config['PLUG_MFR_ID']
-    auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['factoryFunction'] = "IPlugAUViewController"
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['name'] = config['PLUG_MFR'] + ": " + config['PLUG_NAME']
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['subtype'] = config['PLUG_UNIQUE_ID']
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['type'] = COMPONENT_TYPE
@@ -73,8 +73,13 @@ def main():
       auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['tags'][0] = "Synth"
     else:
       auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['tags'][0] = "Effects"
-      
-    auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['tags'][1] = "size:{" + str(config['PLUG_WIDTH']) + "," + str(config['PLUG_HEIGHT']) + "}"
+    
+    if config['PLUG_HAS_UI'] == 1:
+      auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['tags'][1] = "size:{" + str(config['PLUG_WIDTH']) + "," + str(config['PLUG_HEIGHT']) + "}"
+      auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['factoryFunction'] = "IPlugAUViewController"
+      auv3['NSExtension']['NSExtensionMainStoryboard'] = config['BUNDLE_NAME'] + "-iOS-MainInterface"
+    else:
+      auv3['NSExtension']['NSExtensionPrincipalClass'] = "IPlugAUViewController"
 
     with open(plistpath, 'wb') as f2:
       plistlib.dump(auv3, f2)
