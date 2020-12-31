@@ -5,7 +5,7 @@
 
 IPLUG2_ROOT = ../../iPlug2
 
-#include "../../iPlug2/common-ios.xcconfig"
+#include "../../common-ios.xcconfig"
 
 //------------------------------
 // Global build settings

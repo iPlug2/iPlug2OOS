@@ -14,7 +14,7 @@ fi
 #variables
 
 IPLUG2_ROOT=../iPlug2
-XCCONFIG=$IPLUG2_ROOT/../iPlug2OOS-common-mac.xcconfig
+XCCONFIG=$IPLUG2_ROOT/../common-mac.xcconfig
 SCRIPTS=$IPLUG2_ROOT/Scripts
 
 # CODESIGN disabled by default. 

@@ -18,6 +18,7 @@
 				4F9828F8140A9F0200F3FCC1 /* PBXTargetDependency */,
 			);
 			name = All;
+			productName = All;
 		};
 		B87FD1E62351C6F900CF7307 /* Update plists */ = {
 			isa = PBXAggregateTarget;
@@ -43,7 +44,6 @@
 		4F03A5B020A4621100EBDFFB /* IGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F03A55820A4621000EBDFFB /* IGraphics.cpp */; };
 		4F03A5B220A4621100EBDFFB /* IGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F03A55820A4621000EBDFFB /* IGraphics.cpp */; };
 		4F03A5B320A4621100EBDFFB /* IGraphics_include_in_plug_src.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55920A4621000EBDFFB /* IGraphics_include_in_plug_src.h */; };
-		4F03A5B520A4621100EBDFFB /* IGraphicsPathBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55B20A4621000EBDFFB /* IGraphicsPathBase.h */; };
 		4F03A5B620A4621100EBDFFB /* IGraphics_select.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55C20A4621000EBDFFB /* IGraphics_select.h */; };
 		4F03A5B720A4621100EBDFFB /* IGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A55D20A4621000EBDFFB /* IGraphics.h */; };
 		4F03A5D220A4621100EBDFFB /* IGraphicsPopupMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F03A56720A4621000EBDFFB /* IGraphicsPopupMenu.h */; };
@@ -468,7 +468,6 @@
 		4F03A55720A4621000EBDFFB /* IGraphics_include_in_plug_hdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphics_include_in_plug_hdr.h; path = ../../iPlug2/IGraphics/IGraphics_include_in_plug_hdr.h; sourceTree = "<group>"; };
 		4F03A55820A4621000EBDFFB /* IGraphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IGraphics.cpp; path = ../../iPlug2/IGraphics/IGraphics.cpp; sourceTree = "<group>"; };
 		4F03A55920A4621000EBDFFB /* IGraphics_include_in_plug_src.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphics_include_in_plug_src.h; path = ../../iPlug2/IGraphics/IGraphics_include_in_plug_src.h; sourceTree = "<group>"; };
-		4F03A55B20A4621000EBDFFB /* IGraphicsPathBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphicsPathBase.h; path = ../../iPlug2/IGraphics/IGraphicsPathBase.h; sourceTree = "<group>"; };
 		4F03A55C20A4621000EBDFFB /* IGraphics_select.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphics_select.h; path = ../../iPlug2/IGraphics/IGraphics_select.h; sourceTree = "<group>"; };
 		4F03A55D20A4621000EBDFFB /* IGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphics.h; path = ../../iPlug2/IGraphics/IGraphics.h; sourceTree = "<group>"; };
 		4F03A56720A4621000EBDFFB /* IGraphicsPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphicsPopupMenu.h; path = ../../iPlug2/IGraphics/IGraphicsPopupMenu.h; sourceTree = "<group>"; };
@@ -841,7 +840,7 @@
 		4FF016F6134E14E2001447BA /* wdlstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wdlstring.h; path = ../../iPlug2/WDL/wdlstring.h; sourceTree = SOURCE_ROOT; };
 		4FF01719134E153A001447BA /* heapbuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = heapbuf.h; path = ../../iPlug2/WDL/heapbuf.h; sourceTree = SOURCE_ROOT; };
 		4FF3204F20B2BFAB00269268 /* IPlugPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugPaths.h; path = ../../iPlug2/IPlug/IPlugPaths.h; sourceTree = "<group>"; tabWidth = 2; };
-		4FF7B0D4156A825000E6CB12 /* common-mac.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "common-mac.xcconfig"; path = "../../iPlug2/common-mac.xcconfig"; sourceTree = SOURCE_ROOT; };
+		4FF7B0D4156A825000E6CB12 /* common-mac.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "common-mac.xcconfig"; path = "../../common-mac.xcconfig"; sourceTree = SOURCE_ROOT; };
 		4FF7B0F3156A831000E6CB12 /* AAXLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AAXLibrary.xcodeproj; path = ../../iPlug2/Dependencies/IPlug/AAX_SDK/Libs/AAXLibrary/MacBuild/AAXLibrary.xcodeproj; sourceTree = SOURCE_ROOT; };
 		4FF93DF8209C68A400310D7C /* IPlugAUViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IPlugAUViewController.h; path = ../../iPlug2/IPlug/AUv3/IPlugAUViewController.h; sourceTree = "<group>"; };
 		4FFBB8F220863B0900DDD0E7 /* IPlugVST3_Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugVST3_Controller.cpp; path = ../../iPlug2/IPlug/VST3/IPlugVST3_Controller.cpp; sourceTree = "<group>"; tabWidth = 2; };
@@ -1022,7 +1021,6 @@
 				4F03A55D20A4621000EBDFFB /* IGraphics.h */,
 				4F03A56A20A4621100EBDFFB /* IGraphicsConstants.h */,
 				4F03A55620A4621000EBDFFB /* IGraphicsLiveEdit.h */,
-				4F03A55B20A4621000EBDFFB /* IGraphicsPathBase.h */,
 				4F03A56720A4621000EBDFFB /* IGraphicsPopupMenu.h */,
 				4F03A56820A4621000EBDFFB /* IGraphicsStructs.h */,
 				4F993FE32306D581000313AF /* IGraphicsPrivate.h */,
@@ -1765,7 +1763,6 @@
 				4F03A58C20A4621100EBDFFB /* IGraphicsNanoVG.h in Headers */,
 				4F03A5D320A4621100EBDFFB /* IGraphicsStructs.h in Headers */,
 				4FC3EFF82086CE5700BD11FA /* optional.h in Headers */,
-				4F03A5B520A4621100EBDFFB /* IGraphicsPathBase.h in Headers */,
 				4FC3F0012086CE5700BD11FA /* uid.h in Headers */,
 				4F03A5B620A4621100EBDFFB /* IGraphics_select.h in Headers */,
 				4F03A5AB20A4621100EBDFFB /* IGraphics_include_in_plug_hdr.h in Headers */,
@@ -1869,6 +1866,7 @@
 				B87FD2022351C78700CF7307 /* PBXTargetDependency */,
 			);
 			name = AUv3App;
+			productName = AUv3App;
 			productReference = 4F3EE1F0231438D000004786 /* TemplateProject.app */;
 			productType = "com.apple.product-type.application";
 		};

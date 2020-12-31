@@ -2,7 +2,7 @@
 # By default, that is three directories up from /Examples/TemplateProject/config
 IPLUG2_ROOT = ../../iPlug2
 
-include ../../iPlug2/common-web.mk
+include ../../common-web.mk
 
 SRC += $(PROJECT_ROOT)/TemplateProject.cpp
 
