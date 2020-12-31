@@ -52,7 +52,7 @@ def main():
   
   print("\nCurrent changelog: \n--------------------")
   os.system("cat " + PROJECT_ROOT + "/installer/changelog.txt")
-  print("\n\n--------------------");
+  print("\n\n--------------------")
 
   edit = input("\nEdit changelog? Y/N: ")
 
@@ -66,7 +66,7 @@ def main():
   edit = input("\nTag version and git push to origin (will prompt for commit message)? Y/N: ")
 
   if edit == 'y' or edit == 'Y':
-    os.system("git commit -a")
+    os.system("git commit -a --allow-empty")
     os.system("git tag v" + str(newVersionInfo))
     os.system("git push && git push --tags")
 
