@@ -3,7 +3,7 @@
 # makedist-web.sh builds a Web version of an iPlug2 project using emscripten
 # it copies a template folder from the iPlug2 tree and does a find and replace on various JavaScript and HTML files
 # arguments:
-# 1st argument : either "on", "off" or "ws" - this specifies whether emrun is used to launch a server and browser after compilation. "ws" builds the project in websocket mode, without the WAM stuff
+# 1st argument : either "on", "off" or "ws" - this specifies whether $EMRUN is used to launch a server and browser after compilation. "ws" builds the project in websocket mode, without the WAM stuff
 # 2nd argument : site origin -
 # 3rd argument : browser - either "chrome", "safari", "firefox" - if you want to launch a browser other than chrome, you must specify the correct origin for argument #2
 
@@ -12,6 +12,7 @@ IPLUG2_ROOT=../../iPlug2
 PROJECT_ROOT=$SCRIPT_DIR/..
 IPLUG2_ROOT=$SCRIPT_DIR/$IPLUG2_ROOT
 FILE_PACKAGER=$EMSDK/upstream/emscripten/tools/file_packager.py
+EMRUN="python ${IPLUG2_ROOT}/Scripts/emrun/emrun.py"
 
 PROJECT_NAME=TemplateProject
 BUILD_DSP=1
@@ -197,6 +198,8 @@ fi
 
 cd $PROJECT_ROOT/build-web
 
+mkcert 127.0.0.1 localhost
+
 # print payload
 echo payload:
 find . -maxdepth 2 -mindepth 1 -name .git -type d \! -prune -o \! -name .DS_Store -type f -exec du -hs {} \;
@@ -204,11 +207,11 @@ find . -maxdepth 2 -mindepth 1 -name .git -type d \! -prune -o \! -name .DS_Stor
 # launch emrun
 if [ "$LAUNCH_EMRUN" -eq "1" ]; then
   if [ "$EMRUN_CONTAINER" -eq "1" ]; then
-    emrun --no_browser --serve_after_close --serve_after_exit --port=$EMRUN_SERVER_PORT --hostname=0.0.0.0 .
+    $EMRUN --no_browser --serve_after_close --serve_after_exit --port=$EMRUN_SERVER_PORT --hostname=0.0.0.0 .
   elif [ "$EMRUN_SERVER" -eq "0" ]; then
-    emrun --browser $EMRUN_BROWSER --no_server --port=$EMRUN_SERVER_PORT index.html
+    $EMRUN --browser $EMRUN_BROWSER --no_server --port=$EMRUN_SERVER_PORT index.html
   else
-    emrun --browser $EMRUN_BROWSER --no_emrun_detect index.html
+    $EMRUN --browser $EMRUN_BROWSER --no_emrun_detect index.html
   fi
 else
   echo "Not running emrun"

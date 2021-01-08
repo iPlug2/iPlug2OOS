@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# This script initializes the cloned iPlug2OOS repo, downloading dependencies and renaming the template
+# This script initializes the cloned iPlug2OOS repo, downloading dependencies, 
+# renaming the template and generating an SSL certificate using mkcert
 
 if [ "$#" -eq 2 ]; then
     echo "Initializing submodule..."
@@ -18,12 +19,11 @@ if [ "$#" -eq 2 ]; then
     git add $1
     git commit -a -m "Renamed template project"
     
-#     echo "Downloading mkcert..."
-#     wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.2/mkcert-v1.4.2-linux-amd64
-#     chmod +x mkcert-v1.4.2-linux-amd64
-#     ./mkcert-v1.4.2-linux-amd64 install
-#     ./mkcert-v1.4.2-linux-amd64 localhost
-#     rm mkcert-v1.4.2-linux-amd64
+    echo "Downloading mkcert..."
+    wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert
+    chmod +x mkcert
+    mv mkcert /usr/local/bin
+    ./mkcert install
 else
     echo "usage: setup.sh PROJECT_NAME MANUFACTURER_NAME"
 fi
