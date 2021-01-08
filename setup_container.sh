@@ -23,7 +23,7 @@ if [ "$#" -eq 2 ]; then
     wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert
     chmod +x mkcert
     mv mkcert /usr/local/bin
-    ./mkcert install
+    mkcert -install
 else
     echo "usage: setup.sh PROJECT_NAME MANUFACTURER_NAME"
 fi

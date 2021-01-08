@@ -12,7 +12,7 @@ IPLUG2_ROOT=../../iPlug2
 PROJECT_ROOT=$SCRIPT_DIR/..
 IPLUG2_ROOT=$SCRIPT_DIR/$IPLUG2_ROOT
 FILE_PACKAGER=$EMSDK/upstream/emscripten/tools/file_packager.py
-EMRUN="python ${IPLUG2_ROOT}/Scripts/emrun/emrun.py"
+EMRUN="python3 ${IPLUG2_ROOT}/Scripts/emrun/emrun.py"
 
 PROJECT_NAME=TemplateProject
 BUILD_DSP=1
