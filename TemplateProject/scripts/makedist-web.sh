@@ -198,14 +198,13 @@ fi
 
 cd $PROJECT_ROOT/build-web
 
-mkcert 127.0.0.1 localhost
-
 # print payload
 echo payload:
 find . -maxdepth 2 -mindepth 1 -name .git -type d \! -prune -o \! -name .DS_Store -type f -exec du -hs {} \;
 
 # launch emrun
 if [ "$LAUNCH_EMRUN" -eq "1" ]; then
+  mkcert 127.0.0.1 localhost
   if [ "$EMRUN_CONTAINER" -eq "1" ]; then
     $EMRUN --no_browser --serve_after_close --serve_after_exit --port=$EMRUN_SERVER_PORT --hostname=0.0.0.0 .
   elif [ "$EMRUN_SERVER" -eq "0" ]; then
