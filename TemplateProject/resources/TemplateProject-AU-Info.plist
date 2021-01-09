@@ -20,17 +20,17 @@
 			<key>type</key>
 			<string>aumf</string>
 			<key>version</key>
-			<integer>256</integer>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>AudioUnit Version</key>
-	<string>0x00000100</string>
+	<string>0x00000000</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>TemplateProject</string>
 	<key>CFBundleGetInfoString</key>
-	<string>TemplateProject v0.1.0 Copyright 2020 Acme Inc</string>
+	<string>TemplateProject v0.0.0 Copyright 2020 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.AcmeInc.audiounit.TemplateProject</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -40,11 +40,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.0</string>
+	<string>0.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>9c0G</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.0</string>
+	<string>0.0.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
