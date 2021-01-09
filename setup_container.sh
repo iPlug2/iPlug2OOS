@@ -5,8 +5,7 @@
 
 if [ "$#" -eq 2 ]; then
     echo "Initializing submodule..."
-    git submodule init
-    git submodule update
+    git submodule update --init
     
     echo "Downloading iPlug2 SDKs..."
     cd iPlug2/Dependencies/IPlug/

@@ -8,7 +8,8 @@
     },
     "extensions": [
         "ms-vscode.cpptools",
-        "cschlosser.doxdocgen"
+        "cschlosser.doxdocgen",
+        "hellbent.vscode-faust"
     ],
-    "postCreateCommand": "echo 'emcc=$(emcc --version)'"
+    "postCreateCommand": "./setup_container.sh MyNewPlugin MyManufacturerName"
 }
