@@ -3,7 +3,7 @@ import zipfile, os, fileinput, string, sys, shutil
 scriptpath = os.path.dirname(os.path.realpath(__file__))
 projectpath = os.path.abspath(os.path.join(scriptpath, os.pardir))
 
-IPLUG2_ROOT = "../../iPlug2"
+IPLUG2_ROOT = "..\..\iPlug2"
 
 sys.path.insert(0, os.path.join(scriptpath, IPLUG2_ROOT + '\Scripts'))
 
@@ -34,14 +34,14 @@ def main():
     
     files = [
       projectpath + installer,
-      projectpath + "\installer\changelog.txt",
-      projectpath + "\installer\known-issues.txt",
-      projectpath + "\manual\TemplateProject manual.pdf" 
+      projectpath + "\\installer\\changelog.txt",
+      projectpath + "\\installer\\known-issues.txt",
+      projectpath + "\\manual\\TemplateProject manual.pdf" 
     ]
   else:
     files = [
-      projectpath + "\\build-win\TemplateProject.vst3\Contents\\x86_64-win\TemplateProject.vst3",
-      projectpath + "\\build-win\TemplateProject_x64.exe"  
+      projectpath + "\\build-win\\TemplateProject.vst3\\Contents\\x86_64-win\\TemplateProject.vst3",
+      projectpath + "\\build-win\\TemplateProject_x64.exe"  
     ]
 
   zipname = get_archive_name(projectpath, "win", "demo" if demo == 1 else "full" )
