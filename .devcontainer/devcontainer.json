@@ -1,10 +1,7 @@
 {
     "name": "iPlug2WAM",
     "build": {
-        "dockerfile": "Dockerfile",
-        "forwardPorts": [
-            8001
-        ],
+        "dockerfile": "Dockerfile"
     },
     "extensions": [
         "ms-vscode.cpptools",
