@@ -111,11 +111,16 @@ def dirwalk(dir, searchproject, replaceproject, searchman, replaceman, oldroot= 
         print("recursing in main xcode workspace directory: ")
         for x in dirwalk(fullpath, searchproject, replaceproject, searchman, replaceman, oldroot, newroot):
           yield x
-      elif checkdirname(f, searchproject + "iOSAppIcon.appiconset"):
-        os.rename(fullpath, os.path.join(dir, replaceproject + "iOSAppIcon.appiconset"))
-        fullpath = os.path.join(dir, replaceproject + "iOSAppIcon.appiconset")
+      elif checkdirname(f, searchproject + "-iOS.appiconset"):
+        os.rename(fullpath, os.path.join(dir, replaceproject + "-iOS.appiconset"))
+        fullpath = os.path.join(dir, replaceproject + "-iOS.appiconset")
 
-        print("recursing in iOSAppIcon directory: ")
+        print("recursing in -iOS.appiconset directory: ")
+      elif checkdirname(f, searchproject + "-macOS.appiconset"):
+        os.rename(fullpath, os.path.join(dir, replaceproject + "-macOS.appiconset"))
+        fullpath = os.path.join(dir, replaceproject + "-macOS.appiconset")
+
+        print("recursing in -macOS.appiconset directory: ")
         for x in dirwalk(fullpath, searchproject, replaceproject, searchman, replaceman, oldroot, newroot):
           yield x
       elif (f in SUBFOLDERS_TO_SEARCH):
