@@ -48,6 +48,12 @@ def main():
     NSEXTENSIONPOINTIDENTIFIER  = "com.apple.AudioUnit"
 
   plistpath = projectpath + "/resources/" + config['BUNDLE_NAME'] + "-iOS-AUv3-Info.plist"
+  
+  NSEXTENSIONATTRDICT = dict(
+    NSExtensionAttributes = dict(AudioComponents = [{}]),
+    NSExtensionPointIdentifier = NSEXTENSIONPOINTIDENTIFIER
+  )
+  
   with open(plistpath, 'rb') as f:
     auv3 = plistlib.load(f)  
     auv3['CFBundleExecutable'] = config['BUNDLE_NAME'] + "AppExtension"
@@ -57,8 +63,7 @@ def main():
     auv3['CFBundleVersion'] = CFBundleVersion
     auv3['CFBundleShortVersionString'] = CFBundleVersion
     auv3['CFBundlePackageType'] = "XPC!"
-    auv3['NSExtension'] = dict(
-    NSExtensionAttributes = dict(AudioComponents = [{}]), NSExtensionPointIdentifier = NSEXTENSIONPOINTIDENTIFIER)
+    auv3['NSExtension'] = NSEXTENSIONATTRDICT
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'] = [{}]
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['description'] = config['PLUG_NAME']
     auv3['NSExtension']['NSExtensionAttributes']['AudioComponents'][0]['manufacturer'] = config['PLUG_MFR_ID']
@@ -80,7 +85,7 @@ def main():
       auv3['NSExtension']['NSExtensionMainStoryboard'] = config['BUNDLE_NAME'] + "-iOS-MainInterface"
     else:
       auv3['NSExtension']['NSExtensionPrincipalClass'] = "IPlugAUViewController"
-
+    
     with open(plistpath, 'wb') as f2:
       plistlib.dump(auv3, f2)
 
