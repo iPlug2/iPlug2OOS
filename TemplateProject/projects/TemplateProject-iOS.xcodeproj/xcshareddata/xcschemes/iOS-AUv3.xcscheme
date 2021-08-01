@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1210"
+   LastUpgradeVersion = "1250"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -68,8 +68,8 @@
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.apple.mobilegarageband"
-         RemotePath = "/var/containers/Bundle/Application/74C93F51-F99D-4B44-96B7-AB28FB694382/MobileGarageBand.app">
+         BundleIdentifier = "com.kymatica.AUM"
+         RemotePath = "/var/containers/Bundle/Application/CE59BD64-5C5D-4306-828D-BD6D9672CEA4/AUM.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
