@@ -27,10 +27,10 @@
 		4F32AE7D231431BD00710734 /* AUv3Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA61F6E22E899B500A92C58 /* AUv3Framework.framework */; };
 		4F3E0F6A20A0BCD900A9C2BE /* TemplateProject-iOS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E0F6720A0BC5B00A9C2BE /* TemplateProject-iOS.storyboard */; };
 		4F3E0F6B20A0BCE300A9C2BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E0F6820A0BCAF00A9C2BE /* Images.xcassets */; };
-		4F7C499A255DE03500DF7588 /* IControls.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F7C4973255DE01F00DF7588 /* IControls.h */; };
 		4F7C499B255DE03500DF7588 /* IPopupMenuControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4972255DE01F00DF7588 /* IPopupMenuControl.cpp */; };
 		4F7C499C255DE03500DF7588 /* ITextEntryControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4976255DE01F00DF7588 /* ITextEntryControl.cpp */; };
 		4F7C4A15255DE23D00DF7588 /* IControls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4970255DE01F00DF7588 /* IControls.cpp */; };
+		4F914A4C26B4911A00E19BD1 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FA61F6822E8996C00A92C58 /* IPlugAUv3Appex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA61F6722E8996C00A92C58 /* IPlugAUv3Appex.m */; };
 		4FA61F7522E899B500A92C58 /* AUv3Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA61F6E22E899B500A92C58 /* AUv3Framework.framework */; };
 		4FA61F7622E899B500A92C58 /* AUv3Framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA61F6E22E899B500A92C58 /* AUv3Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -40,7 +40,6 @@
 		4FA61F8122E89AFF00A92C58 /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF103220A0E55900D3092F /* IPlugParameter.cpp */; };
 		4FA61F8222E89AFF00A92C58 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF103920A0E55900D3092F /* IPlugTimer.cpp */; };
 		4FA61F8322E89AFF00A92C58 /* IPlugPaths.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FA758452186222E00F1BCC3 /* IPlugPaths.mm */; };
-		4FA61F8422E89B2000A92C58 /* GenericUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F97F45D22564D6600EB54ED /* GenericUI.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FA61F8522E89B2000A92C58 /* IPlugAUAudioUnit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105320A0E57000D3092F /* IPlugAUAudioUnit.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FA61F8622E89B2000A92C58 /* IPlugAUv3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105820A0E57100D3092F /* IPlugAUv3.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FA61F8B22E89B3700A92C58 /* IGraphicsEditorDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8F3AF20BA273800BF938F /* IGraphicsEditorDelegate.cpp */; };
@@ -51,8 +50,6 @@
 		4FA61F9022E8A1F500A92C58 /* IGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F63699420A463AF0022C370 /* IGraphics.cpp */; };
 		4FA61F9122E8A2A700A92C58 /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D7DCB224AE821002A1A2A /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FA61F9222E8A2B500A92C58 /* TemplateProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF108720A1036200D3092F /* TemplateProject.cpp */; };
-		4FA61F9422E8A71D00A92C58 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; };
-		4FA61F9722E8A7E900A92C58 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; };
 		4FB2269720A0D3A800614769 /* TemplateProject-iOS-LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB2269620A0D3A800614769 /* TemplateProject-iOS-LaunchScreen.storyboard */; };
 		4FDF6D772267CE540007B686 /* AppViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D732267CE540007B686 /* AppViewController.mm */; };
 		4FDF6D792267CE540007B686 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D742267CE540007B686 /* main.m */; };
@@ -62,13 +59,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4F4BC304256FE5C200134EA9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 91D3DA0C1B023C03008FFFBB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4FA61F6D22E899B500A92C58;
-			remoteInfo = AUv3Framework;
-		};
 		4FA61F7322E899B500A92C58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 91D3DA0C1B023C03008FFFBB /* Project object */;
@@ -230,8 +220,6 @@
 		4F7C4A14255DE11700DF7588 /* Oversampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Oversampler.h; sourceTree = "<group>"; };
 		4F8D7DCB224AE821002A1A2A /* IGraphicsNanoVG_src.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGraphicsNanoVG_src.m; sourceTree = "<group>"; };
 		4F8D8BD82316701900EFA1FB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4F97F45D22564D6600EB54ED /* GenericUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GenericUI.mm; path = ../../iPlug2/IPlug/AUv3/GenericUI.mm; sourceTree = "<group>"; };
-		4F97F45E22564D6600EB54ED /* GenericUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericUI.h; path = ../../iPlug2/IPlug/AUv3/GenericUI.h; sourceTree = "<group>"; };
 		4FA61F6722E8996C00A92C58 /* IPlugAUv3Appex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IPlugAUv3Appex.m; path = ../../iPlug2/IPlug/AUv3/IPlugAUv3Appex.m; sourceTree = "<group>"; };
 		4FA61F6E22E899B500A92C58 /* AUv3Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AUv3Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA61F7A22E89A2700A92C58 /* TemplateProject-iOS-AUv3Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TemplateProject-iOS-AUv3Framework-Info.plist"; path = "../resources/TemplateProject-iOS-AUv3Framework-Info.plist"; sourceTree = "<group>"; };
@@ -642,8 +630,6 @@
 			isa = PBXGroup;
 			children = (
 				4FDF6D712267CE540007B686 /* iOSApp */,
-				4F97F45E22564D6600EB54ED /* GenericUI.h */,
-				4F97F45D22564D6600EB54ED /* GenericUI.mm */,
 				4FA61F6722E8996C00A92C58 /* IPlugAUv3Appex.m */,
 				4FFF105320A0E57000D3092F /* IPlugAUAudioUnit.mm */,
 				4FFF105420A0E57000D3092F /* IPlugAUAudioUnit.h */,
@@ -687,7 +673,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F7C499A255DE03500DF7588 /* IControls.h in Headers */,
 				4FA61F7C22E89A5900A92C58 /* AUv3Framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,7 +732,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F4BC305256FE5C200134EA9 /* PBXTargetDependency */,
 			);
 			name = AUv3;
 			productName = "FilterDemoAppExtension-iOS";
@@ -761,7 +745,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 1210;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					4FA61F6D22E899B500A92C58 = {
 						DevelopmentTeam = 686EDA2T8T;
@@ -886,10 +870,10 @@
 			files = (
 				4F7C4A15255DE23D00DF7588 /* IControls.cpp in Sources */,
 				4FA61F9122E8A2A700A92C58 /* IGraphicsNanoVG_src.m in Sources */,
-				4FA61F8422E89B2000A92C58 /* GenericUI.mm in Sources */,
 				4FA61F8622E89B2000A92C58 /* IPlugAUv3.mm in Sources */,
 				4FA61F8522E89B2000A92C58 /* IPlugAUAudioUnit.mm in Sources */,
 				4FA61F8F22E89B4300A92C58 /* IGraphicsIOS_view.mm in Sources */,
+				4F914A4C26B4911A00E19BD1 /* IPlugAUViewController.mm in Sources */,
 				4FA61F8E22E89B4300A92C58 /* IGraphicsIOS.mm in Sources */,
 				4FA61F9022E8A1F500A92C58 /* IGraphics.cpp in Sources */,
 				4FA61F7E22E89AFF00A92C58 /* IPlugPluginBase.cpp in Sources */,
@@ -914,7 +898,6 @@
 				4FDF6D7F2267CEBA0007B686 /* IPlugAUPlayer.mm in Sources */,
 				4FDF6D7B2267CE540007B686 /* AppDelegate.m in Sources */,
 				4FDF6D772267CE540007B686 /* AppViewController.mm in Sources */,
-				4FA61F9422E8A71D00A92C58 /* IPlugAUViewController.mm in Sources */,
 				4FDF6D792267CE540007B686 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,7 +906,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FA61F9722E8A7E900A92C58 /* IPlugAUViewController.mm in Sources */,
 				4FA61F6822E8996C00A92C58 /* IPlugAUv3Appex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,11 +913,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4F4BC305256FE5C200134EA9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4FA61F6D22E899B500A92C58 /* AUv3Framework */;
-			targetProxy = 4F4BC304256FE5C200134EA9 /* PBXContainerItemProxy */;
-		};
 		4FA61F7422E899B500A92C58 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4FA61F6D22E899B500A92C58 /* AUv3Framework */;
@@ -968,6 +945,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -1018,6 +996,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
@@ -1252,6 +1231,7 @@
 			buildSettings = {
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1261,6 +1241,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1305,6 +1286,7 @@
 			buildSettings = {
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1314,6 +1296,7 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

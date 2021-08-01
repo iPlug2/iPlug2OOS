@@ -12,22 +12,44 @@ TemplateProject::TemplateProject(const InstanceInfo& info)
 
 #if IPLUG_EDITOR // http://bit.ly/2S64BDd
   mMakeGraphicsFunc = [&]() {
-    return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, GetScaleForScreen(PLUG_WIDTH, PLUG_HEIGHT));
+    return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS);
   };
   
   mLayoutFunc = [&](IGraphics* pGraphics) {
-    const IRECT bounds = pGraphics->GetBounds().GetPadded(-10);
-    pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
+    const IRECT bounds = pGraphics->GetBounds();
+    const IRECT innerBounds = bounds.GetPadded(-10.f);
+    const IRECT sliderBounds = innerBounds.GetFromLeft(150).GetMidVPadded(100);
+    const IRECT versionBounds = innerBounds.GetFromTRHC(300, 20);
+    const IRECT titleBounds = innerBounds.GetCentredInside(200, 50);
+
+    if (pGraphics->NControls()) {
+      pGraphics->GetBackgroundControl()->SetTargetAndDrawRECTs(bounds);
+      pGraphics->GetControlWithTag(kCtrlTagSlider)->SetTargetAndDrawRECTs(sliderBounds);
+      pGraphics->GetControlWithTag(kCtrlTagTitle)->SetTargetAndDrawRECTs(titleBounds);
+      pGraphics->GetControlWithTag(kCtrlTagVersionNumber)->SetTargetAndDrawRECTs(versionBounds);
+      return;
+    }
+
+    pGraphics->SetLayoutOnResize(true);
+    pGraphics->AttachCornerResizer(EUIResizerMode::Size, true);
     pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
     pGraphics->AttachPanelBackground(COLOR_LIGHT_GRAY);
-    pGraphics->AttachControl(new IVSliderControl(bounds.GetGridCell(0, 2, 2).GetCentredInside(50, 150), kParamGain));
-    pGraphics->AttachControl(new ITextControl(bounds.GetFromTLHC(200, 50), "TemplateProject", IText(30)));
+    pGraphics->AttachControl(new IVSliderControl(sliderBounds, kParamGain), kCtrlTagSlider);
+    pGraphics->AttachControl(new ITextControl(titleBounds, "TemplateProject", IText(30)), kCtrlTagTitle);
     WDL_String buildInfoStr;
     GetBuildInfoStr(buildInfoStr, __DATE__, __TIME__);
-    pGraphics->AttachControl(new ITextControl(bounds.GetFromTRHC(300, 20), buildInfoStr.Get(), DEFAULT_TEXT.WithAlign(EAlign::Far)));
+    pGraphics->AttachControl(new ITextControl(versionBounds, buildInfoStr.Get(), DEFAULT_TEXT.WithAlign(EAlign::Far)), kCtrlTagVersionNumber);
   };
 #endif
 }
+
+#if IPLUG_EDITOR
+void TemplateProject::OnParentWindowResize(int width, int height)
+{
+  if(GetUI())
+    GetUI()->Resize(width, height, 1.f, false);
+}
+#endif
 
 #if IPLUG_DSP
 void TemplateProject::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
