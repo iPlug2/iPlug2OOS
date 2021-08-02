@@ -18,7 +18,7 @@
 			<key>subtype</key>
 			<string>9c0G</string>
 			<key>type</key>
-			<string>aumf</string>
+			<string>aufx</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -30,7 +30,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TemplateProject</string>
 	<key>CFBundleGetInfoString</key>
-	<string>TemplateProject v0.0.0 Copyright 2020 Acme Inc</string>
+	<string>TemplateProject v0.0.0 Copyright 2021 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.AcmeInc.audiounit.TemplateProject</string>
 	<key>CFBundleInfoDictionaryVersion</key>
