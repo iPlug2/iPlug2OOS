@@ -40,14 +40,14 @@
 #define AUV2_VIEW_CLASS TemplateProject_View
 #define AUV2_VIEW_CLASS_STR "TemplateProject_View"
 
-#define AAX_TYPE_IDS 'IEF1', 'IEF2'
-#define AAX_TYPE_IDS_AUDIOSUITE 'IEA1', 'IEA2'
+#define AAX_TYPE_IDS 'ITP1'
+#define AAX_TYPE_IDS_AUDIOSUITE 'ITA1'
 #define AAX_PLUG_MFR_STR "Acme"
 #define AAX_PLUG_NAME_STR "TemplateProject\nIPEF"
-#define AAX_PLUG_CATEGORY_STR "Synth"
+#define AAX_PLUG_CATEGORY_STR "Effect"
 #define AAX_DOES_AUDIOSUITE 1
 
-#define VST3_SUBCATEGORY "Instrument|Synth"
+#define VST3_SUBCATEGORY "Instrument|Effect"
 
 #define APP_NUM_CHANNELS 2
 #define APP_N_VECTOR_WAIT 0
