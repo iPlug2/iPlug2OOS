@@ -6,8 +6,8 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
-#define IPLUG_AUVIEWCONTROLLER IPlugAUViewController_vTemplateProject_auv3
-#define IPLUG_AUAUDIOUNIT IPlugAUAudioUnit_vTemplateProject_auv3
+#define IPLUG_AUVIEWCONTROLLER IPlugAUViewController_vTemplateProject
+#define IPLUG_AUAUDIOUNIT IPlugAUAudioUnit_vTemplateProject
 #import <TemplateProjectAU/IPlugAUViewController.h>
 #import <TemplateProjectAU/IPlugAUAudioUnit.h>
 
@@ -17,4 +17,4 @@ FOUNDATION_EXPORT double TemplateProjectAUVersionNumber;
 //! Project version string for TemplateProjectAU.
 FOUNDATION_EXPORT const unsigned char TemplateProjectAUVersionString[];
 
-@class IPlugAUViewController_vTemplateProject_auv3;
+@class IPlugAUViewController_vTemplateProject;

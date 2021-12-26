@@ -32,7 +32,7 @@
 					<key>description</key>
 					<string>TemplateProject</string>
 					<key>factoryFunction</key>
-					<string>IPlugAUViewController_vTemplateProject_auv3</string>
+					<string>IPlugAUViewController_vTemplateProject</string>
 					<key>manufacturer</key>
 					<string>Acme</string>
 					<key>name</key>
