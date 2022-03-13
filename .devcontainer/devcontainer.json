@@ -8,5 +8,11 @@
         "cschlosser.doxdocgen",
         "hellbent.vscode-faust"
     ],
-    "postCreateCommand": "./setup_container.sh MyNewPlugin MyManufacturerName"
+    "postCreateCommand": "./setup_container.sh",
+    "portsAttributes": {
+		"8001": {
+			"label": "emrun",
+			"protocol": "https"
+		}
+	}
 }
