@@ -20,10 +20,3 @@ wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.
 chmod +x mkcert
 mv mkcert /usr/local/bin
 mkcert -install
-
-# echo "Downloading SOUL"
-# wget https://github.com/soul-lang/SOUL/releases/download/0.9.66/binaries-linux-combined.zip
-# unzip binaries-linux-combined.zip
-# mv linux/x64/soul /usr/local/bin
-# rm -r linux
-# rm binaries-linux-combined.zip
