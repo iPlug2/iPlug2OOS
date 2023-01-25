@@ -29,7 +29,7 @@ jobs:
           architecture: 'x64'
 
       - name: Setup Emscripten
-      - uses: mymindstorm/setup-emsdk@v11
+        uses: mymindstorm/setup-emsdk@v11
         with:
           actions-cache-folder: 'emsdk-cache'
 
