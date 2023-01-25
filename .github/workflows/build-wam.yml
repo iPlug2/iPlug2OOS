@@ -35,7 +35,7 @@ jobs:
 
       - name: Patch emcc.py
         run: |
-          sed -i.bak s,"if not js_manipulation.isidentifier(settings.EXPORT_NAME):","if False:",g "emsdk/upstream/emscripten/emcc.py"
+          sed -i.bak s,"if not js_manipulation.isidentifier(settings.EXPORT_NAME):","if False:",g $(EMSDK)/emsdk/upstream/emscripten/emcc.py
         shell: bash
 
       - name: Get WAM SDKS
