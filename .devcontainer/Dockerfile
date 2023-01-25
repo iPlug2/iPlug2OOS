@@ -7,4 +7,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN echo "alias python=python3 \n alias lr='ls -lart' \n alias cd..='cd ..'" >> "$HOME/.bashrc"
 
 #patch emcc.py
-RUN sed -i.bak s,"if not js_manipulation.isidentifier(settings.EXPORT_NAME):","if false",g "/emsdk/upstream/emscripten/emcc.py"
+RUN sed -i.bak s,"if not js_manipulation.isidentifier(settings.EXPORT_NAME):","if false:",g "/emsdk/upstream/emscripten/emcc.py"
