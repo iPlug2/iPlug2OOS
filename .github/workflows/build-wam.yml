@@ -31,8 +31,12 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v7
         with:
-          version: '2.0.16'
           actions-cache-folder: 'emsdk'
+
+      - name: Patch emcc.py
+        run: |
+          sed -i.bak s,"if not js_manipulation.isidentifier(settings.EXPORT_NAME):","if False:",g "/emsdk/upstream/emscripten/emcc.py"
+        shell: bash
 
       - name: Get WAM SDKS
         run: |
