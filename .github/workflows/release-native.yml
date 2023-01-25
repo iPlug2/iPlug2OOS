@@ -17,7 +17,7 @@ jobs:
       upload_url: ${{steps.create_release.outputs.upload_url}}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -47,7 +47,7 @@ jobs:
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         submodules: recursive
 
@@ -68,7 +68,7 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} mac full`
-        echo "::set-output name=archive_name::$ARCHIVE_NAME"
+        echo "name=archive_name::$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Build macOS
@@ -102,7 +102,7 @@ jobs:
 
     - name: Add msbuild to PATH (Windows)
       if: matrix.os == 'windows-latest'
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1
 
     - name: Setup Python3
       if: matrix.os == 'windows-latest'
@@ -116,7 +116,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         ARCHIVE_NAME=`python.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
-        echo "::set-output name=archive_name::$ARCHIVE_NAME"
+        echo "name=archive_name::$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Build Windows
