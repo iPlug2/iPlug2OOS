@@ -1,8 +1,8 @@
 ![Build WAM](https://github.com/iPlug2/iPlug2OOS/workflows/Build%20WAM/badge.svg)
 
-This is an example of how to set up an iPlug2 project to build "out of source", which might be desirable to keep all your project dependencies synchronised with version control. It is also set up for "containerized development" using VSCode and github codespaces.
+This is an example of how to set up an iPlug2 project to build "out of source", which might be desirable to keep all your project dependencies synchronised with version control. It is also set up for "containerized development" using [VSCode](https://code.visualstudio.com/docs/devcontainers/containers) and [github codespaces](https://github.com/features/codespaces).
 
-Instead of using the common-mac.xcconfig and common-win.xcconfig in the iPlug2 folder, it uses copies. This means the iPlug2 submodule itself does not have to be modified.
+Instead of using the common-mac.xcconfig and common-win.xcconfig in the iPlug2 folder, it uses copies of them at the top level of the iPlug2OOS repo. This means the iPlug2 submodule itself does not have to be modified.
 
 https://github.com/iPlug2/iPlug2/wiki/Out-of-source-builds
 
