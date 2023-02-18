@@ -34,7 +34,6 @@
 		4FC6983C293BA5090076EC33 /* IPlugAUViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FFF105620A0E57100D3092F /* IPlugAUViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4FC6983D293BA5C40076EC33 /* IPlugAUAudioUnit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105320A0E57000D3092F /* IPlugAUAudioUnit.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FC6983E293BA5C40076EC33 /* IPlugAUv3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105820A0E57100D3092F /* IPlugAUv3.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4FC6983F293BA5C40076EC33 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4FC69840293BA5C40076EC33 /* IPlugPluginBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF106620A0E58600D3092F /* IPlugPluginBase.cpp */; };
 		4FC69841293BA5C40076EC33 /* IPlugAPIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF103A20A0E55900D3092F /* IPlugAPIBase.cpp */; };
 		4FC69842293BA5C50076EC33 /* IPlugProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF103420A0E55900D3092F /* IPlugProcessor.cpp */; };
@@ -57,6 +56,7 @@
 		4FDF6D792267CE540007B686 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D742267CE540007B686 /* main.m */; };
 		4FDF6D7B2267CE540007B686 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D752267CE540007B686 /* AppDelegate.m */; };
 		4FDF6D7F2267CEBA0007B686 /* IPlugAUPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D7D2267CEBA0007B686 /* IPlugAUPlayer.mm */; };
+		4FE0DEE829A183B700DDBCC8 /* TemplateProjectAU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC6982F293BA47F0076EC33 /* TemplateProjectAU.framework */; };
 		91236D811B08F59300734C5E /* TemplateProjectAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 91236D771B08F59300734C5E /* TemplateProjectAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -305,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE0DEE829A183B700DDBCC8 /* TemplateProjectAU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,7 +868,6 @@
 			files = (
 				4FC6983D293BA5C40076EC33 /* IPlugAUAudioUnit.mm in Sources */,
 				4FC6983E293BA5C40076EC33 /* IPlugAUv3.mm in Sources */,
-				4FC6983F293BA5C40076EC33 /* IPlugAUViewController.mm in Sources */,
 				4FC6984D293BA6140076EC33 /* IGraphicsNanoVG_src.m in Sources */,
 				4FC6984B293BA6010076EC33 /* IGraphicsIOS_view.mm in Sources */,
 				4FC69851293BA8770076EC33 /* IGraphicsIOS.mm in Sources */,
