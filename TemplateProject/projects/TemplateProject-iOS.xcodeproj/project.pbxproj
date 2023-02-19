@@ -57,6 +57,7 @@
 		4FDF6D7B2267CE540007B686 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D752267CE540007B686 /* AppDelegate.m */; };
 		4FDF6D7F2267CEBA0007B686 /* IPlugAUPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D7D2267CEBA0007B686 /* IPlugAUPlayer.mm */; };
 		4FE0DEE829A183B700DDBCC8 /* TemplateProjectAU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC6982F293BA47F0076EC33 /* TemplateProjectAU.framework */; };
+		4FE0DEF029A2E0F100DDBCC8 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		91236D811B08F59300734C5E /* TemplateProjectAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 91236D771B08F59300734C5E /* TemplateProjectAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -866,6 +867,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE0DEF029A2E0F100DDBCC8 /* IPlugAUViewController.mm in Sources */,
 				4FC6983D293BA5C40076EC33 /* IPlugAUAudioUnit.mm in Sources */,
 				4FC6983E293BA5C40076EC33 /* IPlugAUv3.mm in Sources */,
 				4FC6984D293BA6140076EC33 /* IGraphicsNanoVG_src.m in Sources */,
