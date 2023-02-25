@@ -45,7 +45,9 @@ jobs:
     - name: Build macOS
       if: matrix.os == 'macOS-latest'
       run: |
-        cd ${{env.PROJECT_NAME}}/scripts
+        cd ${{env.PROJECT_NAME}}
+        cmake -G Xcode -S . -B build-mac
+        cd scripts
         ./makedist-mac.sh full zip
       shell: bash
 
@@ -56,7 +58,9 @@ jobs:
     - name: Build Windows
       if: matrix.os == 'windows-latest'
       run: |
-        cd ${{env.PROJECT_NAME}}\scripts
+        cd ${{env.PROJECT_NAME}}
+        cmake -S . -B build-win
+        cd scripts
         .\makedist-win.bat full zip
       shell: pwsh
 

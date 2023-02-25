@@ -6,9 +6,9 @@ BASEDIR=$(dirname $0)
 
 cd $BASEDIR/..
 
-if [ -d build-mac ]; then
-  sudo rm -f -R build-mac
-fi
+# if [ -d build-mac ]; then
+#   sudo rm -f -R build-mac
+# fi
 
 #---------------------------------------------------------------------------------------------------------
 #variables
@@ -117,37 +117,37 @@ touch *.cpp
 #---------------------------------------------------------------------------------------------------------
 #remove existing binaries
 
-echo "remove existing binaries"
-echo ""
+# echo "remove existing binaries"
+# echo ""
 
-if [ -d $APP ]; then
-  sudo rm -f -R -f $APP
-fi
+# if [ -d $APP ]; then
+#   sudo rm -f -R -f $APP
+# fi
 
-if [ -d $AU ]; then
- sudo rm -f -R $AU
-fi
+# if [ -d $AU ]; then
+#  sudo rm -f -R $AU
+# fi
 
-if [ -d $VST2 ]; then
-  sudo rm -f -R $VST2
-fi
+# if [ -d $VST2 ]; then
+#   sudo rm -f -R $VST2
+# fi
 
-if [ -d $VST3 ]; then
-  sudo rm -f -R $VST3
-fi
+# if [ -d $VST3 ]; then
+#   sudo rm -f -R $VST3
+# fi
 
-if [ -d "${AAX}" ]; then
-  sudo rm -f -R "${AAX}"
-fi
+# if [ -d "${AAX}" ]; then
+#   sudo rm -f -R "${AAX}"
+# fi
 
-if [ -d "${AAX_FINAL}" ]; then
-  sudo rm -f -R "${AAX_FINAL}"
-fi
+# if [ -d "${AAX_FINAL}" ]; then
+#   sudo rm -f -R "${AAX_FINAL}"
+# fi
 
 #---------------------------------------------------------------------------------------------------------
 # build xcode project. Change target to build individual formats, or add to All target in the xcode project
 
-xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -target "All" -UseModernBuildSystem=NO -configuration Release | tee build-mac.log | xcpretty #&& exit ${PIPESTATUS[0]}
+xcodebuild -project ./build-mac/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -alltargets -UseModernBuildSystem=NO -configuration RelWithDebInfo | tee build-mac.log | xcpretty #&& exit ${PIPESTATUS[0]}
 
 if [ "${PIPESTATUS[0]}" -ne "0" ]; then
   echo "ERROR: build failed, aborting"
@@ -337,7 +337,7 @@ sudo rm -R -f build-mac/*-dSYMs.zip
 
 echo "packaging dSYMs"
 echo ""
-zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/*.dSYM
+zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/**/*.dSYM
 
 #---------------------------------------------------------------------------------------------------------
 
