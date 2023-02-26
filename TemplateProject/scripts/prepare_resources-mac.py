@@ -2,9 +2,11 @@
 
 # this script will copy the project's resources (pngs, ttfs, svgs etc) to the correct place
 # depending on the value of PLUG_SHARED_RESOURCES in config.h
-# resources can either be copied into the plug-in bundle or into a shared path
+# resources can either be copied into the plug-in bundle (vst3, component etc) or into a shared path
 # since the shared path should be accesible from the mac app sandbox,
 # the path used is ~/Music/SHARED_RESOURCES_SUBPATH
+# you might also want to consider using bin2c resources
+# in order to hide the resources and/or simplify this process
 
 import os, sys, shutil
 
