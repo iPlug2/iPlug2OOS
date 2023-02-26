@@ -340,6 +340,14 @@ echo ""
 zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/*.dSYM
 
 #---------------------------------------------------------------------------------------------------------
+# auval
+sudo rm -R -f build-mac/*-auval.zip
+
+echo "packaging auval script"
+echo ""
+zip -j ./build-mac/$ARCHIVE_NAME-auval.zip ./config.h ./../iPlug2/Scripts/validate_audiounit.sh
+
+#---------------------------------------------------------------------------------------------------------
 
 # prepare out folder for CI
 
