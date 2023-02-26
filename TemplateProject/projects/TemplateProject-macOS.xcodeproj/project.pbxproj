@@ -13,7 +13,7 @@
 			buildPhases = (
 			);
 			dependencies = (
-				4F06F18623566DC800FD0962 /* PBXTargetDependency */,
+				4FE6309429ABA4EA00C38A41 /* PBXTargetDependency */,
 				4F78DAFA13B6436B0032E0F3 /* PBXTargetDependency */,
 				4F9828F8140A9F0200F3FCC1 /* PBXTargetDependency */,
 			);
@@ -248,20 +248,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4F06F18523566DC800FD0962 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4FD16A0813B63081001D0217;
-			remoteInfo = APP;
-		};
-		4F3EE1BC231438D000004786 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4F78BE0122E73D0800AD537E;
-			remoteInfo = AUv3Framework;
-		};
 		4F78BE3522E742DE00AD537E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -301,6 +287,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = B87FD1E62351C6F900CF7307;
 			remoteInfo = "Update plists";
+		};
+		4FE6309329ABA4EA00C38A41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3EE1BA231438D000004786;
+			remoteInfo = AUv3App;
+		};
+		4FE6309529ABA55F00C38A41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F39075F2013EBA300DDA490;
+			remoteInfo = AUv3;
 		};
 		B87FD1EF2351C74300CF7307 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1712,7 +1712,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F3EE1BB231438D000004786 /* PBXTargetDependency */,
+				4FE6309629ABA55F00C38A41 /* PBXTargetDependency */,
 			);
 			name = AUv3App;
 			productName = AUv3App;
@@ -2110,6 +2110,7 @@
 		};
 		4F78BE3B22E74A7E00AD537E /* Touch dummy file */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2431,16 +2432,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4F06F18623566DC800FD0962 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4FD16A0813B63081001D0217 /* APP */;
-			targetProxy = 4F06F18523566DC800FD0962 /* PBXContainerItemProxy */;
-		};
-		4F3EE1BB231438D000004786 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4F78BE0122E73D0800AD537E /* TemplateProjectAU */;
-			targetProxy = 4F3EE1BC231438D000004786 /* PBXContainerItemProxy */;
-		};
 		4F78BE3622E742DE00AD537E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4F78BE0122E73D0800AD537E /* TemplateProjectAU */;
@@ -2465,6 +2456,16 @@
 			isa = PBXTargetDependency;
 			target = B87FD1E62351C6F900CF7307 /* Update plists */;
 			targetProxy = 4FC523A629AA6A6B0011C63B /* PBXContainerItemProxy */;
+		};
+		4FE6309429ABA4EA00C38A41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3EE1BA231438D000004786 /* AUv3App */;
+			targetProxy = 4FE6309329ABA4EA00C38A41 /* PBXContainerItemProxy */;
+		};
+		4FE6309629ABA55F00C38A41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F39075F2013EBA300DDA490 /* AUv3 */;
+			targetProxy = 4FE6309529ABA55F00C38A41 /* PBXContainerItemProxy */;
 		};
 		B87FD1F02351C74300CF7307 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
