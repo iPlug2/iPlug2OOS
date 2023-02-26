@@ -11,14 +11,15 @@ if [ -d build-mac ]; then
 fi
 
 #---------------------------------------------------------------------------------------------------------
-#variables
+# variables
 
 IPLUG2_ROOT=../iPlug2
 XCCONFIG=$IPLUG2_ROOT/../common-mac.xcconfig
 SCRIPTS=$IPLUG2_ROOT/Scripts
 
-# CODESIGN disabled by default. 
-CODESIGN=0
+# CODE_SIGN disabled by default. 
+CODE_SIGN=0
+NOTARIZE=0
 
 # macOS codesigning/notarization
 NOTARIZE_BUNDLE_ID=com.AcmeInc.TemplateProject
@@ -115,7 +116,7 @@ echo ""
 touch *.cpp
 
 #---------------------------------------------------------------------------------------------------------
-#remove existing binaries
+# remove existing binaries
 
 echo "remove existing binaries"
 echo ""
@@ -147,7 +148,7 @@ fi
 #---------------------------------------------------------------------------------------------------------
 # build xcode project. Change target to build individual formats, or add to All target in the xcode project
 
-xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -target "All" -configuration Release | tee build-mac.log | xcpretty #&& exit ${PIPESTATUS[0]}
+xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -configuration Release | tee build-mac.log | xcpretty #&& exit ${PIPESTATUS[0]}
 
 if [ "${PIPESTATUS[0]}" -ne "0" ]; then
   echo "ERROR: build failed, aborting"
@@ -206,7 +207,7 @@ if [ -d "${AAX}" ]; then
   strip -x "${AAX}/Contents/MacOS/$PLUGIN_NAME"
 fi
 
-if [ $CODESIGN == 1 ]; then
+if [ $CODE_SIGN == 1 ]; then
   #---------------------------------------------------------------------------------------------------------
   # code sign AAX binary with wraptool
 
@@ -244,7 +245,7 @@ if [ $BUILD_INSTALLER == 1 ]; then
 
   ./scripts/makeinstaller-mac.sh $FULL_VERSION
 
-  if [ $CODESIGN == 1 ]; then
+  if [ $CODE_SIGN == 1 ]; then
     echo "code-sign installer for Gatekeeper on macOS 10.8+"
     echo ""
     mv "${PKG}" "${PKG_US}"
@@ -252,7 +253,7 @@ if [ $BUILD_INSTALLER == 1 ]; then
     rm -R -f "${PKG_US}"
   fi
 
-  #set installer icon
+  # set installer icon
   ./$SCRIPTS/SetFileIcon -image resources/$PLUGIN_NAME.icns -file "${PKG}"
 
   #---------------------------------------------------------------------------------------------------------
@@ -271,9 +272,9 @@ if [ $BUILD_INSTALLER == 1 ]; then
 
   sudo rm -R -f build-mac/installer/
 
-  if [ $CODESIGN == 1 ]; then
+  if [ $NOTARIZE == 1 ]; then
     #---------------------------------------------------------------------------------------------------------
-    #notarize dmg
+    # notarize dmg
     echo "notarizing"
     echo ""
     # you need to create an app-specific id/password https://support.apple.com/en-us/HT204397
@@ -340,7 +341,7 @@ echo ""
 zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/*.dSYM
 
 #---------------------------------------------------------------------------------------------------------
-# auval
+# auval tools
 sudo rm -R -f build-mac/*-auval.zip
 
 echo "packaging auval script"
