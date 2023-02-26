@@ -33,7 +33,14 @@ jobs:
         path: |
           iPlug2/Dependencies/Build
           iPlug2/Dependencies/iPlug
-        key: ${{runner.os}}-${{hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh', 'iPlug2/Dependencies/IGraphics/build-igraphics-libs-mac.sh', 'iPlug2/Dependencies/IGraphics/build-skia-mac.sh')}}
+        key: ${{runner.os}}-deps-${{hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh', 'iPlug2/Dependencies/IGraphics/build-igraphics-libs-mac.sh', 'iPlug2/Dependencies/IGraphics/build-skia-mac.sh')}}
+
+    - name: Get Prebuilt Libs
+      if: steps.cache-deps.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies
+        ./download-prebuilt-libs.sh
 
     - name: Cache VST3 SDK
       id: cache-vst3
@@ -43,27 +50,12 @@ jobs:
           iPlug2/Dependencies/IPlug/VST3_SDK
         key: ${{runner.os}}-vst3-${{env.VST3_VER}}
 
-    - name: Get Prebuilt Libs
-      if: steps.cache-deps.outputs.cache-hit != 'true'
-      shell: bash
-      run: |
-        cd iPlug2/Dependencies
-        ./download-prebuilt-libs.sh
-
     - name: Get VST3 SDK
       if: steps.cache-vst3.outputs.cache-hit != 'true'
       shell: bash
       run: |
         cd iPlug2/Dependencies/IPlug
-        ./download-iplug-sdks.sh
-
-    # - name: Checkout VST3 SDK
-    #   if: steps.cache-deps.outputs.cache-hit != 'true'
-    #   uses: actions/checkout@v3.3.0
-    #   with:
-    #     repository: steinbergmedia/vst3sdk
-    #     submodules: recursive
-    #     path: "iPlug2/Dependencies/IPlug/VST3_SDK"
+        ./download-vst3-sdk.sh ${{env.VST3_VER}} build-validator
 
     - name: Build
       shell: bash
@@ -110,12 +102,25 @@ jobs:
           curl -L "https://github.com/Tracktion/pluginval/releases/download/${{env.PLUGINVAL_VER}}/pluginval_macOS.zip" -o pluginval.zip
           unzip pluginval
 
-      - name: Pluginval VST3
+      - name: Restore VST3 SDK
+        id: cache-vst3
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+          key: ${{runner.os}}-vst3-${{env.VST3_VER}}
+
+      - name: Test VST3 with VST3 Validator
+        shell: bash
+        run: |
+          ./iPlug2/Dependencies/IPlug/VST3_SDK/validator ${{env.PROJECT_NAME}}.vst3
+
+      - name: Test VST3 with Pluginval
         shell: bash
         run: |
           pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ${{env.PROJECT_NAME}}.vst3 || exit 1
 
-      - name: Pluginval AUv2
+      - name: Test AUv2 with Pluginval
         shell: bash
         run: |
           mkdir -p ~/Library/Audio/Plug-Ins/Components
@@ -123,15 +128,15 @@ jobs:
           pgrep -x AudioComponentRegistrar >/dev/null && killall -9 AudioComponentRegistrar; echo "killed AudioComponentRegistrar" || echo "AudioComponentRegistrar Process not found"
           pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ~/Library/Audio/Plug-Ins/Components/${{env.PROJECT_NAME}}.component || exit 1
 
-      - name: auval AUv2
+      - name: Test AUv2 with auval
         shell: bash
         run: |
           ./validate_audiounit.sh config.h
 
-      - name: auval AUv2 real time safety
-        shell: bash
-        run: |
-          ./validate_audiounit.sh config.h rtsafe
+      # - name: Test AUv2 with auval (RTSafe)
+      #   shell: bash
+      #   run: |
+      #     ./validate_audiounit.sh config.h rtsafe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
