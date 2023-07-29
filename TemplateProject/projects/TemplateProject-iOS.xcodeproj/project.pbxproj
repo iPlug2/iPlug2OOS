@@ -23,9 +23,18 @@
 /* Begin PBXBuildFile section */
 		4F10E7C020B17EDB00F5B09B /* TemplateProject-iOS-MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F10E7BF20B17EDB00F5B09B /* TemplateProject-iOS-MainInterface.storyboard */; };
 		4F1115CF2296DA95000CFCBF /* TemplateProject-iOS-MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F10E7BF20B17EDB00F5B09B /* TemplateProject-iOS-MainInterface.storyboard */; };
-		4F3E0F6A20A0BCD900A9C2BE /* TemplateProject-iOS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E0F6720A0BC5B00A9C2BE /* TemplateProject-iOS.storyboard */; };
 		4F3E0F6B20A0BCE300A9C2BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3E0F6820A0BCAF00A9C2BE /* Images.xcassets */; };
 		4F4856842773BD77005BCF8E /* TemplateProjectAUv3Appex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4856832773BD77005BCF8E /* TemplateProjectAUv3Appex.m */; };
+		4F505D1F2A75475F009CE747 /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D112A75475F009CE747 /* ViewControllerRepresentable.swift */; };
+		4F505D202A75475F009CE747 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D132A75475F009CE747 /* MIDIManager.swift */; };
+		4F505D212A75475F009CE747 /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = 4F505D152A75475F009CE747 /* Synth.aif */; };
+		4F505D222A75475F009CE747 /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D162A75475F009CE747 /* SimplePlayEngine.swift */; };
+		4F505D232A75475F009CE747 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D172A75475F009CE747 /* TypeAliases.swift */; };
+		4F505D242A75475F009CE747 /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D192A75475F009CE747 /* StringHelpers.swift */; };
+		4F505D252A75475F009CE747 /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D1B2A75475F009CE747 /* AudioUnitViewModel.swift */; };
+		4F505D262A75475F009CE747 /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D1C2A75475F009CE747 /* AudioUnitHostModel.swift */; };
+		4F505D272A75475F009CE747 /* TemplateProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D1D2A75475F009CE747 /* TemplateProject.swift */; };
+		4F505D282A75475F009CE747 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F505D1E2A75475F009CE747 /* ContentView.swift */; };
 		4FB2269720A0D3A800614769 /* TemplateProject-iOS-LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB2269620A0D3A800614769 /* TemplateProject-iOS-LaunchScreen.storyboard */; };
 		4FC69835293BA47F0076EC33 /* TemplateProjectAU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC6982F293BA47F0076EC33 /* TemplateProjectAU.framework */; };
 		4FC69836293BA47F0076EC33 /* TemplateProjectAU.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC6982F293BA47F0076EC33 /* TemplateProjectAU.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -52,10 +61,6 @@
 		4FC6984F293BA6420076EC33 /* IControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369E520A466320022C370 /* IControl.cpp */; };
 		4FC69851293BA8770076EC33 /* IGraphicsIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F63698E20A463AF0022C370 /* IGraphicsIOS.mm */; };
 		4FCBE769293CDFB7005D913D /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; };
-		4FDF6D772267CE540007B686 /* AppViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D732267CE540007B686 /* AppViewController.mm */; };
-		4FDF6D792267CE540007B686 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D742267CE540007B686 /* main.m */; };
-		4FDF6D7B2267CE540007B686 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D752267CE540007B686 /* AppDelegate.m */; };
-		4FDF6D7F2267CEBA0007B686 /* IPlugAUPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF6D7D2267CEBA0007B686 /* IPlugAUPlayer.mm */; };
 		4FE0DEE829A183B700DDBCC8 /* TemplateProjectAU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FC6982F293BA47F0076EC33 /* TemplateProjectAU.framework */; };
 		4FE0DEF029A2E0F100DDBCC8 /* IPlugAUViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF105A20A0E57100D3092F /* IPlugAUViewController.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		91236D811B08F59300734C5E /* TemplateProjectAppExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 91236D771B08F59300734C5E /* TemplateProjectAppExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -117,11 +122,20 @@
 		4F2602DB2269F79200C7E97E /* tex */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tex; path = ../resources/tex; sourceTree = "<group>"; };
 		4F3E0F6420A0BC1C00A9C2BE /* TemplateProject-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TemplateProject-iOS-Info.plist"; path = "../resources/TemplateProject-iOS-Info.plist"; sourceTree = "<group>"; };
 		4F3E0F6520A0BC4000A9C2BE /* TemplateProject-iOS-AUv3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TemplateProject-iOS-AUv3-Info.plist"; path = "../resources/TemplateProject-iOS-AUv3-Info.plist"; sourceTree = "<group>"; };
-		4F3E0F6720A0BC5B00A9C2BE /* TemplateProject-iOS.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "TemplateProject-iOS.storyboard"; path = "../resources/TemplateProject-iOS.storyboard"; sourceTree = "<group>"; };
 		4F3E0F6820A0BCAF00A9C2BE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../resources/Images.xcassets; sourceTree = "<group>"; };
 		4F4856832773BD77005BCF8E /* TemplateProjectAUv3Appex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemplateProjectAUv3Appex.m; path = ../resources/TemplateProjectAUv3Appex.m; sourceTree = "<group>"; };
 		4F4A44A322D3604800A9D1A1 /* IGraphicsSkia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGraphicsSkia.h; sourceTree = "<group>"; };
 		4F4A44A422D3604800A9D1A1 /* IGraphicsSkia.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsSkia.cpp; sourceTree = "<group>"; };
+		4F505D112A75475F009CE747 /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		4F505D132A75475F009CE747 /* MIDIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		4F505D152A75475F009CE747 /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
+		4F505D162A75475F009CE747 /* SimplePlayEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		4F505D172A75475F009CE747 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		4F505D192A75475F009CE747 /* StringHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
+		4F505D1B2A75475F009CE747 /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
+		4F505D1C2A75475F009CE747 /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
+		4F505D1D2A75475F009CE747 /* TemplateProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateProject.swift; sourceTree = "<group>"; };
+		4F505D1E2A75475F009CE747 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4F63697C20A463AF0022C370 /* IGraphicsNanoVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphicsNanoVG.h; sourceTree = "<group>"; };
 		4F63698020A463AF0022C370 /* IGraphicsNanoVG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsNanoVG.cpp; sourceTree = "<group>"; };
 		4F63698220A463AF0022C370 /* IGraphics_include_in_plug_hdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphics_include_in_plug_hdr.h; sourceTree = "<group>"; };
@@ -233,13 +247,6 @@
 		4FDA600520B5868D00C49ABA /* TemplateProject-ios.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "TemplateProject-ios.xcconfig"; path = "../config/TemplateProject-ios.xcconfig"; sourceTree = "<group>"; };
 		4FDF6D692267CDBE0007B686 /* IGraphicsCoreText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphicsCoreText.h; sourceTree = "<group>"; };
 		4FDF6D6A2267CDBE0007B686 /* IGraphicsCoreText.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IGraphicsCoreText.mm; sourceTree = "<group>"; };
-		4FDF6D722267CE540007B686 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4FDF6D732267CE540007B686 /* AppViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppViewController.mm; sourceTree = "<group>"; };
-		4FDF6D742267CE540007B686 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4FDF6D752267CE540007B686 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4FDF6D762267CE540007B686 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
-		4FDF6D7D2267CEBA0007B686 /* IPlugAUPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IPlugAUPlayer.mm; sourceTree = "<group>"; };
-		4FDF6D7E2267CEBA0007B686 /* IPlugAUPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPlugAUPlayer.h; sourceTree = "<group>"; };
 		4FE8F3AF20BA273800BF938F /* IGraphicsEditorDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsEditorDelegate.cpp; sourceTree = "<group>"; };
 		4FE8F3B020BA273800BF938F /* IGraphicsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGraphicsEditorDelegate.h; sourceTree = "<group>"; };
 		4FF3204920B2BC4C00269268 /* IPlugPaths.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IPlugPaths.h; path = ../../iPlug2/IPlug/IPlugPaths.h; sourceTree = "<group>"; };
@@ -321,6 +328,72 @@
 				4FFF102F20A0E54C00D3092F /* WDL */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F505D0E2A75475F009CE747 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D0F2A75475F009CE747 /* Common */,
+				4F505D1A2A75475F009CE747 /* Model */,
+				4F505D1D2A75475F009CE747 /* TemplateProject.swift */,
+				4F505D1E2A75475F009CE747 /* ContentView.swift */,
+			);
+			name = app;
+			path = ../app;
+			sourceTree = "<group>";
+		};
+		4F505D0F2A75475F009CE747 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D102A75475F009CE747 /* UI */,
+				4F505D122A75475F009CE747 /* MIDI */,
+				4F505D142A75475F009CE747 /* Audio */,
+				4F505D172A75475F009CE747 /* TypeAliases.swift */,
+				4F505D182A75475F009CE747 /* String */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4F505D102A75475F009CE747 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D112A75475F009CE747 /* ViewControllerRepresentable.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		4F505D122A75475F009CE747 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D132A75475F009CE747 /* MIDIManager.swift */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		4F505D142A75475F009CE747 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D152A75475F009CE747 /* Synth.aif */,
+				4F505D162A75475F009CE747 /* SimplePlayEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		4F505D182A75475F009CE747 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D192A75475F009CE747 /* StringHelpers.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		4F505D1A2A75475F009CE747 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F505D1B2A75475F009CE747 /* AudioUnitViewModel.swift */,
+				4F505D1C2A75475F009CE747 /* AudioUnitHostModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4F63697420A463AF0022C370 /* IGraphics */ = {
@@ -551,7 +624,6 @@
 				4FC46E58231440C8000045E7 /* web */,
 				4F10E7C520B189DD00F5B09B /* TemplateProject-iOS.entitlements */,
 				4F3E0F6820A0BCAF00A9C2BE /* Images.xcassets */,
-				4F3E0F6720A0BC5B00A9C2BE /* TemplateProject-iOS.storyboard */,
 				4FB2269620A0D3A800614769 /* TemplateProject-iOS-LaunchScreen.storyboard */,
 				4F10E7BF20B17EDB00F5B09B /* TemplateProject-iOS-MainInterface.storyboard */,
 				4F3E0F6420A0BC1C00A9C2BE /* TemplateProject-iOS-Info.plist */,
@@ -561,21 +633,6 @@
 				4F4856832773BD77005BCF8E /* TemplateProjectAUv3Appex.m */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		4FDF6D712267CE540007B686 /* iOSApp */ = {
-			isa = PBXGroup;
-			children = (
-				4FDF6D742267CE540007B686 /* main.m */,
-				4FDF6D722267CE540007B686 /* AppDelegate.h */,
-				4FDF6D752267CE540007B686 /* AppDelegate.m */,
-				4FDF6D762267CE540007B686 /* AppViewController.h */,
-				4FDF6D732267CE540007B686 /* AppViewController.mm */,
-				4FDF6D7E2267CEBA0007B686 /* IPlugAUPlayer.h */,
-				4FDF6D7D2267CEBA0007B686 /* IPlugAUPlayer.mm */,
-			);
-			name = iOSApp;
-			path = ../../iPlug2/IPlug/AUv3/iOSApp;
 			sourceTree = "<group>";
 		};
 		4FFF102E20A0E54400D3092F /* IPlug */ = {
@@ -627,7 +684,6 @@
 		4FFF105220A0E56400D3092F /* AUv3 */ = {
 			isa = PBXGroup;
 			children = (
-				4FDF6D712267CE540007B686 /* iOSApp */,
 				4FFF105320A0E57000D3092F /* IPlugAUAudioUnit.mm */,
 				4FFF105420A0E57000D3092F /* IPlugAUAudioUnit.h */,
 				4FFF105920A0E57100D3092F /* IPlugAUv3.h */,
@@ -642,6 +698,7 @@
 		91D3DA0B1B023C03008FFFBB = {
 			isa = PBXGroup;
 			children = (
+				4F505D0E2A75475F009CE747 /* app */,
 				4FFF108420A1036200D3092F /* config.h */,
 				4FFF108820A1036200D3092F /* TemplateProject.h */,
 				4FFF108720A1036200D3092F /* TemplateProject.cpp */,
@@ -814,10 +871,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F505D212A75475F009CE747 /* Synth.aif in Resources */,
 				4F1115CF2296DA95000CFCBF /* TemplateProject-iOS-MainInterface.storyboard in Resources */,
 				4F3E0F6B20A0BCE300A9C2BE /* Images.xcassets in Resources */,
 				4FB2269720A0D3A800614769 /* TemplateProject-iOS-LaunchScreen.storyboard in Resources */,
-				4F3E0F6A20A0BCD900A9C2BE /* TemplateProject-iOS.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,10 +951,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FDF6D7F2267CEBA0007B686 /* IPlugAUPlayer.mm in Sources */,
-				4FDF6D7B2267CE540007B686 /* AppDelegate.m in Sources */,
-				4FDF6D772267CE540007B686 /* AppViewController.mm in Sources */,
-				4FDF6D792267CE540007B686 /* main.m in Sources */,
+				4F505D232A75475F009CE747 /* TypeAliases.swift in Sources */,
+				4F505D252A75475F009CE747 /* AudioUnitViewModel.swift in Sources */,
+				4F505D272A75475F009CE747 /* TemplateProject.swift in Sources */,
+				4F505D222A75475F009CE747 /* SimplePlayEngine.swift in Sources */,
+				4F505D202A75475F009CE747 /* MIDIManager.swift in Sources */,
+				4F505D242A75475F009CE747 /* StringHelpers.swift in Sources */,
+				4F505D1F2A75475F009CE747 /* ViewControllerRepresentable.swift in Sources */,
+				4F505D282A75475F009CE747 /* ContentView.swift in Sources */,
+				4F505D262A75475F009CE747 /* AudioUnitHostModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1323,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FDA600520B5868D00C49ABA /* TemplateProject-ios.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -1308,6 +1371,8 @@
 					$AUv3_FRAMEWORKS,
 					"$(EXTRA_LNK_FLAGS)",
 				);
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 4.0;
 				SYMROOT = "../build-ios";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1318,6 +1383,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FDA600520B5868D00C49ABA /* TemplateProject-ios.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
@@ -1363,6 +1429,8 @@
 					$AUv3_FRAMEWORKS,
 					"$(EXTRA_LNK_FLAGS)",
 				);
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;

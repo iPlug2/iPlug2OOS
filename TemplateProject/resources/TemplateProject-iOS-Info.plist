@@ -35,9 +35,7 @@
 		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>TemplateProject-iOS-LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>TemplateProject-iOS</string>
+	<string>TemplateProject-iOS-LaunchScreen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
