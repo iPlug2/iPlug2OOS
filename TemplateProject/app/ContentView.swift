@@ -10,7 +10,7 @@ struct ContentView: View {
         AUViewControllerUI(viewController: viewController)
       } else {
         VStack() {
-          Text("Loading...")
+          Text(hostModel.viewModel.message)
             .padding()
         }
         .frame(minWidth: 400, minHeight: 200)

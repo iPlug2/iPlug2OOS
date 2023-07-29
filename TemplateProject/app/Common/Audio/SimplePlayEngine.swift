@@ -36,7 +36,11 @@ extension AVAudioUnit {
       DispatchQueue.main.async {
         
         if let self = self, viewController == nil {
+          #if os(macOS)
+          let auViewController: IPlugAUViewController_vTemplateProject = .init(nibName: "IPlugAUViewController_vTemplateProject", bundle: nil)
+          #else
           let auViewController = UIStoryboard(name: "TemplateProject-iOS-MainInterface", bundle: nil).instantiateViewController(withIdentifier: "IPlugAUViewController_vTemplateProject") as! IPlugAUViewController_vTemplateProject
+          #endif
           auViewController.audioUnit = self.auAudioUnit;
           completion(auViewController)
           return

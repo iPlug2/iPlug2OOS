@@ -29,12 +29,8 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.music</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.11.0</string>
-	<key>NSMainNibFile</key>
-	<string>TemplateProject-macOS-MainMenu</string>
+	<string>12.0</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app needs mic access to process audio.</string>
-	<key>NSPrincipalClass</key>
-	<string>SWELLApplication</string>
 </dict>
 </plist>

@@ -73,37 +73,6 @@
 		4F3862F22014BBEC0009F402 /* TemplateProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F3862ED2014BBEC0009F402 /* TemplateProject.cpp */; };
 		4F3862F32014BBEC0009F402 /* TemplateProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F3862ED2014BBEC0009F402 /* TemplateProject.cpp */; };
 		4F3EE1C0231438D000004786 /* TemplateProject-macOS-MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B4AE32014D33600BC64D4 /* TemplateProject-macOS-MainMenu.xib */; };
-		4F3EE1C2231438D000004786 /* IPlugProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F61A8202807B9003F2573 /* IPlugProcessor.cpp */; };
-		4F3EE1C3231438D000004786 /* RtMidi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D3D7203A6719003EF82A /* RtMidi.cpp */; settings = {COMPILER_FLAGS = "-Wno-shorten-64-to-32"; }; };
-		4F3EE1C5231438D000004786 /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369DC20A464BB0022C370 /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4F3EE1C6231438D000004786 /* IControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369E920A466470022C370 /* IControl.cpp */; };
-		4F3EE1C7231438D000004786 /* swell-dlg.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D0413B634AA001D0217 /* swell-dlg.mm */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32 -Wno-deprecated-implementations"; }; };
-		4F3EE1C8231438D000004786 /* swell-ini.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D1513B634D2001D0217 /* swell-ini.cpp */; };
-		4F3EE1C9231438D000004786 /* swellappmain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D4613B635C8001D0217 /* swellappmain.mm */; };
-		4F3EE1CA231438D000004786 /* swell-kb.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D3913B63582001D0217 /* swell-kb.mm */; };
-		4F3EE1CC231438D000004786 /* IPlugPaths.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F344020C0226200487201 /* IPlugPaths.mm */; };
-		4F3EE1CD231438D000004786 /* swell-miscdlg.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D3B13B6358C001D0217 /* swell-miscdlg.mm */; };
-		4F3EE1CF231438D000004786 /* swell-menu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D3D13B63595001D0217 /* swell-menu.mm */; };
-		4F3EE1D0231438D000004786 /* IGraphicsMac_view.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1F58620E4AFEF004157C8 /* IGraphicsMac_view.mm */; };
-		4F3EE1D1231438D000004786 /* swell-appstub.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C5F6A21BED08700E024A7 /* swell-appstub.mm */; };
-		4F3EE1D2231438D000004786 /* swell-misc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D3F13B635A0001D0217 /* swell-misc.mm */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32"; }; };
-		4F3EE1D3231438D000004786 /* swell-wnd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D4113B635AB001D0217 /* swell-wnd.mm */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32"; }; };
-		4F3EE1D4231438D000004786 /* swell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D4313B635B2001D0217 /* swell.cpp */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32"; }; };
-		4F3EE1D5231438D000004786 /* IPlugAPP_host.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F690CA2203A45C700A4A13E /* IPlugAPP_host.cpp */; };
-		4F3EE1D6231438D000004786 /* IPlugAPP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A5280205D913300CF2908 /* IPlugAPP.cpp */; };
-		4F3EE1D7231438D000004786 /* IGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F03A55820A4621000EBDFFB /* IGraphics.cpp */; };
-		4F3EE1D8231438D000004786 /* IPlugAPP_dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2EA977203A50E9008E4850 /* IPlugAPP_dialog.cpp */; };
-		4F3EE1D9231438D000004786 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F10D3D3203A6711003EF82A /* RtAudio.cpp */; settings = {COMPILER_FLAGS = "-Wno-shorten-64-to-32"; }; };
-		4F3EE1DA231438D000004786 /* IGraphicsCoreText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FD2AF22675B6300FC59E6 /* IGraphicsCoreText.mm */; };
-		4F3EE1DB231438D000004786 /* IPlugAPP_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F690C9A203A345100A4A13E /* IPlugAPP_main.cpp */; };
-		4F3EE1DD231438D000004786 /* IGraphicsMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1F58120E4AFEE004157C8 /* IGraphicsMac.mm */; };
-		4F3EE1DE231438D000004786 /* TemplateProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F3862ED2014BBEC0009F402 /* TemplateProject.cpp */; };
-		4F3EE1E0231438D000004786 /* IPlugAPIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugAPIBase.cpp */; };
-		4F3EE1E1231438D000004786 /* IPlugPluginBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F35DEAB207E5C5A00867D8F /* IPlugPluginBase.cpp */; };
-		4F3EE1E2231438D000004786 /* IGraphicsEditorDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C10DE20BA2796006320CD /* IGraphicsEditorDelegate.cpp */; };
-		4F3EE1E3231438D000004786 /* swell-gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D0B13B634BF001D0217 /* swell-gdi.mm */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32"; }; };
-		4F3EE1E4231438D000004786 /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
-		4F3EE1E5231438D000004786 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
 		4F3EE1E9231438D000004786 /* TemplateProjectAU.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F78BE0222E73D0800AD537E /* TemplateProjectAU.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F3EE1EB231438D000004786 /* TemplateProject.appex in Embed AUv3 App Extension */ = {isa = PBXBuildFile; fileRef = 4F3907602013EBA300DDA490 /* TemplateProject.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4F472103209B294400A0A0A8 /* IPlugVST3_Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FFBB8F220863B0900DDD0E7 /* IPlugVST3_Controller.cpp */; };
@@ -188,9 +157,6 @@
 		4F7C496A255DDFCB00DF7588 /* IControls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4954255DDF8600DF7588 /* IControls.cpp */; };
 		4F7C496B255DDFCB00DF7588 /* IPopupMenuControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4949255DDF8600DF7588 /* IPopupMenuControl.cpp */; };
 		4F7C496C255DDFCB00DF7588 /* ITextEntryControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4947255DDF8600DF7588 /* ITextEntryControl.cpp */; };
-		4F7C496D255DDFCB00DF7588 /* IControls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4954255DDF8600DF7588 /* IControls.cpp */; };
-		4F7C496E255DDFCB00DF7588 /* IPopupMenuControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4949255DDF8600DF7588 /* IPopupMenuControl.cpp */; };
-		4F7C496F255DDFCB00DF7588 /* ITextEntryControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4947255DDF8600DF7588 /* ITextEntryControl.cpp */; };
 		4F815919205D50EB00393585 /* memorystream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8157E0205D50EA00393585 /* memorystream.cpp */; };
 		4F81591A205D50EB00393585 /* pluginview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8157E2205D50EA00393585 /* pluginview.cpp */; };
 		4F81591E205D50EB00393585 /* macmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8157E8205D50EA00393585 /* macmain.cpp */; };
@@ -282,6 +248,17 @@
 		4FDAC0EC207D76C600299363 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
 		4FDAC0ED207D76C600299363 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
 		4FDAC0EE207D76C600299363 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
+		4FE3259A2A75B9E500C7BB92 /* TemplateProjectAU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F78BE0222E73D0800AD537E /* TemplateProjectAU.framework */; };
+		4FE325AC2A75B9F400C7BB92 /* ViewControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3259E2A75B9F400C7BB92 /* ViewControllerRepresentable.swift */; };
+		4FE325AD2A75B9F400C7BB92 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325A02A75B9F400C7BB92 /* MIDIManager.swift */; };
+		4FE325AE2A75B9F400C7BB92 /* Synth.aif in Resources */ = {isa = PBXBuildFile; fileRef = 4FE325A22A75B9F400C7BB92 /* Synth.aif */; };
+		4FE325AF2A75B9F400C7BB92 /* SimplePlayEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325A32A75B9F400C7BB92 /* SimplePlayEngine.swift */; };
+		4FE325B02A75B9F400C7BB92 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325A42A75B9F400C7BB92 /* TypeAliases.swift */; };
+		4FE325B12A75B9F400C7BB92 /* StringHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325A62A75B9F400C7BB92 /* StringHelpers.swift */; };
+		4FE325B22A75B9F400C7BB92 /* AudioUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325A82A75B9F400C7BB92 /* AudioUnitViewModel.swift */; };
+		4FE325B32A75B9F400C7BB92 /* AudioUnitHostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325A92A75B9F400C7BB92 /* AudioUnitHostModel.swift */; };
+		4FE325B42A75B9F400C7BB92 /* TemplateProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325AA2A75B9F400C7BB92 /* TemplateProject.swift */; };
+		4FE325B52A75B9F400C7BB92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE325AB2A75B9F400C7BB92 /* ContentView.swift */; };
 		4FF0A83221BE708700B2C9D1 /* swell-gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D0B13B634BF001D0217 /* swell-gdi.mm */; };
 		4FF3205820B2BFAB00269268 /* IPlugPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FF3204F20B2BFAB00269268 /* IPlugPaths.h */; };
 		4FFBB90520863B0E00DDD0E7 /* baseiids.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8158BF205D50EB00393585 /* baseiids.cpp */; };
@@ -834,6 +811,18 @@
 		4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugTimer.cpp; path = ../../iPlug2/IPlug/IPlugTimer.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		4FDAC0E8207D76C600299363 /* IPlugQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugQueue.h; path = ../../iPlug2/IPlug/IPlugQueue.h; sourceTree = "<group>"; tabWidth = 2; };
 		4FDAC0E9207D76C600299363 /* IPlugTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugTimer.h; path = ../../iPlug2/IPlug/IPlugTimer.h; sourceTree = "<group>"; tabWidth = 2; };
+		4FE3259E2A75B9F400C7BB92 /* ViewControllerRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerRepresentable.swift; sourceTree = "<group>"; };
+		4FE325A02A75B9F400C7BB92 /* MIDIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIManager.swift; sourceTree = "<group>"; };
+		4FE325A22A75B9F400C7BB92 /* Synth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Synth.aif; sourceTree = "<group>"; };
+		4FE325A32A75B9F400C7BB92 /* SimplePlayEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePlayEngine.swift; sourceTree = "<group>"; };
+		4FE325A42A75B9F400C7BB92 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		4FE325A62A75B9F400C7BB92 /* StringHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelpers.swift; sourceTree = "<group>"; };
+		4FE325A82A75B9F400C7BB92 /* AudioUnitViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitViewModel.swift; sourceTree = "<group>"; };
+		4FE325A92A75B9F400C7BB92 /* AudioUnitHostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUnitHostModel.swift; sourceTree = "<group>"; };
+		4FE325AA2A75B9F400C7BB92 /* TemplateProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateProject.swift; sourceTree = "<group>"; };
+		4FE325AB2A75B9F400C7BB92 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4FE325B62A75BBE700C7BB92 /* IPlugAUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IPlugAUViewController.h; path = ../../../iPlug2/IPlug/AUv3/IPlugAUViewController.h; sourceTree = "<group>"; };
+		4FE325B72A75BBE700C7BB92 /* IPlugAUAudioUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IPlugAUAudioUnit.h; path = ../../../iPlug2/IPlug/AUv3/IPlugAUAudioUnit.h; sourceTree = "<group>"; };
 		4FEFB7ED208496C800515434 /* IPlugWeb.cpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugWeb.cpp; path = ../../iPlug2/IPlug/WEB/IPlugWeb.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		4FEFB7EE208496C800515434 /* IPlugWeb.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugWeb.h; path = ../../iPlug2/IPlug/WEB/IPlugWeb.h; sourceTree = "<group>"; tabWidth = 2; };
 		4FF016F4134E14E2001447BA /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mutex.h; path = ../../iPlug2/WDL/mutex.h; sourceTree = SOURCE_ROOT; };
@@ -877,6 +866,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE3259A2A75B9E500C7BB92 /* TemplateProjectAU.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +920,9 @@
 		089C166AFE841209C02AAC07 /* IPlugExample */ = {
 			isa = PBXGroup;
 			children = (
+				4FE325B72A75BBE700C7BB92 /* IPlugAUAudioUnit.h */,
+				4FE325B62A75BBE700C7BB92 /* IPlugAUViewController.h */,
+				4FE3259B2A75B9F400C7BB92 /* app */,
 				52FBBED30D0CF143001C8B8A /* config.h */,
 				4F3862EE2014BBEC0009F402 /* TemplateProject.h */,
 				4F3862ED2014BBEC0009F402 /* TemplateProject.cpp */,
@@ -1728,6 +1721,72 @@
 			name = SWELL;
 			sourceTree = "<group>";
 		};
+		4FE3259B2A75B9F400C7BB92 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				4FE3259C2A75B9F400C7BB92 /* Common */,
+				4FE325A72A75B9F400C7BB92 /* Model */,
+				4FE325AA2A75B9F400C7BB92 /* TemplateProject.swift */,
+				4FE325AB2A75B9F400C7BB92 /* ContentView.swift */,
+			);
+			name = app;
+			path = ../app;
+			sourceTree = "<group>";
+		};
+		4FE3259C2A75B9F400C7BB92 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4FE3259D2A75B9F400C7BB92 /* UI */,
+				4FE3259F2A75B9F400C7BB92 /* MIDI */,
+				4FE325A12A75B9F400C7BB92 /* Audio */,
+				4FE325A42A75B9F400C7BB92 /* TypeAliases.swift */,
+				4FE325A52A75B9F400C7BB92 /* String */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4FE3259D2A75B9F400C7BB92 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4FE3259E2A75B9F400C7BB92 /* ViewControllerRepresentable.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		4FE3259F2A75B9F400C7BB92 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				4FE325A02A75B9F400C7BB92 /* MIDIManager.swift */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
+		4FE325A12A75B9F400C7BB92 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				4FE325A22A75B9F400C7BB92 /* Synth.aif */,
+				4FE325A32A75B9F400C7BB92 /* SimplePlayEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		4FE325A52A75B9F400C7BB92 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				4FE325A62A75B9F400C7BB92 /* StringHelpers.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		4FE325A72A75B9F400C7BB92 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4FE325A82A75B9F400C7BB92 /* AudioUnitViewModel.swift */,
+				4FE325A92A75B9F400C7BB92 /* AudioUnitHostModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4FF01613134E0BCD001447BA /* WDL */ = {
 			isa = PBXGroup;
 			children = (
@@ -1750,8 +1809,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F4856862773C3B5005BCF8E /* IPlugAUAudioUnit.h in Headers */,
 				4F78BE1222E73DD900AD537E /* TemplateProjectAU.h in Headers */,
+				4F4856862773C3B5005BCF8E /* IPlugAUAudioUnit.h in Headers */,
 				4F4856852773C3B5005BCF8E /* IPlugAUViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2134,6 +2193,7 @@
 			files = (
 				4F3EE1C0231438D000004786 /* TemplateProject-macOS-MainMenu.xib in Resources */,
 				4F037D77261F9DB400A752B5 /* Images.xcassets in Resources */,
+				4FE325AE2A75B9F400C7BB92 /* Synth.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2415,40 +2475,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3EE1C2231438D000004786 /* IPlugProcessor.cpp in Sources */,
-				4F3EE1C3231438D000004786 /* RtMidi.cpp in Sources */,
-				4F3EE1C5231438D000004786 /* IGraphicsNanoVG_src.m in Sources */,
-				4F3EE1C6231438D000004786 /* IControl.cpp in Sources */,
-				4F3EE1C7231438D000004786 /* swell-dlg.mm in Sources */,
-				4F3EE1C8231438D000004786 /* swell-ini.cpp in Sources */,
-				4F3EE1C9231438D000004786 /* swellappmain.mm in Sources */,
-				4F3EE1CA231438D000004786 /* swell-kb.mm in Sources */,
-				4F3EE1CC231438D000004786 /* IPlugPaths.mm in Sources */,
-				4F3EE1CD231438D000004786 /* swell-miscdlg.mm in Sources */,
-				4F7C496F255DDFCB00DF7588 /* ITextEntryControl.cpp in Sources */,
-				4F3EE1CF231438D000004786 /* swell-menu.mm in Sources */,
-				4F3EE1D0231438D000004786 /* IGraphicsMac_view.mm in Sources */,
-				4F7C496E255DDFCB00DF7588 /* IPopupMenuControl.cpp in Sources */,
-				4F3EE1D1231438D000004786 /* swell-appstub.mm in Sources */,
-				4F7C496D255DDFCB00DF7588 /* IControls.cpp in Sources */,
-				4F3EE1D2231438D000004786 /* swell-misc.mm in Sources */,
-				4F3EE1D3231438D000004786 /* swell-wnd.mm in Sources */,
-				4F3EE1D4231438D000004786 /* swell.cpp in Sources */,
-				4F3EE1D5231438D000004786 /* IPlugAPP_host.cpp in Sources */,
-				4F3EE1D6231438D000004786 /* IPlugAPP.cpp in Sources */,
-				4F3EE1D7231438D000004786 /* IGraphics.cpp in Sources */,
-				4F3EE1D8231438D000004786 /* IPlugAPP_dialog.cpp in Sources */,
-				4F3EE1D9231438D000004786 /* RtAudio.cpp in Sources */,
-				4F3EE1DA231438D000004786 /* IGraphicsCoreText.mm in Sources */,
-				4F3EE1DB231438D000004786 /* IPlugAPP_main.cpp in Sources */,
-				4F3EE1DD231438D000004786 /* IGraphicsMac.mm in Sources */,
-				4F3EE1DE231438D000004786 /* TemplateProject.cpp in Sources */,
-				4F3EE1E0231438D000004786 /* IPlugAPIBase.cpp in Sources */,
-				4F3EE1E1231438D000004786 /* IPlugPluginBase.cpp in Sources */,
-				4F3EE1E2231438D000004786 /* IGraphicsEditorDelegate.cpp in Sources */,
-				4F3EE1E3231438D000004786 /* swell-gdi.mm in Sources */,
-				4F3EE1E4231438D000004786 /* IPlugParameter.cpp in Sources */,
-				4F3EE1E5231438D000004786 /* IPlugTimer.cpp in Sources */,
+				4FE325B32A75B9F400C7BB92 /* AudioUnitHostModel.swift in Sources */,
+				4FE325B12A75B9F400C7BB92 /* StringHelpers.swift in Sources */,
+				4FE325B02A75B9F400C7BB92 /* TypeAliases.swift in Sources */,
+				4FE325B42A75B9F400C7BB92 /* TemplateProject.swift in Sources */,
+				4FE325AD2A75B9F400C7BB92 /* MIDIManager.swift in Sources */,
+				4FE325B52A75B9F400C7BB92 /* ContentView.swift in Sources */,
+				4FE325B22A75B9F400C7BB92 /* AudioUnitViewModel.swift in Sources */,
+				4FE325AC2A75B9F400C7BB92 /* ViewControllerRepresentable.swift in Sources */,
+				4FE325AF2A75B9F400C7BB92 /* SimplePlayEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3192,6 +3227,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -3219,6 +3255,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -3246,6 +3283,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AcmeInc.app.${BINARY_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Tracer;

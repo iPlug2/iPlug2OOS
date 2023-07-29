@@ -18,7 +18,7 @@
 			<key>subtype</key>
 			<string>9c0G</string>
 			<key>type</key>
-			<string>aufx</string>
+			<string>aumu</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -48,7 +48,7 @@
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.11.0</string>
+	<string>12.0</string>
 	<key>NSPrincipalClass</key>
 	<string>TemplateProject_View</string>
 </dict>

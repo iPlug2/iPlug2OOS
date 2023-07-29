@@ -186,8 +186,8 @@ def main():
     macOSapp['CFBundlePackageType'] = CFBundlePackageType
     macOSapp['CFBundleSignature'] = config['PLUG_UNIQUE_ID']
     macOSapp['CSResourcesFileMapped'] = CSResourcesFileMapped
-    macOSapp['NSPrincipalClass'] = "SWELLApplication"
-    macOSapp['NSMainNibFile'] = config['BUNDLE_NAME'] + "-macOS-MainMenu"
+#    macOSapp['NSPrincipalClass'] = "SWELLApplication"
+#    macOSapp['NSMainNibFile'] = config['BUNDLE_NAME'] + "-macOS-MainMenu"
     macOSapp['LSApplicationCategoryType'] = "public.app-category.music"
     macOSapp['NSMicrophoneUsageDescription'] = 	"This app needs mic access to process audio."
 
