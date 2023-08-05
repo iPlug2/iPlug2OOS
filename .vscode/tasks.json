@@ -12,7 +12,7 @@
                 "APP",
                 "-configuration",
                 "Debug",
-                "SYMROOT=~/Library/Developer/Xcode/DerivedData"
+                "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
             ],
             "group": "build",
             "problemMatcher": []
@@ -29,7 +29,7 @@
                 "VST2",
                 "-configuration",
                 "Debug",
-                "SYMROOT=~/Library/Developer/Xcode/DerivedData"
+                "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
             ]
         },
         {
@@ -43,7 +43,7 @@
                 "VST3",
                 "-configuration",
                 "Debug",
-                "SYMROOT=~/Library/Developer/Xcode/DerivedData"
+                "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
             ],
             "group": "build"
         },
@@ -58,7 +58,7 @@
                 "AU",
                 "-configuration",
                 "Debug",
-                "SYMROOT=~/Library/Developer/Xcode/DerivedData"
+                "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
             ],
             "group": "build"
         },
