@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style type="text/css">
+        @font-face {
+          font-family: "Roboto";
+          src: url("Roboto-Regular.ttf") format("ttf");
+          font-weight: 400; /* Normal */
+          font-style: normal;
+        }
+
+        * {
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+        }
+      
+        p, h1 {
+          pointer-events: none;
+          color: black;
+        }
+        
+        body {
+          font-family: "Roboto", sans-serif;
+          overflow: hidden;
+          -webkit-overflow-scrolling: touch;
+          background-color: #0ff  ; /* Change this to your desired color */
+        }
+      </style>
+      <script src="script.js"></script>
+      <script>
+        function onLoad() {
+        }
+        
+        // this can be called to send a JSON message to the C++ side
+        function sendJSON(msg) {
+          SAMFUI(-1, 0, window.btoa(JSON.stringify(msg)));
+        }
+
+        function OnParamChange(param, value) {
+          const allElements = document.querySelectorAll('*');
+
+          allElements.forEach(element => {
+            if (element.tagName == "KNOB-CONTROL") {
+            }
+          });
+
+        }
+        
+        function OnControlChange(ctrlTag, value) {
+          if (ctrlTag == 0) {
+          }
+        }
+
+        // This fires when the C++ side sends a message to the UI.
+        function OnMessage(msgTag, dataSize, data) {
+          if (msgTag == -1 && dataSize > 0) {
+
+          let json = JSON.parse(window.atob(data));
+
+          switch (json["id"])
+          {
+            case "params":
+              window["parameters"] = json["params"];
+              break;
+            }
+          }
+        }
+      </script>
+</head>
+<body onload="onLoad()">
+  <p>WebView</p>
+</body>
+</html>
