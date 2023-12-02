@@ -3,16 +3,28 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
-    "extensions": [
-        "ms-vscode.cpptools",
-        "cschlosser.doxdocgen",
-        "hellbent.vscode-faust"
-    ],
+    "customizations": {
+        "extensions": [
+            "ms-vscode.cpptools",
+            "cschlosser.doxdocgen",
+            "hellbent.vscode-faust"
+        ],
+        "codespaces": {
+            "repositories": {
+                "iPlug2/iPlug2OOS": {
+                    "permissions": "write-all"
+                },
+                "iPlug2/iPlug2": {
+                    "permissions": "read-all"
+                }
+            }
+        }
+    },
     "postCreateCommand": "./setup_container.sh",
     "portsAttributes": {
-		"8001": {
-			"label": "emrun",
-			"protocol": "https"
-		}
-	}
+        "8001": {
+            "label": "emrun",
+            "protocol": "https"
+        }
+    }
 }
