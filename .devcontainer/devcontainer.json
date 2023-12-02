@@ -11,10 +11,10 @@
         ],
         "codespaces": {
             "repositories": {
-                "iPlug2/iPlug2OOS": {
+                "iplug2/iplug2oos": {
                     "permissions": "write-all"
                 },
-                "iPlug2/iPlug2": {
+                "iplug2/iplug2": {
                     "permissions": "read-all"
                 }
             }
