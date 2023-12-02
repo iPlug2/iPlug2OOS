@@ -8,6 +8,15 @@
         "cschlosser.doxdocgen",
         "hellbent.vscode-faust"
     ],
+    "customizations": {
+        "codespaces": {
+            "repositories": {
+                "iPlug2/iPlug2": {
+                    "permissions": "read-all"
+            	}
+            }
+        }
+    },
     "postCreateCommand": "./setup_container.sh",
     "portsAttributes": {
 		"8001": {
