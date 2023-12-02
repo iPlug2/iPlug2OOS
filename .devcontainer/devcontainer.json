@@ -11,6 +11,9 @@
     "customizations": {
         "codespaces": {
             "repositories": {
+		"iPlug2/iPlug2OOS": {
+                    "permissions": "write-all"
+            	},
                 "iPlug2/iPlug2": {
                     "permissions": "read-all"
             	}
