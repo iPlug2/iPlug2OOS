@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TemplateProject</string>
 	<key>CFBundleGetInfoString</key>
-	<string>TemplateProject v0.0.0 Copyright 2021 Acme Inc</string>
+	<string>TemplateProject v0.0.1 Copyright 2021 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.AcmeInc.app.TemplateProject.AUv3</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.0</string>
+	<string>0.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.0</string>
+	<string>0.0.1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.12.0</string>
 	<key>NSExtension</key>
@@ -48,7 +48,7 @@
 					<key>type</key>
 					<string>aumu</string>
 					<key>version</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 			</array>
 		</dict>
