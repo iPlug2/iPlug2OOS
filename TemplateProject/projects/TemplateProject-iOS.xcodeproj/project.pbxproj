@@ -111,6 +111,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F0937E92B65082300F66EC4 /* IVPresetManagerControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVPresetManagerControls.h; sourceTree = "<group>"; };
 		4F10E7BF20B17EDB00F5B09B /* TemplateProject-iOS-MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "TemplateProject-iOS-MainInterface.storyboard"; path = "../resources/TemplateProject-iOS-MainInterface.storyboard"; sourceTree = "<group>"; };
 		4F10E7C520B189DD00F5B09B /* TemplateProject-iOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "TemplateProject-iOS.entitlements"; sourceTree = "<group>"; };
 		4F2020F620A1B2B500F22200 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = scripts; path = ../scripts; sourceTree = "<group>"; };
@@ -167,7 +168,6 @@
 		4F7C497E255DE01F00DF7588 /* IPopupMenuControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPopupMenuControl.h; sourceTree = "<group>"; };
 		4F7C497F255DE01F00DF7588 /* IColorPickerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IColorPickerControl.h; sourceTree = "<group>"; };
 		4F7C4980255DE01F00DF7588 /* IShaderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IShaderControl.h; sourceTree = "<group>"; };
-		4F7C4981255DE01F00DF7588 /* IVPresetManagerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVPresetManagerControl.h; sourceTree = "<group>"; };
 		4F7C4982255DE01F00DF7588 /* IWebViewControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWebViewControl.h; sourceTree = "<group>"; };
 		4F7C4983255DE01F00DF7588 /* ITextEntryControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITextEntryControl.h; sourceTree = "<group>"; };
 		4F7C4984255DE01F00DF7588 /* IVNumberBoxControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVNumberBoxControl.h; sourceTree = "<group>"; };
@@ -387,6 +387,7 @@
 		4F63699620A463AF0022C370 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				4F0937E92B65082300F66EC4 /* IVPresetManagerControls.h */,
 				4F7C4971255DE01F00DF7588 /* IBubbleControl.h */,
 				4F7C497F255DE01F00DF7588 /* IColorPickerControl.h */,
 				4F7C4970255DE01F00DF7588 /* IControls.cpp */,
@@ -405,7 +406,6 @@
 				4F7C4974255DE01F00DF7588 /* IVMeterControl.h */,
 				4F7C497C255DE01F00DF7588 /* IVMultiSliderControl.h */,
 				4F7C4984255DE01F00DF7588 /* IVNumberBoxControl.h */,
-				4F7C4981255DE01F00DF7588 /* IVPresetManagerControl.h */,
 				4F7C4975255DE01F00DF7588 /* IVScopeControl.h */,
 				4F7C4982255DE01F00DF7588 /* IWebViewControl.h */,
 			);

@@ -482,6 +482,7 @@
 		4F0848262015129400F9E881 /* IPlugAAX_Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugAAX_Parameters.h; path = ../../iPlug2/IPlug/AAX/IPlugAAX_Parameters.h; sourceTree = "<group>"; tabWidth = 2; };
 		4F0848272015129400F9E881 /* IPlugAAX_view_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugAAX_view_interface.h; path = ../../iPlug2/IPlug/AAX/IPlugAAX_view_interface.h; sourceTree = "<group>"; tabWidth = 2; };
 		4F0848282015129400F9E881 /* IPlugAAX_TaperDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugAAX_TaperDelegate.h; path = ../../iPlug2/IPlug/AAX/IPlugAAX_TaperDelegate.h; sourceTree = "<group>"; tabWidth = 2; };
+		4F0937E82B65081400F66EC4 /* IVPresetManagerControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVPresetManagerControls.h; sourceTree = "<group>"; };
 		4F10D3D2203A6710003EF82A /* RtAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RtAudio.h; path = ../../iPlug2/Dependencies/IPlug/RTAudio/RtAudio.h; sourceTree = "<group>"; };
 		4F10D3D3203A6711003EF82A /* RtAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RtAudio.cpp; path = ../../iPlug2/Dependencies/IPlug/RTAudio/RtAudio.cpp; sourceTree = "<group>"; };
 		4F10D3D6203A6719003EF82A /* RtMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RtMidi.h; path = ../../iPlug2/Dependencies/IPlug/RTMidi/RtMidi.h; sourceTree = "<group>"; };
@@ -560,7 +561,6 @@
 		4F78D90513B63BA50032E0F3 /* IPlugMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugMidi.h; path = ../../iPlug2/IPlug/IPlugMidi.h; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		4F78DB5F13B6462B0032E0F3 /* TemplateProject.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemplateProject.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7C4940255DDF8600DF7588 /* IVDisplayControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVDisplayControl.h; sourceTree = "<group>"; };
-		4F7C4941255DDF8600DF7588 /* IVPresetManagerControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IVPresetManagerControl.h; sourceTree = "<group>"; };
 		4F7C4942255DDF8600DF7588 /* IShaderControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IShaderControl.h; sourceTree = "<group>"; };
 		4F7C4943255DDF8600DF7588 /* ILEDControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILEDControl.h; sourceTree = "<group>"; };
 		4F7C4944255DDF8600DF7588 /* IColorPickerControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IColorPickerControl.h; sourceTree = "<group>"; };
@@ -581,10 +581,7 @@
 		4F7C4953255DDF8600DF7588 /* IWebViewControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IWebViewControl.h; sourceTree = "<group>"; };
 		4F7C4954255DDF8600DF7588 /* IControls.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IControls.cpp; sourceTree = "<group>"; };
 		4F7C499F255DE07A00DF7588 /* IGraphicsFlexBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsFlexBox.cpp; sourceTree = "<group>"; };
-		4F7C49A0255DE07A00DF7588 /* IGraphicsImGui_src.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IGraphicsImGui_src.mm; sourceTree = "<group>"; };
 		4F7C49A1255DE07A00DF7588 /* IGraphicsFlexBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGraphicsFlexBox.h; sourceTree = "<group>"; };
-		4F7C49A2255DE07A00DF7588 /* IGraphicsImGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IGraphicsImGui.h; sourceTree = "<group>"; };
-		4F7C49A3255DE07A00DF7588 /* IGraphicsImGui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IGraphicsImGui.cpp; sourceTree = "<group>"; };
 		4F7C49AA255DE0E200DF7588 /* Oscillator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
 		4F7C49AB255DE0E200DF7588 /* SVF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVF.h; sourceTree = "<group>"; };
 		4F7C49AC255DE0E200DF7588 /* Oversampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Oversampler.h; sourceTree = "<group>"; };
@@ -1187,8 +1184,8 @@
 				4F7C4951255DDF8600DF7588 /* IVKeyboardControl.h */,
 				4F7C4945255DDF8600DF7588 /* IVMeterControl.h */,
 				4F7C4948255DDF8600DF7588 /* IVMultiSliderControl.h */,
+				4F0937E82B65081400F66EC4 /* IVPresetManagerControls.h */,
 				4F7C4946255DDF8600DF7588 /* IVNumberBoxControl.h */,
-				4F7C4941255DDF8600DF7588 /* IVPresetManagerControl.h */,
 				4F7C4952255DDF8600DF7588 /* IVScopeControl.h */,
 				4F7C4953255DDF8600DF7588 /* IWebViewControl.h */,
 			);
@@ -1286,9 +1283,6 @@
 			children = (
 				4F7C49A1255DE07A00DF7588 /* IGraphicsFlexBox.h */,
 				4F7C499F255DE07A00DF7588 /* IGraphicsFlexBox.cpp */,
-				4F7C49A2255DE07A00DF7588 /* IGraphicsImGui.h */,
-				4F7C49A3255DE07A00DF7588 /* IGraphicsImGui.cpp */,
-				4F7C49A0255DE07A00DF7588 /* IGraphicsImGui_src.mm */,
 			);
 			name = Extras;
 			path = ../../iPlug2/IGraphics/Extras;
