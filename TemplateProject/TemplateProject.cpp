@@ -6,7 +6,7 @@
 #endif
 
 TemplateProject::TemplateProject(const InstanceInfo& info)
-: Plugin(info, MakeConfig(kNumParams, kNumPresets))
+: iplug::Plugin(info, MakeConfig(kNumParams, kNumPresets))
 {
   GetParam(kParamGain)->InitDouble("Gain", 0., 0., 100.0, 0.01, "%");
 
