@@ -6,6 +6,8 @@
     "customizations": {
         "extensions": [
             "ms-vscode.cpptools",
+            "ms-python.python",
+            "ms-vscode.cmake-tools",
             "cschlosser.doxdocgen",
             "hellbent.vscode-faust"
         ],
