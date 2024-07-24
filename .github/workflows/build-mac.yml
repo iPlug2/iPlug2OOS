@@ -1,0 +1,155 @@
+name: Build macOS
+
+on:
+  workflow_dispatch:
+  push:
+
+concurrency:
+  group: ${{github.ref}}
+  cancel-in-progress: true
+
+env:
+  PROJECT_NAME: TemplateProject
+  BUILD_DIR: build-mac
+  ARTIFACT_EXT: mac
+  PLUGINVAL_VER: v1.0.2
+  VST3_VER: v3.7.9_build_61
+
+jobs:
+  build-mac:
+    name: Build macOS
+    runs-on: macos-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3.3.0
+      with:
+        submodules: recursive
+
+    - name: Cache Prebuilt Libs
+      id: cache-deps
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/Build
+          iPlug2/Dependencies/iPlug
+        key: ${{runner.os}}-deps-${{hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh', 'iPlug2/Dependencies/IGraphics/build-igraphics-libs-mac.sh', 'iPlug2/Dependencies/IGraphics/build-skia-mac.sh')}}
+
+    - name: Get Prebuilt Libs
+      if: steps.cache-deps.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies
+        ./download-prebuilt-libs.sh
+
+    - name: Cache VST3 SDK
+      id: cache-vst3
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/IPlug/VST3_SDK
+        key: ${{runner.os}}-vst3-${{env.VST3_VER}}
+
+    - name: Get VST3 SDK
+      if: steps.cache-vst3.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-vst3-sdk.sh ${{env.VST3_VER}} build-validator
+
+    - name: Get VST2 SDK
+      shell: bash
+      env:
+        VST2_SDK: ${{secrets.VST2_SDK}}
+      run: |
+        mkdir tmp
+        echo $VST2_SDK | base64 -d > tmp/tmp.zip
+        unzip tmp/tmp.zip -d tmp
+        mv tmp/VST2_SDK/* iPlug2/Dependencies/IPlug/VST2_SDK
+
+    - name: Build
+      shell: bash
+      run: |
+        cd ${{env.PROJECT_NAME}}/scripts
+        ./makedist-mac.sh full zip
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{env.PROJECT_NAME}}-${{env.ARTIFACT_EXT}}
+        path: |
+          ${{env.PROJECT_NAME}}/${{env.BUILD_DIR}}/out
+
+  test-mac:
+    name: Test macOS
+    runs-on: macos-latest
+    needs: build-mac
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{env.PROJECT_NAME}}-${{env.ARTIFACT_EXT}}
+
+      - name: Unzip files
+        shell: bash
+        run: |
+          unzip *-${{env.ARTIFACT_EXT}}.zip
+          unzip *-${{env.ARTIFACT_EXT}}-auval.zip
+
+      - name: Cache Pluginval
+        id: cache-pluginval
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./pluginval.app
+          key: ${{runner.os}}-pluginval-${{env.PLUGINVAL_VER}}
+
+      - name: Get Pluginval
+        if: steps.cache-pluginval.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          curl -L "https://github.com/Tracktion/pluginval/releases/download/${{env.PLUGINVAL_VER}}/pluginval_macOS.zip" -o pluginval.zip
+          unzip pluginval
+
+      - name: Restore VST3 SDK
+        id: cache-vst3
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+          key: ${{runner.os}}-vst3-${{env.VST3_VER}}
+
+      - name: Test VST3 with VST3 Validator
+        shell: bash
+        run: |
+          ./iPlug2/Dependencies/IPlug/VST3_SDK/validator ${{env.PROJECT_NAME}}.vst3
+
+      - name: Test VST3 with Pluginval
+        shell: bash
+        run: |
+          pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ${{env.PROJECT_NAME}}.vst3 || exit 1
+
+      - name: Test AUv2 with Pluginval
+        shell: bash
+        run: |
+          mkdir -p ~/Library/Audio/Plug-Ins/Components
+          mv ${{env.PROJECT_NAME}}.component ~/Library/Audio/Plug-Ins/Components
+          pgrep -x AudioComponentRegistrar >/dev/null && killall -9 AudioComponentRegistrar; echo "killed AudioComponentRegistrar" || echo "AudioComponentRegistrar Process not found"
+          pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ~/Library/Audio/Plug-Ins/Components/${{env.PROJECT_NAME}}.component || exit 1
+
+      - name: Test AUv2 with auval
+        shell: bash
+        run: |
+          ./validate_audiounit.sh config.h
+
+      # - name: Test AUv2 with auval (RTSafe)
+      #   shell: bash
+      #   run: |
+      #     ./validate_audiounit.sh config.h rtsafe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{env.PROJECT_NAME}}-${{env.ARTIFACT_EXT}}-pluginval
+          path: ./bin
