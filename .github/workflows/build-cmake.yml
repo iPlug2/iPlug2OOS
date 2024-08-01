@@ -1,0 +1,720 @@
+name: Build CMake
+
+on:
+  push:
+    paths:
+      - 'iPlug2/Scripts/cmake/**'
+      - 'iPlug2/iPlug2.cmake'
+      - '**/CMakeLists.txt'
+      - 'CMakePresets.json'
+      - '.github/workflows/build-cmake.yml'
+  pull_request:
+    paths:
+      - 'iPlug2/Scripts/cmake/**'
+      - 'iPlug2/iPlug2.cmake'
+      - '**/CMakeLists.txt'
+      - 'CMakePresets.json'
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      all_generators:
+        description: 'Test all generators (Ninja, Make)'
+        type: boolean
+        default: false
+      ios:
+        description: 'Include iOS build'
+        type: boolean
+        default: false
+      wam:
+        description: 'Include WAM/Emscripten build'
+        type: boolean
+        default: false
+      universal:
+        description: 'Include macOS Universal build (arm64+x86_64)'
+        type: boolean
+        default: false
+      backends:
+        description: 'Include IGraphics backends matrix'
+        type: boolean
+        default: false
+      arm64ec:
+        description: 'Include Windows ARM64EC build'
+        type: boolean
+        default: false
+
+# Cancel in-progress runs for the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_NAME: TemplateProject
+
+jobs:
+  # ============================================================================
+  # Parse PR commands from comments
+  # ============================================================================
+  parse-commands:
+    name: Parse Commands
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name != 'issue_comment' ||
+      (github.event.issue.pull_request &&
+       startsWith(github.event.comment.body, '/ci'))
+    outputs:
+      all_generators: ${{ steps.parse.outputs.all_generators }}
+      ios: ${{ steps.parse.outputs.ios }}
+      wam: ${{ steps.parse.outputs.wam }}
+      universal: ${{ steps.parse.outputs.universal }}
+      backends: ${{ steps.parse.outputs.backends }}
+      arm64ec: ${{ steps.parse.outputs.arm64ec }}
+      should_run: ${{ steps.parse.outputs.should_run }}
+      pr_ref: ${{ steps.get-pr.outputs.ref }}
+      pr_sha: ${{ steps.get-pr.outputs.sha }}
+    steps:
+      - name: Parse CI commands from comment
+        id: parse
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          if [[ "${{ github.event_name }}" == "issue_comment" ]]; then
+            COMMENT=$(echo "$COMMENT_BODY" | tr -cd '[:alnum:][:space:]/=,_-')
+            echo "Parsing comment: $COMMENT"
+
+            if [[ "$COMMENT" == *"/ci all"* ]]; then
+              echo "all_generators=true" >> $GITHUB_OUTPUT
+              echo "ios=true" >> $GITHUB_OUTPUT
+              echo "wam=true" >> $GITHUB_OUTPUT
+              echo "universal=true" >> $GITHUB_OUTPUT
+              echo "backends=true" >> $GITHUB_OUTPUT
+              echo "arm64ec=true" >> $GITHUB_OUTPUT
+            else
+              [[ "$COMMENT" == *"/ci all-generators"* || "$COMMENT" == *"/ci generators"* ]] && echo "all_generators=true" >> $GITHUB_OUTPUT || echo "all_generators=false" >> $GITHUB_OUTPUT
+              [[ "$COMMENT" == *"/ci ios"* ]] && echo "ios=true" >> $GITHUB_OUTPUT || echo "ios=false" >> $GITHUB_OUTPUT
+              [[ "$COMMENT" == *"/ci wam"* ]] && echo "wam=true" >> $GITHUB_OUTPUT || echo "wam=false" >> $GITHUB_OUTPUT
+              [[ "$COMMENT" == *"/ci universal"* ]] && echo "universal=true" >> $GITHUB_OUTPUT || echo "universal=false" >> $GITHUB_OUTPUT
+              [[ "$COMMENT" == *"/ci backends"* ]] && echo "backends=true" >> $GITHUB_OUTPUT || echo "backends=false" >> $GITHUB_OUTPUT
+              [[ "$COMMENT" == *"/ci arm64ec"* ]] && echo "arm64ec=true" >> $GITHUB_OUTPUT || echo "arm64ec=false" >> $GITHUB_OUTPUT
+            fi
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "all_generators=${{ inputs.all_generators }}" >> $GITHUB_OUTPUT
+            echo "ios=${{ inputs.ios }}" >> $GITHUB_OUTPUT
+            echo "wam=${{ inputs.wam }}" >> $GITHUB_OUTPUT
+            echo "universal=${{ inputs.universal }}" >> $GITHUB_OUTPUT
+            echo "backends=${{ inputs.backends }}" >> $GITHUB_OUTPUT
+            echo "arm64ec=${{ inputs.arm64ec }}" >> $GITHUB_OUTPUT
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            # push or pull_request - use defaults
+            echo "all_generators=false" >> $GITHUB_OUTPUT
+            echo "ios=false" >> $GITHUB_OUTPUT
+            echo "wam=false" >> $GITHUB_OUTPUT
+            echo "universal=false" >> $GITHUB_OUTPUT
+            echo "backends=false" >> $GITHUB_OUTPUT
+            echo "arm64ec=false" >> $GITHUB_OUTPUT
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get PR ref for comment trigger
+        id: get-pr
+        if: github.event_name == 'issue_comment'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_DATA=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }})
+          echo "ref=$(echo $PR_DATA | jq -r .head.ref)" >> $GITHUB_OUTPUT
+          echo "sha=$(echo $PR_DATA | jq -r .head.sha)" >> $GITHUB_OUTPUT
+
+  # ==========================================================================
+  # macOS - Xcode Generator (Default)
+  # ==========================================================================
+  macos-xcode:
+    name: macOS (Xcode)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.should_run == 'true'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=macos-xcode
+
+      - name: Build
+        run: cmake --build --preset=macos-xcode
+
+      - name: Verify Bundles
+        run: |
+          test -d build/macos-xcode/out/Release/${{env.PROJECT_NAME}}.app
+          test -d build/macos-xcode/out/Release/${{env.PROJECT_NAME}}.vst3
+          test -d build/macos-xcode/out/Release/${{env.PROJECT_NAME}}.clap
+          test -d build/macos-xcode/out/Release/${{env.PROJECT_NAME}}.component
+          echo "All bundles exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-xcode-artifacts
+          path: build/macos-xcode/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # Windows - Visual Studio 2022 (Default)
+  # ==========================================================================
+  windows-vs2022:
+    name: Windows (VS2022)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.should_run == 'true'
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=windows-vs2022
+
+      - name: Build
+        run: cmake --build --preset=windows-vs2022
+
+      - name: Verify Bundles
+        shell: pwsh
+        run: |
+          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
+          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.vst3")) { exit 1 }
+          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.clap")) { exit 1 }
+          echo "All bundles exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-vs2022-artifacts
+          path: build/windows-vs2022/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # Windows - Visual Studio 2022 ARM64EC - Optional: /ci arm64ec
+  # ==========================================================================
+  windows-arm64ec:
+    name: Windows (ARM64EC)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.arm64ec == 'true'
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=windows-vs2022-arm64ec
+
+      - name: Build
+        run: cmake --build --preset=windows-vs2022-arm64ec
+
+      - name: Verify Bundles
+        shell: pwsh
+        run: |
+          if (!(Test-Path "build\windows-vs2022-arm64ec\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
+          if (!(Test-Path "build\windows-vs2022-arm64ec\out\${{env.PROJECT_NAME}}.vst3")) { exit 1 }
+          if (!(Test-Path "build\windows-vs2022-arm64ec\out\${{env.PROJECT_NAME}}.clap")) { exit 1 }
+          echo "All bundles exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-arm64ec-artifacts
+          path: build/windows-vs2022-arm64ec/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # macOS - Xcode Generator (Universal) - Optional: /ci universal
+  # ==========================================================================
+  macos-xcode-universal:
+    name: macOS (Universal)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.universal == 'true'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=macos-xcode-universal
+
+      - name: Build
+        run: cmake --build --preset=macos-xcode-universal
+
+      - name: Verify Universal Binaries
+        run: |
+          APP_EXEC="build/macos-xcode-universal/out/Release/${{env.PROJECT_NAME}}.app/Contents/MacOS/${{env.PROJECT_NAME}}"
+          ARCHS=$(lipo -archs "$APP_EXEC")
+          echo "APP architectures: $ARCHS"
+          [[ "$ARCHS" == *"arm64"* ]] && [[ "$ARCHS" == *"x86_64"* ]] || exit 1
+          echo "Universal binary verified"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-universal-artifacts
+          path: build/macos-xcode-universal/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # macOS - Ninja Generator - Optional: /ci all-generators
+  # ==========================================================================
+  macos-ninja:
+    name: macOS (Ninja)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.all_generators == 'true'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Install Ninja
+        run: brew install ninja
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=macos-ninja
+
+      - name: Build
+        run: cmake --build --preset=macos-ninja
+
+      - name: Verify Bundles
+        run: |
+          test -d build/macos-ninja/out/${{env.PROJECT_NAME}}.app
+          test -d build/macos-ninja/out/${{env.PROJECT_NAME}}.vst3
+          test -d build/macos-ninja/out/${{env.PROJECT_NAME}}.clap
+          test -d build/macos-ninja/out/${{env.PROJECT_NAME}}.component
+          echo "All bundles exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-ninja-artifacts
+          path: build/macos-ninja/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # macOS - Unix Makefiles Generator - Optional: /ci all-generators
+  # ==========================================================================
+  macos-make:
+    name: macOS (Make)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.all_generators == 'true'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=macos-make
+
+      - name: Build
+        run: cmake --build --preset=macos-make -- -j$(sysctl -n hw.ncpu)
+
+      - name: Verify Bundles
+        run: |
+          test -d build/macos-make/out/${{env.PROJECT_NAME}}.app
+          test -d build/macos-make/out/${{env.PROJECT_NAME}}.vst3
+          test -d build/macos-make/out/${{env.PROJECT_NAME}}.clap
+          test -d build/macos-make/out/${{env.PROJECT_NAME}}.component
+          echo "All bundles exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-make-artifacts
+          path: build/macos-make/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # macOS - IGraphics Backends Matrix - Optional: /ci backends
+  # ==========================================================================
+  macos-backends:
+    name: macOS ${{ matrix.backend }}/${{ matrix.renderer }}
+    needs: parse-commands
+    if: needs.parse-commands.outputs.backends == 'true'
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - backend: NANOVG
+            renderer: GL3
+            needs_skia: false
+          - backend: SKIA
+            renderer: METAL
+            needs_skia: true
+          - backend: SKIA
+            renderer: GL3
+            needs_skia: true
+          - backend: SKIA
+            renderer: CPU
+            needs_skia: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Install Ninja
+        run: brew install ninja
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: Cache Skia Prebuilt Libs
+        if: matrix.needs_skia
+        id: cache-skia
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/Build/mac
+            iPlug2/Dependencies/Build/src/skia
+          key: skia-prebuilt-mac-${{ hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh') }}
+
+      - name: Get Skia Prebuilt Libs
+        if: matrix.needs_skia && steps.cache-skia.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies
+          ./download-prebuilt-libs.sh mac
+
+      - name: CMake Configure
+        run: |
+          cmake --preset=macos-ninja \
+            -DIGRAPHICS_BACKEND=${{ matrix.backend }} \
+            -DIGRAPHICS_RENDERER=${{ matrix.renderer }}
+
+      - name: Build
+        run: ninja -C build/macos-ninja ${{env.PROJECT_NAME}}-app
+
+      - name: Verify App Bundle
+        run: |
+          test -d build/macos-ninja/out/${{env.PROJECT_NAME}}.app
+          echo "${{ matrix.backend }}/${{ matrix.renderer }} build successful"
+
+  # ==========================================================================
+  # Windows - IGraphics Backends Matrix - Optional: /ci backends
+  # ==========================================================================
+  windows-backends:
+    name: Windows ${{ matrix.backend }}/${{ matrix.renderer }}
+    needs: parse-commands
+    if: needs.parse-commands.outputs.backends == 'true'
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - backend: NANOVG
+            renderer: GL2
+            needs_skia: false
+          - backend: NANOVG
+            renderer: GL3
+            needs_skia: false
+          # Note: Skia only supports GL3, CPU on Windows (no GL2, no METAL)
+          - backend: SKIA
+            renderer: GL3
+            needs_skia: true
+          - backend: SKIA
+            renderer: CPU
+            needs_skia: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: Cache Skia Prebuilt Libs
+        if: matrix.needs_skia
+        id: cache-skia
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/Build/win
+            iPlug2/Dependencies/Build/src/skia
+          key: skia-prebuilt-win-${{ hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh') }}
+
+      - name: Get Skia Prebuilt Libs
+        if: matrix.needs_skia && steps.cache-skia.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          cd iPlug2/Dependencies
+          ./download-prebuilt-libs.sh win
+
+      - name: CMake Configure
+        run: |
+          cmake --preset=windows-vs2022 `
+            -DIGRAPHICS_BACKEND=${{ matrix.backend }} `
+            -DIGRAPHICS_RENDERER=${{ matrix.renderer }}
+
+      - name: Build
+        run: cmake --build build/windows-vs2022 --config Release --target ${{env.PROJECT_NAME}}-app
+
+      - name: Verify App
+        shell: pwsh
+        run: |
+          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
+          echo "${{ matrix.backend }}/${{ matrix.renderer }} build successful"
+
+  # ==========================================================================
+  # macOS - iOS (Xcode) - Optional: /ci ios
+  # ==========================================================================
+  macos-ios:
+    name: iOS (Xcode)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.ios == 'true'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=ios-sim-xcode
+
+      - name: Build (iOS Simulator)
+        run: cmake --build --preset=ios-sim-xcode
+
+      - name: Verify iOS App
+        run: |
+          test -d "build/ios-sim-xcode/out/Release-iphonesimulator/${{env.PROJECT_NAME}}.app"
+          echo "iOS app bundle exists"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-artifacts
+          path: build/ios-sim-xcode/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # Emscripten - WAM Build - Optional: /ci wam
+  # ==========================================================================
+  emscripten-wam:
+    name: WAM (Emscripten)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.wam == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+
+      - name: Patch emcc.py for iPlug2 EXPORT_NAME
+        # iPlug2 WAM modules use EXPORT_NAME values like "AWP_WAM_WASM_PluginName" which
+        # contain underscores that pass Emscripten's identifier validation. However, some
+        # project names with special characters may fail. This patch disables the strict
+        # identifier check. A cleaner solution would be to ensure EXPORT_NAME is always
+        # a valid JS identifier in the CMake configuration.
+        run: |
+          sed -i.bak 's/if not js_manipulation.isidentifier(settings.EXPORT_NAME):/if False:/g' $EMSDK/upstream/emscripten/emcc.py
+
+      - name: Cache WAM SDK
+        id: cache-wam
+        uses: actions/cache@v4
+        with:
+          path: iPlug2/Dependencies/IPlug/WAM_SDK
+          key: wam-sdk-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get WAM SDK
+        if: steps.cache-wam.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=wam
+
+      - name: Build WAM
+        run: cmake --build --preset=wam
+
+      - name: Verify WAM Output
+        run: |
+          test -f build/wam/out/${{env.PROJECT_NAME}}/index.html
+          test -f build/wam/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-wam.js
+          test -f build/wam/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.js
+          test -f build/wam/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.wasm
+          echo "WAM distribution verified"
+
+      - name: Upload WAM Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.PROJECT_NAME}}-wam
+          path: build/wam/out/${{env.PROJECT_NAME}}
