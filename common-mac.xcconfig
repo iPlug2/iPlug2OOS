@@ -105,8 +105,7 @@ FT_PATH = $(BUILT_LIBS_INC_PATH)/freetype2
 SKIA_PATH = $(DEPS_PATH)/Build/src/skia
 YOGA_PATH = $(DEPS_PATH)/IGraphics/yoga
 
-SKIA_INC_PATHS = $(SKIA_PATH) $(SKIA_PATH)/include/core $(SKIA_PATH)/include/effects $(SKIA_PATH)/include/config $(SKIA_PATH)/include/utils $(SKIA_PATH)/include/utils/mac $(SKIA_PATH)/include/gpu $(SKIA_PATH)/third_party/externals/icu/source/common $(SKIA_PATH)/modules/svg/include
-
+SKIA_INC_PATHS = $(SKIA_PATH)
 YOGA_INC_PATHS = $(YOGA_PATH) $(YOGA_PATH)/yoga
 
 // you can optionally include this build setting, by adding it to EXTRA_INC_PATHS in MyProject.xcconfig in order to get all varieties of IGraphics support
@@ -118,14 +117,13 @@ IGRAPHICS_INC_PATHS = $(IGRAPHICS_PATH) $(IGRAPHICS_PATH)/Controls $(IGRAPHICS_P
 LIB_FT = $(BUILT_LIBS_LIB_PATH)/libfreetype.a
 LIB_PNG = $(BUILT_LIBS_LIB_PATH)/libpng.a
 LIB_Z = $(BUILT_LIBS_LIB_PATH)/libz.a
-LIB_CIVET = $(BUILT_LIBS_LIB_PATH)/libcivetweb.a
 LIB_SKIA = $(BUILT_LIBS_LIB_PATH)/libskia.a
 LIB_SKOTTIE = $(BUILT_LIBS_LIB_PATH)/libskottie.a
 LIB_SKSG = $(BUILT_LIBS_LIB_PATH)/libsksg.a
 LIB_SKSHAPER = $(BUILT_LIBS_LIB_PATH)/libskshaper.a
 LIB_SKPARAGRAPH = $(BUILT_LIBS_LIB_PATH)/libskparagraph.a
+LIB_SKUNICODE = $(BUILT_LIBS_LIB_PATH)/libskunicode_core.a $(BUILT_LIBS_LIB_PATH)/libskunicode_icu.a
 LIB_SVG = $(BUILT_LIBS_LIB_PATH)/libsvg.a
-LIB_SKUNICODE = $(BUILT_LIBS_LIB_PATH)/libskunicode.a
 
 SKIA_LNK_FLAGS = $(LIB_SKIA) $(LIB_SKOTTIE) $(LIB_SKSG) $(LIB_SKSHAPER) $(LIB_SKPARAGRAPH) $(LIB_SVG) $(LIB_SKUNICODE)
 FREETYPE_LNK_FLAGS = $(LIB_FT) //$(LIB_PNG) $(LIB_Z)
