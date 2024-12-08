@@ -10,10 +10,11 @@ cd iPlug2/Dependencies/IPlug/
 ./download-iplug-sdks.sh
 cd ../../..
 
-echo "Downloading iPlug2 prebuilt libs..."
-cd iPlug2/Dependencies/
-./download-prebuilt-libs.sh
-cd ../..
+# Not nessecary until we have WASM libs
+# echo "Downloading iPlug2 prebuilt libs..."
+# cd iPlug2/Dependencies/
+# ./download-prebuilt-libs.sh
+# cd ../..
 
 echo "Downloading mkcert..."
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert
