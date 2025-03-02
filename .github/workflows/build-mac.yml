@@ -74,7 +74,7 @@ jobs:
         ./makedist-mac.sh full zip
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{env.PROJECT_NAME}}-${{env.ARTIFACT_EXT}}
         path: |
@@ -87,7 +87,7 @@ jobs:
 
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{env.PROJECT_NAME}}-${{env.ARTIFACT_EXT}}
 
@@ -149,7 +149,7 @@ jobs:
       #     ./validate_audiounit.sh config.h rtsafe
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{env.PROJECT_NAME}}-${{env.ARTIFACT_EXT}}-pluginval
           path: ./bin
