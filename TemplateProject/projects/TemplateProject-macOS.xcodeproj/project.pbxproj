@@ -13,6 +13,7 @@
 			buildPhases = (
 			);
 			dependencies = (
+				4F61D8582D7482DA00578AA8 /* PBXTargetDependency */,
 				4F06F18623566DC800FD0962 /* PBXTargetDependency */,
 				4F78DAFA13B6436B0032E0F3 /* PBXTargetDependency */,
 				4F9828F8140A9F0200F3FCC1 /* PBXTargetDependency */,
@@ -279,6 +280,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4F78BE0122E73D0800AD537E;
 			remoteInfo = AUv3Framework;
+		};
+		4F61D8572D7482DA00578AA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F8E0FDF2BF5F3B500D360CE;
+			remoteInfo = CLAP;
 		};
 		4F78BE3522E742DE00AD537E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2520,6 +2528,11 @@
 			isa = PBXTargetDependency;
 			target = 4F78BE0122E73D0800AD537E /* TemplateProjectAU */;
 			targetProxy = 4F3EE1BC231438D000004786 /* PBXContainerItemProxy */;
+		};
+		4F61D8582D7482DA00578AA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F8E0FDF2BF5F3B500D360CE /* CLAP */;
+			targetProxy = 4F61D8572D7482DA00578AA8 /* PBXContainerItemProxy */;
 		};
 		4F78BE3622E742DE00AD537E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
