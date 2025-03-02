@@ -36,6 +36,7 @@ VST3="${PRODUCT_NAME}.vst3"
 AU="${PRODUCT_NAME}.component"
 APP="${PRODUCT_NAME}.app"
 AAX="${PRODUCT_NAME}.aaxplugin"
+CLAP="${PRODUCT_NAME}.clap"
 
 RSRCS="~/Music/${PRODUCT_NAME}/Resources"
 
@@ -95,6 +96,11 @@ if [[ -d $PRODUCTS/$APP ]]; then
   build_flavor "APP" $APP "com.AcmeInc.app.pkg.${PRODUCT_NAME}" "/Applications"
 fi
 
+# try to build CLAP package
+if [[ -d $PRODUCTS/$CLAP ]]; then
+  build_flavor "CLAP" $CLAP "com.AcmeInc.clap.pkg.${PRODUCT_NAME}" "/Library/Audio/Plug-Ins/CLAP"
+fi
+
 # write build info to resources folder
 
 # echo "Version: ${VERSION}" > "$RSRCS/BuildInfo.txt"
@@ -137,6 +143,12 @@ if [[ -d $PRODUCTS/$APP ]]; then
 	APP_CHOICE_DEF="<choice id=\"com.AcmeInc.app.pkg.${PRODUCT_NAME}\" visible=\"true\" start_selected=\"true\" title=\"Stand-alone App\"><pkg-ref id=\"com.AcmeInc.app.pkg.${PRODUCT_NAME}\"/></choice><pkg-ref id=\"com.AcmeInc.app.pkg.${PRODUCT_NAME}\" version=\"${VERSION}\" onConclusion=\"none\">${PRODUCT_NAME}_APP.pkg</pkg-ref>"
 fi
 
+if [[ -d $PRODUCTS/$CLAP ]]; then
+	CLAP_PKG_REF="<pkg-ref id=\"com.AcmeInc.clap.pkg.${PRODUCT_NAME}\"/>"
+	CLAP_CHOICE="<line choice=\"com.AcmeInc.clap.pkg.${PRODUCT_NAME}\"/>"
+	CLAP_CHOICE_DEF="<choice id=\"com.AcmeInc.clap.pkg.${PRODUCT_NAME}\" visible=\"true\" start_selected=\"true\" title=\"CLAP Plug-in\"><pkg-ref id=\"com.AcmeInc.clap.pkg.${PRODUCT_NAME}\"/></choice><pkg-ref id=\"com.AcmeInc.clap.pkg.${PRODUCT_NAME}\" version=\"${VERSION}\" onConclusion=\"none\">${PRODUCT_NAME}_CLAP.pkg</pkg-ref>"
+fi
+
 # if [[ -d $PRODUCTS/$RES ]]; then
 	# RES_PKG_REF="<pkg-ref id="com.AcmeInc.resources.pkg.${PRODUCT_NAME}"/>'
 	# RES_CHOICE="<line choice="com.AcmeInc.resources.pkg.${PRODUCT_NAME}"/>'
@@ -156,6 +168,7 @@ cat > ${TARGET_DIR}/distribution.xml << XMLEND
     ${AU_PKG_REF}
     ${AAX_PKG_REF}
     ${APP_PKG_REF}
+    ${CLAP_PKG_REF}
     ${RES_PKG_REF}
     <options require-scripts="false" customize="always" />
     <choices-outline>
@@ -164,6 +177,7 @@ cat > ${TARGET_DIR}/distribution.xml << XMLEND
         ${AU_CHOICE}
         ${AAX_CHOICE}
         ${APP_CHOICE}
+        ${CLAP_CHOICE}
         ${RES_CHOICE}
     </choices-outline>
     ${VST2_CHOICE_DEF}
@@ -171,6 +185,7 @@ cat > ${TARGET_DIR}/distribution.xml << XMLEND
     ${AU_CHOICE_DEF}
     ${AAX_CHOICE_DEF}
     ${APP_CHOICE_DEF}
+    ${CLAP_CHOICE_DEF}
     ${RES_CHOICE_DEF}
 </installer-gui-script>
 XMLEND

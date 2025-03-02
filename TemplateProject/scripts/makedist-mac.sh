@@ -75,6 +75,9 @@ VST2=$HOME${VST2//\VST2_PATH = \$(HOME)}/$PLUGIN_NAME.vst
 VST3=`echo | grep VST3_PATH $XCCONFIG`
 VST3=$HOME${VST3//\VST3_PATH = \$(HOME)}/$PLUGIN_NAME.vst3
 
+CLAP=`echo | grep CLAP_PATH $XCCONFIG`
+CLAP=$HOME${CLAP//\CLAP_PATH = \$(HOME)}/$PLUGIN_NAME.clap
+
 AU=`echo | grep AU_PATH $XCCONFIG`
 AU=$HOME${AU//\AU_PATH = \$(HOME)}/$PLUGIN_NAME.component
 
@@ -136,6 +139,10 @@ if [ -d $VST3 ]; then
   sudo rm -f -R $VST3
 fi
 
+if [ -d $CLAP ]; then
+  sudo rm -f -R $CLAP
+fi
+
 if [ -d "${AAX}" ]; then
   sudo rm -f -R "${AAX}"
 fi
@@ -176,6 +183,10 @@ if [ -d $VST3 ]; then
   ./$SCRIPTS/SetFileIcon -image resources/$PLUGIN_NAME.icns -file $VST3
 fi
 
+if [ -d $CLAP ]; then
+  ./$SCRIPTS/SetFileIcon -image resources/$PLUGIN_NAME.icns -file $CLAP
+fi
+
 if [ -d "${AAX}" ]; then
   ./$SCRIPTS/SetFileIcon -image resources/$PLUGIN_NAME.icns -file "${AAX}"
 fi
@@ -204,6 +215,10 @@ fi
 
 if [ -d "${AAX}" ]; then
   strip -x "${AAX}/Contents/MacOS/$PLUGIN_NAME"
+fi
+
+if [ -d $CLAP ]; then
+  strip -x $CLAP/Contents/MacOS/$PLUGIN_NAME
 fi
 
 if [ $CODESIGN == 1 ]; then
@@ -319,6 +334,10 @@ else
 
   if [ -d $VST3 ]; then
     cp -R $VST3 build-mac/zip/$PLUGIN_NAME.vst3
+  fi
+
+  if [ -d $CLAP ]; then
+    cp -R $CLAP build-mac/zip/$PLUGIN_NAME.clap
   fi
 
   if [ -d "${AAX_FINAL}" ]; then
