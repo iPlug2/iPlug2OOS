@@ -222,7 +222,6 @@
 		4F8E0FF42BF5F3B500D360CE /* IGraphicsCoreText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FD2AF22675B6300FC59E6 /* IGraphicsCoreText.mm */; };
 		4F8E0FF52BF5F3B500D360CE /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
 		4F8E0FF62BF5F3B500D360CE /* IPopupMenuControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4949255DDF8600DF7588 /* IPopupMenuControl.cpp */; };
-		4F8E10012BF5F5D800D360CE /* TemplateProject-CLAP-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F8E10002BF5F5D700D360CE /* TemplateProject-CLAP-Info.plist */; };
 		4F8E10052BF5F77800D360CE /* IPlugCLAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E10022BF5F77800D360CE /* IPlugCLAP.cpp */; };
 		4F9828B8140A9EB700F3FCC1 /* IPlugAPIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugAPIBase.cpp */; };
 		4F9828C1140A9EB700F3FCC1 /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
@@ -2022,7 +2021,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F8E10012BF5F5D800D360CE /* TemplateProject-CLAP-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
