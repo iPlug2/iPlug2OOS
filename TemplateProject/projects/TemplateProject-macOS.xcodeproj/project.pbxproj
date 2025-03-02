@@ -2653,7 +2653,6 @@
 				PRODUCT_NAME = "$(BINARY_NAME)";
 				SDKROOT = "$(BASE_SDK_MAC)";
 				SKIP_INSTALL = NO;
-				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "../build-mac";
 				WRAPPER_EXTENSION = "";
 			};
