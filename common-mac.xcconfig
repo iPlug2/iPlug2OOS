@@ -85,7 +85,7 @@ CLAP_HELPERS = $(DEPS_PATH)/IPlug/CLAP_HELPERS
 // this build setting is included at the xcode project level, since we need all these include paths
 IPLUG_INC_PATHS = $(PROJECT_ROOT) $(WDL_PATH) $(SWELL_PATH) $(SWELL_FOR_IPLUG_PATH) $(IPLUG_PATH) $(EXTRAS_INC_PATHS)
 
-CLAP_INC_PATHS = $(IPLUG_PATH)/CLAP $(CLAP_SDK)/include $(CLAP_HELPERS)/include/clap/helpers
+CLAP_INC_PATHS = $(CLAP_SDK)/include $(CLAP_HELPERS)/include/clap/helpers
 
 IGRAPHICS_PATH = $(IPLUG2_ROOT)/IGraphics
 

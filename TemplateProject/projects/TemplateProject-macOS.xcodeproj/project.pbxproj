@@ -106,6 +106,7 @@
 		4F5F344320C0226200487201 /* IPlugPaths.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F344020C0226200487201 /* IPlugPaths.mm */; };
 		4F5F344420C0226200487201 /* IPlugPaths.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F344020C0226200487201 /* IPlugPaths.mm */; };
 		4F5F344520C0226200487201 /* IPlugPaths.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F344020C0226200487201 /* IPlugPaths.mm */; };
+		4F61D8642D74876900578AA8 /* IPlugCLAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F61D8632D74876900578AA8 /* IPlugCLAP.cpp */; };
 		4F6369DD20A464BB0022C370 /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369DC20A464BB0022C370 /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4F6369DE20A464BB0022C370 /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369DC20A464BB0022C370 /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4F6369DF20A464BB0022C370 /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369DC20A464BB0022C370 /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -223,7 +224,6 @@
 		4F8E0FF42BF5F3B500D360CE /* IGraphicsCoreText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FD2AF22675B6300FC59E6 /* IGraphicsCoreText.mm */; };
 		4F8E0FF52BF5F3B500D360CE /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
 		4F8E0FF62BF5F3B500D360CE /* IPopupMenuControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C4949255DDF8600DF7588 /* IPopupMenuControl.cpp */; };
-		4F8E10052BF5F77800D360CE /* IPlugCLAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E10022BF5F77800D360CE /* IPlugCLAP.cpp */; };
 		4F9828B8140A9EB700F3FCC1 /* IPlugAPIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugAPIBase.cpp */; };
 		4F9828C1140A9EB700F3FCC1 /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
 		4F993F7223055C96000313AF /* IPlugProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F61A8202807B9003F2573 /* IPlugProcessor.cpp */; };
@@ -469,6 +469,8 @@
 		4F4CC4401549C15500A9EA21 /* IPlugAAX_Describe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugAAX_Describe.cpp; path = ../../iPlug2/IPlug/AAX/IPlugAAX_Describe.cpp; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		4F5C5F6A21BED08700E024A7 /* swell-appstub.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "swell-appstub.mm"; path = "../../iPlug2/WDL/swell/swell-appstub.mm"; sourceTree = "<group>"; };
 		4F5F344020C0226200487201 /* IPlugPaths.mm */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.objcpp; name = IPlugPaths.mm; path = ../../iPlug2/IPlug/IPlugPaths.mm; sourceTree = "<group>"; tabWidth = 2; };
+		4F61D8622D74876900578AA8 /* IPlugCLAP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPlugCLAP.h; sourceTree = "<group>"; };
+		4F61D8632D74876900578AA8 /* IPlugCLAP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IPlugCLAP.cpp; sourceTree = "<group>"; };
 		4F6369DC20A464BB0022C370 /* IGraphicsNanoVG_src.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGraphicsNanoVG_src.m; sourceTree = "<group>"; };
 		4F6369E820A466470022C370 /* IControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IControl.h; path = ../../iPlug2/IGraphics/IControl.h; sourceTree = "<group>"; };
 		4F6369E920A466470022C370 /* IControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IControl.cpp; path = ../../iPlug2/IGraphics/IControl.cpp; sourceTree = "<group>"; };
@@ -686,8 +688,6 @@
 		4F8C10DF20BA2796006320CD /* IGraphicsEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGraphicsEditorDelegate.h; path = ../../iPlug2/IGraphics/IGraphicsEditorDelegate.h; sourceTree = "<group>"; };
 		4F8E0FFC2BF5F3B500D360CE /* TemplateProject.clap */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemplateProject.clap; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8E10002BF5F5D700D360CE /* TemplateProject-CLAP-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "TemplateProject-CLAP-Info.plist"; path = "../resources/TemplateProject-CLAP-Info.plist"; sourceTree = "<group>"; };
-		4F8E10022BF5F77800D360CE /* IPlugCLAP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IPlugCLAP.cpp; sourceTree = "<group>"; };
-		4F8E10032BF5F77800D360CE /* IPlugCLAP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPlugCLAP.h; sourceTree = "<group>"; };
 		4F8F61A7202807B9003F2573 /* IPlugProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugProcessor.h; path = ../../iPlug2/IPlug/IPlugProcessor.h; sourceTree = "<group>"; tabWidth = 2; };
 		4F8F61A8202807B9003F2573 /* IPlugProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugProcessor.cpp; path = ../../iPlug2/IPlug/IPlugProcessor.cpp; sourceTree = "<group>"; tabWidth = 2; };
 		4F9313232315CA1100DB2383 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -1581,11 +1581,11 @@
 		4F8E10042BF5F77800D360CE /* CLAP */ = {
 			isa = PBXGroup;
 			children = (
-				4F8E10022BF5F77800D360CE /* IPlugCLAP.cpp */,
-				4F8E10032BF5F77800D360CE /* IPlugCLAP.h */,
+				4F61D8622D74876900578AA8 /* IPlugCLAP.h */,
+				4F61D8632D74876900578AA8 /* IPlugCLAP.cpp */,
 			);
 			name = CLAP;
-			path = ../../../iPlug2/IPlug/CLAP;
+			path = ../../iPlug2/IPlug/CLAP;
 			sourceTree = "<group>";
 		};
 		4FB1F57A20E4AFDA004157C8 /* Platforms */ = {
@@ -2385,7 +2385,7 @@
 				4F8E0FF22BF5F3B500D360CE /* IPlugProcessor.cpp in Sources */,
 				4F8E0FF32BF5F3B500D360CE /* IPlugPluginBase.cpp in Sources */,
 				4F8E0FF42BF5F3B500D360CE /* IGraphicsCoreText.mm in Sources */,
-				4F8E10052BF5F77800D360CE /* IPlugCLAP.cpp in Sources */,
+				4F61D8642D74876900578AA8 /* IPlugCLAP.cpp in Sources */,
 				4F8E0FF52BF5F3B500D360CE /* IPlugParameter.cpp in Sources */,
 				4F8E0FF62BF5F3B500D360CE /* IPopupMenuControl.cpp in Sources */,
 			);
