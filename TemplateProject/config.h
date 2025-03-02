@@ -6,7 +6,7 @@
 #define PLUG_MFR_ID 'Acme'
 #define PLUG_URL_STR "https://iplug2.github.io"
 #define PLUG_EMAIL_STR "spam@me.com"
-#define PLUG_COPYRIGHT_STR "Copyright 2024 Acme Inc"
+#define PLUG_COPYRIGHT_STR "Copyright 2025 Acme Inc"
 #define PLUG_CLASS_NAME TemplateProject
 
 #define BUNDLE_NAME "TemplateProject"
@@ -48,6 +48,11 @@
 #define AAX_DOES_AUDIOSUITE 1
 
 #define VST3_SUBCATEGORY "Fx"
+
+#define CLAP_MANUAL_URL "https://iplug2.github.io/manuals/example_manual.pdf"
+#define CLAP_SUPPORT_URL "https://github.com/iPlug2/iPlug2/wiki"
+#define CLAP_DESCRIPTION "A simple audio effect for modifying gain"
+#define CLAP_FEATURES "audio-effect"//, "utility"
 
 #define APP_NUM_CHANNELS 2
 #define APP_N_VECTOR_WAIT 0

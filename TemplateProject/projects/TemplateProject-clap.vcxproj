@@ -28,9 +28,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2EB4846A-93E0-43A0-821E-12237105168F}</ProjectGuid>
+    <ProjectGuid>{6D05871E-274A-48CA-A39A-AB1C9D7DC78C}</ProjectGuid>
     <RootNamespace>TemplateProject</RootNamespace>
-    <ProjectName>TemplateProject-vst2</ProjectName>
+    <ProjectName>TemplateProject-clap</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -103,57 +103,63 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\int\</IntDir>
+    <IntDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\int\</IntDir>
     <LinkIncremental>
     </LinkIncremental>
     <TargetName>$(BINARY_NAME)</TargetName>
+    <TargetExt>.clap</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\int\</IntDir>
+    <IntDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\int\</IntDir>
     <LinkIncremental />
     <TargetName>$(BINARY_NAME)</TargetName>
+    <TargetExt>.clap</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IntDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\int\</IntDir>
+    <IntDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\int\</IntDir>
     <TargetName>$(BINARY_NAME)</TargetName>
+    <TargetExt>.clap</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\int\</IntDir>
+    <IntDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\int\</IntDir>
     <TargetName>$(BINARY_NAME)</TargetName>
+    <TargetExt>.clap</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Tracer|Win32'">
-    <OutDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Tracer|x64'">
-    <OutDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Tracer|Win32'">
-    <IntDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\int\</IntDir>
+    <IntDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\int\</IntDir>
     <TargetName>$(BINARY_NAME)</TargetName>
+    <TargetExt>.clap</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Tracer|x64'">
-    <IntDir>$(SolutionDir)build-win\vst2\$(Platform)\$(Configuration)\int\</IntDir>
+    <IntDir>$(SolutionDir)build-win\clap\$(Platform)\$(Configuration)\int\</IntDir>
     <TargetName>$(BINARY_NAME)</TargetName>
+    <TargetExt>.clap</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>$(VST2_DEFS);$(DEBUG_DEFS);$(EXTRA_DEBUG_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(CLAP_DEFS);$(DEBUG_DEFS);$(EXTRA_DEBUG_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(VST2_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CLAP_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -164,9 +170,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>$(VST2_DEFS);$(DEBUG_DEFS);$(EXTRA_DEBUG_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(CLAP_DEFS);$(DEBUG_DEFS);$(EXTRA_DEBUG_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(VST2_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CLAP_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -182,10 +188,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>$(VST2_DEFS);$(RELEASE_DEFS);$(EXTRA_RELEASE_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(CLAP_DEFS);$(RELEASE_DEFS);$(EXTRA_RELEASE_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(VST2_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CLAP_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -200,10 +206,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>$(VST2_DEFS);$(RELEASE_DEFS);$(EXTRA_RELEASE_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(CLAP_DEFS);$(RELEASE_DEFS);$(EXTRA_RELEASE_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(VST2_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CLAP_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -218,9 +224,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>$(VST2_DEFS);$(TRACER_DEFS);$(EXTRA_TRACER_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(CLAP_DEFS);$(TRACER_DEFS);$(EXTRA_TRACER_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(VST2_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CLAP_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -235,9 +241,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>$(VST2_DEFS);$(TRACER_DEFS);$(EXTRA_TRACER_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>$(CLAP_DEFS);$(TRACER_DEFS);$(EXTRA_TRACER_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(VST2_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CLAP_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -248,8 +254,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="../config.h" />
-    <ClInclude Include="..\..\iPlug2\Dependencies\IPlug\VST2_SDK\aeffect.h" />
-    <ClInclude Include="..\..\iPlug2\Dependencies\IPlug\VST2_SDK\aeffectx.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IControls.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IFPSDisplayControl.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IPopupMenuControl.h" />
@@ -272,12 +276,12 @@
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_include_in_plug_hdr.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_include_in_plug_src.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_select.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsLinux.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsMac.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsMac_view.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsWeb.h" />
     <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsWin.h" />
+    <ClInclude Include="..\..\iPlug2\IPlug\CLAP\IPlugCLAP.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugAPIBase.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugConstants.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugEditorDelegate.h" />
@@ -293,7 +297,6 @@
     <ClInclude Include="..\..\iPlug2\IPlug\IPlugUtilities.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_hdr.h" />
     <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_src.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\VST2\IPlugVST2.h" />
     <ClInclude Include="..\TemplateProject.h" />
     <ClInclude Include="..\resources\resource.h" />
   </ItemGroup>
@@ -321,13 +324,13 @@
     <ClCompile Include="..\..\iPlug2\IGraphics\IGraphics.cpp" />
     <ClCompile Include="..\..\iPlug2\IGraphics\IGraphicsEditorDelegate.cpp" />
     <ClCompile Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsWin.cpp" />
+    <ClCompile Include="..\..\iPlug2\IPlug\CLAP\IPlugCLAP.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugAPIBase.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugParameter.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugPaths.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugPluginBase.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugProcessor.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugTimer.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\VST2\IPlugVST2.cpp" />
     <ClCompile Include="..\TemplateProject.cpp" />
   </ItemGroup>
   <ItemGroup>

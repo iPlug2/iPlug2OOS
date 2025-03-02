@@ -7,30 +7,24 @@
 	<key>CFBundleExecutable</key>
 	<string>TemplateProject</string>
 	<key>CFBundleGetInfoString</key>
-	<string>TemplateProject v0.0.0 Copyright 2025 Acme Inc</string>
+	<string>TemplateProject v0.0.0 Copyright 2024 Acme Inc</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.AcmeInc.aax.TemplateProject</string>
+	<string>com.AcmeInc.clap.TemplateProject</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>TemplateProject</string>
 	<key>CFBundlePackageType</key>
-	<string>TDMw</string>
+	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.0.0</string>
 	<key>CFBundleSignature</key>
-	<string>PTul</string>
+	<string>9c0G</string>
 	<key>CFBundleVersion</key>
 	<string>0.0.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.13.0</string>
-	<key>LSMultipleInstancesProhibited</key>
-	<string>true</string>
-	<key>LSPrefersCarbon</key>
-	<false/>
-	<key>NSAppleScriptEnabled</key>
-	<string>No</string>
 </dict>
 </plist>
