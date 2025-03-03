@@ -126,6 +126,11 @@ if %PLATFORM% == "x64" (
   )
   
   if %FORMAT% == ".clap" (
+    echo copying binary to output directory ... 
+    copy /y %BUILT_BINARY% %BUILD_DIR%\%NAME%.clap
+  )
+
+  if %FORMAT% == ".clap" (
     echo copying binary to CLAP Plugins folder ... 
     copy /y %BUILT_BINARY% %CLAP_PATH%
   )

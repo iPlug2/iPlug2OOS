@@ -1,7 +1,7 @@
 [Setup]
 AppName=TemplateProject
 AppContact=spam@spam.com
-AppCopyright=Copyright (C) 2020 MANUFACTURER
+AppCopyright=Copyright (C) 2025 MANUFACTURER
 AppPublisher=MANUFACTURER
 AppPublisherURL=http://www.spam.com
 AppSupportURL=http://www.spam.com
@@ -32,6 +32,7 @@ SelectDirBrowseLabel=To continue, click Next. If you would like to select a diff
 
 [Components]
 Name: "app"; Description: "Standalone application (.exe)"; Types: full custom;
+Name: "clap_64"; Description: "64-bit CLAP Plugin (.clap)"; Types: full custom; Check: Is64BitInstallMode;
 ;Name: "vst2_32"; Description: "32-bit VST2 Plugin (.dll)"; Types: full custom;
 ;Name: "vst2_64"; Description: "64-bit VST2 Plugin (.dll)"; Types: full custom; Check: Is64BitInstallMode;
 ;Name: "vst3_32"; Description: "32-bit VST3 Plugin (.vst3)"; Types: full custom;
@@ -43,7 +44,7 @@ Name: "manual"; Description: "User guide"; Types: full custom; Flags: fixed
 [Dirs] 
 ;Name: "{cf32}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Attribs: readonly; Components:aax_32; 
 ;Name: "{cf64}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Attribs: readonly; Check: Is64BitInstallMode; Components:aax_64; 
-;Name: "{cf32}\VST3\TemplateProject.vst3\"; Attribs: readonly; Components:vst3_32; 
+;Name: "{cf32}\VST3\TemplateProject.vst3\"; Attribs: readonly; Components:vst3_32;
 Name: "{cf64}\VST3\TemplateProject.vst3\"; Attribs: readonly; Check: Is64BitInstallMode; Components:vst3_64; 
 
 [Files]
@@ -61,6 +62,8 @@ Source: "..\build-win\TemplateProject_x64.exe"; DestDir: "{app}"; Check: Is64Bit
 Source: "..\build-win\TemplateProject.vst3\*.*"; Excludes: "\Contents\x86\*,*.pdb,*.exp,*.lib,*.ilk,*.ico,*.ini"; DestDir: "{cf64}\VST3\TemplateProject.vst3\"; Check: Is64BitInstallMode; Components:vst3_64; Flags: ignoreversion recursesubdirs;
 Source: "..\build-win\TemplateProject.vst3\Desktop.ini"; DestDir: "{cf64}\VST3\TemplateProject.vst3\"; Check: Is64BitInstallMode; Components:vst3_64; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
 Source: "..\build-win\TemplateProject.vst3\PlugIn.ico"; DestDir: "{cf64}\VST3\TemplateProject.vst3\"; Check: Is64BitInstallMode; Components:vst3_64; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
+
+Source: "..\build-win\TemplateProject.clap"; DestDir: {commoncf64}\CLAP\; Check: Is64BitInstallMode; Components:clap_64; Flags: ignoreversion;
 
 ;Source: "..\build-win\aax\bin\TemplateProject.aaxplugin\*.*"; Excludes: "\Contents\x64\*,*.pdb,*.exp,*.lib,*.ilk,*.ico,*.ini"; DestDir: "{cf32}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Components:aax_32; Flags: ignoreversion recursesubdirs;
 ;Source: "..\build-win\aax\bin\TemplateProject.aaxplugin\Desktop.ini"; DestDir: "{cf32}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Components:aax_32; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
