@@ -48,21 +48,11 @@ copy /b *.cpp+,,
 echo ------------------------------------------------------------------
 echo Building ...
 
-if exist "%ProgramFiles(x86)%" (goto 64-Bit) else (goto 32-Bit)
-
-if not defined DevEnvDir (
-:32-Bit
-echo 32-Bit O/S detected
-call "%ProgramFiles%\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_x64
-goto END
-
-:64-Bit
-echo 64-Bit Host O/S detected
-call "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_x64
-goto END
-:END
+if exist "%ProgramFiles%\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat" (
+  call "%ProgramFiles%\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat" x64
+) else (
+  call "%ProgramFiles%\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
 )
-
 
 REM - set preprocessor macros like this, for instance to set demo preprocessor macro:
 if %DEMO% == 1 (
@@ -74,14 +64,14 @@ if %DEMO% == 1 (
 )
 
 REM - Could build individual targets like this:
-REM - msbuild TemplateProject-app.vcxproj /p:configuration=release /p:platform=win32
+REM - msbuild TemplateProject-app.vcxproj /p:configuration=release /p:platform=x64
 
-REM echo Building 32 bit binaries...
-REM msbuild TemplateProject.sln /p:configuration=release /p:platform=win32 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly 
-
-REM echo Building 64 bit binaries...
+echo Building x64 binaries...
 REM add projects with /t to build VST2 and AAX
-msbuild TemplateProject.sln /t:TemplateProject-app;TemplateProject-vst3;TemplateProject-clap /p:configuration=release /p:platform=x64 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly;append
+msbuild TemplateProject.sln /t:TemplateProject-app;TemplateProject-vst3;TemplateProject-clap /p:configuration=release /p:platform=x64 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly
+
+echo Building ARM64EC binaries...
+msbuild TemplateProject.sln /t:TemplateProject-app;TemplateProject-vst3;TemplateProject-clap /p:configuration=release /p:platform=ARM64EC /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win-arm64ec.log;errorsonly
 
 REM --echo Copying AAX Presets
 

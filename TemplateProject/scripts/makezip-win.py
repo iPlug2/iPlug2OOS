@@ -41,7 +41,9 @@ def main():
   else:
     files = [
       projectpath + "\\build-win\\TemplateProject.vst3\\Contents\\x86_64-win\\TemplateProject.vst3",
+      projectpath + "\\build-win\\TemplateProject.vst3\\Contents\\arm64ec-win\\TemplateProject.vst3",
       projectpath + "\\build-win\\TemplateProject_x64.exe",
+      projectpath + "\\build-win\\TemplateProject_ARM64EC.exe",
       projectpath + "\\build-win\\TemplateProject.clap"
     ]
 
@@ -60,8 +62,11 @@ def main():
 
   files = [
     projectpath + "\\build-win\\pdbs\\TemplateProject-vst3_x64.pdb",
+    projectpath + "\\build-win\\pdbs\\TemplateProject-vst3_ARM64EC.pdb",
     projectpath + "\\build-win\\pdbs\\TemplateProject-app_x64.pdb",
-    projectpath + "\\build-win\\pdbs\\TemplateProject-clap_x64.pdb"
+    projectpath + "\\build-win\\pdbs\\TemplateProject-app_ARM64EC.pdb",
+    projectpath + "\\build-win\\pdbs\\TemplateProject-clap_x64.pdb",
+    projectpath + "\\build-win\\pdbs\\TemplateProject-clap_ARM64EC.pdb"
   ]
 
   for f in files:
