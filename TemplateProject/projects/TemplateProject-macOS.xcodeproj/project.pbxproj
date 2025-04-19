@@ -13,8 +13,8 @@
 			buildPhases = (
 			);
 			dependencies = (
+				4F61D85E2D74836400578AA8 /* PBXTargetDependency */,
 				4F61D8582D7482DA00578AA8 /* PBXTargetDependency */,
-				4F06F18623566DC800FD0962 /* PBXTargetDependency */,
 				4F78DAFA13B6436B0032E0F3 /* PBXTargetDependency */,
 				4F9828F8140A9F0200F3FCC1 /* PBXTargetDependency */,
 			);
@@ -267,13 +267,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4F06F18523566DC800FD0962 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4FD16A0813B63081001D0217;
-			remoteInfo = APP;
-		};
 		4F3EE1BC231438D000004786 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -287,6 +280,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4F8E0FDF2BF5F3B500D360CE;
 			remoteInfo = CLAP;
+		};
+		4F61D85D2D74836400578AA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3EE1BA231438D000004786;
+			remoteInfo = AUv3App;
 		};
 		4F78BE3522E742DE00AD537E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1879,7 +1879,6 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					4F20EEC8132C69FE0030E34C = {
@@ -2519,11 +2518,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4F06F18623566DC800FD0962 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4FD16A0813B63081001D0217 /* APP */;
-			targetProxy = 4F06F18523566DC800FD0962 /* PBXContainerItemProxy */;
-		};
 		4F3EE1BB231438D000004786 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4F78BE0122E73D0800AD537E /* TemplateProjectAU */;
@@ -2533,6 +2527,11 @@
 			isa = PBXTargetDependency;
 			target = 4F8E0FDF2BF5F3B500D360CE /* CLAP */;
 			targetProxy = 4F61D8572D7482DA00578AA8 /* PBXContainerItemProxy */;
+		};
+		4F61D85E2D74836400578AA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3EE1BA231438D000004786 /* AUv3App */;
+			targetProxy = 4F61D85D2D74836400578AA8 /* PBXContainerItemProxy */;
 		};
 		4F78BE3622E742DE00AD537E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
