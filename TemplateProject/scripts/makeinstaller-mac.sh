@@ -29,7 +29,7 @@ fi
 PRODUCT_NAME=TemplateProject
 
 # locations
-PRODUCTS="build-mac"
+PRODUCTS="build-mac/Release"
 
 VST2="${PRODUCT_NAME}.vst"
 VST3="${PRODUCT_NAME}.vst3"

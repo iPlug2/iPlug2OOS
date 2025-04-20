@@ -352,11 +352,11 @@ fi
 
 #---------------------------------------------------------------------------------------------------------
 # dSYMs
-sudo rm -R -f build-mac/*-dSYMs.zip
+sudo rm -R -f build-mac/Release/*-dSYMs.zip
 
 echo "packaging dSYMs"
 echo ""
-zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/*.dSYM
+zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/Release/*.dSYM
 
 #---------------------------------------------------------------------------------------------------------
 
