@@ -38,7 +38,7 @@ VERSION = "0.95"
 
 # binary files that we don't want to do find and replace inside
 FILTERED_FILE_EXTENSIONS = [".ico",".icns", ".pdf", ".png", ".zip", ".exe", ".wav", ".aif", ".data", ".wasm", "mkcert"]
-FILTERED_FILE_NAMES = [".DS_Store"]
+FILTERED_FILE_NAMES = [".DS_Store", "CLAUDE.md", "duplicate.py"]
 # files that we don't want to duplicate
 DONT_COPY = (".vs", "*.exe", "*.dmg", "*.pkg", "*.mpkg", "*.svn", "*.ncb", "*.suo", "*sdf", "ipch", "*.layout", "*.depend", ".DS_Store", "xcuserdata", "*.aps")
 
