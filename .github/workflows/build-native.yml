@@ -7,7 +7,7 @@ on:
     #   - "v*"
 
 env:
-  PROJECT_NAME: TemplateProject
+  PROJECT_NAME: Rend
 
 jobs:
   build:

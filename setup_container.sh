@@ -7,6 +7,7 @@ git submodule update --init
 
 echo "Downloading iPlug2 SDKs..."
 cd iPlug2/Dependencies/IPlug/
+chmod +x download-iplug-sdks.sh
 ./download-iplug-sdks.sh
 cd ../../..
 

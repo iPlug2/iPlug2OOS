@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # setup.sh PROJECT_NAME MANUFACTURER_NAME
+# Fully initializes iPlug2OOS, duplicates template, and commits.
+
+set -e  
 
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 PROJECT_NAME MANUFACTURER_NAME"
@@ -9,22 +12,14 @@ fi
 
 PROJECT_NAME=$1
 MANUFACTURER_NAME=$2
-
-echo "Initializing submodules..."
-git submodule update --init
-
-echo "Downloading iPlug2 SDKs..."
-cd iPlug2/Dependencies/IPlug/ || exit 1
-chmod +x download-iplug-sdks.sh
-./download-iplug-sdks.sh
-cd ../../..
+TEMPLATE_NAME="Rend"
 
 echo "Duplicating template project..."
-python3 duplicate.py Rend "$PROJECT_NAME" "$MANUFACTURER_NAME"
+python3 duplicate.py "$TEMPLATE_NAME" "$PROJECT_NAME" "$MANUFACTURER_NAME"
 
-echo "Cleaning up old templates..."
-rm -rf TestOOS
-rm -rf Rend
+echo "Cleaning up template folder..."
+rm -rf "$TEMPLATE_NAME"
+rm -rf "TestOOS"
 
 git add "$PROJECT_NAME"
 git commit -m "Created project $PROJECT_NAME for $MANUFACTURER_NAME"
