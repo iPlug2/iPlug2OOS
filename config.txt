@@ -1,4 +1,3 @@
-
 # CONFIG FILE FOR ./init.sh
 
 # simple project configuation file
@@ -11,6 +10,6 @@ MANUFACTURER_NAME = VOID
 
 # TODO: add more params to control build customization
 
-## REALTIME_DISPLAY = False
+# REALTIME_DISPLAY = False
 
 

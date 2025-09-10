@@ -20,5 +20,5 @@ cd ../../..
 echo "Downloading mkcert..."
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert
 chmod +x mkcert
-mv mkcert /usr/local/bin
+mv -f mkcert /usr/local/bin
 mkcert -install
