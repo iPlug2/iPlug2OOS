@@ -209,7 +209,7 @@
   breaklinks=true}
 
 \companyname{VOID AUDIO}
-\versionnumber{0.1.0.0}
+\versionnumber{0.2.0.0}
 
 \usepackage[math]{blindtext}
 \usepackage{mwe}
@@ -235,19 +235,67 @@
   \email{fromthevoid.audio@gmail.com}
 }
 
-\date{Version Date: 9/10/2025}
+\date{Version Date: 9/11/2025}
 
 \maketitle
 
 \begin{abstract}
-    Added quality of life features that make the build process a bit more foolproof.
-  \keywords{Foolproof}
+    Added AI agent with tasklist functionality.
+  \keywords{AI agent}
 \end{abstract}
+
+<<<<<<< HEAD
+\section{Version \texttt{v.0.1.0.0} Update List}
+\subsection{Key Features Added}
+Brief list of all the added functionality
+
+=======
+\section{Version \texttt{v.0.2.0.0} Update List}
+\subsection{Key Features Added}
+Brief list of all the added functionality
+\subsubsection{AI Agent}
+you can now configure AI agent tasks in \texttt{agent\_tasks/}. It is recommended you label them by the convention \texttt{Number\_Description} so you can control the order of the tasks. 
+The task configuration files follow the same outline of \texttt{PATH>QUERY>ASSOCIATED}:
+
+\begin{verbatim}
+
+PATH = "TemplateProject/TemplateProject.h"
+
+QUERY = """
+
+Given this header file, update it so that it also includes a controllable parameter for mixAmount and width
+
+"""
+
+ASSOCIATED = ""
+
+\end{verbatim}
+or with ASSOCIATED,
+\begin{verbatim}
+
+PATH = "TemplateProject/TemplateProject.cpp"
+
+QUERY = """
+
+Given this cpp file, update it so that it also includes the controllable parameter for mixAmount and width specified in 
+
+"""
+
+ASSOCIATED = "TemplateProject/TemplateProject.h"
+
+\end{verbatim}
+
+The files that it overwrites are stored at \texttt{agent\_backups/} and can all be restored using the command 
+\begin{lstlisting}
+./restore.py
+\end{lstlisting}
+This is because undo is inconsistent in my experience. It also does not delete the files in the \texttt{agent\_backups/} folder, so it gives undo two changes to work and allow you some sort of swapping mechanism if you iterate between AI agent changes.
 
 \section{Version \texttt{v.0.1.0.0} Update List}
 \subsection{Key Features Added}
 Brief list of all the added functionality
 
+>>>>>>> cloud-dev-trash-branch
 \subsubsection{\texttt{init.sh}}
 This script is for setting up the project once the Codespace is started. Edit the configuration file \texttt{config.txt} to specify the project:
 \begin{verbatim}
@@ -322,6 +370,13 @@ git push origin "$branch"
 ------------------------------
 \end{verbatim}
 \section{Expected Next Steps}
+<<<<<<< HEAD
+=======
+The ideas we have of where this project will be going.
+\subsection{AI Agent}
+More functionality to maybe include some kind of git-style merge mechanism or even have it run through its own branch and initiate merges so the inclusion is more controlled. Could even set up other agents to manage merges and whatnot. Many such ideas.
+\subsection{\texttt{init.sh} Script}
+>>>>>>> cloud-dev-trash-branch
 As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique logic, for example:
 \begin{verbatim}
 REQUIRES_REALTIME_DISPLAY = bool
