@@ -10,7 +10,7 @@
 # ---------------------------------------------------------------
 PATH = "TemplateProject/TemplateProject.h"
 
-QUERY = ""
+QUERY = """
 
 Given this header, update it so that it also includes a controllable parameter for mixAmount and width
 
