@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1143,37 +1143,22 @@ Overfull \hbox (64.79643pt too wide) in paragraph at lines 276--277
 
 
 ]
-No file README.bbl.
-[2
 
-] (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
-* soulpos - computing points - it may take a few seconds *
-\openout3 = `README.upb'.
+! LaTeX Error: There's no line here to end.
 
-
-(/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.upa))
-Package rerunfilecheck Info: File `README.out' has not changed.
-(rerunfilecheck)             Checksum: AB48A97B13878452479529FC5A82407A;119.
- ) 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.288 \newline
+               
 Here is how much of TeX's memory you used:
- 31798 strings out of 480080
- 607099 string characters out of 5891145
+ 31773 strings out of 480080
+ 606736 string characters out of 5891145
  1051351 words of memory out of 5000000
- 49020 multiletter control sequences out of 15000+600000
- 525053 words of font info for 190 fonts, out of 8000000 for 9000
+ 49014 multiletter control sequences out of 15000+600000
+ 524819 words of font info for 182 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
- 91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
-texlive/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}</usr/share/texmf/f
-onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
-pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
-ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 171578 bytes).
-PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 49189 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 91i,7n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+!  ==> Fatal error occurred, no output PDF file produced!
