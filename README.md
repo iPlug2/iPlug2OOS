@@ -13,3 +13,6 @@ and it will compile the file to VOID_Docs/README.pdf.
 
 ## Updating the README.tex
 Edit VOID_Docs/svjour/README.tex whenever changes are made and to update the file you will need to go use the setup script then the compile script works.
+
+# Original README.md from iPlug2OOS 
+The original README.md can be found here [Original README.md](OLD_README.md).
