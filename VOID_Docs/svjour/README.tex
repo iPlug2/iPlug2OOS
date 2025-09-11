@@ -287,33 +287,33 @@ I added my personal \texttt{git} commands for quality of life stuff. Updated \te
 
 \texttt{gitster}:
 \begin{verbatim}
-\hline
+------------------------------
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin master
-\hline
+------------------------------
 \end{verbatim}
 
 \texttt{gitmain}:
 \begin{verbatim}
-\hline
+------------------------------
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin main
-\hline
+------------------------------
 \end{verbatim}
 
 \texttt{gitbranch}:
 \begin{verbatim}
-\hline
+------------------------------
 read -p "Branch name: " branch
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin "$branch"
-\hline
+------------------------------
 \end{verbatim}
 \section{Expected Next Steps}
 As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique, for example:
