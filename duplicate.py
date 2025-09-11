@@ -40,7 +40,14 @@ VERSION = "0.95"
 FILTERED_FILE_EXTENSIONS = [".ico",".icns", ".pdf", ".png", ".zip", ".exe", ".wav", ".aif", ".data", ".wasm", "mkcert"]
 FILTERED_FILE_NAMES = [".DS_Store"]
 # files that we don't want to duplicate
-DONT_COPY = (".vs", "*.exe", "*.dmg", "*.pkg", "*.mpkg", "*.svn", "*.ncb", "*.suo", "*sdf", "ipch", "*.layout", "*.depend", ".DS_Store", "xcuserdata", "*.aps")
+DONT_COPY = (".vs", "*.exe", "*.dmg", "*.pkg", "*.mpkg", "*.svn", "*.ncb", "*.suo", "*sdf", "ipch", "*.layout", "*.depend", ".DS_Store", "xcuserdata", "*.aps", "setup.sh", 'undo_setup.sh', "init.sh")
+
+# _______________________ Added my custom scripts to the DONT_COPY list _____________________________________________________________________________________________^_____________^______________^
+
+# --------- Files to have duplicate ignore --------------------------------
+SKIP_FILES = ("setup.sh", "undo_setup.sh", "setup_container.sh", "init.sh", "config.txt")
+# -------------------------------------------------------------------------
+
 
 SUBFOLDERS_TO_SEARCH = [
 "projects",
@@ -130,6 +137,14 @@ def dirwalk(dir, searchproject, replaceproject, searchman, replaceman, oldroot= 
 
     if os.path.isfile(fullpath):
       filename = os.path.basename(fullpath)
+
+      ## --------- SKIP MY SCRIPTS -----------------------
+      if filename in SKIP_FILES:
+        print(f"Skipping file {filename}")
+        yield f, fullpath
+        continue
+      ## --------- SKIP MY SCRIPTS -----------------------
+
       newfilename = filename.replace(searchproject, replaceproject)
       base, extension = os.path.splitext(filename)
 

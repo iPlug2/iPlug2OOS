@@ -7,7 +7,7 @@ on:
       - "v*"
 
 env:
-  PROJECT_NAME: Rend
+  PROJECT_NAME: TemplateProject
 
 jobs:
   create_release:
