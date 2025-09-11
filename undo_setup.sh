@@ -7,7 +7,7 @@
 set -e
 
 CONFIG_FILE="config.txt"
-TEMPLATE_NAME="Rend"
+TEMPLATE_NAME="TemplateProject"
 
 # Check config file
 if [ ! -f "$CONFIG_FILE" ]; then
