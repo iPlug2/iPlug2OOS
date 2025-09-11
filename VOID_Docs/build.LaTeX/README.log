@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1156,11 +1156,11 @@ Package rerunfilecheck Info: File `README.out' has not changed.
 (rerunfilecheck)             Checksum: AB48A97B13878452479529FC5A82407A;119.
  ) 
 Here is how much of TeX's memory you used:
- 31794 strings out of 480080
- 607052 string characters out of 5891145
+ 31798 strings out of 480080
+ 607099 string characters out of 5891145
  1051351 words of memory out of 5000000
  49020 multiletter control sequences out of 15000+600000
- 524941 words of font info for 187 fonts, out of 8000000 for 9000
+ 525053 words of font info for 190 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
  91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
@@ -1170,7 +1170,7 @@ pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 171475 bytes).
+es, 171678 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  70 compressed objects within 1 object stream

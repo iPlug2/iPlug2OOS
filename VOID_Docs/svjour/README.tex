@@ -245,14 +245,14 @@
 \end{abstract}
 
 \section{Key Features Added}
-Brief list of all the added funcionality
+Brief list of all the added functionality
 
 \subsection{\texttt{init.sh}}
 This script is for setting up the project once the Codespace is started. Edit the configuration file \texttt{config.txt} to specify the project:
 \begin{verbatim}
-PROJECT_NAME = Rend_TEST
+PROJECT_NAME = MyPlugin
 
-MANUFACTURER_NAME = VOID
+MANUFACTURER_NAME = MyCompany
 \end{verbatim}
 with more specification to the build expected to come in later versions of this script.
 Then, activate the init script with:
@@ -264,7 +264,7 @@ Then, activate the init script with:
 Rebuilt the \texttt{setup.sh} script that used to exist in the repo. It now gets called from \texttt{init.sh} and is fed arguments from \texttt{config.txt}.
 
 \subsection{\protect\texttt{undo\_setup.sh}}
-Makes the process a little more foolproof. You can now undo the \texttt{init.sh} script and reset the project folders/files to \texttt{TemplateProject}. Reads correct \texttt{PROJECT\_NAME} from \texttt{config.txt}. The folders \texttt{.github/workflows} and \texttt{.vscode} are git restored so make sure you have the initial state you want to revert to as your previous push or else you will have to manually delete and copy back in the template files.
+Makes the process a little more foolproof. You can now undo the \texttt{init.sh} script and reset the project folders/files to \texttt{TemplateProject}. Reads correct \texttt{PROJECT\_NAME} from \texttt{config.txt}. The folders \texttt{.github/workflows} and \texttt{.vscode} are \texttt{git} restored so make sure you have the initial state you want to revert to as your previous push or else you will have to manually delete and copy back in the template files. If you have your tracking set up, then simply reset the project with:
 \begin{lstlisting}
 ./undo_setup.sh
 \end{lstlisting}
@@ -284,27 +284,36 @@ then you will be able to compile with
 Compiles \texttt{README.pdf} to \texttt{VOID\_Docs}.
 \subsection{Optimized \texttt{Git} Commands}
 I added my personal \texttt{git} commands for quality of life stuff. Updated \texttt{devcontainer.json} so they are available instantly when the workspace is built.
+
 \texttt{gitster}:
 \begin{verbatim}
+\hline
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin master
+\hline
 \end{verbatim}
+
 \texttt{gitmain}:
 \begin{verbatim}
+\hline
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin main
+\hline
 \end{verbatim}
+
 \texttt{gitbranch}:
 \begin{verbatim}
+\hline
 read -p "Branch name: " branch
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin "$branch"
+\hline
 \end{verbatim}
 \section{Expected Next Steps}
 As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique, for example:
