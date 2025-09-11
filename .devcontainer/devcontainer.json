@@ -21,7 +21,10 @@
             }
         }
     },
-    "postCreateCommand": "chmod +x scripts/* && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
+    "remoteEnv": {
+        "AI_API_KEY": "${{ secrets.AI_API_KEY }}"
+    },
+    "postCreateCommand": "chmod +x scripts/* agent.py && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
     "portsAttributes": {
         "8001": {
             "label": "emrun",
