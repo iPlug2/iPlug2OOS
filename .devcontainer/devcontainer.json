@@ -21,14 +21,10 @@
             }
         }
     },
-<<<<<<< HEAD
-    "postCreateCommand": "./setup_container.sh && chmod +x scripts/* && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
-=======
     "remoteEnv": {
         "AI_API_KEY": "${{ secrets.AI_API_KEY }}"
     },
-    "postCreateCommand": "chmod +x scripts/* agent.py restore.py && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
->>>>>>> cloud-dev-trash-branch
+    "postCreateCommand": "./setup_container.sh && chmod +x scripts/* agent.py restore.py && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
     "portsAttributes": {
         "8001": {
             "label": "emrun",
