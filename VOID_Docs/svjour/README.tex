@@ -209,7 +209,7 @@
   breaklinks=true}
 
 \companyname{VOID AUDIO}
-\versionnumber{0.1.0.0}
+\versionnumber{0.2.0.0}
 
 \usepackage[math]{blindtext}
 \usepackage{mwe}
@@ -235,24 +235,66 @@
   \email{fromthevoid.audio@gmail.com}
 }
 
-\date{Version Date: 9/10/2025}
+\date{Version Date: 9/11/2025}
 
 \maketitle
 
 \begin{abstract}
-    Added quality of life features that make the build process a bit more foolproof.
-  \keywords{Foolproof}
+    Added AI agent with tasklist functionality.
+  \keywords{AI agent}
 \end{abstract}
 
-\section{Key Features Added}
-Brief list of all the added funcionality
+\section{Version \texttt{v.0.2.0.0} Update List}
+\subsection{Key Features Added}
+Brief list of all the added functionality
+\subsubsection{AI Agent}
+you can now configure AI agent tasks in \texttt{agent\_tasks/}. It is recommended you label them by the convention \texttt{Number\_Description} so you can control the order of the tasks. 
+The task configuration files follow the same outline of \texttt{PATH>QUERY>ASSOCIATED}:
 
-\subsection{\texttt{init.sh}}
+\begin{verbatim}
+
+PATH = "TemplateProject/TemplateProject.h"
+
+QUERY = """
+
+Given this header file, update it so that it also includes a controllable parameter for mixAmount and width
+
+"""
+
+ASSOCIATED = ""
+
+\end{verbatim}
+or with ASSOCIATED,
+\begin{verbatim}
+
+PATH = "TemplateProject/TemplateProject.cpp"
+
+QUERY = """
+
+Given this cpp file, update it so that it also includes the controllable parameter for mixAmount and width specified in 
+
+"""
+
+ASSOCIATED = "TemplateProject/TemplateProject.h"
+
+\end{verbatim}
+
+The files that it overwrites are stored at \texttt{agent\_backups/} and can all be restored using the command 
+\begin{lstlisting}
+./restore.py
+\end{lstlisting}
+This is because undo is inconsistent in my experience. It also does not delete the files in the \texttt{agent\_backups/} folder, so it gives undo two changes to work and allow you some sort of swapping mechanism if you iterate between AI agent changes.
+
+\section{Version \texttt{v.0.1.0.0} Update List}
+\subsection{Key Features Added}
+Brief list of all the added functionality
+
+\subsubsection{\texttt{init.sh}}
 This script is for setting up the project once the Codespace is started. Edit the configuration file \texttt{config.txt} to specify the project:
 \begin{verbatim}
-PROJECT_NAME = Rend_TEST
+PROJECT_NAME = MyPlugin
 
-MANUFACTURER_NAME = VOID
+MANUFACTURER_NAME = MyCompany
 \end{verbatim}
 with more specification to the build expected to come in later versions of this script.
 Then, activate the init script with:
@@ -260,19 +302,18 @@ Then, activate the init script with:
 ./init.sh
 \end{lstlisting}
 
-\subsection{\texttt{setup.sh}} 
+\subsubsection{\texttt{setup.sh}} 
 Rebuilt the \texttt{setup.sh} script that used to exist in the repo. It now gets called from \texttt{init.sh} and is fed arguments from \texttt{config.txt}.
 
-\subsection{\protect\texttt{undo\_setup.sh}}
-Makes the process a little more foolproof. You can now undo the \texttt{init.sh} script and reset the project folders/files to \texttt{TemplateProject}. Reads correct \texttt{PROJECT\_NAME} from \texttt{config.txt}. The folders \texttt{.github/workflows} and \texttt{.vscode} are git restored so make sure you have the initial state you want to revert to as your previous push or else you will have to manually delete and copy back in the template files.
+\subsubsection{\protect\texttt{undo\_setup.sh}}
+Makes the process a little more foolproof. You can now undo the \texttt{init.sh} script and reset the project folders/files to \texttt{TemplateProject}. Reads correct \texttt{PROJECT\_NAME} from \texttt{config.txt}. The folders \texttt{.github/workflows} and \texttt{.vscode} are \texttt{git} restored so make sure you have the initial state you want to revert to as your previous push or else you will have to manually delete and copy back in the template files. If you have your tracking set up, then simply reset the project with:
 \begin{lstlisting}
 ./undo_setup.sh
 \end{lstlisting}
-\subsection{Updated \texttt{duplicate.py}}
+\subsubsection{Updated \texttt{duplicate.py}}
 The \texttt{duplicate.py} script was changing my custom scripts so I updated it to no longer touch them.
-\subsection{Added LaTeX functionality and Docs to the Codespace}
-Obviously, in order for people to take you seriously, you need to communicate your ideas on either a chalkboard or LaTeX. Therefore, I have added a LaTeX install to the \texttt{setup\_container.sh} so the documentation of changes made for VOID Audio can be documented properly. 
-\subsubsection{LaTeX Functionality}
+
+\subsubsection{Added LaTeX functionality and Docs to the Codespace}
 Now includes scripts to setup LaTeX to compile the README.tex file. Edits can be made at \texttt{VOID\_Docs/svjour/README.tex}. When you are ready to compile them, first use:
 \begin{lstlisting}
 ./VOID_Docs/setup_latex.sh
@@ -282,32 +323,51 @@ then you will be able to compile with
 ./VOID_Docs/tex.sh
 \end{lstlisting}
 Compiles \texttt{README.pdf} to \texttt{VOID\_Docs}.
-\subsection{Optimized \texttt{Git} Commands}
+\subsubsection{Optimized \texttt{Git} Commands}
 I added my personal \texttt{git} commands for quality of life stuff. Updated \texttt{devcontainer.json} so they are available instantly when the workspace is built.
+
+\vspace{1em}
+
 \texttt{gitster}:
 \begin{verbatim}
+------------------------------
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin master
+------------------------------
 \end{verbatim}
+
+\vspace{1em}
+
 \texttt{gitmain}:
 \begin{verbatim}
+------------------------------
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin main
+------------------------------
 \end{verbatim}
+
+\vspace{1em}
+
 \texttt{gitbranch}:
 \begin{verbatim}
+------------------------------
 read -p "Branch name: " branch
 read -p "Commit message: " msg
 git add .
 git commit -m "$msg"
 git push origin "$branch"
+------------------------------
 \end{verbatim}
 \section{Expected Next Steps}
-As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique, for example:
+The ideas we have of where this project will be going.
+\subsection{AI Agent}
+More functionality to maybe include some kind of git-style merge mechanism or even have it run through its own branch and initiate merges so the inclusion is more controlled. Could even set up other agents to manage merges and whatnot. Many such ideas.
+\subsection{\texttt{init.sh} Script}
+As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique logic, for example:
 \begin{verbatim}
 REQUIRES_REALTIME_DISPLAY = bool
 IS_INSTRUMENT = bool
@@ -323,7 +383,7 @@ etc...
 
 \phantom{.}
 
-Nothing at the moment.
+% Nothing at the moment.
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% README %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

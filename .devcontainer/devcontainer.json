@@ -24,7 +24,7 @@
     "remoteEnv": {
         "AI_API_KEY": "${{ secrets.AI_API_KEY }}"
     },
-    "postCreateCommand": "chmod +x scripts/* agent.py && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
+    "postCreateCommand": "chmod +x scripts/* agent.py restore.py && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
     "portsAttributes": {
         "8001": {
             "label": "emrun",

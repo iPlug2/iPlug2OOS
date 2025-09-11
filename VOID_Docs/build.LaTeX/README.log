@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.11)  11 SEP 2025 05:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -106,9 +106,9 @@ Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
 Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language11). Reported on input line 105.
+(babel)             (\language5). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language11). Reported on input line 108.
+(babel)             (\language5). Reported on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
@@ -930,7 +930,7 @@ Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
 
 (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
-Package babel Info: Making " an active character on input line 26.
+Package babel Info: Making " an active character on input line 25.
 )
 \openout1 = `README.aux'.
 
@@ -1116,25 +1116,45 @@ Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/7'
 (microtype)             (new value: 7.0pt) on input line 241.
 Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/5'
 (microtype)             (new value: 5.0pt) on input line 241.
-
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
-File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
-)
 LaTeX Font Info:    Trying to load font information for T1+clm2t on input line 
-250.
+247.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cfr-lm/t1clm2t.fd
 File: t1clm2t.fd 2010/05/25 Fontinst v1.933 font definitions for T1/clm2t.
 )
-Overfull \hbox (0.85667pt too wide) in paragraph at lines 251--252
-\T1/clm2/m/n/10 (-40) This script is for set-ting up the project once the Codes
-pace
+LaTeX Font Info:    Font shape `T1/clm2t/b/n' in size <10> not available
+(Font)              Font shape `T1/clm2t/bx/n' tried instead on input line 247.
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
+)
+Overfull \hbox (303.88359pt too wide) in paragraph at lines 266--266
+[]\T1/clm2t/m/n/10 (-40) Given this header file, update it so that it also incl
+udes a controllable parameter for mixAmount and width[] 
  []
 
 
-Overfull \hbox (64.79643pt too wide) in paragraph at lines 276--277
-\T1/clm2/m/n/10 (-40) README.tex file. Ed-its can be made at \T1/clm2t/m/n/10 (
--40) VOID_Docs/svjour/README.tex\T1/clm2/m/n/10 (-40) .
+Overfull \hbox (364.78334pt too wide) in paragraph at lines 280--280
+[]\T1/clm2t/m/n/10 (-40) Given this cpp file, update it so that it also include
+s the controllable parameter for mixAmount and width specified in[] 
+ []
+
+
+Overfull \hbox (3.37479pt too wide) in paragraph at lines 280--280
+[]\T1/clm2t/m/n/10 (-40) ASSOCIATED = "TemplateProject/TemplateProject.h"[] 
+ []
+
+
+Overfull \hbox (10.46437pt too wide) in paragraph at lines 282--283
+[]\T1/clm2/m/n/10 (-40) The files that it over-writes are stored at \T1/clm2t/m
+/n/10 (-40) agent_backups/
+ []
+
+
+Overfull \hbox (0.85667pt too wide) in paragraph at lines 293--294
+\T1/clm2/m/n/10 (-40) This script is for set-ting up the project once the Codes
+pace
  []
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
@@ -1143,24 +1163,27 @@ Overfull \hbox (64.79643pt too wide) in paragraph at lines 276--277
 
 
 ]
-No file README.bbl.
-[2
+Overfull \hbox (64.79643pt too wide) in paragraph at lines 317--318
+\T1/clm2/m/n/10 (-40) README.tex file. Ed-its can be made at \T1/clm2t/m/n/10 (
+-40) VOID_Docs/svjour/README.tex\T1/clm2/m/n/10 (-40) .
+ []
 
-] (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
+No file README.bbl.
+[2] (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
 * soulpos - computing points - it may take a few seconds *
 \openout3 = `README.upb'.
 
 
 (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.upa))
 Package rerunfilecheck Info: File `README.out' has not changed.
-(rerunfilecheck)             Checksum: AB48A97B13878452479529FC5A82407A;119.
+(rerunfilecheck)             Checksum: A232548DFB69FE78DFE15CC5B31E54A5;206.
  ) 
 Here is how much of TeX's memory you used:
- 31794 strings out of 480080
- 607052 string characters out of 5891145
- 1051351 words of memory out of 5000000
- 49020 multiletter control sequences out of 15000+600000
- 524941 words of font info for 187 fonts, out of 8000000 for 9000
+ 31841 strings out of 480080
+ 607698 string characters out of 5891145
+ 1051350 words of memory out of 5000000
+ 49026 multiletter control sequences out of 15000+600000
+ 526933 words of font info for 208 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
  91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
@@ -1168,12 +1191,13 @@ texlive/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}</usr/share/texmf/f
 onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 171475 bytes).
+es, 214659 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 49189 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 118 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
+ 27 named destinations out of 1000 (max. 500000)
+ 57389 words of extra memory for PDF output out of 61914 (max. 10000000)
 
