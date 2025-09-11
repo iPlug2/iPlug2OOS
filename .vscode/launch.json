@@ -18,12 +18,12 @@
         //     "preLaunchTask": "build VST3 Debug",
         // },
         // {
-        //     "name": "(lldb) Launch Reaper AUv2",
+        //     "name": "(lldb) Launch Reaper AUv3",
         //     "type": "lldb",
         //     "request": "launch",
         //     "program": "/Applications/REAPER.app",
         //     "args": ["${workspaceFolder}/TemplateProject/TemplateProject.RPP"],
-        //     "preLaunchTask": "build AUv2 Debug",
+        //     "preLaunchTask": "build AUv3 Debug",
         // },
         {
             "name": "(lldb) Launch APP",

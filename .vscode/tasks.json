@@ -2,37 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build APP Debug",
-            "type": "shell",
-            "command": "xcodebuild",
-            "args": [
-                "-project",
-                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
-                "-target",
-                "APP",
-                "-configuration",
-                "Debug",
-                "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
-            ],
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
-            "label": "build VST2 Debug",
-            "type": "shell",
-            "group": "build",
-            "command": "xcodebuild",
-            "args": [
-                "-project",
-                "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
-                "-target",
-                "VST2",
-                "-configuration",
-                "Debug",
-                "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
-            ]
-        },
-        {
             "label": "build VST3 Debug",
             "type": "shell",
             "command": "xcodebuild",
@@ -48,14 +17,14 @@
             "group": "build"
         },
         {
-            "label": "build AUv2 Debug",
+            "label": "build AUv3 Debug",
             "type": "shell",
             "command": "xcodebuild",
             "args": [
                 "-project",
                 "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
                 "-target",
-                "AU",
+                "AUv3",
                 "-configuration",
                 "Debug",
                 "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
@@ -65,12 +34,26 @@
         {
             "label": "build WAM",
             "type": "shell",
-            "command": "${workspaceFolder}/TemplateProject/scripts/makedist-web.sh container",
-            "args": [],
+            "command": "${workspaceFolder}/TemplateProject/scripts/makedist-web.sh",
+            "args": ["container"],
             "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+                "kind": "build"
+            }
         }
+        // {
+        //     "label": "build AAX Debug",
+        //     "type": "shell",
+        //     "command": "xcodebuild",
+        //     "args": [
+        //         "-project",
+        //         "${workspaceFolder}/TemplateProject/projects/TemplateProject-macOS.xcodeproj",
+        //         "-target",
+        //         "AAX",
+        //         "-configuration",
+        //         "Debug",
+        //         "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
+        //     ],
+        //     "group": "build"
+        // }
     ]
 }
