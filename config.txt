@@ -4,7 +4,7 @@
 # Set args for init.sh -> setup.sh 
 # undo_setup.sh to reset back to initial state
 
-PROJECT_NAME = Rend
+PROJECT_NAME = Rend_TEST
 
 MANUFACTURER_NAME = VOID
 
