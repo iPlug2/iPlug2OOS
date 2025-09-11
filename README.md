@@ -1,8 +1,8 @@
 # VOID Audio added functionality contained in VOID_Docs
 The README.pdf can be found at [README.pdf](VOID_Docs/README.pdf).
 Why use a large LaTeX svjour compilation? Because information presented in LaTeX, specifically Springer format, is inherently more correct.
-In order to make edits to the README.pdf yourself, you have to execute the following commands:
-## setup_latex.sh
+In order to make edits to the README.pdf yourself, you have to compile yourself.
+## Using LaTeX
 From root, call 
 ```bash
 ./VOID_Docs/setup_latex.sh
