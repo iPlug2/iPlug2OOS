@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.11)  11 SEP 2025 06:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.11)  11 SEP 2025 06:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1129,24 +1129,18 @@ LaTeX Font Info:    Font shape `T1/clm2t/b/n' in size <10> not available
 (/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 )
-Overfull \hbox (59.86458pt too wide) in paragraph at lines 274--274
-[]\T1/clm2t/m/n/10 (-40) controllable parameter for mixAmount and width specifi
-ed in[] 
- []
-
-
-Overfull \hbox (3.37479pt too wide) in paragraph at lines 274--274
+Overfull \hbox (3.37479pt too wide) in paragraph at lines 275--275
 []\T1/clm2t/m/n/10 (-40) ASSOCIATED = "TemplateProject/TemplateProject.h"[] 
  []
 
 
-Overfull \hbox (10.46437pt too wide) in paragraph at lines 276--277
+Overfull \hbox (10.46437pt too wide) in paragraph at lines 277--278
 []\T1/clm2/m/n/10 (-40) The files that it over-writes are stored at \T1/clm2t/m
 /n/10 (-40) agent_backups/
  []
 
 
-Overfull \hbox (0.85667pt too wide) in paragraph at lines 287--288
+Overfull \hbox (0.85667pt too wide) in paragraph at lines 288--289
 \T1/clm2/m/n/10 (-40) This script is for set-ting up the project once the Codes
 pace
  []
@@ -1157,11 +1151,6 @@ pace
 
 
 ]
-Overfull \hbox (64.79643pt too wide) in paragraph at lines 311--312
-\T1/clm2/m/n/10 (-40) README.tex file. Ed-its can be made at \T1/clm2t/m/n/10 (
--40) VOID_Docs/svjour/README.tex\T1/clm2/m/n/10 (-40) .
- []
-
 No file README.bbl.
 [2] (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
 * soulpos - computing points - it may take a few seconds *
@@ -1188,7 +1177,7 @@ ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 214448 bytes).
+es, 214640 bytes).
 PDF statistics:
  118 PDF objects out of 1000 (max. 8388607)
  87 compressed objects within 1 object stream

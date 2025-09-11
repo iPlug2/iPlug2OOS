@@ -268,7 +268,8 @@ PATH = "TemplateProject/TemplateProject.cpp"
 QUERY = """
 Given this cpp file, update it so 
 that it also includes the 
-controllable parameter for mixAmount and width specified in 
+controllable parameter for mixAmount 
+and width specified in 
 """
 ASSOCIATED = "TemplateProject/TemplateProject.h"
 \end{verbatim}
@@ -308,7 +309,7 @@ Makes the process a little more foolproof. You can now undo the \texttt{init.sh}
 The \texttt{duplicate.py} script was changing my custom scripts so I updated it to no longer touch them.
 
 \subsubsection{Added LaTeX functionality and Docs to the Codespace}
-Now includes scripts to setup LaTeX to compile the README.tex file. Edits can be made at \texttt{VOID\_Docs/svjour/README.tex}. When you are ready to compile them, first use:
+Now includes scripts to setup LaTeX to compile the README.tex file. Edits can be made to the PDF by editing the file at \texttt{VOID\_Docs/svjour/README.tex} and compiling. When you are ready to compile them, first use:
 \begin{lstlisting}
 ./VOID_Docs/setup_latex.sh
 \end{lstlisting}
