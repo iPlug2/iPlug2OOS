@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 22:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 22:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -930,7 +930,7 @@ Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
 
 (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
-Package babel Info: Making " an active character on input line 25.
+Package babel Info: Making " an active character on input line 26.
 )
 \openout1 = `README.aux'.
 
@@ -1155,11 +1155,11 @@ Package rerunfilecheck Info: File `README.out' has not changed.
 Here is how much of TeX's memory you used:
  31833 strings out of 480080
  607588 string characters out of 5891145
- 1053348 words of memory out of 5000000
+ 1052348 words of memory out of 5000000
  49024 multiletter control sequences out of 15000+600000
  527103 words of font info for 208 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
- 91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 91i,8n,91p,1170b,1035s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
 texlive/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}</usr/share/texmf/f
 onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
@@ -1168,7 +1168,7 @@ ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 211536 bytes).
+es, 211590 bytes).
 PDF statistics:
  105 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream
