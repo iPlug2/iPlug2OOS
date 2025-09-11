@@ -28,11 +28,15 @@ if [ -d "$PROJECT_NAME" ]; then
 else
     echo "Project folder '$PROJECT_NAME' does not exist. Skipping removal."
 fi
-
+# Make sure to revert the .folders
 if [ -d "$TEMPLATE_NAME" ]; then
+    git restore .vscode
+    git restore .github/workflows
     echo "Template folder '$TEMPLATE_NAME' exists. Resetting to git version..."
     git restore "$TEMPLATE_NAME" || echo "Warning: Could not restore $TEMPLATE_NAME from git."
 else
+    git restore .vscode
+    git restore .github/workflows
     echo "Template folder '$TEMPLATE_NAME' missing. Restoring from git..."
     git restore "$TEMPLATE_NAME" || echo "Warning: Could not restore $TEMPLATE_NAME from git."
 fi
