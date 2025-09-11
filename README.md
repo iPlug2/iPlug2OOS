@@ -1,9 +1,20 @@
-![Build WAM](https://github.com/iPlug2/iPlug2OOS/workflows/Build%20WAM/badge.svg)
+# VOID Audio added functionality contained in VOID_Docs
+The README.pdf can be found at [README.pdf](VOID_Docs/README.pdf).
+Why use a large LaTeX svjour compilation? Because information presented in LaTeX, specifically Springer format, is inherently more correct.
+In order to make edits to the README.pdf yourself, you have to compile yourself. Make the updates you want at [README.tex](VOID_Docs/svjour/README.tex), then compile.
+## Using LaTeX
+From root, call 
+```bash
+./VOID_Docs/setup_latex.sh
+```
+to setup the LaTeX compiler for the document. Once it is completed, you can run 
+```bash 
+./VOID_Docs/tex.sh
+```
+and it will compile the file to VOID_Docs/README.pdf.
 
-This is the iPlug2 template project and an example of how to set up an iPlug2 project to build "out of source", which is desirable when you need to keep all your project dependencies synchronised with version control and build on Cloud CI/CD. It set up for "containerized development" using [VSCode](https://code.visualstudio.com/docs/devcontainers/containers) and [github codespaces](https://github.com/features/codespaces).
+## Updating the README.tex
+Edit VOID_Docs/svjour/README.tex whenever changes are made and to update the file you will need to go use the setup script then the compile script works.
 
-Instead of using the common-mac.xcconfig and common-win.xcconfig in the iPlug2 folder, it uses copies of them at the top level of the iPlug2OOS repo. This means the iPlug2 submodule itself does not have to be modified.
-
-https://github.com/iPlug2/iPlug2/wiki/Out-of-source-builds
-
-Containerized development is documented [here](https://docs.google.com/document/d/e/2PACX-1vT6lYZ3vtYKWAty2g6DL994IO0_pfyGctDdKfPxF6MZwOgFWENfLuVtBW9J0-KzLsfPSKKN055UnAmj/pub)
+# Original README.md from iPlug2OOS 
+The original README.md can be found here [Original README.md](OLD_README.md).
