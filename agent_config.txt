@@ -8,7 +8,7 @@
 #        Always use it in this order so PATH is said before 
 #        QUERY then ASSOCIATED after
 # ---------------------------------------------------------------
-PATH = ""
+PATH = "TemplateProject/TemplateProject.h"
 
 QUERY = ""
 
