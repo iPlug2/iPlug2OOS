@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 22:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 22:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1156,13 +1156,13 @@ No file README.bbl.
 
 (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.upa))
 Package rerunfilecheck Info: File `README.out' has not changed.
-(rerunfilecheck)             Checksum: 64741B5C6216F3D129541A1857F70A36;73.
+(rerunfilecheck)             Checksum: 0514E19BB20B672FC61D7664E3D6621E;133.
  ) 
 Here is how much of TeX's memory you used:
- 31813 strings out of 480080
- 607364 string characters out of 5891145
- 1052348 words of memory out of 5000000
- 49024 multiletter control sequences out of 15000+600000
+ 31814 strings out of 480080
+ 607376 string characters out of 5891145
+ 1052349 words of memory out of 5000000
+ 49025 multiletter control sequences out of 15000+600000
  526475 words of font info for 194 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
  91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1174,10 +1174,10 @@ ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 210588 bytes).
+es, 210938 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 107 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  20 named destinations out of 1000 (max. 500000)
- 57373 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 57381 words of extra memory for PDF output out of 61914 (max. 10000000)
 
