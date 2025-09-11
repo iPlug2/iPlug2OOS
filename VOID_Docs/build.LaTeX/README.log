@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 20:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -19,13 +19,10 @@ Applying: [2015/01/01] Make \] robust on input line 74.
 LaTeX Info: Redefining \] on input line 75.
 Already applied: [0000/00/00] Make \] robust on input line 83.
 )
-
-Class Springer-SVJour3 Warning: Specified option or subpackage "english" not fo
-und - on input line 127.
-
 Class Springer-SVJour3 Info: extra/valid Springer sub-package (-> *.clo) 
 (Springer-SVJour3)           not found in option list of \documentclass
 (Springer-SVJour3)           - autoactivating "global" style.
+
 (/workspaces/iPlug2OOS/VOID_Docs/svjour/svglov3.clo
 File: svglov3.clo 2009/12/18 v3.2 style option for standardised journals
 
@@ -94,6 +91,25 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count277
 )
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2022/01/26 3.70 The Babel package
+\babel@savecnt=\count278
+\U@D=\dimen150
+\l@unhyphenated=\language14
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count279
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language11). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language11). Reported on input line 108.
+))
 (/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
 )
@@ -106,17 +122,17 @@ Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count278
+\etb@tempcnta=\count280
 )
 \MT@toks=\toks19
-\MT@count=\count279
+\MT@count=\count281
 \MT@tempbox=\box53
 LaTeX Info: Redefining \leftprotrusion on input line 1010.
 LaTeX Info: Redefining \rightprotrusion on input line 1018.
 LaTeX Info: Redefining \textls on input line 1173.
-\MT@outer@kern=\dimen150
+\MT@outer@kern=\dimen151
 LaTeX Info: Redefining \textmicrotypecontext on input line 1759.
-\MT@listname@count=\count280
+\MT@listname@count=\count282
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2021/12/10 v3.0b Definitions specific to pdftex (RS)
@@ -129,34 +145,6 @@ Package microtype Info: Loading configuration file microtype.cfg.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2021/12/10 v3.0b microtype main configuration file (RS)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2022/01/26 3.70 The Babel package
-\babel@savecnt=\count281
-\U@D=\dimen151
-\l@unhyphenated=\language14
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@readstream=\read2
-\bbl@dirlevel=\count282
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngerman.ldf
-Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
-phy)
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngermanb.ldf
-Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthogr
-aphy)
-Package babel Info: Making " an active character on input line 122.
-))
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2017/06/06 v3.3r English support from the babel system
-Package babel Info: Hyphen rules for 'canadian' set to \l@english
-(babel)             (\language0). Reported on input line 102.
-Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language11). Reported on input line 105.
-Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language11). Reported on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
@@ -388,20 +376,6 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 ))
 Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
 )
-
-! LaTeX3 Error: Key 'siunitx/group-four-digits' accepts only a fixed set of
-(LaTeX3)        choices.
-
-For immediate help type H <return>.
- ...                                              
-                                                  
-l.7394   }
-          
-
-The key 'siunitx/group-four-digits' only accepts predefined values, and '' is
-not one of these.
-
-
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \col@sep=\dimen173
@@ -877,27 +851,329 @@ Package: supertabular 2020/02/02 v4.1g the supertabular environment
 Package: glossary-tree 2021/11/01 v4.49 (NLCT)
 \glstreeindent=\skip88
 ))
+(/workspaces/iPlug2OOS/VOID_Docs/svjour/abbrevations.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+Package cleveref Info: `listings' support loaded on input line 3131.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+25.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7836.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+52.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7852.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\symMnSyC=\mathgroup4
+Package hyperref Info: Option `colorlinks' set `true' on input line 209.
+Package hyperref Info: Option `breaklinks' set `true' on input line 209.
 
-! LaTeX Error: File `abbrevations.tex' not found.
+(/usr/share/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+\c@blindtext=\count374
+\c@Blindtext=\count375
+\c@blind@countparstart=\count376
+\blind@countxx=\count377
+\blindtext@numBlindtext=\count378
+\blind@countyy=\count379
+\c@blindlist=\count380
+\c@blindlistlevel=\count381
+\c@blindlist@level=\count382
+\blind@listitem=\count383
+\c@blind@listcount=\count384
+\c@blind@levelcount=\count385
+\blind@mathformula=\count386
+\blind@Mathformula=\count387
+\c@blind@randomcount=\count388
+\c@blind@randommax=\count389
+\c@blind@pangramcount=\count390
+\c@blind@pangrammax=\count391
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mwe/mwe.sty
+Package: mwe 2018/03/30 v0.5 Package to support minimal working examples (MWE)
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: tex)
+(/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count392
+\l__lipsum_a_int=\count393
+\l__lipsum_b_int=\count394
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.220 \input{abbrevations}
-                          ^^M
-*** (cannot \read from terminal in nonstop modes)
+(/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
- 
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup5
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
+
+(/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
+Package babel Info: Making " an active character on input line 26.
+)
+\openout1 = `README.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/lmm/m/it on input line 226.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+26.
+
+(/usr/share/texmf/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for OMS/lmsy/m/n on input line 226.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+226.
+
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for OT1/lmr/m/n on input line 226.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
+26.
+
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 226.
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 226.
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for OMX/lmex/m/n on input line 226.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+226.
+
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 226.
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 226.
+LaTeX Font Info:    ... okay on input line 226.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 226.
+LaTeX Font Info:    ... okay on input line 226.
+
+Unknown journal: specify \journalname{<name of your journal>} in preambel
+
+Package babel Info: Making " an active character on input line 226.
+LaTeX Info: Redefining \microtypecontext on input line 226.
+Package microtype Info: Applying patch `item' on input line 226.
+Package microtype Info: Applying patch `toc' on input line 226.
+Package microtype Info: Applying patch `eqnum' on input line 226.
+Package microtype Info: Applying patch `footnote' on input line 226.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using protrusion set `alltext-nott'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 40, step: 1, non-selected.
+Package microtype Info: Using expansion set `alltext'.
+LaTeX Info: Redefining \showhyphens on input line 226.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count395
+\scratchdimen=\dimen261
+\scratchbox=\box76
+\nofMPsegments=\count396
+\nofMParguments=\count397
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count398
+\MPscratchDim=\dimen262
+\MPnumerator=\count399
+\makeMPintoPDFobject=\count400
+\everyMPtoPDFconversion=\toks43
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+(/usr/share/texlive/texmf-dist/tex/latex/translations/translations-basic-dictio
+nary-english.trsl
+File: translations-basic-dictionary-english.trsl (english translation file `tra
+nslations-basic-dictionary')
+)
+Package translations Info: loading dictionary `translations-basic-dictionary' f
+or `english'. on input line 226.
+\c@lstlisting=\count401
+Package soulpos Info: Loading soulutf8 on input line 226.
+
+(/usr/share/texlive/texmf-dist/tex/generic/soulutf8/soulutf8.sty
+Package: soulutf8 2019/12/15 v1.2 Permit use of UTF-8 characters in soul (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks44
+\SOUL@lasttoken=\toks45
+\SOUL@cmds=\toks46
+\SOUL@buffer=\toks47
+\SOUL@token=\toks48
+\SOUL@spaceskip=\skip89
+\SOUL@ttwidth=\dimen263
+\SOUL@uldp=\dimen264
+\SOUL@ulht=\dimen265
+LaTeX Info: Redefining \textul on input line 799.
+))
+Package hyperref Info: Link coloring ON on input line 226.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count402
+)
+LaTeX Info: Redefining \ref on input line 226.
+LaTeX Info: Redefining \pageref on input line 226.
+LaTeX Info: Redefining \nameref on input line 226.
+
+(/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.out)
+(/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.out)
+\@outlinefile=\write4
+\openout4 = `README.out'.
+
+LaTeX Font Info:    Font shape `T1/clm2/b/n' in size <10> not available
+(Font)              Font shape `T1/clm2/bx/n' tried instead on input line 241.
+LaTeX Font Info:    Font shape `T1/clm2/b/n' in size <16> not available
+(Font)              Font shape `T1/clm2/bx/n' tried instead on input line 241.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 241.
+<<ot1.cmap>><<oml.cmap>><<oms.cmap>>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8.5> on input line 241.
+<<omx.cmap>>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5.94997> on input line 241.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <4.25> on input line 241.
+Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/8.5'
+(microtype)             (new value: 8.5pt) on input line 241.
+Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/5.9499
+7'
+(microtype)             (new value: 5.94997pt) on input line 241.
+Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/4.25'
+(microtype)             (new value: 4.25pt) on input line 241.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 241
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 241
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 241.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 241.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 241.
+Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/10'
+(microtype)             (new value: 10.0pt) on input line 241.
+Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/7'
+(microtype)             (new value: 7.0pt) on input line 241.
+Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/5'
+(microtype)             (new value: 5.0pt) on input line 241.
+
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
+)
+LaTeX Font Info:    Trying to load font information for T1+clm2t on input line 
+250.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cfr-lm/t1clm2t.fd
+File: t1clm2t.fd 2010/05/25 Fontinst v1.933 font definitions for T1/clm2t.
+)
+Overfull \hbox (0.85667pt too wide) in paragraph at lines 251--252
+\T1/clm2/m/n/10 (-40) This script is for set-ting up the project once the Codes
+pace
+ []
+
+
+Overfull \hbox (64.79643pt too wide) in paragraph at lines 276--277
+\T1/clm2/m/n/10 (-40) README.tex file. Ed-its can be made at \T1/clm2t/m/n/10 (
+-40) VOID_Docs/svjour/README.tex\T1/clm2/m/n/10 (-40) .
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+\openout3 = `README.upa'.
+
+
+]
+No file README.bbl.
+[2
+
+] (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.aux
+* soulpos - computing points - it may take a few seconds *
+\openout3 = `README.upb'.
+
+
+(/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.upa))
+Package rerunfilecheck Info: File `README.out' has not changed.
+(rerunfilecheck)             Checksum: AB48A97B13878452479529FC5A82407A;119.
+ ) 
 Here is how much of TeX's memory you used:
- 26676 strings out of 480080
- 504087 string characters out of 5891145
- 857946 words of memory out of 5000000
- 44293 multiletter control sequences out of 15000+600000
- 473186 words of font info for 30 fonts, out of 8000000 for 9000
- 81 hyphenation exceptions out of 8191
- 91i,0n,91p,1170b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 31794 strings out of 480080
+ 607052 string characters out of 5891145
+ 1051351 words of memory out of 5000000
+ 49020 multiletter control sequences out of 15000+600000
+ 524941 words of font info for 187 fonts, out of 8000000 for 9000
+ 86 hyphenation exceptions out of 8191
+ 91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
+texlive/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}</usr/share/texmf/f
+onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
+es, 171370 bytes).
+PDF statistics:
+ 97 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
+ 49189 words of extra memory for PDF output out of 51595 (max. 10000000)
+

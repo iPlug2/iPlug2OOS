@@ -1,0 +1,8 @@
+#!/bin/bash
+# gitbranch - commit & push to a user-specified branch
+
+read -p "Branch name: " branch
+read -p "Commit message: " msg
+git add .
+git commit -m "$msg"
+git push origin "$branch"

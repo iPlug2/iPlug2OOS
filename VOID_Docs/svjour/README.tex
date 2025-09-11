@@ -13,7 +13,11 @@
 %\documentclass[natbib,english]{svjour3}                 % onecolumn (standard format)
 %\documentclass[smallcondensed,natbib,english]{svjour3}  % onecolumn (ditto)
 %\documentclass[smallextended,natbib,english]{svjour3    % onecolumn (second format)
-\documentclass[twocolumn,natbib,english]{svjour3}        % twocolumn
+\documentclass[twocolumn,natbib]{svjour3}        % twocolumn
+\usepackage[english]{babel}
+
+% Springer requires a journal name
+\companyname{VOID Audio}
 
 % Fix for microtype
 % Source: https://tex.stackexchange.com/a/24875/9075
@@ -85,24 +89,14 @@
 \usepackage{cmap}
 
 %enable margin kerning
-% microtype has to be loaded early.
-% otherwise, following error appears
-%
-% Extra \else.
-% \XKV@wh@list ...r \expandafter \XKV@wh@list \else
-%                                                  \def #3{#6}\expandafter \e...
 \RequirePackage[%
   shrink=40,
   final,%
   expansion=alltext,%
   protrusion=alltext-nott]{microtype}%
-% \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \DisableLigatures{encoding = T1, family = tt* }
 
 % Set English as language and allow to write hyphenated"=words
-%
-\usepackage[ngerman,main=english]{babel}
-%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
 \addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
 
 \usepackage{ifluatex}
@@ -112,15 +106,10 @@
 \fi
 
 \ifluatex
-  % use the better (sharper, ...) Latin Modern variant of Computer Modern
   \setmainfont{Latin Modern Roman}
   \setsansfont{Latin Modern Sans}
-  \setmonofont{Latin Modern Mono} % "variable=false"
-  %\setmonofont{Latin Modern Mono Prop} % "variable=true"
+  \setmonofont{Latin Modern Mono}
 \else
-  % better font, similar to the default springer font
-  % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
-  % This obsoletes the backage "fix-cm"
   \usepackage[%
     rm={oldstyle=false,proportional=true},%
     sf={oldstyle=false,proportional=true},%
@@ -131,57 +120,29 @@
 
 \ifluatex
 \else
-  % fontenc and inputenc are not required when using lualatex
   \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc} %support umlauts in the input
+  \usepackage[utf8]{inputenc}
 \fi
 
-\smartqed  % flush right qed marks, e.g. at end of proof
+\smartqed  % flush right qed marks
 
 \usepackage{graphicx}
-
-% backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
 \usepackage{upquote}
-
-% Nicer tables (\toprule, \midrule, \bottomrule - see example)
 \usepackage{booktabs}
-
-%extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
-
-% For easy quotations: \enquote{text}
-% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
 \usepackage{csquotes}
-
-% For even easier quotations: \qq{text}
 \usepackage{textcmds}
-
-%tweak \url{...}
 \usepackage{url}
-%\urlstyle{same}
-%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
 \makeatletter
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \makeatother
-%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
-%DO NOT ACTIVATE -> prevents line breaks
-%\makeatletter
-%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
-%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
-%\makeatother
 
-% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
-% Slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
-%\usepackage{diagbox}
-
-\usepackage[mode=text,group-four-digits,group-separator={,}]{siunitx}
+% siunitx updated config (fixes group-four-digits error)
+\usepackage[mode=text,group-digits=integer,group-separator={,}]{siunitx}
 \sisetup{locale=US}
 \newcommand{\numt}[1]{\num{#1}}
 
-% Required for package pdfcomment later
 \usepackage{xcolor}
-
-% For listings
 \usepackage{listings}
 \lstset{%
   basicstyle=\ttfamily,%
@@ -190,54 +151,39 @@
   xleftmargin=0.5cm,%
   captionpos=b}%
 \renewcommand{\lstlistingname}{List.}
-% Fix counter as described at https://tex.stackexchange.com/a/28334/9075
 \usepackage{chngcntr}
 \AtBeginDocument{\counterwithout{lstlisting}{section}}
 
-% Enable nice comments
 \usepackage{pdfcomment}
-%
 \newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
 \newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
-%
-% Compatibality with packages todo, easy-todo, todonotes
 \newcommand{\todo}[1]{\commentatside{#1}}
-% Compatiblity with package fixmetodonotes
 \newcommand{\TODO}[1]{\commentatside{#1}}
 
 \newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI: \detokenize{#1}}}
 
-% Put footnotes below floats
-% Source: https://tex.stackexchange.com/a/32993/9075
 \usepackage{stfloats}
 \fnbelowfloat
 
-% Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
 
 \usepackage[acronym,indexonlyfirst,nomain]{glossaries}
 \glsdisablehyper
 \input{abbrevations}
 
-%enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
 \usepackage[capitalise,nameinlink]{cleveref}
-%Nice formats for \cref
 \crefname{section}{Sect.}{Sect.}
 \Crefname{section}{Section}{Sections}
 \crefname{listing}{\lstlistingname}{\lstlistingname}
 \Crefname{listing}{Listing}{Listings}
 
-%Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
 \newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
 \newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
 
 \usepackage{xspace}
-%\newcommand{\eg}{e.\,g.\xspace}
-%\newcommand{\ie}{i.\,e.\xspace}
 \newcommand{\eg}{e.\,g.,\ }
 \newcommand{\ie}{i.\,e.,\ }
 
-%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
 \DeclareFontShape{U}{MnSymbolC}{m}{n}{
@@ -251,16 +197,11 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
-
-% correct e.g. and e.g.,
 \renewcommand{\eg}{e.\,g.,\xspace}
 \newcommand{\egc}{e.\,g.,\xspace}
 
-
-% correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor data-bases Berm-bach}
 
-% Enable hyperref without colors and without bookmarks
 \hypersetup{hidelinks,
   colorlinks=true,
   allcolors=black,
@@ -270,11 +211,8 @@
 \companyname{VOID AUDIO}
 \versionnumber{0.1.0.0}
 
-
-% For demonstration purposes only
 \usepackage[math]{blindtext}
 \usepackage{mwe}
-
 \usepackage{graphicx} 
 \usepackage{amsmath}  
 \usepackage{amssymb}   
@@ -282,16 +220,14 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% README %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \title{iPlug2OOS VOID Audio Fork}
-%\subtitle{Do you have a subtitle?\\ If so, write it here}
-
-%\titlerunning{Short form of title}        % if too long for running head
 
 \author{Derek Wingard}
-
-%\authorrunning{Short form of author list} % if too long for running head
 
 \institute{
   D.~Wingard\at
@@ -299,10 +235,7 @@
   \email{fromthevoid.audio@gmail.com}
 }
 
-
-\date{Verson Date: 9/10/2025}
-% The correct dates will be entered by the editor
-
+\date{Version Date: 9/10/2025}
 
 \maketitle
 
@@ -313,6 +246,7 @@
 
 \section{Key Features Added}
 Brief list of all the added funcionality
+
 \subsection{\texttt{init.sh}}
 This script is for setting up the project once the Codespace is started. Edit the configuration file \texttt{config.txt} to specify the project:
 \begin{verbatim}
@@ -325,6 +259,7 @@ Then, activate the init script with:
 \begin{lstlisting}
 ./init.sh
 \end{lstlisting}
+
 \subsection{\texttt{setup.sh}} 
 Rebuilt the \texttt{setup.sh} script that used to exist in the repo. It now gets called from \texttt{init.sh} and is fed arguments from \texttt{config.txt}.
 
@@ -337,12 +272,40 @@ Makes the process a little more foolproof. You can now undo the \texttt{init.sh}
 The \texttt{duplicate.py} script was changing my custom scripts so I updated it to no longer touch them.
 \subsection{Added LaTeX functionality and Docs to the Codespace}
 Obviously, in order for people to take you seriously, you need to communicate your ideas on either a chalkboard or LaTeX. Therefore, I have added a LaTeX install to the \texttt{setup\_container.sh} so the documentation of changes made for VOID Audio can be documented properly. 
-\subsubsection{LaTeX Compile Script \texttt{tex.sh}}
-Compiles the docs to \texttt{VOID\_Docs} but script must be called from directory it lives in, or typically from root via 
+\subsubsection{LaTeX Functionality}
+Now includes scripts to setup LaTeX to compile the README.tex file. Edits can be made at \texttt{VOID\_Docs/svjour/README.tex}. When you are ready to compile them, first use:
+\begin{lstlisting}
+./VOID_Docs/setup_latex.sh
+\end{lstlisting}
+then you will be able to compile with
 \begin{lstlisting}
 ./VOID_Docs/tex.sh
 \end{lstlisting}
-
+Compiles \texttt{README.pdf} to \texttt{VOID\_Docs}.
+\subsection{Optimized \texttt{Git} Commands}
+I added my personal \texttt{git} commands for quality of life stuff. 
+\texttt{gitster}:
+\begin{verbatim}
+read -p "Commit message: " msg
+git add .
+git commit -m "$msg"
+git push origin master
+\end{verbatim}
+\texttt{gitmain}:
+\begin{verbatim}
+read -p "Commit message: " msg
+git add .
+git commit -m "$msg"
+git push origin main
+\end{verbatim}
+\texttt{gitbranch}:
+\begin{verbatim}
+read -p "Branch name: " branch
+read -p "Commit message: " msg
+git add .
+git commit -m "$msg"
+git push origin "$branch"
+\end{verbatim}
 \section{Expected Next Steps}
 As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique, for example:
 \begin{verbatim}
@@ -362,3 +325,6 @@ etc...
 
 Nothing at the moment.
 \end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% README %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

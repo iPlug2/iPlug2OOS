@@ -1,41 +1,30 @@
 #!/bin/bash
-# Quick LaTeX compile script with dependency check
-# Usage: ./tex.sh
+# tex.sh - Compile README.tex in VOID_Docs project
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SRC_DIR="$SCRIPT_DIR/svjour"
+set -e
 
-# List of required LaTeX packages 
-REQUIRED_PKGS=(
-    "texlive-latex-base"
-    "texlive-latex-extra"
-    "texlive-fonts-recommended"
-    "texlive-lang-english"
-    "texlive-lang-german"
-    "texlive-bibtex-extra"
-    "texlive-pictures"
-    "texlive-science"
-)
 
-if ! command -v pdflatex &> /dev/null; then
-    echo "pdflatex not found. Installing TeX Live..."
-    sudo apt update
-    sudo apt install -y "${REQUIRED_PKGS[@]}"
-else
-    echo "pdflatex found. Checking for missing packages..."
-    # This is minimal: assumes packages installed via apt cover everything
-    # Could add more advanced checks if needed
-fi
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"   # VOID_Docs
+SRC_DIR="$ROOT_DIR/svjour"
+BUILD_DIR="$ROOT_DIR/build.LaTeX"
+OUTPUT_PDF="$BUILD_DIR/README.pdf"
+FINAL_PDF="$ROOT_DIR/README.pdf"
+
+mkdir -p "$BUILD_DIR"
 
 echo "Compiling README.tex..."
-pdflatex -interaction=nonstopmode -output-directory="$SRC_DIR" "$SRC_DIR/README.tex"
+export TEXINPUTS="$SRC_DIR:"
 
-if [ ! -f "$SRC_DIR/README.pdf" ]; then
-    echo "Compilation failed. See logs in $SRC_DIR/README.log"
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory="$BUILD_DIR" "$SRC_DIR/README.tex"
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory="$BUILD_DIR" "$SRC_DIR/README.tex"
+
+
+if [ -f "$OUTPUT_PDF" ]; then
+    mv -f "$OUTPUT_PDF" "$FINAL_PDF"
+    echo -e "\nCompiled PDF is at: $FINAL_PDF\n"
+else
+    echo -e "\nCompilation failed. See logs in $BUILD_DIR/README.log\n"
     exit 1
 fi
 
-mv "$SRC_DIR/README.pdf" "$SCRIPT_DIR/README.pdf"
-
-echo "Compiled PDF is at: $SCRIPT_DIR/README.pdf"
-echo "Auxiliary files are in: $SRC_DIR"
+echo -e "Auxiliary files are in: $BUILD_DIR\n"

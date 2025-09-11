@@ -1,0 +1,7 @@
+#!/bin/bash
+# gitmain - commit & push to main
+
+read -p "Commit message: " msg
+git add .
+git commit -m "$msg"
+git push origin main
