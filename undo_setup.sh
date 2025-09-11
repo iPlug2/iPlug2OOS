@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # undo_setup.sh
-# Reverts setup.sh actions, restoring the project to Rend,
+# Reverts setup.sh actions, restoring the project to TemplateProject,
 # preserving setup scripts and config.txt
 
 set -e
