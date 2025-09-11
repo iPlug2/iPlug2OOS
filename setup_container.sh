@@ -16,6 +16,10 @@ cd ../../..
 # ./download-prebuilt-libs.sh
 # cd ../..
 
+echo "Preparing AI Agent"
+pip install requests
+export CLAUDE_API_KEY="your_api_key_here"
+
 echo "Downloading mkcert..."
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert
 chmod +x mkcert
