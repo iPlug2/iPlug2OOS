@@ -55,10 +55,10 @@ jobs:
           name: ${{env.PROJECT_NAME}}-web
           path: ${{env.PROJECT_NAME}}/build-web
 
-      - name: Publish to pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
-        with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: ${{env.PROJECT_NAME}}/build-web
+      # - name: Publish to pages
+      #   uses: JamesIves/github-pages-deploy-action@v4.4.1
+      #   with:
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      #     BASE_BRANCH: master
+      #     BRANCH: gh-pages
+      #     FOLDER: ${{env.PROJECT_NAME}}/build-web

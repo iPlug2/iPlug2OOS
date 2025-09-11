@@ -6,7 +6,54 @@ on:
     tags:
       - "v*"
 
+env:name: Build WAM
+
+on:
+  workflow_dispatch
+
 env:
+  PROJECT_NAME: TemplateProject
+  URL: http://localhost:8000/  # local testing URL
+
+jobs:
+  build:
+    name: Build-WAM
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: setup python3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v11
+        with:
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Patch emcc.py
+        run: |
+          sed -i.bak s,"if not js_manipulation.isidentifier(settings.EXPORT_NAME):","if False:",g $EMSDK/upstream/emscripten/emcc.py
+        shell: bash
+
+      - name: Get WAM SDKS
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+        shell: bash
+
+      - name: Compile WAM
+        run: |
+          cd ${{env.PROJECT_NAME}}/scripts
+          ./makedist-web.sh off ${{env.URL}}
+
   PROJECT_NAME: TemplateProject
 
 jobs:

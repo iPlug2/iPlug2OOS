@@ -32,11 +32,13 @@ fi
 if [ -d "$TEMPLATE_NAME" ]; then
     git restore .vscode
     git restore .github/workflows
+    git restore bump_version.py
     echo "Template folder '$TEMPLATE_NAME' exists. Resetting to git version..."
     git restore "$TEMPLATE_NAME" || echo "Warning: Could not restore $TEMPLATE_NAME from git."
 else
     git restore .vscode
     git restore .github/workflows
+    git restore bump_version.py
     echo "Template folder '$TEMPLATE_NAME' missing. Restoring from git..."
     git restore "$TEMPLATE_NAME" || echo "Warning: Could not restore $TEMPLATE_NAME from git."
 fi

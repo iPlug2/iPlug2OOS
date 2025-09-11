@@ -7,7 +7,7 @@ import os, sys, shutil, subprocess, glob, fileinput, string
 import semver
 
 IPLUG2_ROOT = "iPlug2"
-PROJECT_ROOT = "Rend_TEST"
+PROJECT_ROOT = "TemplateProject"
 PROJECT_SCRIPTS = PROJECT_ROOT + "/scripts"
 
 def replacestrs(filename, s, r):
