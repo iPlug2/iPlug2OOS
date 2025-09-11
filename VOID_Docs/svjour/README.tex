@@ -1,0 +1,364 @@
+% !TeX spellcheck = en-US
+% !TeX encoding = utf8
+% !TeX program = pdflatex
+% !BIB program = bibtex
+% -*- coding:utf-8 mod:LaTeX -*-
+
+% Fix to get cleveref working
+% Source: https://tex.stackexchange.com/a/243866/9075
+\makeatletter
+\def\cl@chapter{}
+\makeatother
+
+%\documentclass[natbib,english]{svjour3}                 % onecolumn (standard format)
+%\documentclass[smallcondensed,natbib,english]{svjour3}  % onecolumn (ditto)
+%\documentclass[smallextended,natbib,english]{svjour3    % onecolumn (second format)
+\documentclass[twocolumn,natbib,english]{svjour3}        % twocolumn
+
+% Fix for microtype
+% Source: https://tex.stackexchange.com/a/24875/9075
+\makeatletter
+\if@twocolumn
+  \renewcommand\normalsize{%
+    \@setfontsize\normalsize\@xpt{12.5pt}%
+    \abovedisplayskip=3 mm plus6pt minus 4pt
+    \belowdisplayskip=3 mm plus6pt minus 4pt
+    \abovedisplayshortskip=0.0 mm plus6pt
+    \belowdisplayshortskip=2 mm plus4pt minus 4pt
+    \let\@listi\@listI}%
+
+  \renewcommand\small{%
+    \@setfontsize\small{8.5pt}\@xpt
+    \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+    \abovedisplayshortskip \z@ \@plus2\p@
+    \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+    \def\@listi{\leftmargin\leftmargini
+      \parsep 0\p@ \@plus1\p@ \@minus\p@
+      \topsep 4\p@ \@plus2\p@ \@minus4\p@
+      \itemsep0\p@}%
+    \belowdisplayskip \abovedisplayskip}
+\else
+  \if@smallext
+    \renewcommand\normalsize{%
+      \@setfontsize\normalsize\@xpt\@xiipt
+      \abovedisplayskip=3 mm plus6pt minus 4pt
+      \belowdisplayskip=3 mm plus6pt minus 4pt
+      \abovedisplayshortskip=0.0 mm plus6pt
+      \belowdisplayshortskip=2 mm plus4pt minus 4pt
+      \let\@listi\@listI}%
+
+    \renewcommand\small{%
+      \@setfontsize\small\@viiipt{9.5pt}%
+      \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+      \abovedisplayshortskip \z@ \@plus2\p@
+      \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+      \def\@listi{\leftmargin\leftmargini
+        \parsep 0\p@ \@plus1\p@ \@minus\p@
+        \topsep 4\p@ \@plus2\p@ \@minus4\p@
+        \itemsep0\p@}%
+      \belowdisplayskip \abovedisplayskip}
+  \else
+    \renewcommand\normalsize{%
+      \@setfontsize\normalsize{9.5pt}{11.5pt}%
+      \abovedisplayskip=3 mm plus6pt minus 4pt
+      \belowdisplayskip=3 mm plus6pt minus 4pt
+      \abovedisplayshortskip=0.0 mm plus6pt
+      \belowdisplayshortskip=2 mm plus4pt minus 4pt
+      \let\@listi\@listI}%  
+
+    \renewcommand\small{%
+      \@setfontsize\small\@viiipt{9.25pt}%
+      \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+      \abovedisplayshortskip \z@ \@plus2\p@
+      \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+      \def\@listi{\leftmargin\leftmargini
+        \parsep 0\p@ \@plus1\p@ \@minus\p@
+        \topsep 4\p@ \@plus2\p@ \@minus4\p@
+        \itemsep0\p@}%
+      \belowdisplayskip \abovedisplayskip}
+  \fi
+\fi
+\let\footnotesize\small
+\makeatother
+
+% cmap has to be loaded before any font package (such as cfr-lm)
+\usepackage{cmap}
+
+%enable margin kerning
+% microtype has to be loaded early.
+% otherwise, following error appears
+%
+% Extra \else.
+% \XKV@wh@list ...r \expandafter \XKV@wh@list \else
+%                                                  \def #3{#6}\expandafter \e...
+\RequirePackage[%
+  shrink=40,
+  final,%
+  expansion=alltext,%
+  protrusion=alltext-nott]{microtype}%
+% \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
+\DisableLigatures{encoding = T1, family = tt* }
+
+% Set English as language and allow to write hyphenated"=words
+%
+\usepackage[ngerman,main=english]{babel}
+%Hint by http://tex.stackexchange.com/a/321066/9075 -> enable "= as dashes
+\addto\extrasenglish{\languageshorthands{ngerman}\useshorthands{"}}
+
+\usepackage{ifluatex}
+\ifluatex
+  \usepackage{fontspec}
+  \usepackage[english]{selnolig}
+\fi
+
+\ifluatex
+  % use the better (sharper, ...) Latin Modern variant of Computer Modern
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono} % "variable=false"
+  %\setmonofont{Latin Modern Mono Prop} % "variable=true"
+\else
+  % better font, similar to the default springer font
+  % cfr-lm is preferred over lmodern. Reasoning at http://tex.stackexchange.com/a/247543/9075
+  % This obsoletes the backage "fix-cm"
+  \usepackage[%
+    rm={oldstyle=false,proportional=true},%
+    sf={oldstyle=false,proportional=true},%
+    tt={oldstyle=false,proportional=true,variable=false},%
+    qt=false%
+  ]{cfr-lm}
+\fi
+
+\ifluatex
+\else
+  % fontenc and inputenc are not required when using lualatex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc} %support umlauts in the input
+\fi
+
+\smartqed  % flush right qed marks, e.g. at end of proof
+
+\usepackage{graphicx}
+
+% backticks (`) are rendered as such in verbatim environment. See https://tex.stackexchange.com/a/341057/9075 for details.
+\usepackage{upquote}
+
+% Nicer tables (\toprule, \midrule, \bottomrule - see example)
+\usepackage{booktabs}
+
+%extended enumerate, such as \begin{compactenum}
+\usepackage{paralist}
+
+% For easy quotations: \enquote{text}
+% This package is very smart when nesting is applied, otherwise textcmds (see below) provides a shorter command
+\usepackage{csquotes}
+
+% For even easier quotations: \qq{text}
+\usepackage{textcmds}
+
+%tweak \url{...}
+\usepackage{url}
+%\urlstyle{same}
+%improve wrapping of URLs - hint by http://tex.stackexchange.com/a/10419/9075
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+%nicer // - solution by http://tex.stackexchange.com/a/98470/9075
+%DO NOT ACTIVATE -> prevents line breaks
+%\makeatletter
+%\def\Url@twoslashes{\mathchar`\/\@ifnextchar/{\kern-.2em}{}}
+%\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
+%\makeatother
+
+% Diagonal lines in a table - http://tex.stackexchange.com/questions/17745/diagonal-lines-in-table-cell
+% Slashbox is not available in texlive (due to licensing) and also gives bad results. This, we use diagbox
+%\usepackage{diagbox}
+
+\usepackage[mode=text,group-four-digits,group-separator={,}]{siunitx}
+\sisetup{locale=US}
+\newcommand{\numt}[1]{\num{#1}}
+
+% Required for package pdfcomment later
+\usepackage{xcolor}
+
+% For listings
+\usepackage{listings}
+\lstset{%
+  basicstyle=\ttfamily,%
+  columns=fixed,%
+  basewidth=.5em,%
+  xleftmargin=0.5cm,%
+  captionpos=b}%
+\renewcommand{\lstlistingname}{List.}
+% Fix counter as described at https://tex.stackexchange.com/a/28334/9075
+\usepackage{chngcntr}
+\AtBeginDocument{\counterwithout{lstlisting}{section}}
+
+% Enable nice comments
+\usepackage{pdfcomment}
+%
+\newcommand{\commentontext}[2]{\colorbox{yellow!60}{#1}\pdfcomment[color={0.234 0.867 0.211},hoffset=-6pt,voffset=10pt,opacity=0.5]{#2}}
+\newcommand{\commentatside}[1]{\pdfcomment[color={0.045 0.278 0.643},icon=Note]{#1}}
+%
+% Compatibality with packages todo, easy-todo, todonotes
+\newcommand{\todo}[1]{\commentatside{#1}}
+% Compatiblity with package fixmetodonotes
+\newcommand{\TODO}[1]{\commentatside{#1}}
+
+\newcommand*{\doi}[1]{\href{https://doi.org/\detokenize{#1}}{DOI: \detokenize{#1}}}
+
+% Put footnotes below floats
+% Source: https://tex.stackexchange.com/a/32993/9075
+\usepackage{stfloats}
+\fnbelowfloat
+
+% Enable correct jumping to figures when referencing
+\usepackage[all]{hypcap}
+
+\usepackage[acronym,indexonlyfirst,nomain]{glossaries}
+\glsdisablehyper
+\input{abbrevations}
+
+%enable \cref{...} and \Cref{...} instead of \ref: Type of reference included in the link
+\usepackage[capitalise,nameinlink]{cleveref}
+%Nice formats for \cref
+\crefname{section}{Sect.}{Sect.}
+\Crefname{section}{Section}{Sections}
+\crefname{listing}{\lstlistingname}{\lstlistingname}
+\Crefname{listing}{Listing}{Listings}
+
+%Intermediate solution for hyperlinked refs. See https://tex.stackexchange.com/q/132420/9075 for more information.
+\newcommand{\Vlabel}[1]{\label[line]{#1}\hypertarget{#1}{}}
+\newcommand{\lref}[1]{\hyperlink{#1}{\FancyVerbLineautorefname~\ref*{#1}}}
+
+\usepackage{xspace}
+%\newcommand{\eg}{e.\,g.\xspace}
+%\newcommand{\ie}{i.\,e.\xspace}
+\newcommand{\eg}{e.\,g.,\ }
+\newcommand{\ie}{i.\,e.,\ }
+
+%introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
+\DeclareFontFamily{U}{MnSymbolC}{}
+\DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
+\DeclareFontShape{U}{MnSymbolC}{m}{n}{
+  <-6>    MnSymbolC5
+  <6-7>   MnSymbolC6
+  <7-8>   MnSymbolC7
+  <8-9>   MnSymbolC8
+  <9-10>  MnSymbolC9
+  <10-12> MnSymbolC10
+  <12->   MnSymbolC12%
+}{}
+\DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+
+% correct e.g. and e.g.,
+\renewcommand{\eg}{e.\,g.,\xspace}
+\newcommand{\egc}{e.\,g.,\xspace}
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor data-bases Berm-bach}
+
+% Enable hyperref without colors and without bookmarks
+\hypersetup{hidelinks,
+  colorlinks=true,
+  allcolors=black,
+  pdfstartview=Fit,
+  breaklinks=true}
+
+\companyname{VOID AUDIO}
+\versionnumber{0.1.0.0}
+
+
+% For demonstration purposes only
+\usepackage[math]{blindtext}
+\usepackage{mwe}
+
+\usepackage{graphicx} 
+\usepackage{amsmath}  
+\usepackage{amssymb}   
+
+
+
+
+\begin{document}
+
+\title{iPlug2OOS VOID Audio Fork}
+%\subtitle{Do you have a subtitle?\\ If so, write it here}
+
+%\titlerunning{Short form of title}        % if too long for running head
+
+\author{Derek Wingard}
+
+%\authorrunning{Short form of author list} % if too long for running head
+
+\institute{
+  D.~Wingard\at
+  VOID Audio \\
+  \email{fromthevoid.audio@gmail.com}
+}
+
+
+\date{Verson Date: 9/10/2025}
+% The correct dates will be entered by the editor
+
+
+\maketitle
+
+\begin{abstract}
+    Added quality of life features that make the build process a bit more foolproof.
+  \keywords{Foolproof}
+\end{abstract}
+
+\section{Key Features Added}
+Brief list of all the added funcionality
+\subsection{\texttt{init.sh}}
+This script is for setting up the project once the Codespace is started. Edit the configuration file \texttt{config.txt} to specify the project:
+\begin{verbatim}
+PROJECT_NAME = Rend_TEST
+
+MANUFACTURER_NAME = VOID
+\end{verbatim}
+with more specification to the build expected to come in later versions of this script.
+Then, activate the init script with:
+\begin{lstlisting}
+./init.sh
+\end{lstlisting}
+\subsection{\texttt{setup.sh}} 
+Rebuilt the \texttt{setup.sh} script that used to exist in the repo. It now gets called from \texttt{init.sh} and is fed arguments from \texttt{config.txt}.
+
+\subsection{\protect\texttt{undo\_setup.sh}}
+Makes the process a little more foolproof. You can now undo the \texttt{init.sh} script and reset the project folders/files to \texttt{TemplateProject}. Reads correct \texttt{PROJECT\_NAME} from \texttt{config.txt}. The folders \texttt{.github/workflows} and \texttt{.vscode} are git restored so make sure you have the initial state you want to revert to as your previous push or else you will have to manually delete and copy back in the template files.
+\begin{lstlisting}
+./undo_setup.sh
+\end{lstlisting}
+\subsection{Updated \texttt{duplicate.py}}
+The \texttt{duplicate.py} script was changing my custom scripts so I updated it to no longer touch them.
+\subsection{Added LaTeX functionality and Docs to the Codespace}
+Obviously, in order for people to take you seriously, you need to communicate your ideas on either a chalkboard or LaTeX. Therefore, I have added a LaTeX install to the \texttt{setup\_container.sh} so the documentation of changes made for VOID Audio can be documented properly. 
+\subsubsection{LaTeX Compile Script \texttt{tex.sh}}
+Compiles the docs to \texttt{VOID\_Docs} but script must be called from directory it lives in, or typically from root via 
+\begin{lstlisting}
+./VOID_Docs/tex.sh
+\end{lstlisting}
+
+\section{Expected Next Steps}
+As it stands, learning how to use this framework as effeciently as possible will involve improvements to this init build script. Ideally, we will have a set of specifications available in \texttt{config.txt} that can get started on specific build types that require unique, for example:
+\begin{verbatim}
+REQUIRES_REALTIME_DISPLAY = bool
+IS_INSTRUMENT = bool
+NUM_PARAMS = int
+BUILD_AAX = bool
+LICENSING_TYPE = string
+EXTERNAL_LIBS = string
+etc...
+\end{verbatim}
+
+\bibliographystyle{spbasic}
+\bibliography{paper}
+
+\phantom{.}
+
+Nothing at the moment.
+\end{document}

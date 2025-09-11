@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# This script initializes the cloned iPlug2OOS repo, downloading dependencies, and tools
-
 echo "Initializing submodule..."
 git submodule update --init
 
@@ -11,14 +9,21 @@ chmod +x download-iplug-sdks.sh
 ./download-iplug-sdks.sh
 cd ../../..
 
-# Not nessecary until we have WASM libs
-# echo "Downloading iPlug2 prebuilt libs..."
-# cd iPlug2/Dependencies/
-# ./download-prebuilt-libs.sh
-# cd ../..
-
 echo "Downloading mkcert..."
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert
 chmod +x mkcert
-mv -f mkcert /usr/local/bin
+sudo mv -f mkcert /usr/local/bin
 mkcert -install
+
+echo "Checking for pdflatex..."
+if ! command -v pdflatex &> /dev/null; then
+    echo "pdflatex not found, installing TeX Live..."
+    sudo apt update
+    sudo apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+else
+    echo "pdflatex already installed."
+fi
+
+
+echo -e "\nSetup complete.\n"
+
