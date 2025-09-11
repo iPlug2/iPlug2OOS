@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 21:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -106,9 +106,9 @@ Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
 Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language11). Reported on input line 105.
+(babel)             (\language6). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language11). Reported on input line 108.
+(babel)             (\language6). Reported on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/cmap/cmap.sty
 Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
@@ -1116,25 +1116,22 @@ Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/7'
 (microtype)             (new value: 7.0pt) on input line 241.
 Package microtype Info: Fixing zero fontdimen6 for font `U/MnSymbolC/m/n/5'
 (microtype)             (new value: 5.0pt) on input line 241.
-
-(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
-File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
-)
 LaTeX Font Info:    Trying to load font information for T1+clm2t on input line 
-250.
+247.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cfr-lm/t1clm2t.fd
 File: t1clm2t.fd 2010/05/25 Fontinst v1.933 font definitions for T1/clm2t.
 )
-Overfull \hbox (0.85667pt too wide) in paragraph at lines 251--252
+LaTeX Font Info:    Font shape `T1/clm2t/b/n' in size <10> not available
+(Font)              Font shape `T1/clm2t/bx/n' tried instead on input line 247.
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
+)
+Overfull \hbox (0.85667pt too wide) in paragraph at lines 252--253
 \T1/clm2/m/n/10 (-40) This script is for set-ting up the project once the Codes
 pace
- []
-
-
-Overfull \hbox (64.79643pt too wide) in paragraph at lines 276--277
-\T1/clm2/m/n/10 (-40) README.tex file. Ed-its can be made at \T1/clm2t/m/n/10 (
--40) VOID_Docs/svjour/README.tex\T1/clm2/m/n/10 (-40) .
  []
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
@@ -1153,14 +1150,14 @@ No file README.bbl.
 
 (/workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.upa))
 Package rerunfilecheck Info: File `README.out' has not changed.
-(rerunfilecheck)             Checksum: AB48A97B13878452479529FC5A82407A;119.
+(rerunfilecheck)             Checksum: 64741B5C6216F3D129541A1857F70A36;73.
  ) 
 Here is how much of TeX's memory you used:
- 31798 strings out of 480080
- 607099 string characters out of 5891145
- 1051351 words of memory out of 5000000
- 49020 multiletter control sequences out of 15000+600000
- 525053 words of font info for 190 fonts, out of 8000000 for 9000
+ 31833 strings out of 480080
+ 607588 string characters out of 5891145
+ 1053348 words of memory out of 5000000
+ 49024 multiletter control sequences out of 15000+600000
+ 527103 words of font info for 208 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
  91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
@@ -1168,12 +1165,13 @@ texlive/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}</usr/share/texmf/f
 onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
-r/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
+r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 171588 bytes).
+es, 211536 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 70 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 49189 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 105 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 57373 words of extra memory for PDF output out of 61914 (max. 10000000)
 
