@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 22:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.9.10)  10 SEP 2025 22:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1134,6 +1134,12 @@ Overfull \hbox (0.85667pt too wide) in paragraph at lines 252--253
 pace
  []
 
+
+Overfull \hbox (64.79643pt too wide) in paragraph at lines 276--277
+\T1/clm2/m/n/10 (-40) README.tex file. Ed-its can be made at \T1/clm2t/m/n/10 (
+-40) VOID_Docs/svjour/README.tex\T1/clm2/m/n/10 (-40) .
+ []
+
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 \openout3 = `README.upa'.
@@ -1153,13 +1159,13 @@ Package rerunfilecheck Info: File `README.out' has not changed.
 (rerunfilecheck)             Checksum: 64741B5C6216F3D129541A1857F70A36;73.
  ) 
 Here is how much of TeX's memory you used:
- 31833 strings out of 480080
- 607588 string characters out of 5891145
+ 31813 strings out of 480080
+ 607364 string characters out of 5891145
  1052348 words of memory out of 5000000
  49024 multiletter control sequences out of 15000+600000
- 527103 words of font info for 208 fonts, out of 8000000 for 9000
+ 526475 words of font info for 194 fonts, out of 8000000 for 9000
  86 hyphenation exceptions out of 8191
- 91i,8n,91p,1170b,1035s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 91i,8n,91p,1170b,1034s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/share/
 texlive/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}</usr/share/texmf/f
 onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
@@ -1168,10 +1174,10 @@ ype1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></us
 r/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
 Output written on /workspaces/iPlug2OOS/VOID_Docs/build.LaTeX/README.pdf (2 pag
-es, 211590 bytes).
+es, 210583 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
+ 104 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
+ 20 named destinations out of 1000 (max. 500000)
  57373 words of extra memory for PDF output out of 61914 (max. 10000000)
 
