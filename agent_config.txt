@@ -1,0 +1,19 @@
+# PATH = path to file you want edited
+#
+# QUERY = how to edit the file
+#
+# ASSOCIATED = path to other file that you may want to reference
+#
+# USAGE: PATH, QUERY, ASSOCIATED
+#        Always use it in this order so PATH is said before 
+#        QUERY then ASSOCIATED after
+# ---------------------------------------------------------------
+PATH = ""
+
+QUERY = ""
+
+Given this header, update it so that it also includes a controllable parameter for mixAmount and width
+
+"""
+
+ASSOCIATED = ""
