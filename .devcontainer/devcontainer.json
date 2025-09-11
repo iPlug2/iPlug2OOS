@@ -21,7 +21,7 @@
             }
         }
     },
-    "postCreateCommand": "chmod +x scripts/* && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
+    "postCreateCommand": "./setup_container.sh && chmod +x scripts/* && echo 'export PATH=\"$PWD/scripts:$PATH\"' >> ~/.bashrc",
     "portsAttributes": {
         "8001": {
             "label": "emrun",

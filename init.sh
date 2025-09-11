@@ -24,7 +24,6 @@ done < "$CONFIG_FILE"
 echo "PROJECT_NAME=$PROJECT_NAME"
 echo "MANUFACTURER_NAME=$MANUFACTURER_NAME"
 
-
 ./setup.sh "$PROJECT_NAME" "$MANUFACTURER_NAME" && \
 
 echo -e "\nConfigured $MANUFACTURER_NAME $PROJECT_NAME...get to work\n"
