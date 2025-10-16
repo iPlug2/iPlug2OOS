@@ -73,6 +73,10 @@
     <REAPER_INC_PATHS>$(IPLUG_DEPS_PATH)/Reaper;$(IPLUG_PATH)\ReaperExt;</REAPER_INC_PATHS>
     <AAX_ICON>$(AAX_SDK)\Utilities\PlugIn.ico</AAX_ICON>
     <VST_ICON>$(IPLUG2_ROOT)\Scripts\icons\VST_Logo_Steinberg.ico</VST_ICON>
+
+    <!-- Central overridable properties for C/C++ settings -->
+    <CppLanguageStandard Condition="'$(CppLanguageStandard)'==''">stdcpp17</CppLanguageStandard>
+    <EnableMultiProcessorCompilation Condition="'$(EnableMultiProcessorCompilation)'==''">true</EnableMultiProcessorCompilation>
   </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
@@ -83,8 +87,8 @@
       <PreprocessorDefinitions>$(ALL_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4250;4018;4267;4068;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(WDL_PATH);$(IPLUG_PATH);$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>$(CppLanguageStandard)</LanguageStandard>
+      <MultiProcessorCompilation>$(EnableMultiProcessorCompilation)</MultiProcessorCompilation>
     </ClCompile>
     <ItemDefinitionGroup Condition=" '$(Platform)' == 'Win32' ">
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
@@ -313,4 +317,7 @@
       <Value>$(CLAP_PATH)</Value>
     </BuildMacro>
   </ItemGroup>
+
+  <!-- If a CI-specific override props file exists alongside this file, import it so CI can override properties without editing this file -->
+  <Import Project="$(MSBuildThisFileDirectory)common-win.ci.props" Condition="Exists('$(MSBuildThisFileDirectory)common-win.ci.props')" />
 </Project>
