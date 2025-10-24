@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
+
+  <!-- compute trimmed this-file dir and full absolute path for normalization -->
+  <PropertyGroup>
+    <ThisFileDirTrimmed>$([System.String]::TrimEnd('$(MSBuildThisFileDirectory)','\\','/'))</ThisFileDirTrimmed>
+    <ThisFileDirFull>$([System.IO.Path]::GetFullPath('$(ThisFileDirTrimmed)'))</ThisFileDirFull>
+  </PropertyGroup>
+
   <PropertyGroup Label="UserMacros">
     <RTAUDIOMIDI_PATH>$(IPLUG_PATH)\APP\RTAudioMidi</RTAUDIOMIDI_PATH>
-    <IPLUG2_ROOT>$(ProjectDir)..\..\iPlug2</IPLUG2_ROOT>
-    <WDL_PATH>$(IPLUG2_ROOT)\WDL</WDL_PATH>
-    <IPLUG_PATH>$(IPLUG2_ROOT)\IPlug</IPLUG_PATH>
-    <EXTRAS_PATH>$(IPLUG_PATH)\Extras</EXTRAS_PATH>
-    <IGRAPHICS_PATH>$(IPLUG2_ROOT)\IGraphics</IGRAPHICS_PATH>
-    <DEPS_PATH>$(IPLUG2_ROOT)\Dependencies</DEPS_PATH>
-    <JSON_PATH>$(DEPS_PATH)\Extras\nlohmann</JSON_PATH>
-    <IPLUG_INC_PATHS>$(WDL_PATH);$(IPLUG_PATH);$(EXTRAS_PATH);$(EXTRAS_PATH)\OSC;$(EXTRAS_PATH)\Synth;$(EXTRAS_PATH)\WebView;$(JSON_PATH);$(SolutionDir)\resources</IPLUG_INC_PATHS>
-    <IPLUG_DEPS_PATH>$(DEPS_PATH)\IPlug</IPLUG_DEPS_PATH>
-    <IGRAPHICS_DEPS_PATH>$(DEPS_PATH)\IGraphics</IGRAPHICS_DEPS_PATH>
-    <NANOVG_PATH>$(IGRAPHICS_DEPS_PATH)\NanoVG\src</NANOVG_PATH>
-    <NANOSVG_PATH>$(IGRAPHICS_DEPS_PATH)\NanoSVG\src</NANOSVG_PATH>
-    <FREETYPE_PATH>$(DEPS_PATH)\Build\src\freetype\include</FREETYPE_PATH>
-    <SKIA_PATH>$(DEPS_PATH)\Build\src\skia</SKIA_PATH>
-    <SKIA_INC_PATHS>$(SKIA_PATH);$(SKIA_PATH)\include\core;$(SKIA_PATH)\include\effects;$(SKIA_PATH)\include\config;$(SKIA_PATH)\include\utils;$(SKIA_PATH)\include\gpu;$(SKIA_PATH)\modules\svg\include;$(SKIA_PATH)\third_party\externals\icu\source\common</SKIA_INC_PATHS>
-    <GLAD_GL2_PATHS>$(IGRAPHICS_DEPS_PATH)\glad_GL2\include;$(IGRAPHICS_DEPS_PATH)\glad_GL2\src</GLAD_GL2_PATHS>
-    <GLAD_GL3_PATHS>$(IGRAPHICS_DEPS_PATH)\glad_GL3\include;$(IGRAPHICS_DEPS_PATH)\glad_GL3\src</GLAD_GL3_PATHS>
-    <PNG_PATH>$(WDL_PATH)\libpng</PNG_PATH>
-    <ZLIB_PATH>$(WDL_PATH)\zlib</ZLIB_PATH>
-    <STB_PATH>$(IGRAPHICS_DEPS_PATH)\STB</STB_PATH>
-    <STATIC_LIBS_PATH>$(DEPS_PATH)\Build\win\$(Platform)\$(Configuration)</STATIC_LIBS_PATH>
-    <ICUDAT_PATH>$(DEPS_PATH)\Build\win\bin\icudtl.dat</ICUDAT_PATH>
-    <YOGA_INC_PATHS>$(IGRAPHICS_DEPS_PATH)\yoga;$(IGRAPHICS_DEPS_PATH)\yoga\yoga</YOGA_INC_PATHS>
-    <IGRAPHICS_INC_PATHS>$(IGRAPHICS_PATH);$(IGRAPHICS_PATH)\Controls;$(IGRAPHICS_PATH)\Drawing;$(IGRAPHICS_PATH)\Platforms;$(IGRAPHICS_PATH)\Extras;$(NANOSVG_PATH);$(NANOVG_PATH);$(PNG_PATH);$(ZLIB_PATH);$(FREETYPE_PATH);$(STB_PATH);$(SKIA_INC_PATHS);$(YOGA_INC_PATHS)</IGRAPHICS_INC_PATHS>
+    <!-- normalize IPLUG2_ROOT relative to this props file; allow override -->
+    <IPLUG2_ROOT Condition="'$(IPLUG2_ROOT)'==''">$([System.IO.Path]::GetFullPath('$(ThisFileDirFull)\\..\\..\\iPlug2'))</IPLUG2_ROOT>
+    <WDL_PATH Condition="'$(WDL_PATH)'==''">$(IPLUG2_ROOT)\WDL</WDL_PATH>
+    <IPLUG_PATH Condition="'$(IPLUG_PATH)'==''">$(IPLUG2_ROOT)\IPlug</IPLUG_PATH>
+    <EXTRAS_PATH Condition="'$(EXTRAS_PATH)'==''">$(IPLUG_PATH)\Extras</EXTRAS_PATH>
+    <IGRAPHICS_PATH Condition="'$(IGRAPHICS_PATH)'==''">$(IPLUG2_ROOT)\IGraphics</IGRAPHICS_PATH>
+    <DEPS_PATH Condition="'$(DEPS_PATH)'==''">$(IPLUG2_ROOT)\Dependencies</DEPS_PATH>
+    <JSON_PATH Condition="'$(JSON_PATH)'==''">$(DEPS_PATH)\Extras\nlohmann</JSON_PATH>
+    <IPLUG_INC_PATHS Condition="'$(IPLUG_INC_PATHS)'==''">$(WDL_PATH);$(IPLUG_PATH);$(EXTRAS_PATH);$(EXTRAS_PATH)\OSC;$(EXTRAS_PATH)\Synth;$(EXTRAS_PATH)\WebView;$(JSON_PATH);$(SolutionDir)\resources</IPLUG_INC_PATHS>
+    <IPLUG_DEPS_PATH Condition="'$(IPLUG_DEPS_PATH)'==''">$(DEPS_PATH)\IPlug</IPLUG_DEPS_PATH>
+    <IGRAPHICS_DEPS_PATH Condition="'$(IGRAPHICS_DEPS_PATH)'==''">$(DEPS_PATH)\IGraphics</IGRAPHICS_DEPS_PATH>
+    <NANOVG_PATH Condition="'$(NANOVG_PATH)'==''">$(IGRAPHICS_DEPS_PATH)\NanoVG\src</NANOVG_PATH>
+    <NANOSVG_PATH Condition="'$(NANOSVG_PATH)'==''">$(IGRAPHICS_DEPS_PATH)\NanoSVG\src</NANOSVG_PATH>
+    <FREETYPE_PATH Condition="'$(FREETYPE_PATH)'==''">$(DEPS_PATH)\Build\src\freetype\include</FREETYPE_PATH>
+    <SKIA_PATH Condition="'$(SKIA_PATH)'==''">$(DEPS_PATH)\Build\src\skia</SKIA_PATH>
+    <SKIA_INC_PATHS Condition="'$(SKIA_INC_PATHS)'==''">$(SKIA_PATH);$(SKIA_PATH)\include\core;$(SKIA_PATH)\include\effects;$(SKIA_PATH)\include\config;$(SKIA_PATH)\include\utils;$(SKIA_PATH)\include\gpu;$(SKIA_PATH)\modules\svg\include;$(SKIA_PATH)\third_party\externals\icu\source\common</SKIA_INC_PATHS>
+    <GLAD_GL2_PATHS Condition="'$(GLAD_GL2_PATHS)'==''">$(IGRAPHICS_DEPS_PATH)\glad_GL2\include;$(IGRAPHICS_DEPS_PATH)\glad_GL2\src</GLAD_GL2_PATHS>
+    <GLAD_GL3_PATHS Condition="'$(GLAD_GL3_PATHS)'==''">$(IGRAPHICS_DEPS_PATH)\glad_GL3\include;$(IGRAPHICS_DEPS_PATH)\glad_GL3\src</GLAD_GL3_PATHS>
+    <PNG_PATH Condition="'$(PNG_PATH)'==''">$(WDL_PATH)\libpng</PNG_PATH>
+    <ZLIB_PATH Condition="'$(ZLIB_PATH)'==''">$(WDL_PATH)\zlib</ZLIB_PATH>
+    <STB_PATH Condition="'$(STB_PATH)'==''">$(IGRAPHICS_DEPS_PATH)\STB</STB_PATH>
+    <!-- default STATIC_LIBS_PATH can be platform-specific below; keep a fallback that can be overridden -->
+    <STATIC_LIBS_PATH Condition="'$(STATIC_LIBS_PATH)'==''">$(DEPS_PATH)\Build\win\$(Platform)\$(Configuration)</STATIC_LIBS_PATH>
+    <ICUDAT_PATH Condition="'$(ICUDAT_PATH)'==''">$(DEPS_PATH)\Build\win\bin\icudtl.dat</ICUDAT_PATH>
+    <YOGA_INC_PATHS Condition="'$(YOGA_INC_PATHS)'==''">$(IGRAPHICS_DEPS_PATH)\yoga;$(IGRAPHICS_DEPS_PATH)\yoga\yoga</YOGA_INC_PATHS>
+    <IGRAPHICS_INC_PATHS Condition="'$(IGRAPHICS_INC_PATHS)'==''">$(IGRAPHICS_PATH);$(IGRAPHICS_PATH)\Controls;$(IGRAPHICS_PATH)\Drawing;$(IGRAPHICS_PATH)\Platforms;$(IGRAPHICS_PATH)\Extras;$(NANOSVG_PATH);$(NANOVG_PATH);$(PNG_PATH);$(ZLIB_PATH);$(FREETYPE_PATH);$(STB_PATH);$(SKIA_INC_PATHS);$(YOGA_INC_PATHS)</IGRAPHICS_INC_PATHS>
+
     <CLAP_SDK Condition="'$(CLAP_SDK)'==''">$(IPLUG_DEPS_PATH)\CLAP_SDK\include</CLAP_SDK>
     <CLAP_HELPERS Condition="'$(CLAP_HELPERS)'==''">$(IPLUG_DEPS_PATH)\CLAP_HELPERS\include\clap\helpers</CLAP_HELPERS>
     <VST2_SDK Condition="'$(VST2_SDK)'==''">$(IPLUG_DEPS_PATH)\VST2_SDK</VST2_SDK>
@@ -44,40 +54,50 @@
     <VST2_64_PATH Condition="'$(VST2_64_PATH)'==''">$(ProgramW6432)\VstPlugins</VST2_64_PATH>
     <AAX_32_PATH Condition="'$(AAX_32_PATH)'==''">$(CommonProgramFiles)\Avid\Audio\Plug-Ins</AAX_32_PATH>
     <AAX_64_PATH Condition="'$(AAX_64_PATH)'==''">$(CommonProgramW6432)\Avid\Audio\Plug-Ins</AAX_64_PATH>
-    <CLAP_PATH>$(CommonProgramW6432)\CLAP</CLAP_PATH>
-    <REAPER_EXT_PATH>$(APPDATA)\REAPER\UserPlugins</REAPER_EXT_PATH>
-    <APP_DEFS>APP_API;__WINDOWS_DS__;__WINDOWS_MM__;__WINDOWS_ASIO__;IPLUG_EDITOR=1;IPLUG_DSP=1</APP_DEFS>
-    <CLAP_DEFS>CLAP_API;IPLUG_EDITOR=1;IPLUG_DSP=1</CLAP_DEFS>
-    <VST2_DEFS>VST2_API;VST_FORCE_DEPRECATED;IPLUG_EDITOR=1;IPLUG_DSP=1</VST2_DEFS>
-    <VST3_DEFS>VST3_API;IPLUG_EDITOR=1;IPLUG_DSP=1</VST3_DEFS>
-    <VST3P_DEFS>VST3P_API;IPLUG_EDITOR=0;IPLUG_DSP=1</VST3P_DEFS>
-    <VST3C_DEFS>VST3C_API;IPLUG_EDITOR=1;IPLUG_DSP=0</VST3C_DEFS>
-    <DEBUG_DEFS>_DEBUG;</DEBUG_DEFS>
-    <RELEASE_DEFS>NDEBUG;</RELEASE_DEFS>
-    <TRACER_DEFS>TRACER_BUILD;NDEBUG;</TRACER_DEFS>
-    <APP_INC_PATHS>$(IPLUG_PATH)\APP;$(IPLUG_DEPS_PATH)\RTAudio\include;$(IPLUG_DEPS_PATH)\RTAudio;$(IPLUG_DEPS_PATH)\RTMidi</APP_INC_PATHS>
-    <CLAP_INC_PATHS>$(IPLUG_PATH)\CLAP;$(CLAP_SDK);$(CLAP_HELPERS)</CLAP_INC_PATHS>
-    <VST2_INC_PATHS>$(IPLUG_PATH)\VST2;$(VST2_SDK)</VST2_INC_PATHS>
-    <VST3_INC_PATHS>$(IPLUG_PATH)\VST3;$(VST3_SDK)</VST3_INC_PATHS>
-    <AAX_INC_PATHS>$(IPLUG_PATH)\AAX;$(AAX_SDK)\Interfaces;$(AAX_SDK)\Interfaces\ACF;</AAX_INC_PATHS>
-    <AAX_DEFS>AAX_API;IPLUG_EDITOR=1;IPLUG_DSP=1;_WINDOWS;WIN32;_WIN32;WINDOWS_VERSION;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE</AAX_DEFS>
-    <ALL_DEFS>WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;NOMINMAX</ALL_DEFS>
-    <AAX_LIBS>wininet.lib;odbc32.lib;odbccp32.lib;psapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;</AAX_LIBS>
-    <APP_LIBS>dsound.lib;winmm.lib;</APP_LIBS>
-    <CLAP_64_COMMAND_ARGS>$(SolutionDir)$(SolutionName).RPP</CLAP_64_COMMAND_ARGS>
-    <VST2_32_COMMAND_ARGS>$(SolutionDir)$(SolutionName).RPP</VST2_32_COMMAND_ARGS>
-    <VST2_64_COMMAND_ARGS>$(SolutionDir)$(SolutionName).RPP</VST2_64_COMMAND_ARGS>
-    <VST3_64_COMMAND_ARGS>$(SolutionDir)$(SolutionName).RPP</VST3_64_COMMAND_ARGS>
-    <VST3_32_COMMAND_ARGS>$(SolutionDir)$(SolutionName).RPP</VST3_32_COMMAND_ARGS>
-    <COPY_VST2>1</COPY_VST2>
-    <REAPER_INC_PATHS>$(IPLUG_DEPS_PATH)/Reaper;$(IPLUG_PATH)\ReaperExt;</REAPER_INC_PATHS>
-    <AAX_ICON>$(AAX_SDK)\Utilities\PlugIn.ico</AAX_ICON>
-    <VST_ICON>$(IPLUG2_ROOT)\Scripts\icons\VST_Logo_Steinberg.ico</VST_ICON>
+    <CLAP_PATH Condition="'$(CLAP_PATH)'==''">$(CommonProgramW6432)\CLAP</CLAP_PATH>
+    <REAPER_EXT_PATH Condition="'$(REAPER_EXT_PATH)'==''">$(APPDATA)\REAPER\UserPlugins</REAPER_EXT_PATH>
+    <APP_DEFS Condition="'$(APP_DEFS)'==''">APP_API;__WINDOWS_DS__;__WINDOWS_MM__;__WINDOWS_ASIO__;IPLUG_EDITOR=1;IPLUG_DSP=1</APP_DEFS>
+    <CLAP_DEFS Condition="'$(CLAP_DEFS)'==''">CLAP_API;IPLUG_EDITOR=1;IPLUG_DSP=1</CLAP_DEFS>
+    <VST2_DEFS Condition="'$(VST2_DEFS)'==''">VST2_API;VST_FORCE_DEPRECATED;IPLUG_EDITOR=1;IPLUG_DSP=1</VST2_DEFS>
+    <VST3_DEFS Condition="'$(VST3_DEFS)'==''">VST3_API;IPLUG_EDITOR=1;IPLUG_DSP=1</VST3_DEFS>
+    <VST3P_DEFS Condition="'$(VST3P_DEFS)'==''">VST3P_API;IPLUG_EDITOR=0;IPLUG_DSP=1</VST3P_DEFS>
+    <VST3C_DEFS Condition="'$(VST3C_DEFS)'==''">VST3C_API;IPLUG_EDITOR=1;IPLUG_DSP=0</VST3C_DEFS>
+    <DEBUG_DEFS Condition="'$(DEBUG_DEFS)'==''">_DEBUG;</DEBUG_DEFS>
+    <RELEASE_DEFS Condition="'$(RELEASE_DEFS)'==''">NDEBUG;</RELEASE_DEFS>
+    <TRACER_DEFS Condition="'$(TRACER_DEFS)'==''">TRACER_BUILD;NDEBUG;</TRACER_DEFS>
+    <APP_INC_PATHS Condition="'$(APP_INC_PATHS)'==''">$(IPLUG_PATH)\APP;$(IPLUG_DEPS_PATH)\RTAudio\include;$(IPLUG_DEPS_PATH)\RTAudio;$(IPLUG_DEPS_PATH)\RTMidi</APP_INC_PATHS>
+    <CLAP_INC_PATHS Condition="'$(CLAP_INC_PATHS)'==''">$(IPLUG_PATH)\CLAP;$(CLAP_SDK);$(CLAP_HELPERS)</CLAP_INC_PATHS>
+    <VST2_INC_PATHS Condition="'$(VST2_INC_PATHS)'==''">$(IPLUG_PATH)\VST2;$(VST2_SDK)</VST2_INC_PATHS>
+    <VST3_INC_PATHS Condition="'$(VST3_INC_PATHS)'==''">$(IPLUG_PATH)\VST3;$(VST3_SDK)</VST3_INC_PATHS>
+    <AAX_INC_PATHS Condition="'$(AAX_INC_PATHS)'==''">$(IPLUG_PATH)\AAX;$(AAX_SDK)\Interfaces;$(AAX_SDK)\Interfaces\ACF;</AAX_INC_PATHS>
+    <AAX_DEFS Condition="'$(AAX_DEFS)'==''">AAX_API;IPLUG_EDITOR=1;IPLUG_DSP=1;_WINDOWS;WIN32;_WIN32;WINDOWS_VERSION;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE</AAX_DEFS>
+    <ALL_DEFS Condition="'$(ALL_DEFS)'==''">WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;NOMINMAX</ALL_DEFS>
+    <AAX_LIBS Condition="'$(AAX_LIBS)'==''">wininet.lib;odbc32.lib;odbccp32.lib;psapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;</AAX_LIBS>
+    <APP_LIBS Condition="'$(APP_LIBS)'==''">dsound.lib;winmm.lib;</APP_LIBS>
+    <CLAP_64_COMMAND_ARGS Condition="'$(CLAP_64_COMMAND_ARGS)'==''">$(SolutionDir)$(SolutionName).RPP</CLAP_64_COMMAND_ARGS>
+    <VST2_32_COMMAND_ARGS Condition="'$(VST2_32_COMMAND_ARGS)'==''">$(SolutionDir)$(SolutionName).RPP</VST2_32_COMMAND_ARGS>
+    <VST2_64_COMMAND_ARGS Condition="'$(VST2_64_COMMAND_ARGS)'==''">$(SolutionDir)$(SolutionName).RPP</VST2_64_COMMAND_ARGS>
+    <VST3_64_COMMAND_ARGS Condition="'$(VST3_64_COMMAND_ARGS)'==''">$(SolutionDir)$(SolutionName).RPP</VST3_64_COMMAND_ARGS>
+    <VST3_32_COMMAND_ARGS Condition="'$(VST3_32_COMMAND_ARGS)'==''">$(SolutionDir)$(SolutionName).RPP</VST3_32_COMMAND_ARGS>
+    <COPY_VST2 Condition="'$(COPY_VST2)'==''">1</COPY_VST2>
+    <REAPER_INC_PATHS Condition="'$(REAPER_INC_PATHS)'==''">$(IPLUG_DEPS_PATH)/Reaper;$(IPLUG_PATH)\ReaperExt;</REAPER_INC_PATHS>
+    <AAX_ICON Condition="'$(AAX_ICON)'==''">$(AAX_SDK)\Utilities\PlugIn.ico</AAX_ICON>
+    <VST_ICON Condition="'$(VST_ICON)'==''">$(IPLUG2_ROOT)\Scripts\icons\VST_Logo_Steinberg.ico</VST_ICON>
 
-    <!-- Central overridable properties for C/C++ settings -->
-    <CppLanguageStandard Condition="'$(CppLanguageStandard)'==''">stdcpp17</CppLanguageStandard>
+    <!-- Central overridable properties for C/C++ settings (default to C++20) -->
+    <CppLanguageStandard Condition="'$(CppLanguageStandard)'==''">stdcpp20</CppLanguageStandard>
     <EnableMultiProcessorCompilation Condition="'$(EnableMultiProcessorCompilation)'==''">true</EnableMultiProcessorCompilation>
   </PropertyGroup>
+
+  <!-- Platform-specific overrides -->
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <STATIC_LIBS_PATH>$(DEPS_PATH)\Build\win\x64\$(Configuration)</STATIC_LIBS_PATH>
+    <!-- x64-specific SIMD/settings could go here -->
+  </PropertyGroup>
+n  <PropertyGroup Condition="'$(Platform)'=='Win32'">
+    <STATIC_LIBS_PATH>$(DEPS_PATH)\Build\win\Win32\$(Configuration)</STATIC_LIBS_PATH>
+  </PropertyGroup>
+
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
   </PropertyGroup>
@@ -91,7 +111,7 @@
       <MultiProcessorCompilation>$(EnableMultiProcessorCompilation)</MultiProcessorCompilation>
     </ClCompile>
     <ItemDefinitionGroup Condition=" '$(Platform)' == 'Win32' ">
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>$(EnableEnhancedInstructionSet)</EnableEnhancedInstructionSet>
     </ItemDefinitionGroup>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
