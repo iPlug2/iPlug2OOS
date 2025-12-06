@@ -2,7 +2,7 @@
 
 This repo contains an "out of source" iPlug2 template project, which is desirable when you need to keep all your project dependencies synchronised with version control and build it using CI/CD in the cloud. It set up for "containerized development" using [VSCode](https://code.visualstudio.com/docs/devcontainers/containers) and [github codespaces](https://github.com/features/codespaces).
 
-Instead of using the common-mac.xcconfig and common-win.xcconfig in the iPlug2 folder, it uses copies of them at the top level of the iPlug2OOS repo. This means the iPlug2 submodule itself does not have to be modified.
+Instead of using the common-mac.config and common-win.xcconfig in the iPlug2 folder, it uses copies of them at the top level of the iPlug2OOS repo. This means the iPlug2 submodule itself does not have to be modified.
 
 https://github.com/iPlug2/iPlug2/wiki/Out-of-source-builds
 

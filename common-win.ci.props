@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Example CI overrides: adjust paths and settings for headless build agents -->
+    <!-- Uncomment and edit values as needed for your CI environment -->
+
+    <!-- Force absolute IPLUG2_ROOT on CI (example) -->
+    <!-- <IPLUG2_ROOT>C:\agents\work\1\iPlug2</IPLUG2_ROOT> -->
+
+    <!-- Use a newer language standard in CI runs if desired -->
+    <!-- <CppLanguageStandard>stdcpp20</CppLanguageStandard> -->
+
+    <!-- Disable multi-proc on small CI VMs if necessary -->
+    <!-- <EnableMultiProcessorCompilation>false</EnableMultiProcessorCompilation> -->
+
+    <!-- Example: use x64 libs directory on CI -->
+    <!-- <STATIC_LIBS_PATH>$(DEPS_PATH)\Build\win\x64\$(Configuration)</STATIC_LIBS_PATH> -->
+  </PropertyGroup>
+</Project>
