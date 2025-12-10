@@ -14,4 +14,6 @@ include(${IPLUG2_DIR}/iPlug2.cmake)
 
 find_package(iPlug2 REQUIRED)
 
+# Add subdirectories for each project
 add_subdirectory(TemplateProject)
+add_subdirectory(VisageTemplate)
