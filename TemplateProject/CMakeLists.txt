@@ -14,5 +14,5 @@ iplug_add_plugin(${PROJECT_NAME}
   RESOURCES
     resources/fonts/Roboto-Regular.ttf
   FORMATS
-    MINIMAL_PLUGINS APP
+    MINIMAL_PLUGINS APP CLI
 )
