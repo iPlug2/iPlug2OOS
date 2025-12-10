@@ -120,6 +120,20 @@ if(NOT IOS AND NOT CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
   )
   iplug_configure_target(${PROJECT_NAME}-clap CLAP ${PROJECT_NAME})
   iplug_add_plugin_resources(${PROJECT_NAME}-clap)
+
+  # ============================================================================
+  # CLI Target (Command Line Interface) - NO IGraphics, for offline processing
+  # ============================================================================
+  add_executable(${PROJECT_NAME}-cli
+    TemplateProject.cpp
+    TemplateProject.h
+    resources/resource.h
+  )
+  iplug_add_target(${PROJECT_NAME}-cli PUBLIC
+    INCLUDE ${PROJECT_DIR} ${PROJECT_DIR}/resources
+    LINK iPlug2::CLI
+  )
+  iplug_configure_cli(${PROJECT_NAME}-cli ${PROJECT_NAME})
 endif()
 
 # ============================================================================
