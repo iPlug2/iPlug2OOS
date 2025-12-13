@@ -10,3 +10,6 @@ build-*
 *.pem
 mkcert*
 build/*
+*/build
+.claude/settings.local.json
+__pycache__
