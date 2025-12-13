@@ -26,7 +26,6 @@ public:
   TemplateProject(const InstanceInfo& info);
 
 #if IPLUG_EDITOR
-  void OnParentWindowResize(int width, int height) override;
   bool OnHostRequestingSupportedViewConfiguration(int width, int height) override { return true; }
 #endif
   

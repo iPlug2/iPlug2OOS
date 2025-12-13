@@ -43,14 +43,6 @@ TemplateProject::TemplateProject(const InstanceInfo& info)
 #endif
 }
 
-#if IPLUG_EDITOR
-void TemplateProject::OnParentWindowResize(int width, int height)
-{
-  if(GetUI())
-    GetUI()->Resize(width, height, 1.f, false);
-}
-#endif
-
 #if IPLUG_DSP
 void TemplateProject::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 { 
