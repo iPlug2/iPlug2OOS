@@ -107,7 +107,7 @@ jobs:
         run: |
           powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_Windows.zip -OutFile pluginval.zip"
           powershell -Command "Expand-Archive pluginval.zip -DestinationPath ."
-          pluginval.exe --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ${{env.PROJECT_NAME}}.vst3
+          pluginval.exe --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ${{env.PROJECT_NAME}}.vst3/Contents/x86_64-win/${{env.PROJECT_NAME}}.vst3
           if %ERRORLEVEL% neq 0 exit /b 1
         shell: cmd
 
