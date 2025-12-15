@@ -9,6 +9,15 @@ sys.path.insert(0, os.path.join(scriptpath, IPLUG2_ROOT + '\Scripts'))
 
 from get_archive_name import get_archive_name
 
+def add_folder_to_zip(zf, folder_path, archive_base):
+  """Add a folder and its contents to a zip file, preserving structure."""
+  for root, dirs, files in os.walk(folder_path):
+    for file in files:
+      file_path = os.path.join(root, file)
+      arcname = os.path.join(archive_base, os.path.relpath(file_path, folder_path))
+      print("adding " + file_path + " as " + arcname)
+      zf.write(file_path, arcname, zipfile.ZIP_DEFLATED)
+
 def main():
   if len(sys.argv) != 3:
     print("Usage: make_zip.py demo[0/1] zip[0/1]")
@@ -18,46 +27,53 @@ def main():
     zip=int(sys.argv[2])
 
   dir = projectpath + "\\build-win\\out"
-  
+
   if os.path.exists(dir):
     shutil.rmtree(dir)
-  
+
   os.makedirs(dir)
-  
-  files = []
+
+  zipname = get_archive_name(projectpath, "win", "demo" if demo == 1 else "full" )
+  zf = zipfile.ZipFile(projectpath + "\\build-win\\out\\" + zipname + ".zip", mode="w")
 
   if not zip:
     installer = "\\build-win\\installer\\TemplateProject Installer.exe"
-    
+
     if demo:
       installer = "\\build-win\\installer\\TemplateProject Demo Installer.exe"
-    
+
     files = [
       projectpath + installer,
       projectpath + "\\installer\\changelog.txt",
       projectpath + "\\installer\\known-issues.txt",
-      projectpath + "\\manual\\TemplateProject manual.pdf" 
+      projectpath + "\\manual\\TemplateProject manual.pdf"
     ]
+
+    for f in files:
+      print("adding " + f)
+      zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
   else:
+    # Add VST3 bundle with folder structure preserved
+    vst3_bundle = projectpath + "\\build-win\\TemplateProject.vst3"
+    if os.path.exists(vst3_bundle):
+      add_folder_to_zip(zf, vst3_bundle, "TemplateProject.vst3")
+
+    # Add standalone executables
     files = [
-      projectpath + "\\build-win\\TemplateProject.vst3\\Contents\\x86_64-win\\TemplateProject.vst3",
-      projectpath + "\\build-win\\TemplateProject.vst3\\Contents\\arm64ec-win\\TemplateProject.vst3",
       projectpath + "\\build-win\\TemplateProject_x64.exe",
       projectpath + "\\build-win\\TemplateProject_ARM64EC.exe",
       projectpath + "\\build-win\\TemplateProject.clap"
     ]
 
-  zipname = get_archive_name(projectpath, "win", "demo" if demo == 1 else "full" )
-
-  zf = zipfile.ZipFile(projectpath + "\\build-win\\out\\" + zipname + ".zip", mode="w")
-
-  for f in files:
-    print("adding " + f)
-    zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
+    for f in files:
+      if os.path.exists(f):
+        print("adding " + f)
+        zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
 
   zf.close()
   print("wrote " + zipname)
 
+  # Create PDB archive
   zf = zipfile.ZipFile(projectpath + "\\build-win\\out\\" + zipname + "-pdbs.zip", mode="w")
 
   files = [
@@ -70,8 +86,9 @@ def main():
   ]
 
   for f in files:
-    print("adding " + f)
-    zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
+    if os.path.exists(f):
+      print("adding " + f)
+      zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
 
   zf.close()
   print("wrote " + zipname)
