@@ -1,8 +1,16 @@
 #! /bin/sh
 
-# this script requires xcpretty https://github.com/xcpretty/xcpretty
+# optional: xcpretty https://github.com/xcpretty/xcpretty (pass 'pretty' arg to enable)
 
 BASEDIR=$(dirname $0)
+
+# Check for 'pretty' argument anywhere in args
+USE_XCPRETTY=0
+for arg in "$@"; do
+  if [ "$arg" == "pretty" ]; then
+    USE_XCPRETTY=1
+  fi
+done
 
 cd $BASEDIR/..
 
@@ -154,15 +162,22 @@ fi
 #---------------------------------------------------------------------------------------------------------
 # build xcode project. Change target to build individual formats, or add to All target in the xcode project
 
-xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -target "All" -UseModernBuildSystem=NO -configuration Release | tee build-mac.log | xcpretty #&& exit ${PIPESTATUS[0]}
-
-if [ "${PIPESTATUS[0]}" -ne "0" ]; then
-  echo "ERROR: build failed, aborting"
-  echo ""
-  # cat build-mac.log
-  exit 1
-else
+if [ "$USE_XCPRETTY" -eq "1" ]; then
+  xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -target "All" -configuration Release | tee build-mac.log | xcpretty
+  BUILD_STATUS=${PIPESTATUS[0]}
+  if [ "$BUILD_STATUS" -ne "0" ]; then
+    echo "ERROR: build failed, aborting"
+    echo ""
+    cat build-mac.log
+    exit 1
+  fi
   rm build-mac.log
+else
+  xcodebuild -project ./projects/$PLUGIN_NAME-macOS.xcodeproj -xcconfig ./config/$PLUGIN_NAME-mac.xcconfig DEMO_VERSION=$DEMO -target "All" -configuration Release
+  if [ "$?" -ne "0" ]; then
+    echo "ERROR: build failed, aborting"
+    exit 1
+  fi
 fi
 
 #---------------------------------------------------------------------------------------------------------
@@ -357,6 +372,14 @@ sudo rm -R -f build-mac/Release/*-dSYMs.zip
 echo "packaging dSYMs"
 echo ""
 zip -r ./build-mac/$ARCHIVE_NAME-dSYMs.zip ./build-mac/Release/*.dSYM
+
+#---------------------------------------------------------------------------------------------------------
+# auval
+sudo rm -R -f build-mac/*-auval.zip
+
+echo "packaging auval script"
+echo ""
+zip -j ./build-mac/$ARCHIVE_NAME-auval.zip ./config.h ./../iPlug2/Scripts/validate_audiounit.sh
 
 #---------------------------------------------------------------------------------------------------------
 

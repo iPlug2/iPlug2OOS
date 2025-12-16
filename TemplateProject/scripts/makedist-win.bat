@@ -69,9 +69,19 @@ REM - msbuild TemplateProject-app.vcxproj /p:configuration=release /p:platform=x
 echo Building x64 binaries...
 REM add projects with /t to build VST2 and AAX
 msbuild TemplateProject.sln /t:TemplateProject-app;TemplateProject-vst3;TemplateProject-clap /p:configuration=release /p:platform=x64 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly
+if %ERRORLEVEL% neq 0 (
+  echo ERROR: x64 build failed
+  type build-win.log
+  exit /B 1
+)
 
 echo Building ARM64EC binaries...
 msbuild TemplateProject.sln /t:TemplateProject-app;TemplateProject-vst3;TemplateProject-clap /p:configuration=release /p:platform=ARM64EC /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win-arm64ec.log;errorsonly
+if %ERRORLEVEL% neq 0 (
+  echo ERROR: ARM64EC build failed
+  type build-win-arm64ec.log
+  exit /B 1
+)
 
 REM --echo Copying AAX Presets
 

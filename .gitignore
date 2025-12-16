@@ -1,11 +1,12 @@
 .DS_Store
 xcuserdata
 *.RPP-bak
-build-*
-
+*/build-*/
 *.ipch
 *.db
 *.suo
 */.vs
 *.pem
 mkcert*
+.claude/settings.local.json
+__pycache__

@@ -114,6 +114,11 @@ if %PLATFORM% == "ARM64EC" (
   )
 
   if %FORMAT% == ".clap" (
+    echo copying ARM64EC binary to build dir: %BUILD_DIR%\%NAME%_ARM64EC.clap
+    copy /y %BUILT_BINARY% %BUILD_DIR%\%NAME%_ARM64EC.clap
+    if exist "%ICUDAT_PATH%" (
+      copy /y %ICUDAT_PATH% %BUILD_DIR%
+    )
     echo copying ARM64EC binary to CLAP Plugins folder ...
     if exist %CLAP_ARM64EC_PATH% (
       copy /y %BUILT_BINARY% %CLAP_ARM64EC_PATH%
@@ -194,6 +199,11 @@ if %PLATFORM% == "x64" (
   )
 
   if %FORMAT% == ".clap" (
+    echo copying x64 binary to build dir: %BUILD_DIR%\%NAME%_x64.clap
+    copy /y %BUILT_BINARY% %BUILD_DIR%\%NAME%_x64.clap
+    if exist "%ICUDAT_PATH%" (
+      copy /y %ICUDAT_PATH% %BUILD_DIR%
+    )
     echo copying x64 binary to CLAP Plugins folder ...
     if exist %CLAP_X64_PATH% (
       copy /y %BUILT_BINARY% %CLAP_X64_PATH%

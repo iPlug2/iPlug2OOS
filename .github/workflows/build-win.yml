@@ -1,0 +1,198 @@
+name: Build Windows
+
+on:
+  workflow_dispatch:
+  push:
+
+concurrency:
+  group: ${{github.ref}}-win
+  cancel-in-progress: true
+
+env:
+  BUILD_DIR: build-win
+  ARTIFACT_EXT: win
+  PLUGINVAL_VER: v1.0.4
+  CLAP_VER: "main"
+  CLAP_VALIDATOR_VER: "0.3.2"
+
+jobs:
+  build-win:
+    name: Build Windows (${{matrix.project}})
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [TemplateProject]
+        # Add more projects here:
+        # project: [TemplateProject, VisageTemplate]
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Cache Prebuilt Libs
+      id: cache-deps
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/Build
+        key: ${{runner.os}}-deps-${{hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh')}}
+
+    - name: Get Prebuilt Libs
+      if: steps.cache-deps.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies
+        ./download-prebuilt-libs.sh
+
+    - name: Get VST3 SDK
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-vst3-sdk.sh
+
+    - name: Get VST2 SDK
+      shell: bash
+      env:
+        VST2_SDK: ${{secrets.VST2_SDK}}
+      run: |
+        set -eo pipefail
+        mkdir tmp
+        echo $VST2_SDK | base64 -d > tmp/tmp.zip
+        unzip tmp/tmp.zip -d tmp
+        mv tmp/VST2_SDK/* iPlug2/Dependencies/IPlug/VST2_SDK
+
+    - name: Cache CLAP SDK
+      id: cache-clap
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/IPlug/CLAP_SDK
+          iPlug2/Dependencies/IPlug/CLAP_HELPERS
+        key: ${{runner.os}}-clap-${{env.CLAP_VER}}
+
+    - name: Get CLAP SDK
+      if: steps.cache-clap.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-clap-sdks.sh ${{env.CLAP_VER}}
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build
+      shell: pwsh
+      run: |
+        cd ${{matrix.project}}\scripts
+        .\makedist-win.bat full zip
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{matrix.project}}-${{env.ARTIFACT_EXT}}
+        path: |
+          ${{matrix.project}}/${{env.BUILD_DIR}}/out
+
+  test-win:
+    name: Test Windows (${{matrix.project}})
+    runs-on: windows-latest
+    needs: build-win
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [TemplateProject]
+        # Add more projects here:
+        # project: [TemplateProject, VisageTemplate]
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{matrix.project}}-${{env.ARTIFACT_EXT}}
+
+      - name: Unzip files
+        shell: pwsh
+        run: |
+          Get-ChildItem -Filter "*-${{env.ARTIFACT_EXT}}.zip" | ForEach-Object { Expand-Archive -Path $_.FullName -DestinationPath . -Force }
+
+      - name: List extracted files
+        shell: bash
+        run: |
+          echo "=== Listing all files ==="
+          ls -la
+          echo "=== Looking for CLAP files ==="
+          find . -name "*.clap" 2>/dev/null || echo "No .clap files found"
+          echo "=== Looking for VST3 files ==="
+          find . -name "*.vst3" 2>/dev/null || echo "No .vst3 files found"
+
+      - name: Cache Pluginval
+        id: cache-pluginval
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./pluginval.exe
+          key: ${{runner.os}}-pluginval-${{env.PLUGINVAL_VER}}
+
+      - name: Get Pluginval
+        if: steps.cache-pluginval.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/Tracktion/pluginval/releases/download/${{env.PLUGINVAL_VER}}/pluginval_Windows.zip" -OutFile pluginval.zip
+          Expand-Archive -Path pluginval.zip -DestinationPath . -Force
+
+      - name: Cache CLAP Validator
+        id: cache-clap-validator
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./clap-validator.exe
+          key: ${{runner.os}}-clap-validator-${{env.CLAP_VALIDATOR_VER}}
+
+      - name: Get CLAP Validator
+        if: steps.cache-clap-validator.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/free-audio/clap-validator/releases/download/${{env.CLAP_VALIDATOR_VER}}/clap-validator-${{env.CLAP_VALIDATOR_VER}}-windows.zip" -OutFile clap-validator.zip
+          Expand-Archive -Path clap-validator.zip -DestinationPath . -Force
+          Remove-Item -Force clap-validator.zip
+
+      - name: Test VST3 with Pluginval
+        shell: bash
+        run: |
+          vst3Path="./${{matrix.project}}.vst3/Contents/x86_64-win/${{matrix.project}}.vst3"
+          if [ -f "$vst3Path" ]; then
+            # pluginval on Windows may return non-zero even on success, so check output
+            output=$(./pluginval.exe --skip-gui-tests --validate-in-process --output-dir "./bin" --validate "$vst3Path" 2>&1) || true
+            echo "$output"
+            if echo "$output" | grep -q "SUCCESS"; then
+              echo "Validation passed"
+            else
+              echo "Validation failed"
+              exit 1
+            fi
+          else
+            echo "VST3 not found at $vst3Path"
+            exit 1
+          fi
+
+      - name: Test CLAP with CLAP Validator
+        shell: bash
+        run: |
+          clapPath="./${{matrix.project}}_x64.clap"
+          if [ -f "$clapPath" ]; then
+            ./clap-validator.exe validate "$clapPath"
+          else
+            echo "CLAP not found at $clapPath"
+            echo "Available files:"
+            ls -la *.clap 2>/dev/null || echo "No .clap files found"
+            exit 1
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.project}}-${{env.ARTIFACT_EXT}}-pluginval
+          path: ./bin

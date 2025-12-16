@@ -13,8 +13,8 @@
 			buildPhases = (
 			);
 			dependencies = (
+				4F2181902EF1710600FD6EB6 /* PBXTargetDependency */,
 				4F61D8582D7482DA00578AA8 /* PBXTargetDependency */,
-				4F06F18623566DC800FD0962 /* PBXTargetDependency */,
 				4F78DAFA13B6436B0032E0F3 /* PBXTargetDependency */,
 				4F9828F8140A9F0200F3FCC1 /* PBXTargetDependency */,
 			);
@@ -254,7 +254,7 @@
 		4FD16D4213B635AB001D0217 /* swell-wnd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D4113B635AB001D0217 /* swell-wnd.mm */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32 -Wno-deprecated-implementations"; }; };
 		4FD16D4413B635B2001D0217 /* swell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FD16D4313B635B2001D0217 /* swell.cpp */; settings = {COMPILER_FLAGS = "-Wno-unreachable-code -Wno-shorten-64-to-32 -Wno-deprecated-implementations"; }; };
 		4FD52131202A5B9B00A4D22A /* IPlugAU_view_factory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FD5212E202A5B9B00A4D22A /* IPlugAU_view_factory.mm */; };
-		4FD52133202A5B9B00A4D22A /* IPlugAU.r in Rez */ = {isa = PBXBuildFile; fileRef = 4FD52130202A5B9B00A4D22A /* IPlugAU.r */; };
+		4FD52133202A5B9B00A4D22A /* IPlugAU.r in Resources */ = {isa = PBXBuildFile; fileRef = 4FD52130202A5B9B00A4D22A /* IPlugAU.r */; };
 		4FD52136202A5BD000A4D22A /* dfx-au-utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 4FD52134202A5BD000A4D22A /* dfx-au-utilities.c */; };
 		4FDAC0EA207D76C600299363 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
 		4FDAC0EB207D76C600299363 /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
@@ -267,19 +267,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4F06F18523566DC800FD0962 /* PBXContainerItemProxy */ = {
+		4F21818F2EF1710600FD6EB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4FD16A0813B63081001D0217;
-			remoteInfo = APP;
+			remoteGlobalIDString = 4F3EE1BA231438D000004786;
+			remoteInfo = AUv3App;
 		};
-		4F3EE1BC231438D000004786 /* PBXContainerItemProxy */ = {
+		4F2181912EF1754700FD6EB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4F78BE0122E73D0800AD537E;
-			remoteInfo = AUv3Framework;
+			remoteGlobalIDString = 4F39075F2013EBA300DDA490;
+			remoteInfo = AUv3;
 		};
 		4F61D8572D7482DA00578AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1739,7 +1739,6 @@
 				4FBCC1A21FD59C7300EFE550 /* Run Script - prepare_resources-mac.py */,
 				4F3AE1A212C0E5E2001FD7A4 /* Sources */,
 				4F25BECE12C61F47005D51F7 /* Resources */,
-				4F3AE1DA12C0E5E2001FD7A4 /* Rez */,
 				4F744D4C14005ADA002FAD90 /* Run Script - clear_audiounit_caches.sh */,
 				4FBDD26520A319580054B111 /* Frameworks */,
 			);
@@ -1768,7 +1767,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F3EE1BB231438D000004786 /* PBXTargetDependency */,
+				4F2181922EF1754700FD6EB6 /* PBXTargetDependency */,
 				B87FD2022351C78700CF7307 /* PBXTargetDependency */,
 			);
 			name = AUv3App;
@@ -1999,6 +1998,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD52133202A5B9B00A4D22A /* IPlugAU.r in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2057,17 +2057,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXRezBuildPhase section */
-		4F3AE1DA12C0E5E2001FD7A4 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4FD52133202A5B9B00A4D22A /* IPlugAU.r in Rez */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		4F02E1D723144CDA00731A7D /* Run Script - Force register AUv3 */ = {
@@ -2519,15 +2508,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4F06F18623566DC800FD0962 /* PBXTargetDependency */ = {
+		4F2181902EF1710600FD6EB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FD16A0813B63081001D0217 /* APP */;
-			targetProxy = 4F06F18523566DC800FD0962 /* PBXContainerItemProxy */;
+			target = 4F3EE1BA231438D000004786 /* AUv3App */;
+			targetProxy = 4F21818F2EF1710600FD6EB6 /* PBXContainerItemProxy */;
 		};
-		4F3EE1BB231438D000004786 /* PBXTargetDependency */ = {
+		4F2181922EF1754700FD6EB6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F78BE0122E73D0800AD537E /* TemplateProjectAU */;
-			targetProxy = 4F3EE1BC231438D000004786 /* PBXContainerItemProxy */;
+			target = 4F39075F2013EBA300DDA490 /* AUv3 */;
+			targetProxy = 4F2181912EF1754700FD6EB6 /* PBXContainerItemProxy */;
 		};
 		4F61D8582D7482DA00578AA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

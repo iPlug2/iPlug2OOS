@@ -26,6 +26,30 @@ def main():
     demo=int(sys.argv[1])
     zip=int(sys.argv[2])
 
+  # Debug: list build-win contents
+  build_dir = projectpath + "\\build-win"
+  print("=== Contents of build-win ===")
+  if os.path.exists(build_dir):
+    for item in os.listdir(build_dir):
+      item_path = os.path.join(build_dir, item)
+      if os.path.isdir(item_path):
+        print(f"  [DIR] {item}")
+      else:
+        print(f"  {item}")
+  else:
+    print("  build-win directory not found!")
+
+  # Debug: check VST3 bundle structure
+  vst3_bundle = build_dir + "\\TemplateProject.vst3"
+  if os.path.exists(vst3_bundle):
+    print("=== VST3 bundle structure ===")
+    for root, dirs, files in os.walk(vst3_bundle):
+      level = root.replace(vst3_bundle, '').count(os.sep)
+      indent = '  ' * level
+      print(f"{indent}{os.path.basename(root)}/")
+      for file in files:
+        print(f"{indent}  {file}")
+
   dir = projectpath + "\\build-win\\out"
 
   if os.path.exists(dir):
@@ -62,13 +86,29 @@ def main():
     files = [
       projectpath + "\\build-win\\TemplateProject_x64.exe",
       projectpath + "\\build-win\\TemplateProject_ARM64EC.exe",
-      projectpath + "\\build-win\\TemplateProject.clap"
     ]
 
     for f in files:
       if os.path.exists(f):
         print("adding " + f)
         zf.write(f, os.path.basename(f), zipfile.ZIP_DEFLATED)
+
+    # Add CLAP files - check postbuild location first, then build output
+    clap_files = [
+      # Postbuild locations
+      (projectpath + "\\build-win\\TemplateProject_x64.clap", "TemplateProject_x64.clap"),
+      (projectpath + "\\build-win\\TemplateProject_ARM64EC.clap", "TemplateProject_ARM64EC.clap"),
+      # Build output locations (fallback)
+      (projectpath + "\\build-win\\clap\\x64\\Release\\TemplateProject.clap", "TemplateProject_x64.clap"),
+      (projectpath + "\\build-win\\clap\\ARM64EC\\Release\\TemplateProject.clap", "TemplateProject_ARM64EC.clap"),
+    ]
+
+    added_claps = set()
+    for clap_path, archive_name in clap_files:
+      if os.path.exists(clap_path) and archive_name not in added_claps:
+        print("adding " + clap_path + " as " + archive_name)
+        zf.write(clap_path, archive_name, zipfile.ZIP_DEFLATED)
+        added_claps.add(archive_name)
 
   zf.close()
   print("wrote " + zipname)

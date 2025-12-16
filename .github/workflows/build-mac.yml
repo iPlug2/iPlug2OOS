@@ -1,0 +1,241 @@
+name: Build macOS
+
+on:
+  workflow_dispatch:
+  push:
+
+concurrency:
+  group: ${{github.ref}}-mac
+  cancel-in-progress: true
+
+env:
+  BUILD_DIR: build-mac
+  ARTIFACT_EXT: mac
+  PLUGINVAL_VER: v1.0.4
+  VST3_VER: v3.8.0_build_66
+  CLAP_VER: "main"
+  CLAP_VALIDATOR_VER: "0.3.2"
+
+jobs:
+  build-mac:
+    name: Build macOS (${{matrix.project}})
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [TemplateProject]
+        # Add more projects here:
+        # project: [TemplateProject, VisageTemplate]
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3.3.0
+      with:
+        submodules: recursive
+
+    - name: Cache Prebuilt Libs
+      id: cache-deps
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/Build
+          iPlug2/Dependencies/iPlug
+        key: ${{runner.os}}-deps-${{hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh', 'iPlug2/Dependencies/IGraphics/build-igraphics-libs-mac.sh', 'iPlug2/Dependencies/IGraphics/build-skia-mac.sh')}}
+
+    - name: Get Prebuilt Libs
+      if: steps.cache-deps.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies
+        ./download-prebuilt-libs.sh
+
+    - name: Cache VST3 SDK
+      id: cache-vst3
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/IPlug/VST3_SDK
+        key: ${{runner.os}}-vst3-${{env.VST3_VER}}
+
+    - name: Get VST3 SDK
+      if: steps.cache-vst3.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-vst3-sdk.sh ${{env.VST3_VER}} build-validator
+
+    - name: Get VST2 SDK
+      shell: bash
+      env:
+        VST2_SDK: ${{secrets.VST2_SDK}}
+      run: |
+        set -eo pipefail
+        mkdir tmp
+        echo $VST2_SDK | base64 -d > tmp/tmp.zip
+        unzip tmp/tmp.zip -d tmp
+        mv tmp/VST2_SDK/* iPlug2/Dependencies/IPlug/VST2_SDK
+
+    - name: Cache CLAP SDK
+      id: cache-clap
+      uses: actions/cache@v3
+      with:
+        path: |
+          iPlug2/Dependencies/IPlug/CLAP_SDK
+          iPlug2/Dependencies/IPlug/CLAP_HELPERS
+        key: ${{runner.os}}-clap-${{env.CLAP_VER}}
+
+    - name: Get CLAP SDK
+      if: steps.cache-clap.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-clap-sdks.sh ${{env.CLAP_VER}}
+
+    - name: Build
+      shell: bash
+      run: |
+        set -eo pipefail
+        cd ${{matrix.project}}/scripts
+        ./makedist-mac.sh full zip
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{matrix.project}}-${{env.ARTIFACT_EXT}}
+        path: |
+          ${{matrix.project}}/${{env.BUILD_DIR}}/out
+
+  test-mac:
+    name: Test macOS (${{matrix.project}})
+    runs-on: macos-latest
+    needs: build-mac
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [TemplateProject]
+        # Add more projects here:
+        # project: [TemplateProject, VisageTemplate]
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{matrix.project}}-${{env.ARTIFACT_EXT}}
+
+      - name: Unzip files
+        shell: bash
+        run: |
+          set -eo pipefail
+          unzip *-${{env.ARTIFACT_EXT}}.zip
+          unzip *-${{env.ARTIFACT_EXT}}-auval.zip
+
+      - name: Cache Pluginval
+        id: cache-pluginval
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./pluginval.app
+          key: ${{runner.os}}-pluginval-${{env.PLUGINVAL_VER}}
+
+      - name: Get Pluginval
+        if: steps.cache-pluginval.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          set -eo pipefail
+          curl -fL "https://github.com/Tracktion/pluginval/releases/download/${{env.PLUGINVAL_VER}}/pluginval_macOS.zip" -o pluginval.zip
+          unzip pluginval
+
+      - name: Restore VST3 SDK
+        id: cache-vst3
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+          key: ${{runner.os}}-vst3-${{env.VST3_VER}}
+
+      - name: Cache CLAP Validator
+        id: cache-clap-validator
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./clap-validator
+          key: ${{runner.os}}-clap-validator-${{env.CLAP_VALIDATOR_VER}}
+
+      - name: Get CLAP Validator
+        if: steps.cache-clap-validator.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          set -eo pipefail
+          curl -fL "https://github.com/free-audio/clap-validator/releases/download/${{env.CLAP_VALIDATOR_VER}}/clap-validator-${{env.CLAP_VALIDATOR_VER}}-macos-universal.tar.gz" -o clap-validator.tar.gz
+          tar -xzf clap-validator.tar.gz
+          mv binaries/clap-validator ./clap-validator
+          rm -rf binaries clap-validator.tar.gz
+
+      - name: Test VST3 with VST3 Validator
+        shell: bash
+        run: |
+          set -eo pipefail
+          ./iPlug2/Dependencies/IPlug/VST3_SDK/validator ${{matrix.project}}.vst3
+
+      - name: Test CLAP with CLAP Validator
+        shell: bash
+        run: |
+          set -eo pipefail
+          ./clap-validator validate ./${{matrix.project}}.clap
+
+      - name: Test VST3 with Pluginval
+        shell: bash
+        run: |
+          set -eo pipefail
+          pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ${{matrix.project}}.vst3
+
+      - name: Test AUv2 with Pluginval
+        shell: bash
+        run: |
+          set -eo pipefail
+          mkdir -p ~/Library/Audio/Plug-Ins/Components
+          mv ${{matrix.project}}.component ~/Library/Audio/Plug-Ins/Components
+          pgrep -x AudioComponentRegistrar >/dev/null && killall -9 AudioComponentRegistrar; echo "killed AudioComponentRegistrar" || echo "AudioComponentRegistrar Process not found"
+          pluginval.app/Contents/MacOS/pluginval --skip-gui-tests --validate-in-process --output-dir "./bin" --validate ~/Library/Audio/Plug-Ins/Components/${{matrix.project}}.component
+
+      - name: Test AUv2 with auval
+        shell: bash
+        run: |
+          set -eo pipefail
+          ./validate_audiounit.sh config.h
+
+      # - name: Test AUv3 with auval
+      #   shell: bash
+      #   run: |
+      #     set -eo pipefail
+      #     APPEX_PATH="./${{matrix.project}}.app/Contents/PlugIns/${{matrix.project}}.appex"
+      #     if [ -d "$APPEX_PATH" ]; then
+      #       echo "Found AUv3 appex at $APPEX_PATH"
+      #       # Remove AUv2 component so auval finds the AUv3 (they share the same IDs)
+      #       echo "Removing AUv2 component to avoid ID conflict..."
+      #       rm -rf ~/Library/Audio/Plug-Ins/Components/${{matrix.project}}.component
+      #       # Install app to ~/Applications for AUv3 to be discoverable
+      #       echo "Installing app to ~/Applications..."
+      #       mkdir -p ~/Applications
+      #       cp -R ./${{matrix.project}}.app ~/Applications/
+      #       echo "Registering AUv3 with pluginkit..."
+      #       pluginkit -a ~/Applications/${{matrix.project}}.app/Contents/PlugIns/${{matrix.project}}.appex
+      #       sleep 2
+      #       pgrep -x AudioComponentRegistrar >/dev/null && killall -9 AudioComponentRegistrar; echo "killed AudioComponentRegistrar" || echo "AudioComponentRegistrar not running"
+      #       sleep 3
+      #       echo "Running auval for AUv3..."
+      #       ./validate_audiounit.sh config.h
+      #     else
+      #       echo "No AUv3 appex found at $APPEX_PATH - skipping AUv3 validation"
+      #     fi
+
+      # - name: Test AUv2 with auval (RTSafe)
+      #   shell: bash
+      #   run: |
+      #     ./validate_audiounit.sh config.h rtsafe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.project}}-${{env.ARTIFACT_EXT}}-pluginval
+          path: ./bin
