@@ -4,5 +4,7 @@
     "grunt.autoDetect": "off",
     "jake.autoDetect": "off",
     "gulp.autoDetect": "off",
-    "npm.autoDetect": "off"
+    "npm.autoDetect": "off",
+    "cmake.useCMakePresets": "always",
+    "cmake.configureOnOpen": false
 }
