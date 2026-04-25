@@ -60,17 +60,10 @@
                 "Debug",
                 "SYMROOT=$HOME/Library/Developer/Xcode/DerivedData"
             ],
-            "group": "build"
-        },
-        {
-            "label": "build WAM",
-            "type": "shell",
-            "command": "${workspaceFolder}/TemplateProject/scripts/makedist-web.sh container",
-            "args": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
         }
     ]
 }

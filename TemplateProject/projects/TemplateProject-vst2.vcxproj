@@ -336,7 +336,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\config\TemplateProject-ios.xcconfig" />
-    <None Include="..\config\TemplateProject-web.mk" />
     <None Include="..\config\TemplateProject-win.props" />
     <None Include="..\config\TemplateProject-mac.xcconfig" />
   </ItemGroup>

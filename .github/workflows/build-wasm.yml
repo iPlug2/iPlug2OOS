@@ -1,0 +1,47 @@
+name: Build Wasm
+
+on:
+  workflow_dispatch
+
+env:
+  PROJECT_NAME: TemplateProject
+
+jobs:
+  build:
+    name: Build-Wasm
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Setup Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Build Wasm
+        run: |
+          cd ${{env.PROJECT_NAME}}/scripts
+          ./makedist-wasm.sh off
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.PROJECT_NAME}}-wasm
+          path: ${{env.PROJECT_NAME}}/build-web-wasm
+
+      - name: Publish to pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          branch: gh-pages
+          folder: ${{env.PROJECT_NAME}}/build-web-wasm
