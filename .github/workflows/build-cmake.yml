@@ -30,6 +30,10 @@ on:
         description: 'Include WAM/Emscripten build'
         type: boolean
         default: false
+      wasm:
+        description: 'Include WASM/Emscripten build'
+        type: boolean
+        default: false
       universal:
         description: 'Include macOS Universal build (arm64+x86_64)'
         type: boolean
@@ -66,6 +70,7 @@ jobs:
       all_generators: ${{ steps.parse.outputs.all_generators }}
       ios: ${{ steps.parse.outputs.ios }}
       wam: ${{ steps.parse.outputs.wam }}
+      wasm: ${{ steps.parse.outputs.wasm }}
       universal: ${{ steps.parse.outputs.universal }}
       backends: ${{ steps.parse.outputs.backends }}
       arm64ec: ${{ steps.parse.outputs.arm64ec }}
@@ -86,6 +91,7 @@ jobs:
               echo "all_generators=true" >> $GITHUB_OUTPUT
               echo "ios=true" >> $GITHUB_OUTPUT
               echo "wam=true" >> $GITHUB_OUTPUT
+              echo "wasm=true" >> $GITHUB_OUTPUT
               echo "universal=true" >> $GITHUB_OUTPUT
               echo "backends=true" >> $GITHUB_OUTPUT
               echo "arm64ec=true" >> $GITHUB_OUTPUT
@@ -93,6 +99,7 @@ jobs:
               [[ "$COMMENT" == *"/ci all-generators"* || "$COMMENT" == *"/ci generators"* ]] && echo "all_generators=true" >> $GITHUB_OUTPUT || echo "all_generators=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci ios"* ]] && echo "ios=true" >> $GITHUB_OUTPUT || echo "ios=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci wam"* ]] && echo "wam=true" >> $GITHUB_OUTPUT || echo "wam=false" >> $GITHUB_OUTPUT
+              [[ "$COMMENT" == *"/ci wasm"* ]] && echo "wasm=true" >> $GITHUB_OUTPUT || echo "wasm=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci universal"* ]] && echo "universal=true" >> $GITHUB_OUTPUT || echo "universal=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci backends"* ]] && echo "backends=true" >> $GITHUB_OUTPUT || echo "backends=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci arm64ec"* ]] && echo "arm64ec=true" >> $GITHUB_OUTPUT || echo "arm64ec=false" >> $GITHUB_OUTPUT
@@ -102,6 +109,7 @@ jobs:
             echo "all_generators=${{ inputs.all_generators }}" >> $GITHUB_OUTPUT
             echo "ios=${{ inputs.ios }}" >> $GITHUB_OUTPUT
             echo "wam=${{ inputs.wam }}" >> $GITHUB_OUTPUT
+            echo "wasm=${{ inputs.wasm }}" >> $GITHUB_OUTPUT
             echo "universal=${{ inputs.universal }}" >> $GITHUB_OUTPUT
             echo "backends=${{ inputs.backends }}" >> $GITHUB_OUTPUT
             echo "arm64ec=${{ inputs.arm64ec }}" >> $GITHUB_OUTPUT
@@ -111,6 +119,7 @@ jobs:
             echo "all_generators=false" >> $GITHUB_OUTPUT
             echo "ios=false" >> $GITHUB_OUTPUT
             echo "wam=false" >> $GITHUB_OUTPUT
+            echo "wasm=false" >> $GITHUB_OUTPUT
             echo "universal=false" >> $GITHUB_OUTPUT
             echo "backends=false" >> $GITHUB_OUTPUT
             echo "arm64ec=false" >> $GITHUB_OUTPUT
@@ -700,21 +709,85 @@ jobs:
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
-        run: cmake --preset=wam
+        run: cmake --preset=web
 
       - name: Build WAM
-        run: cmake --build --preset=wam
+        run: cmake --build --preset=web --target ${{env.PROJECT_NAME}}-web-dist
 
       - name: Verify WAM Output
         run: |
-          test -f build/wam/out/${{env.PROJECT_NAME}}/index.html
-          test -f build/wam/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-wam.js
-          test -f build/wam/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.js
-          test -f build/wam/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.wasm
+          test -f build/web/out/${{env.PROJECT_NAME}}/index.html
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-wam.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.wasm
           echo "WAM distribution verified"
 
       - name: Upload WAM Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{env.PROJECT_NAME}}-wam
-          path: build/wam/out/${{env.PROJECT_NAME}}
+          path: build/web/out/${{env.PROJECT_NAME}}
+
+  # ==========================================================================
+  # Emscripten - WASM Build - Optional: /ci wasm
+  # ==========================================================================
+  emscripten-wasm:
+    name: WASM (Emscripten)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.wasm == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+
+      - name: Install Ninja
+        run: sudo apt-get install -y ninja-build
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=web
+
+      - name: Build WASM
+        run: cmake --build --preset=web --target ${{env.PROJECT_NAME}}-wasm-dist
+
+      - name: Verify WASM Output
+        run: |
+          test -f build/web/out/${{env.PROJECT_NAME}}/index.html
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-dsp.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-bundle.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-processor.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/styles/style.css
+          echo "WASM distribution verified"
+
+      - name: Upload WASM Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.PROJECT_NAME}}-wasm-cmake
+          path: build/web/out/
+          if-no-files-found: warn
