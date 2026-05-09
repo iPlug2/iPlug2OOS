@@ -113,23 +113,20 @@ emmake make -f "$PROJECT_NAME-wasm-dsp.mk" || {
   exit 1
 }
 
-# Wrap DSP module for AudioWorklet scope
-# AudioWorklet doesn't have 'self', so we shim it to 'globalThis'
-# and expose the Module as globalThis.Module. The 'https://localhost/'
-# href is a placeholder — AudioWorklet code never reads location.href,
-# but emscripten's generated glue touches self.location during init and
-# crashes on undefined. Any well-formed URL works and has no effect in prod.
-cd "$PROJECT_ROOT/build-web-wasm/scripts"
+# Prepend AudioWorklet scope shim to DSP module (binary-safe via Python,
+# because SINGLE_FILE=1 embeds wasm as pseudo-Latin1 that cat can corrupt)
+SHIM_FILE="$IPLUG2_ROOT/IPlug/WEB/TemplateWasm/scripts/worklet-scope-shim.js"
+DSP_JS="$PROJECT_ROOT/build-web-wasm/scripts/$PROJECT_NAME-dsp.js"
 
-echo "// AudioWorklet scope wrapper for iPlug2 Wasm DSP
-// Shim 'self' and 'location' for AudioWorklet environment
-var self = globalThis;
-self.location = self.location || { href: 'https://localhost/' };
-var Module = globalThis.Module = globalThis.Module || {};
-" > "$PROJECT_NAME-dsp.tmp.js"
-
-cat "$PROJECT_NAME-dsp.js" >> "$PROJECT_NAME-dsp.tmp.js"
-mv "$PROJECT_NAME-dsp.tmp.js" "$PROJECT_NAME-dsp.js"
+python3 -c "
+import sys, os, tempfile
+shim = open(sys.argv[1], 'rb').read()
+body = open(sys.argv[2], 'rb').read()
+fd, tmp = tempfile.mkstemp(dir=os.path.dirname(sys.argv[2]))
+os.write(fd, shim + body)
+os.close(fd)
+os.replace(tmp, sys.argv[2])
+" "$SHIM_FILE" "$DSP_JS"
 
 cd "$PROJECT_ROOT/projects"
 
