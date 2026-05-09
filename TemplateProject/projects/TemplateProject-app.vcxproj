@@ -361,6 +361,7 @@
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugProcessor.cpp" />
     <ClCompile Include="..\..\iPlug2\IPlug\IPlugTimer.cpp" />
     <ClCompile Include="..\TemplateProject.cpp" />
+    <ClCompile Include="..\..\iPlug2\WDL\win32_utf8.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\resources\main.rc" />
