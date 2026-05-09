@@ -247,9 +247,6 @@
     <None Include="..\config\TemplateProject-ios.xcconfig">
       <Filter>config</Filter>
     </None>
-    <None Include="..\config\TemplateProject-web.mk">
-      <Filter>config</Filter>
-    </None>
     <None Include="..\config\TemplateProject-win.props">
       <Filter>config</Filter>
     </None>

@@ -500,7 +500,6 @@
   <ItemGroup>
     <None Include="..\config\TemplateProject-ios.xcconfig" />
     <None Include="..\config\TemplateProject-mac.xcconfig" />
-    <None Include="..\config\TemplateProject-web.mk" />
     <None Include="..\config\TemplateProject-win.props" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

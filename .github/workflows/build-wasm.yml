@@ -1,0 +1,112 @@
+name: Build Wasm
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_system:
+        description: 'Build system to use'
+        type: choice
+        options:
+          - makefile
+          - cmake
+          - both
+        default: makefile
+
+env:
+  PROJECT_NAME: TemplateProject
+
+jobs:
+  build-makefile:
+    name: Build-Wasm (Makefile)
+    if: inputs.build_system != 'cmake'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Setup Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Build Wasm
+        run: |
+          cd ${{env.PROJECT_NAME}}/scripts
+          ./makedist-wasm.sh off
+
+      - name: Verify WASM Output
+        run: |
+          test -f ${{env.PROJECT_NAME}}/build-web-wasm/index.html
+          test -f ${{env.PROJECT_NAME}}/build-web-wasm/scripts/${{env.PROJECT_NAME}}-dsp.js
+          test -f ${{env.PROJECT_NAME}}/build-web-wasm/scripts/${{env.PROJECT_NAME}}-bundle.js
+          test -f ${{env.PROJECT_NAME}}/build-web-wasm/scripts/${{env.PROJECT_NAME}}-processor.js
+          echo "WASM distribution verified"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.PROJECT_NAME}}-wasm
+          path: ${{env.PROJECT_NAME}}/build-web-wasm
+
+      - name: Publish to pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          branch: gh-pages
+          folder: ${{env.PROJECT_NAME}}/build-web-wasm
+
+  build-cmake:
+    name: Build-Wasm (CMake)
+    if: inputs.build_system != 'makefile'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Setup Python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Install Ninja
+        run: sudo apt-get install -y ninja-build
+
+      - name: Configure CMake
+        run: cmake --preset web
+
+      - name: Build
+        run: cmake --build --preset web --target ${{env.PROJECT_NAME}}-wasm-dist
+
+      - name: Verify WASM Output
+        run: |
+          test -f build/web/out/${{env.PROJECT_NAME}}/index.html
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-dsp.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-bundle.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-processor.js
+          test -f build/web/out/${{env.PROJECT_NAME}}/styles/style.css
+          echo "WASM distribution verified"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.PROJECT_NAME}}-wasm-cmake
+          path: build/web/out/
+          if-no-files-found: warn
