@@ -43,11 +43,11 @@ def main():
       else:
         line="OutputBaseFilename=TemplateProject Installer\n"
         
-    if 'Source: "readme' in line:
+    if 'DestName: "readme.txt"' in line:
      if demo:
-      line='Source: "readme-win-demo.rtf"; DestDir: "{app}"; DestName: "readme.rtf"; Flags: isreadme\n'
+      line='Source: "..\\build-win\\installer-docs\\readme-win-demo.txt"; DestDir: "{app}"; DestName: "readme.txt"; Flags: isreadme\n'
      else:
-      line='Source: "readme-win.rtf"; DestDir: "{app}"; DestName: "readme.rtf"; Flags: isreadme\n'
+      line='Source: "..\\build-win\\installer-docs\\readme-win.txt"; DestDir: "{app}"; DestName: "readme.txt"; Flags: isreadme\n'
     
     if "WelcomeLabel1" in line:
      if demo:

@@ -91,6 +91,17 @@ jobs:
         cd iPlug2/Dependencies/IPlug
         ./download-clap-sdks.sh ${{env.CLAP_VER}}
 
+    - name: Validate installer docs
+      shell: bash
+      run: |
+        set -eo pipefail
+        cd ${{matrix.project}}
+        python3 scripts/prepare_installer_docs.py mac
+        test -f build-mac/installer/resources/license.rtf
+        test -f build-mac/installer/resources/readme-mac.rtf
+        test -f build-mac/installer/resources/intro.rtf
+        test -f "manual/${{matrix.project}} manual.md"
+
     - name: Build
       shell: bash
       run: |

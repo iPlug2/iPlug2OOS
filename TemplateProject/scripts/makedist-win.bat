@@ -37,6 +37,11 @@ echo ------------------------------------------------------------------
 echo Updating version numbers ...
 
 call python prepare_resources-win.py %DEMO%
+call python prepare_installer_docs.py win
+if %ERRORLEVEL% neq 0 (
+  echo ERROR: preparing installer docs failed
+  exit /B 1
+)
 call python update_installer-win.py %DEMO%
 
 cd ..\

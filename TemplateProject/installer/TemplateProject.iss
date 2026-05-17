@@ -14,7 +14,7 @@ SolidCompression=yes
 OutputDir=.\..\build-win\installer
 ArchitecturesInstallIn64BitMode=x64
 OutputBaseFilename=TemplateProject Installer
-LicenseFile=license.rtf
+LicenseFile=..\build-win\installer-docs\license.txt
 SetupLogging=yes
 ShowComponentSizes=no
 ; WizardImageFile=installer_bg-win.bmp
@@ -73,15 +73,15 @@ Source: "..\build-win\TemplateProject.clap"; DestDir: {commoncf64}\CLAP\; Check:
 ;Source: "..\build-win\TemplateProject.aaxplugin\Desktop.ini"; DestDir: "{cf64}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Check: Is64BitInstallMode; Components:aax_64; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
 ;Source: "..\build-win\TemplateProject.aaxplugin\PlugIn.ico"; DestDir: "{cf64}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Check: Is64BitInstallMode; Components:aax_64; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
 
-Source: "..\manual\TemplateProject manual.pdf"; DestDir: "{app}"
+Source: "..\manual\TemplateProject manual.md"; DestDir: "{app}"
 Source: "changelog.txt"; DestDir: "{app}"
-Source: "readme-win.rtf"; DestDir: "{app}"; DestName: "readme.rtf"; Flags: isreadme
+Source: "..\build-win\installer-docs\readme-win.txt"; DestDir: "{app}"; DestName: "readme.txt"; Flags: isreadme
 
 [Icons]
 Name: "{group}\TemplateProject"; Filename: "{app}\TemplateProject_x64.exe"
-Name: "{group}\User guide"; Filename: "{app}\TemplateProject manual.pdf"
+Name: "{group}\User guide"; Filename: "{app}\TemplateProject manual.md"
 Name: "{group}\Changelog"; Filename: "{app}\changelog.txt"
-;Name: "{group}\readme"; Filename: "{app}\readme.rtf"
+;Name: "{group}\readme"; Filename: "{app}\readme.txt"
 Name: "{group}\Uninstall TemplateProject"; Filename: "{app}\unins000.exe"
 
 [Code]

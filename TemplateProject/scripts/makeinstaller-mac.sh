@@ -44,6 +44,7 @@ OUTPUT_BASE_FILENAME="${PRODUCT_NAME} Installer.pkg"
 
 TARGET_DIR="./build-mac/installer"
 PKG_DIR=${TARGET_DIR}/pkgs
+RESOURCES_DIR=${TARGET_DIR}/resources
 
 if [[ ! -d ${TARGET_DIR} ]]; then
   mkdir ${TARGET_DIR}
@@ -52,6 +53,8 @@ fi
 if [[ ! -d ${PKG_DIR} ]]; then
   mkdir ${PKG_DIR}
 fi
+
+python3 ./scripts/prepare_installer_docs.py mac || exit 1
 
 build_flavor()
 {
@@ -193,7 +196,8 @@ XMLEND
 # build installation bundle
 # --resources .
 
-productbuild --distribution ${TARGET_DIR}/distribution.xml --package-path ${PKG_DIR} "${TARGET_DIR}/$OUTPUT_BASE_FILENAME"
+productbuild --distribution ${TARGET_DIR}/distribution.xml --resources ${RESOURCES_DIR} --package-path ${PKG_DIR} "${TARGET_DIR}/$OUTPUT_BASE_FILENAME"
 
 rm ${TARGET_DIR}/distribution.xml
 rm -r $PKG_DIR
+rm -r $RESOURCES_DIR
