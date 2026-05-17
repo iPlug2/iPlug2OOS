@@ -70,7 +70,7 @@ def main():
       projectpath + installer,
       projectpath + "\\installer\\changelog.txt",
       projectpath + "\\installer\\known-issues.txt",
-      projectpath + "\\manual\\TemplateProject manual.pdf"
+      projectpath + "\\build-win\\manual\\TemplateProject manual.pdf"
     ]
 
     for f in files:

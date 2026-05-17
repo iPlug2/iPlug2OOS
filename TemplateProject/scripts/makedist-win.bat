@@ -37,6 +37,11 @@ echo ------------------------------------------------------------------
 echo Updating version numbers ...
 
 call python prepare_resources-win.py %DEMO%
+call python prepare_installer_docs.py win
+if %ERRORLEVEL% neq 0 (
+  echo ERROR: preparing installer docs failed
+  exit /B 1
+)
 call python update_installer-win.py %DEMO%
 
 cd ..\
@@ -105,6 +110,10 @@ echo Making Installer ...
 
   REM :64-Bit-is
   "%ProgramFiles(x86)%\Inno Setup 6\iscc" /Q ".\installer\TemplateProject.iss"
+  if %ERRORLEVEL% neq 0 (
+    echo ERROR: installer build failed
+    exit /B 1
+  )
   REM goto END-is
 
   REM :END-is

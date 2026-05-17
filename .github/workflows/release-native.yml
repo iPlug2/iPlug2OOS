@@ -51,6 +51,12 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Install pandoc
+      uses: pandoc/actions/setup@v1
+
+    - name: Install typst
+      uses: typst-community/setup-typst@v5
+
     - name: Get VST3 SDK
       run: |
         cd iPlug2/Dependencies/IPlug
@@ -68,7 +74,7 @@ jobs:
       if: matrix.os == 'macOS-latest'
       run: |
         ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} mac full`
-        echo "name=archive_name::$ARCHIVE_NAME" >> $GITHUB_OUTPUT
+        echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Build macOS
@@ -116,7 +122,7 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: |
         ARCHIVE_NAME=`python.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
-        echo "name=archive_name::$ARCHIVE_NAME" >> $GITHUB_OUTPUT
+        echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Build Windows

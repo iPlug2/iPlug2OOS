@@ -80,6 +80,25 @@ jobs:
         cd iPlug2/Dependencies/IPlug
         ./download-clap-sdks.sh ${{env.CLAP_VER}}
 
+    - name: Install pandoc
+      uses: pandoc/actions/setup@v1
+
+    - name: Install typst
+      uses: typst-community/setup-typst@v5
+
+    - name: Validate installer docs
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = 'Stop'
+        $PSNativeCommandUseErrorActionPreference = $true
+        cd ${{matrix.project}}
+        python scripts/prepare_installer_docs.py win
+        if (!(Test-Path "build-win\installer-docs\license.txt")) { throw "Missing generated license.txt" }
+        if (!(Test-Path "build-win\installer-docs\readme-win.txt")) { throw "Missing generated readme-win.txt" }
+        if (!(Test-Path "build-win\installer-docs\readme-win-demo.txt")) { throw "Missing generated readme-win-demo.txt" }
+        if (!(Test-Path "build-win\manual\${{matrix.project}} manual.pdf")) { throw "Missing generated manual PDF" }
+        if (!(Test-Path "manual\${{matrix.project}} manual.md")) { throw "Missing Markdown manual" }
+
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
 
