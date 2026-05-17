@@ -2,7 +2,7 @@
 
 # this script will update the version and text in the innosetup installer files, based on config.h and demo 1/0
 
-import plistlib, os, datetime, fileinput, glob, sys, string
+import plistlib, os, datetime, fileinput, glob, sys, string, re
 scriptpath = os.path.dirname(os.path.realpath(__file__))
 projectpath = os.path.abspath(os.path.join(scriptpath, os.pardir))
 
@@ -11,6 +11,16 @@ IPLUG2_ROOT = "../../iPlug2"
 sys.path.insert(0, os.path.join(os.getcwd(), IPLUG2_ROOT + '/Scripts'))
 
 from parse_config import parse_config
+
+README_SOURCE_RE = re.compile(r'^\s*Source:\s*"', re.IGNORECASE)
+README_DEST_RE = re.compile(r'\bDestName:\s*"readme\.txt"', re.IGNORECASE)
+
+def is_readme_entry(line):
+  return README_SOURCE_RE.search(line) and README_DEST_RE.search(line)
+
+def readme_entry(demo):
+  readme = "readme-win-demo.txt" if demo else "readme-win.txt"
+  return f'Source: "..\\build-win\\installer-docs\\{readme}"; DestDir: "{{app}}"; DestName: "readme.txt"; Flags: isreadme\n'
 
 def replacestrs(filename, s, r):
   files = glob.glob(filename)
@@ -43,11 +53,8 @@ def main():
       else:
         line="OutputBaseFilename=TemplateProject Installer\n"
         
-    if 'DestName: "readme.txt"' in line:
-     if demo:
-      line='Source: "..\\build-win\\installer-docs\\readme-win-demo.txt"; DestDir: "{app}"; DestName: "readme.txt"; Flags: isreadme\n'
-     else:
-      line='Source: "..\\build-win\\installer-docs\\readme-win.txt"; DestDir: "{app}"; DestName: "readme.txt"; Flags: isreadme\n'
+    if is_readme_entry(line):
+      line=readme_entry(demo)
     
     if "WelcomeLabel1" in line:
      if demo:

@@ -80,9 +80,17 @@ jobs:
         cd iPlug2/Dependencies/IPlug
         ./download-clap-sdks.sh ${{env.CLAP_VER}}
 
+    - name: Install pandoc
+      uses: pandoc/actions/setup@v1
+
+    - name: Install typst
+      uses: typst-community/setup-typst@v5
+
     - name: Validate installer docs
       shell: pwsh
       run: |
+        $ErrorActionPreference = 'Stop'
+        $PSNativeCommandUseErrorActionPreference = $true
         cd ${{matrix.project}}
         python scripts/prepare_installer_docs.py win
         if (!(Test-Path "build-win\installer-docs\license.txt")) { throw "Missing generated license.txt" }

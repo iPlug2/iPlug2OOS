@@ -51,6 +51,12 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Install pandoc
+      uses: pandoc/actions/setup@v1
+
+    - name: Install typst
+      uses: typst-community/setup-typst@v5
+
     - name: Get VST3 SDK
       run: |
         cd iPlug2/Dependencies/IPlug
