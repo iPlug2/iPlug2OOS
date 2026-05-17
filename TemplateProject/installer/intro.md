@@ -2,6 +2,6 @@
 
 Thanks for purchasing TemplateProject.
 
-contact@acmeinc.com
+support@acmeinc.com
 
 http://www.acmeinc.com
