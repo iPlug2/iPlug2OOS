@@ -88,6 +88,7 @@ jobs:
         if (!(Test-Path "build-win\installer-docs\license.txt")) { throw "Missing generated license.txt" }
         if (!(Test-Path "build-win\installer-docs\readme-win.txt")) { throw "Missing generated readme-win.txt" }
         if (!(Test-Path "build-win\installer-docs\readme-win-demo.txt")) { throw "Missing generated readme-win-demo.txt" }
+        if (!(Test-Path "build-win\manual\${{matrix.project}} manual.pdf")) { throw "Missing generated manual PDF" }
         if (!(Test-Path "manual\${{matrix.project}} manual.md")) { throw "Missing Markdown manual" }
 
     - name: Add msbuild to PATH
