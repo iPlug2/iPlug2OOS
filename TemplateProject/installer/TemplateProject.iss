@@ -63,7 +63,7 @@ Source: "..\build-win\TemplateProject.vst3\*.*"; Excludes: "\Contents\x86\*,*.pd
 Source: "..\build-win\TemplateProject.vst3\Desktop.ini"; DestDir: "{cf64}\VST3\TemplateProject.vst3\"; Check: Is64BitInstallMode; Components:vst3_64; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
 Source: "..\build-win\TemplateProject.vst3\PlugIn.ico"; DestDir: "{cf64}\VST3\TemplateProject.vst3\"; Check: Is64BitInstallMode; Components:vst3_64; Flags: overwritereadonly ignoreversion; Attribs: hidden system;
 
-Source: "..\build-win\TemplateProject.clap"; DestDir: {commoncf64}\CLAP\; Check: Is64BitInstallMode; Components:clap_64; Flags: ignoreversion;
+Source: "..\build-win\TemplateProject_x64.clap"; DestDir: {commoncf64}\CLAP\; Check: Is64BitInstallMode; Components:clap_64; Flags: ignoreversion;
 
 ;Source: "..\build-win\aax\bin\TemplateProject.aaxplugin\*.*"; Excludes: "\Contents\x64\*,*.pdb,*.exp,*.lib,*.ilk,*.ico,*.ini"; DestDir: "{cf32}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Components:aax_32; Flags: ignoreversion recursesubdirs;
 ;Source: "..\build-win\aax\bin\TemplateProject.aaxplugin\Desktop.ini"; DestDir: "{cf32}\Avid\Audio\Plug-Ins\TemplateProject.aaxplugin\"; Components:aax_32; Flags: overwritereadonly ignoreversion; Attribs: hidden system;

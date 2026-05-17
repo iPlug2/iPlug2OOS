@@ -110,6 +110,10 @@ echo Making Installer ...
 
   REM :64-Bit-is
   "%ProgramFiles(x86)%\Inno Setup 6\iscc" /Q ".\installer\TemplateProject.iss"
+  if %ERRORLEVEL% neq 0 (
+    echo ERROR: installer build failed
+    exit /B 1
+  )
   REM goto END-is
 
   REM :END-is
