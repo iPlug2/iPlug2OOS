@@ -19,8 +19,13 @@ To create a new plugin, duplicate @TemplateProject using the `new-plugin` skill 
 ```
 
 Substitute another template for `TemplateProject` to start from a WebView UI or a REAPER
-extension. Note that the CMake-only templates have no `config/` directory, so they only work
-with the three-argument form of `duplicate.py` (output into the repo root).
+extension. Run `./duplicate.py` with no arguments to be prompted instead.
+
+Pass a fourth argument to create the project outside this repo; the iPlug2 paths in its
+`CMakeLists.txt` and xcconfigs are rewritten to suit. By default nothing outside the new
+project is modified — pass `--rewrite-root` to also repoint this repo's `bump_version.py`,
+`CMakeLists.txt`, `.vscode/` and `.github/` at it, which is what you want when the repo is
+becoming your plugin's repo rather than gaining another project alongside the templates.
 
 After duplication, optionally commit:
 ```bash
