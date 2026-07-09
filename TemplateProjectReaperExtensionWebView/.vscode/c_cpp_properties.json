@@ -1,0 +1,48 @@
+{
+    "env": {
+        "commonIncludePaths": [
+            "${workspaceFolder}/**",
+            "${workspaceFolder}/../iPlug2/WDL/**",
+            "${workspaceFolder}/../iPlug2/IPlug/**",
+            "${workspaceFolder}/../iPlug2/Dependencies/IPlug/REAPER_SDK/**"
+        ],
+        "commonDefs": [
+            "REAPER_EXT_API",
+            "IPLUG_DSP=1",
+            "IPLUG_EDITOR=1",
+            "WEBVIEW_EDITOR_DELEGATE",
+            "NO_IGRAPHICS",
+            "NOMINMAX"
+        ]
+      },
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${commonIncludePaths}"
+            ],
+            "defines": [
+                "${commonDefs}",
+                "OS_MAC",
+                "SWELL_PROVIDED_BY_APP"
+            ],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${commonIncludePaths}"
+            ],
+            "defines": [
+                "${commonDefs}",
+                "OS_WIN"
+            ],
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
