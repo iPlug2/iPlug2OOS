@@ -54,5 +54,9 @@ iplug_add_target(${PROJECT_NAME} PUBLIC
 )
 
 # Names the binary reaper_<project>, restricts exported symbols, and deploys to
-# REAPER's UserPlugins directory when IPLUG_DEPLOY_PLUGINS is set
-iplug_configure_reaperext(${PROJECT_NAME} ${PROJECT_NAME})
+# REAPER's UserPlugins directory when IPLUG_DEPLOY_PLUGINS is set.
+# WEB_RESOURCES_DIR puts the UI in UserPlugins/${PROJECT_NAME}/, which is where
+# release builds load index.html from - see the LoadFile call in the .cpp.
+iplug_configure_reaperext(${PROJECT_NAME} ${PROJECT_NAME}
+  WEB_RESOURCES_DIR ${PLUG_RESOURCES_DIR}/web
+)

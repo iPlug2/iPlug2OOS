@@ -64,13 +64,20 @@ REAPER's action list. The template registers four:
 
 ## The UI
 
-`mEditorInitFunc` runs when the window opens and calls `LoadIndexHtml(__FILE__, "")`, which loads
-`resources/web/index.html` **from the source tree in debug builds**. Note the empty bundle id:
-`ReaperExtBase` doesn't inherit `GetBundleID()` (that lives on `IPluginBase`), and a REAPER
-extension is a bare dylib/DLL rather than a bundle. Release builds therefore have no resource
-directory to load from — **if you ship this, embed the UI or point `LoadFile` at a real install
-path**. `SetEnableDevTools(true)` is on in `_DEBUG`, so right-click → Inspect opens the Web
-Inspector.
+`mEditorInitFunc` runs when the window opens, and it loads the UI differently per configuration
+because a REAPER extension is a bare dylib/DLL with no bundle to carry resources:
+
+- **Debug** calls `LoadIndexHtml(__FILE__, "")`, which resolves `resources/web/index.html` in the
+  source tree, so edits to the HTML/JS show up on reopen. The bundle id is empty because
+  `ReaperExtBase` doesn't inherit `GetBundleID()` (that lives on `IPluginBase`) and this branch
+  never consults it.
+- **Release** has neither a source tree nor a bundle, so it loads from REAPER's own resource
+  directory: `GetResourcePath()/UserPlugins/SHARED_RESOURCES_SUBPATH/index.html`. The
+  `WEB_RESOURCES_DIR` argument to `iplug_configure_reaperext()` in `CMakeLists.txt` is what puts
+  the files there at build time. The two must agree — `SHARED_RESOURCES_SUBPATH` in `config.h`
+  defaults to the project name, which is what CMake uses for the directory.
+
+`SetEnableDevTools(true)` is on in `_DEBUG`, so right-click → Inspect opens the Web Inspector.
 
 ### Talking to the UI
 

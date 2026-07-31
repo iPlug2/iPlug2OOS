@@ -46,10 +46,20 @@ TemplateProjectReaperExtensionWebView::TemplateProjectReaperExtensionWebView(rea
 #endif
 
   // The WebView loads its UI from resources/web/index.html.
-  // NB. ReaperExtBase does not inherit GetBundleID() (that's on IPluginBase), so we
-  // pass an empty bundle id - it is only used by release builds that load from a bundle.
   mEditorInitFunc = [&]() {
+#ifdef _DEBUG
+    // Debug: load straight from the source tree so edits to the HTML/JS hot-reload on reopen.
+    // NB. ReaperExtBase does not inherit GetBundleID() (that's on IPluginBase), and the empty
+    // bundle id is harmless here because this branch never consults it.
     LoadIndexHtml(__FILE__, "");
+#else
+    // Release: there is no source tree and no bundle to fall back on. CMake deploys
+    // resources/web into REAPER's UserPlugins under SHARED_RESOURCES_SUBPATH
+    // (see WEB_RESOURCES_DIR in CMakeLists.txt); load index.html from there.
+    WDL_String indexPath;
+    indexPath.SetFormatted(2048, "%s/UserPlugins/%s/index.html", GetResourcePath(), SHARED_RESOURCES_SUBPATH);
+    LoadFile(indexPath.Get(), nullptr);
+#endif
     EnableScroll(false);
   };
 
