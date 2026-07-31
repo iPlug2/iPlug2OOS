@@ -18,6 +18,17 @@ Use this skill when the user wants to build their plugin project using CMake.
 
 The project uses CMake presets for standardized builds. Prefer `--preset` instead of manual `-G` flags.
 
+`CMakePresets.json` lives at the repo root, so presets are only visible when
+configuring the root — `--preset` and `-S [ProjectName]` cannot be combined. The
+root `CMakeLists.txt` decides which project is built (`add_subdirectory`). To
+build a project it doesn't reference, configure that directory directly with an
+explicit generator, e.g.:
+
+```bash
+cmake -S TemplateProjectWebView -B build/webview -G "Visual Studio 17 2022" -A x64
+cmake --build build/webview --config Release
+```
+
 ### List Available Presets
 
 ```bash
@@ -28,17 +39,15 @@ cmake --list-presets
 
 ```bash
 # Configure with Ninja (fast builds)
-cmake --preset macos-ninja -S [ProjectName]
-
-# Build
+cmake --preset macos-ninja
 cmake --build build/macos-ninja --target [ProjectName]-app
 
 # Or with Xcode (for debugging)
-cmake --preset macos-xcode -S [ProjectName]
+cmake --preset macos-xcode
 cmake --build build/macos-xcode --config Release --target [ProjectName]-app
 
 # Universal binary (arm64 + x86_64)
-cmake --preset macos-xcode-universal -S [ProjectName]
+cmake --preset macos-xcode-universal
 cmake --build build/macos-xcode-universal --config Release
 ```
 
@@ -46,11 +55,11 @@ cmake --build build/macos-xcode-universal --config Release
 
 ```bash
 # iOS Device
-cmake --preset ios-xcode -S [ProjectName]
+cmake --preset ios-xcode
 cmake --build build/ios-xcode --config Release
 
 # iOS Simulator
-cmake --preset ios-sim-xcode -S [ProjectName]
+cmake --preset ios-sim-xcode
 cmake --build build/ios-sim-xcode --config Release
 ```
 
@@ -60,40 +69,44 @@ For running in Simulator, use the `run-ios-simulator` skill.
 
 ```bash
 # visionOS Device
-cmake --preset visionos-xcode -S [ProjectName]
+cmake --preset visionos-xcode
 cmake --build build/visionos-xcode --config Release
 
 # visionOS Simulator
-cmake --preset visionos-sim-xcode -S [ProjectName]
+cmake --preset visionos-sim-xcode
 cmake --build build/visionos-sim-xcode --config Release
 ```
 
 ### Windows Builds
 
 ```bash
-# Visual Studio 2022 (x64)
-cmake --preset windows-vs2022 -S [ProjectName]
-cmake --build build/windows-vs2022 --config Release
+# Newest installed Visual Studio (x64)
+cmake --preset windows
+cmake --build build/windows --config Release
 
 # ARM64EC
-cmake --preset windows-vs2022-arm64ec -S [ProjectName]
-cmake --build build/windows-vs2022-arm64ec --config Release
+cmake --preset windows-arm64ec
+cmake --build build/windows-arm64ec --config Release
 ```
 
-### Web/WAM Build (Emscripten)
+`windows` / `windows-arm64ec` do not pin a generator, so they pick up whichever
+Visual Studio is installed (2022, 2026, …). Use `windows-vs2022` to pin VS2022
+explicitly.
+
+### Web Builds (Emscripten)
 
 ```bash
 # Configure (requires EMSDK environment)
-cmake --preset wam -S [ProjectName]
+cmake --preset web
 
-# Build
-cmake --build build/wam --target [ProjectName]-wam
+# WAM (AudioWorklet) distribution
+cmake --build build/web --target [ProjectName]-web-dist
 
-# Create distribution
-cmake --build build/wam --target [ProjectName]-wam-dist
+# WASM (ScriptProcessor) distribution
+cmake --build build/web --target [ProjectName]-wasm-dist
 ```
 
-Output in `build/wam/out/[ProjectName]-wam/`
+Output in `build/web/out/[ProjectName]/`
 
 ## Available Configure Presets
 
@@ -107,10 +120,12 @@ Output in `build/wam/out/[ProjectName]-wam/`
 | `ios-sim-xcode` | iOS | Xcode | iOS Simulator builds |
 | `visionos-xcode` | visionOS | Xcode | visionOS device builds |
 | `visionos-sim-xcode` | visionOS | Xcode | visionOS Simulator builds |
+| `windows` | Windows | newest VS | Windows x64 builds (default) |
+| `windows-arm64ec` | Windows | newest VS | Windows ARM64EC builds |
 | `windows-ninja` | Windows | Ninja | Fast Windows command-line builds |
-| `windows-vs2022` | Windows | VS2022 | Windows x64 builds |
-| `windows-vs2022-arm64ec` | Windows | VS2022 | Windows ARM64EC builds |
-| `wam` | Web | Ninja | Emscripten/WebAssembly builds |
+| `windows-vs2022` | Windows | VS2022 | Windows x64 builds, VS2022 pinned |
+| `windows-vs2022-arm64ec` | Windows | VS2022 | Windows ARM64EC builds, VS2022 pinned |
+| `web` | Web | Ninja | Emscripten/WebAssembly builds |
 
 ## Available Targets
 
@@ -130,7 +145,7 @@ Default configuration uses NanoVG with Metal (macOS/iOS) or GL2 (Windows).
 To use Skia backend, add cache variables:
 
 ```bash
-cmake --preset macos-ninja -S [ProjectName] \
+cmake --preset macos-ninja \
   -DIGRAPHICS_BACKEND=SKIA \
   -DIGRAPHICS_RENDERER=METAL
 ```
@@ -156,20 +171,20 @@ Valid combinations:
 ```bash
 # Remove build directory and reconfigure
 rm -rf build/macos-ninja
-cmake --preset macos-ninja -S [ProjectName]
+cmake --preset macos-ninja
 ```
 
 ## Example
 
 ```bash
 # Quick build of standalone app
-cmake --preset macos-ninja -S MySynth
+cmake --preset macos-ninja
 cmake --build build/macos-ninja --target MySynth-app
 
 # Open the built app
 open ~/Applications/MySynth.app
 
 # Build for iOS Simulator
-cmake --preset ios-sim-xcode -S MySynth
+cmake --preset ios-sim-xcode
 cmake --build build/ios-sim-xcode --config Release
 ```

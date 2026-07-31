@@ -137,6 +137,26 @@
       }
     },
     {
+      "name": "windows",
+      "displayName": "Windows (Visual Studio)",
+      "description": "Windows x64 build with the newest installed Visual Studio (NanoVG/GL2)",
+      "inherits": "base-windows",
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      }
+    },
+    {
+      "name": "windows-arm64ec",
+      "displayName": "Windows ARM64EC (Visual Studio)",
+      "description": "Windows ARM64EC build with the newest installed Visual Studio (NanoVG/GL2)",
+      "inherits": "base-windows",
+      "architecture": {
+        "value": "ARM64EC",
+        "strategy": "set"
+      }
+    },
+    {
       "name": "windows-ninja",
       "displayName": "Windows (Ninja)",
       "description": "Windows build with Ninja generator (NanoVG/GL2)",
@@ -231,6 +251,16 @@
         "-destination", "generic/platform=visionOS Simulator",
         "CODE_SIGNING_ALLOWED=NO"
       ]
+    },
+    {
+      "name": "windows",
+      "configurePreset": "windows",
+      "configuration": "Release"
+    },
+    {
+      "name": "windows-arm64ec",
+      "configurePreset": "windows-arm64ec",
+      "configuration": "Release"
     },
     {
       "name": "windows-ninja",
