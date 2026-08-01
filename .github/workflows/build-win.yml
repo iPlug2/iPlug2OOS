@@ -102,28 +102,6 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
 
-    # The projects/*.vcxproj files pin <PlatformToolset>v143</PlatformToolset>. The
-    # windows-2025-vs2026 image ships v143 for x86/x64 (as VC.14.44.17.14.x86.x64) but
-    # only the VS2026 toolset for ARM64EC, so the ARM64EC pass fails with MSB8020 while
-    # x64 succeeds. Add the matching v143 ARM64EC component.
-    # NB. the component ID carries the toolset version, so it tracks the runner image -
-    # if this starts failing, check the image readme for the current VC.<version> IDs.
-    - name: Install v143 ARM64EC build tools
-      shell: pwsh
-      run: |
-        $installerDir = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer"
-        $vsPath = & "$installerDir\vswhere.exe" -latest -property installationPath
-        Write-Host "Modifying $vsPath"
-        $proc = Start-Process -FilePath "$installerDir\vs_installer.exe" -Wait -PassThru -ArgumentList @(
-          'modify', '--installPath', "`"$vsPath`"",
-          '--add', 'Microsoft.VisualStudio.Component.VC.14.44.17.14.ARM64EC',
-          '--quiet', '--norestart', '--nocache'
-        )
-        # 3010 = success, reboot requested
-        if ($proc.ExitCode -ne 0 -and $proc.ExitCode -ne 3010) {
-          throw "vs_installer failed with exit code $($proc.ExitCode)"
-        }
-
     - name: Build
       shell: pwsh
       run: |
