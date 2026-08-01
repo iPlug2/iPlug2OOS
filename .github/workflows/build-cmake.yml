@@ -189,10 +189,10 @@ jobs:
           if-no-files-found: warn
 
   # ==========================================================================
-  # Windows - Visual Studio 2022 (Default)
+  # Windows - Visual Studio (Default)
   # ==========================================================================
-  windows-vs2022:
-    name: Windows (VS2022)
+  windows:
+    name: Windows (Visual Studio)
     needs: parse-commands
     if: needs.parse-commands.outputs.should_run == 'true'
     runs-on: windows-latest
@@ -221,28 +221,85 @@ jobs:
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
-        run: cmake --preset=windows-vs2022
+        run: cmake --preset=windows
 
       - name: Build
-        run: cmake --build --preset=windows-vs2022
+        run: cmake --build --preset=windows
 
       - name: Verify Bundles
         shell: pwsh
         run: |
-          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
-          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.vst3")) { exit 1 }
-          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.clap")) { exit 1 }
+          if (!(Test-Path "build\windows\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
+          if (!(Test-Path "build\windows\out\${{env.PROJECT_NAME}}.vst3")) { exit 1 }
+          if (!(Test-Path "build\windows\out\${{env.PROJECT_NAME}}.clap")) { exit 1 }
           echo "All bundles exist"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: windows-vs2022-artifacts
-          path: build/windows-vs2022/out/
+          name: windows-artifacts
+          path: build/windows/out/
           if-no-files-found: warn
 
   # ==========================================================================
-  # Windows - Visual Studio 2022 ARM64EC - Optional: /ci arm64ec
+  # Windows - the other templates
+  #
+  # The root CMakeLists.txt only references PROJECT_NAME, so these are
+  # configured directly. No --preset: CMakePresets.json lives at the repo root
+  # and presets are read from the source directory. Omitting -G picks the
+  # newest installed Visual Studio.
+  # ==========================================================================
+  windows-templates:
+    name: Windows (${{ matrix.template }})
+    needs: parse-commands
+    if: needs.parse-commands.outputs.should_run == 'true'
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - template: TemplateProjectWebView
+            artifact: TemplateProjectWebView.exe
+          - template: TemplateProjectReaperExtensionWebView
+            artifact: reaper_TemplateProjectReaperExtensionWebView.dll
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake -S ${{ matrix.template }} -B build/${{ matrix.template }} -A x64
+
+      - name: Build
+        run: cmake --build build/${{ matrix.template }} --config Release
+
+      - name: Verify Output
+        shell: pwsh
+        run: |
+          if (!(Test-Path "build\${{ matrix.template }}\out\${{ matrix.artifact }}")) { exit 1 }
+          echo "${{ matrix.artifact }} exists"
+
+  # ==========================================================================
+  # Windows - Visual Studio ARM64EC - Optional: /ci arm64ec
   # ==========================================================================
   windows-arm64ec:
     name: Windows (ARM64EC)
@@ -274,24 +331,24 @@ jobs:
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
-        run: cmake --preset=windows-vs2022-arm64ec
+        run: cmake --preset=windows-arm64ec
 
       - name: Build
-        run: cmake --build --preset=windows-vs2022-arm64ec
+        run: cmake --build --preset=windows-arm64ec
 
       - name: Verify Bundles
         shell: pwsh
         run: |
-          if (!(Test-Path "build\windows-vs2022-arm64ec\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
-          if (!(Test-Path "build\windows-vs2022-arm64ec\out\${{env.PROJECT_NAME}}.vst3")) { exit 1 }
-          if (!(Test-Path "build\windows-vs2022-arm64ec\out\${{env.PROJECT_NAME}}.clap")) { exit 1 }
+          if (!(Test-Path "build\windows-arm64ec\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
+          if (!(Test-Path "build\windows-arm64ec\out\${{env.PROJECT_NAME}}.vst3")) { exit 1 }
+          if (!(Test-Path "build\windows-arm64ec\out\${{env.PROJECT_NAME}}.clap")) { exit 1 }
           echo "All bundles exist"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: windows-arm64ec-artifacts
-          path: build/windows-vs2022-arm64ec/out/
+          path: build/windows-arm64ec/out/
           if-no-files-found: warn
 
   # ==========================================================================
@@ -601,17 +658,17 @@ jobs:
 
       - name: CMake Configure
         run: |
-          cmake --preset=windows-vs2022 `
+          cmake --preset=windows `
             -DIGRAPHICS_BACKEND=${{ matrix.backend }} `
             -DIGRAPHICS_RENDERER=${{ matrix.renderer }}
 
       - name: Build
-        run: cmake --build build/windows-vs2022 --config Release --target ${{env.PROJECT_NAME}}-app
+        run: cmake --build build/windows --config Release --target ${{env.PROJECT_NAME}}-app
 
       - name: Verify App
         shell: pwsh
         run: |
-          if (!(Test-Path "build\windows-vs2022\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
+          if (!(Test-Path "build\windows\out\${{env.PROJECT_NAME}}.exe")) { exit 1 }
           echo "${{ matrix.backend }}/${{ matrix.renderer }} build successful"
 
   # ==========================================================================

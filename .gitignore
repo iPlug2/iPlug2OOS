@@ -2,6 +2,8 @@
 xcuserdata
 *.RPP-bak
 */build-*/
+# CMake build trees (CMakePresets.json puts them under build/<preset>)
+/build/
 *.ipch
 *.db
 *.suo

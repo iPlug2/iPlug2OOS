@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+    :root {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --surface-subtle: #eef1f5;
+      --surface-hover: #e8edf3;
+      --text: #18202d;
+      --muted-text: #5d6675;
+      --border: #c9ced6;
+      --border-strong: #98a2b3;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --control-font-size: 14px;
+      --control-min-height: 36px;
+      --control-padding-block: 8px;
+      --control-padding-inline: 16px;
+      --knob-size: 96px;
+      --knob-label-gap: 8px;
+      --knob-value-gap: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      overflow: hidden;
+      padding: 28px;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 26px;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .controls {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .knob-container {
+      display: inline-flex;
+      align-items: center;
+      padding: 16px 22px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background-color: var(--surface);
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .button-group .group-label {
+      color: var(--muted-text);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+  </style>
+
+  <script src="script.js"></script>
+  <script type="module" src="knob-control.js"></script>
+  <script type="module" src="button-control.js"></script>
+  <script>
+    // Must match EMsgTags in TemplateProjectWebView.h
+    const kMsgTagButtonSmall = 0;
+    const kMsgTagButtonMedium = 1;
+    const kMsgTagButtonLarge = 2;
+
+    // Called by script.js when the plugin pushes a parameter value to the UI.
+    function OnParamChange(paramIdx, value) {
+      const knob = document.querySelector(`knob-control[param-id="${paramIdx}"]`);
+      if (knob) {
+        knob.updateValueFromHost(value);
+      }
+    }
+
+    function OnControlChange(ctrlTag, value) {}
+
+    // Called by script.js for arbitrary messages from the plugin. The plugin
+    // sends the parameter list as JSON once the web content has loaded.
+    function OnMessage(msgTag, dataSize, data) {
+      if (msgTag === -1 && dataSize > 0) {
+        const json = JSON.parse(window.atob(data));
+        if (json["id"] === "params") {
+          window["parameters"] = json["params"];
+          document.querySelectorAll("knob-control").forEach((knob) => {
+            const info = json["params"][knob.paramId];
+            if (!info) return;
+            knob.setAttribute("min", info["min"]);
+            knob.setAttribute("max", info["max"]);
+            knob.setAttribute("label", info["name"]);
+            knob.setAttribute("default-value", info["default"]);
+          });
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>TemplateProjectWebView</h1>
+  <div class="controls">
+    <div class="knob-container">
+      <knob-control label="Gain" units="%" param-id="0"></knob-control>
+    </div>
+
+    <div class="button-group">
+      <span class="group-label">Editor size</span>
+      <button-control onclick="SAMFUI(kMsgTagButtonSmall)">Small</button-control>
+      <button-control onclick="SAMFUI(kMsgTagButtonMedium)">Medium</button-control>
+      <button-control onclick="SAMFUI(kMsgTagButtonLarge)">Large</button-control>
+    </div>
+  </div>
+</body>
+</html>
