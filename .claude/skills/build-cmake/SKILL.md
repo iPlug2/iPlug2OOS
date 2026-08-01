@@ -100,7 +100,7 @@ explicitly.
 cmake --preset web
 
 # WAM (AudioWorklet) distribution
-cmake --build build/web --target [ProjectName]-web-dist
+cmake --build build/web --target [ProjectName]-wam-dist
 
 # WASM (ScriptProcessor) distribution
 cmake --build build/web --target [ProjectName]-wasm-dist
