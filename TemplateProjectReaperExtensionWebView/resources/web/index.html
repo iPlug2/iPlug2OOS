@@ -78,6 +78,7 @@
     const kMsgTagAddTrack = 0;
     const kMsgTagProcessItem = 1;
     const kMsgTagToggleDock = 2;
+    const kMsgTagSetGain = 3;
 
     // Stubs for the "from delegate" callbacks that script.js dispatches to.
     // TemplateProjectReaperExtensionWebView has no parameters, but OnWebContentLoaded still sends a params message.
@@ -91,14 +92,22 @@
       if (el) el.textContent = n;
     }
 
-    function OnGainInput(v) {
+    function SetGainLabel(v) {
       document.getElementById("gainval").textContent = v + "%";
     }
 
-    // Called from C++ to set the slider (e.g. after loading a project)
+    // The slider moved. Push the value to C++ now rather than waiting for Process,
+    // so the REAPER context-menu action and the saved project state both see it.
+    function OnGainInput(v) {
+      SetGainLabel(v);
+      SAMFUI(kMsgTagSetGain, parseInt(v));
+    }
+
+    // Called from C++ to set the slider (e.g. after loading a project). Redraws only -
+    // C++ is the source of this value, so don't send it straight back.
     function OnSetGain(pct) {
       document.getElementById("gain").value = pct;
-      OnGainInput(pct);
+      SetGainLabel(pct);
     }
 
     // Called from C++ to reflect whether the window is docked

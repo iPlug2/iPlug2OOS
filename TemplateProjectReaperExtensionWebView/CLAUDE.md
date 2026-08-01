@@ -93,6 +93,15 @@ Because there are no parameters, the two directions are asymmetric:
   `EvaluateJavaScript("OnTrackCount(3)")` and friends, and `index.html` defines matching global
   functions (`OnTrackCount`, `OnSetGain`, `OnDockState`).
 
+The gain slider sends `kMsgTagSetGain` on every move, not just when *Process* is clicked. `mGain`
+is read by the "Media item context" action and written to the project by `SaveProjectState()`, so
+if it only updated on Process, right-clicking an item — or simply saving — would use a stale value
+while the UI showed the new one. Any UI state C++ owns needs pushing at the point it changes.
+
+Note the direction split, which mirrors the knob in `../TemplateProjectWebView`: `OnGainInput()`
+is the *user* moving the slider and calls `SAMFUI`; `OnSetGain()` is *C++* setting it and only
+redraws. Routing the C++ path through `OnGainInput()` would echo the value straight back.
+
 `OnUIOpen()` is the hook for pushing current state into a freshly-loaded page. Call it for anything
 the UI needs to render correctly on open — the window is destroyed and recreated when docked, so
 this runs again after `ToggleDocking()`.

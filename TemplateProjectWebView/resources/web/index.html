@@ -89,6 +89,11 @@
   <script type="module" src="knob-control.js"></script>
   <script type="module" src="button-control.js"></script>
   <script>
+    // Must match EMsgTags in TemplateProjectWebView.h
+    const kMsgTagButtonSmall = 0;
+    const kMsgTagButtonMedium = 1;
+    const kMsgTagButtonLarge = 2;
+
     // Called by script.js when the plugin pushes a parameter value to the UI.
     function OnParamChange(paramIdx, value) {
       const knob = document.querySelector(`knob-control[param-id="${paramIdx}"]`);
@@ -128,9 +133,9 @@
 
     <div class="button-group">
       <span class="group-label">Editor size</span>
-      <button-control onclick="SAMFUI(0)">Small</button-control>
-      <button-control onclick="SAMFUI(1)">Medium</button-control>
-      <button-control onclick="SAMFUI(2)">Large</button-control>
+      <button-control onclick="SAMFUI(kMsgTagButtonSmall)">Small</button-control>
+      <button-control onclick="SAMFUI(kMsgTagButtonMedium)">Medium</button-control>
+      <button-control onclick="SAMFUI(kMsgTagButtonLarge)">Large</button-control>
     </div>
   </div>
 </body>

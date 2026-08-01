@@ -41,7 +41,9 @@ The webview and the plugin talk through a fixed set of bridge functions defined 
 - `SAMFUI(msgTag, ctrlTag = -1, data = 0)` — arbitrary message from UI → arrives at C++ `OnMessage(msgTag, ctrlTag, dataSize, pData)`.
 - `SMMFUI` / `SSMFUI` — send MIDI / sysex from UI.
 
-On the C++ side, override `OnMessage(int msgTag, int ctrlTag, int dataSize, const void* pData)` to receive `SAMFUI` calls. The template uses it to handle the editor-size buttons: `EMsgTags` in the header (`kMsgTagButtonSmall/Medium/Large`) maps to `Resize(...)` calls. Return `true` if you handled the message.
+On the C++ side, override `OnMessage(int msgTag, int ctrlTag, int dataSize, const void* pData)` to receive `SAMFUI` calls. The template uses it for the editor-size buttons: `EMsgTags` in the header (`kMsgTagButtonSmall/Medium/Large`) maps to `Resize(...)` calls, with matching `kMsgTag*` constants at the top of `index.html` — the two lists must stay in sync, since the wire format is a bare int. Return `true` if you handled the message.
+
+`OnMessage`'s resize block is guarded by `WEBVIEW_EDITOR_DELEGATE` rather than `IPLUG_EDITOR`, because `Resize()` comes from the webview delegate.
 
 ## Parameters
 
@@ -53,7 +55,16 @@ On the C++ side, override `OnMessage(int msgTag, int ctrlTag, int dataSize, cons
 Controls are HTML Custom Elements (Web Components), each in its own module:
 
 - `resources/web/knob-control.js` — `<knob-control param-id="0" label="Gain" units="%">`. On drag it calls `BPCFUI` (start), `SPVFUI` (each move, normalized), `EPCFUI` (end). Host-driven changes arrive via `updateValueFromHost(normalizedValue)`, dispatched from `OnParamChange`. `observedAttributes` includes `param-id`, `min`, `max`, `label`, `default-value`.
-- `resources/web/button-control.js` — `<button-control>`, a styled shadow-DOM button. The template wires `onclick="SAMFUI(n)"` directly in `index.html` to trigger the resize messages.
+- `resources/web/button-control.js` — `<button-control>`, a styled shadow-DOM button. The template wires `onclick="SAMFUI(kMsgTagButton*)"` directly in `index.html` to trigger the resize messages.
+
+### Don't echo host values back to the host
+
+`updateValue()` in `knob-control.js` takes a `notifyHost` flag. Drag and wheel leave it at
+its default of `true`; `updateValueFromHost()` passes `false`, so a host-originated change
+redraws the knob without calling `SPVFUI`. Without that split, automation, preset recall and
+initialisation all bounce back to the host as UI edits — and outside any `BPCFUI`/`EPCFUI`
+gesture, so the host records parameter writes nobody asked for. Any new control needs the
+same separation between "the user did this" and "the host told us this".
 
 ### Adding a new control — checklist
 

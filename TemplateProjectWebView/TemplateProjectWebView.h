@@ -11,9 +11,13 @@ enum EParams
 };
 
 // Tags for messages sent from the web UI to the plugin (see OnMessage).
+// These must stay in sync with the kMsgTag* constants at the top of resources/web/index.html.
 enum EMsgTags
 {
-  kMsgTagTest = 0,
+  kMsgTagButtonSmall = 0,
+  kMsgTagButtonMedium = 1,
+  kMsgTagButtonLarge = 2,
+  kNumMsgTags
 };
 
 class TemplateProjectWebView final : public iplug::Plugin

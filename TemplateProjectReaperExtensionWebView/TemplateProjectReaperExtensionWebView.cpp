@@ -92,8 +92,13 @@ void TemplateProjectReaperExtensionWebView::SendArbitraryMsgFromUI(int msgTag, i
     case kMsgTagAddTrack:
       InsertTrackAtIndex(GetNumTracks(), false);
       break;
+    case kMsgTagSetGain:
+      // ctrlTag carries the gain as a 0..100 percentage. Stored as the slider moves so
+      // the "Media item context" action and SaveProjectState() see the current value,
+      // not the one from the last Process click.
+      mGain = static_cast<double>(ctrlTag) / 100.0;
+      break;
     case kMsgTagProcessItem:
-      // ctrlTag carries the gain as a 0..100 percentage
       mGain = static_cast<double>(ctrlTag) / 100.0;
       ProcessSelectedItem(mGain);
       break;

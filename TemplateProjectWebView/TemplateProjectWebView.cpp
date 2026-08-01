@@ -1,6 +1,5 @@
 #include "TemplateProjectWebView.h"
 #include "IPlug_include_in_plug_src.h"
-#include <iostream>
 
 using namespace iplug;
 
@@ -39,13 +38,14 @@ void TemplateProjectWebView::ProcessBlock(sample** inputs, sample** outputs, int
 
 bool TemplateProjectWebView::OnMessage(int msgTag, int ctrlTag, int dataSize, const void* pData)
 {
-#ifdef IPLUG_EDITOR
-  auto DoTest = []() {
-    std::cout << "Test message received from web UI!" << std::endl;
-  };
-
+// Resize() lives on the WebView editor delegate, so this is guarded more tightly than
+// IPLUG_EDITOR. The sizes stay within PLUG_MIN_/PLUG_MAX_ in config.h and keep the 4:3
+// aspect of the default editor size.
+#ifdef WEBVIEW_EDITOR_DELEGATE
   switch (msgTag) {
-    case kMsgTagTest:  DoTest();  return true;
+    case kMsgTagButtonSmall:   Resize(512, 384);   return true;
+    case kMsgTagButtonMedium:  Resize(1024, 768);  return true;
+    case kMsgTagButtonLarge:   Resize(1536, 1152); return true;
     default: break;
   }
 #endif

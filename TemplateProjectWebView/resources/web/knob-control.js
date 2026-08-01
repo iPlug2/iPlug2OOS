@@ -121,7 +121,10 @@ class KnobControl extends HTMLElement {
       valueArc.setAttribute('d', d);
     };
     
-    const updateValue = (value, normalized = false) => {
+    // notifyHost must be false for host-originated changes (automation, preset recall,
+    // initialisation). Echoing those back through SPVFUI reports them to the host as UI
+    // edits, outside any BPCFUI/EPCFUI gesture.
+    const updateValue = (value, normalized = false, notifyHost = true) => {
       let finalValue;
       if (normalized) {
         // If we receive a normalized value (0-1), convert it to our range
@@ -137,7 +140,7 @@ class KnobControl extends HTMLElement {
       pointer.setAttribute('transform', `rotate(${angle}, 50, 50)`);
       updateValueArc(angle);
       
-      if (typeof window['SPVFUI'] === 'function') {
+      if (notifyHost && typeof window['SPVFUI'] === 'function') {
         window['SPVFUI'](this.paramId, normValue);
       }
     };
@@ -201,8 +204,9 @@ class KnobControl extends HTMLElement {
     
     this.shadowRoot.querySelector('.container').__updateValue = updateValue;
     
-    // Expose updateValue method with a different name to avoid conflicts
-    this.updateValueFromHost = (normalizedValue) => updateValue(normalizedValue, true);
+    // Expose updateValue method with a different name to avoid conflicts.
+    // Redraws only - the host already knows this value, so don't send it back.
+    this.updateValueFromHost = (normalizedValue) => updateValue(normalizedValue, true, false);
   }
   
   connectedCallback() {

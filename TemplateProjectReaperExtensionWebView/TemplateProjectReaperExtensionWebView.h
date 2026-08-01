@@ -7,6 +7,7 @@ enum EMsgTags
   kMsgTagAddTrack = 0,
   kMsgTagProcessItem = 1,
   kMsgTagToggleDock = 2,
+  kMsgTagSetGain = 3,
   kNumMsgTags
 };
 
