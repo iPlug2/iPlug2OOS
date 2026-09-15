@@ -210,6 +210,10 @@ cp "$IPLUG2_ROOT/IPlug/WEB/TemplateWasm/scripts/IPlugWasmProcessor.js.template" 
 sed -i"$BAK_SUFFIX" "s/NAME_PLACEHOLDER_LC/$PROJECT_NAME_LC/g" "scripts/$PROJECT_NAME-processor.js"
 sed -i"$BAK_SUFFIX" "s/NAME_PLACEHOLDER/$PROJECT_NAME/g" "scripts/$PROJECT_NAME-processor.js"
 
+# Copy the shared host page scripts (footer UI + WebMCP agent bridge), used verbatim
+cp "$IPLUG2_ROOT/IPlug/WEB/TemplateWasm/scripts/IPlugWasmHostControls.js" scripts/IPlugWasmHostControls.js
+cp "$IPLUG2_ROOT/IPlug/WEB/TemplateWasm/scripts/IPlugWasmWebMCP.js" scripts/IPlugWasmWebMCP.js
+
 # Copy and process HTML template
 # IMPORTANT: Replace NAME_PLACEHOLDER_LC first (longer match) before NAME_PLACEHOLDER
 cp "$IPLUG2_ROOT/IPlug/WEB/TemplateWasm/index.html" index.html
