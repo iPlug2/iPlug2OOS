@@ -33,6 +33,14 @@ git add [PluginName]/* .vscode/* .github/* bump_version.py
 git commit -m "created [PluginName] based on TemplateProject"
 ```
 
+## WebMCP agent bridge (Wasm builds)
+
+Every Wasm host page registers WebMCP tools (`navigator.modelContext`) so a browser agent can
+set parameters, snapshot/restore state, inspect and manipulate IGraphics controls, simulate
+input and take screenshots. Without WebMCP the same tools are reachable from DevTools via
+`window.__iplugWebMCPShim.list()` / `.call(name, input)`. See the "WebMCP Agent Bridge"
+section of @iPlug2/Documentation/wasm.md.
+
 ## Additional Context
 
 - iPlug2 framework: @iPlug2/CLAUDE.md

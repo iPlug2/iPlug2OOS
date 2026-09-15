@@ -55,6 +55,8 @@ class KnobControl extends HTMLElement {
       width: var(--knob-size, 80px);
       height: var(--knob-size, 80px);
     }
+    /* Decorative strokes must not intercept the circle's pointer handlers. */
+    svg path, svg line { pointer-events: none; }
     .hidden-cursor {
       cursor: none;
     }

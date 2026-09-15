@@ -104,6 +104,23 @@
 
     function OnControlChange(ctrlTag, value) {}
 
+    // Optional: expose an explicit action to browser agents (WebMCP) when the
+    // UI is hosted by the Wasm host page. Clickable elements can instead be
+    // annotated with data-iplug-action="id" (see the size buttons below).
+    window.iPlugWebMCP?.registerAction({
+      id: 'reset-gain',
+      label: 'Reset gain to its default',
+      run: async () => {
+        const info = window['parameters']?.[0];
+        const normalized = info ? (info.default - info.min) / (info.max - info.min) : 1;
+        BPCFUI(0);
+        SPVFUI(0, normalized);
+        EPCFUI(0);
+        OnParamChange(0, normalized);
+        return { normalized };
+      }
+    });
+
     // Called by script.js for arbitrary messages from the plugin. The plugin
     // sends the parameter list as JSON once the web content has loaded.
     function OnMessage(msgTag, dataSize, data) {
@@ -133,9 +150,9 @@
 
     <div class="button-group">
       <span class="group-label">Editor size</span>
-      <button-control onclick="SAMFUI(kMsgTagButtonSmall)">Small</button-control>
-      <button-control onclick="SAMFUI(kMsgTagButtonMedium)">Medium</button-control>
-      <button-control onclick="SAMFUI(kMsgTagButtonLarge)">Large</button-control>
+      <button-control data-iplug-action="size-small" onclick="SAMFUI(kMsgTagButtonSmall)">Small</button-control>
+      <button-control data-iplug-action="size-medium" onclick="SAMFUI(kMsgTagButtonMedium)">Medium</button-control>
+      <button-control data-iplug-action="size-large" onclick="SAMFUI(kMsgTagButtonLarge)">Large</button-control>
     </div>
   </div>
 </body>
