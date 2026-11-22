@@ -24,5 +24,5 @@ git commit -m "created [PluginName] based on TemplateProject"
 
 ## Additional Context
 
-- iPlug2 framework: @modules/iPlug2/CLAUDE.md
+- iPlug2 framework: @modules/iPlug2/AGENTS.md
 - Project structure: @modules/iPlug2/Documentation/structure.md
