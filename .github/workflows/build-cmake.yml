@@ -26,10 +26,6 @@ on:
         description: 'Include iOS build'
         type: boolean
         default: false
-      wam:
-        description: 'Include WAM/Emscripten build'
-        type: boolean
-        default: false
       wasm:
         description: 'Include WASM/Emscripten build'
         type: boolean
@@ -69,7 +65,6 @@ jobs:
     outputs:
       all_generators: ${{ steps.parse.outputs.all_generators }}
       ios: ${{ steps.parse.outputs.ios }}
-      wam: ${{ steps.parse.outputs.wam }}
       wasm: ${{ steps.parse.outputs.wasm }}
       universal: ${{ steps.parse.outputs.universal }}
       backends: ${{ steps.parse.outputs.backends }}
@@ -90,7 +85,6 @@ jobs:
             if [[ "$COMMENT" == *"/ci all"* ]]; then
               echo "all_generators=true" >> $GITHUB_OUTPUT
               echo "ios=true" >> $GITHUB_OUTPUT
-              echo "wam=true" >> $GITHUB_OUTPUT
               echo "wasm=true" >> $GITHUB_OUTPUT
               echo "universal=true" >> $GITHUB_OUTPUT
               echo "backends=true" >> $GITHUB_OUTPUT
@@ -98,7 +92,6 @@ jobs:
             else
               [[ "$COMMENT" == *"/ci all-generators"* || "$COMMENT" == *"/ci generators"* ]] && echo "all_generators=true" >> $GITHUB_OUTPUT || echo "all_generators=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci ios"* ]] && echo "ios=true" >> $GITHUB_OUTPUT || echo "ios=false" >> $GITHUB_OUTPUT
-              [[ "$COMMENT" == *"/ci wam"* ]] && echo "wam=true" >> $GITHUB_OUTPUT || echo "wam=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci wasm"* ]] && echo "wasm=true" >> $GITHUB_OUTPUT || echo "wasm=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci universal"* ]] && echo "universal=true" >> $GITHUB_OUTPUT || echo "universal=false" >> $GITHUB_OUTPUT
               [[ "$COMMENT" == *"/ci backends"* ]] && echo "backends=true" >> $GITHUB_OUTPUT || echo "backends=false" >> $GITHUB_OUTPUT
@@ -108,7 +101,6 @@ jobs:
           elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "all_generators=${{ inputs.all_generators }}" >> $GITHUB_OUTPUT
             echo "ios=${{ inputs.ios }}" >> $GITHUB_OUTPUT
-            echo "wam=${{ inputs.wam }}" >> $GITHUB_OUTPUT
             echo "wasm=${{ inputs.wasm }}" >> $GITHUB_OUTPUT
             echo "universal=${{ inputs.universal }}" >> $GITHUB_OUTPUT
             echo "backends=${{ inputs.backends }}" >> $GITHUB_OUTPUT
@@ -118,7 +110,6 @@ jobs:
             # push or pull_request - use defaults
             echo "all_generators=false" >> $GITHUB_OUTPUT
             echo "ios=false" >> $GITHUB_OUTPUT
-            echo "wam=false" >> $GITHUB_OUTPUT
             echo "wasm=false" >> $GITHUB_OUTPUT
             echo "universal=false" >> $GITHUB_OUTPUT
             echo "backends=false" >> $GITHUB_OUTPUT
@@ -813,71 +804,6 @@ jobs:
           name: ios-artifacts
           path: build/ios-sim-xcode/out/
           if-no-files-found: warn
-
-  # ==========================================================================
-  # Emscripten - WAM Build - Optional: /ci wam
-  # ==========================================================================
-  emscripten-wam:
-    name: WAM (Emscripten)
-    needs: parse-commands
-    if: needs.parse-commands.outputs.wam == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
-          submodules: recursive
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Setup Emscripten
-        uses: mymindstorm/setup-emsdk@v14
-
-      - name: Patch emcc.py for iPlug2 EXPORT_NAME
-        # iPlug2 WAM modules use EXPORT_NAME values like "AWP_WAM_WASM_PluginName" which
-        # contain underscores that pass Emscripten's identifier validation. However, some
-        # project names with special characters may fail. This patch disables the strict
-        # identifier check. A cleaner solution would be to ensure EXPORT_NAME is always
-        # a valid JS identifier in the CMake configuration.
-        run: |
-          sed -i.bak 's/if not js_manipulation.isidentifier(settings.EXPORT_NAME):/if False:/g' $EMSDK/upstream/emscripten/emcc.py
-
-      - name: Cache WAM SDK
-        id: cache-wam
-        uses: actions/cache@v4
-        with:
-          path: iPlug2/Dependencies/IPlug/WAM_SDK
-          key: wam-sdk-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
-
-      - name: Get WAM SDK
-        if: steps.cache-wam.outputs.cache-hit != 'true'
-        run: |
-          cd iPlug2/Dependencies/IPlug
-          ./download-iplug-sdks.sh
-
-      - name: CMake Configure
-        run: cmake --preset=web
-
-      - name: Build WAM
-        run: cmake --build --preset=web --target ${{env.PROJECT_NAME}}-web-dist
-
-      - name: Verify WAM Output
-        run: |
-          test -f build/web/out/${{env.PROJECT_NAME}}/index.html
-          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-wam.js
-          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.js
-          test -f build/web/out/${{env.PROJECT_NAME}}/scripts/${{env.PROJECT_NAME}}-web.wasm
-          echo "WAM distribution verified"
-
-      - name: Upload WAM Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{env.PROJECT_NAME}}-wam
-          path: build/web/out/${{env.PROJECT_NAME}}
 
   # ==========================================================================
   # Emscripten - WASM Build - Optional: /ci wasm
