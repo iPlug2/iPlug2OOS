@@ -18,7 +18,7 @@ env:
 jobs:
   build-win:
     name: Build Windows (${{matrix.project}})
-    runs-on: windows-latest
+    runs-on: windows-2022
     strategy:
       fail-fast: false
       matrix:

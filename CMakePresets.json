@@ -166,6 +166,30 @@
       }
     },
     {
+      "name": "base-linux",
+      "hidden": true,
+      "inherits": "base",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-ninja",
+      "displayName": "Linux (Ninja)",
+      "description": "Linux build with Ninja generator (NanoVG/GL3)",
+      "inherits": "base-linux",
+      "generator": "Ninja"
+    },
+    {
+      "name": "linux-make",
+      "displayName": "Linux (Make)",
+      "description": "Linux build with Unix Makefiles generator (NanoVG/GL3)",
+      "inherits": "base-linux",
+      "generator": "Unix Makefiles"
+    },
+    {
       "name": "web",
       "displayName": "Web (Emscripten)",
       "description": "Web build with Emscripten/WebAssembly (WAM + WASM)",
@@ -245,6 +269,14 @@
       "name": "windows-vs2022-arm64ec",
       "configurePreset": "windows-vs2022-arm64ec",
       "configuration": "Release"
+    },
+    {
+      "name": "linux-ninja",
+      "configurePreset": "linux-ninja"
+    },
+    {
+      "name": "linux-make",
+      "configurePreset": "linux-make"
     },
     {
       "name": "web",

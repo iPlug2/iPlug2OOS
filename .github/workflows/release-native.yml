@@ -38,11 +38,11 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [macos-latest, windows-2022]
         include:
           - os: macos-latest
             build_dir: build-mac
-          - os: windows-latest
+          - os: windows-2022
             build_dir: build-win
 
     steps:
@@ -107,11 +107,11 @@ jobs:
         asset_content_type: application/octet-stream
 
     - name: Add msbuild to PATH (Windows)
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-2022'
       uses: microsoft/setup-msbuild@v1
 
     - name: Setup Python3
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-2022'
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
@@ -119,21 +119,21 @@ jobs:
 
     - name: Get Archive Name Windows
       id: win_archivename_step
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-2022'
       run: |
         ARCHIVE_NAME=`python.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
         echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Build Windows
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-2022'
       run: |
         cd ${{env.PROJECT_NAME}}\scripts
         .\makedist-win.bat full installer
       shell: pwsh
 
     - name: Upload Windows pdb release asset
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-2022'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -144,7 +144,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload Windows zip release asset
-      if: matrix.os == 'windows-latest'
+      if: matrix.os == 'windows-2022'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -153,3 +153,66 @@ jobs:
         asset_path: ${{env.PROJECT_NAME}}/${{matrix.build_dir}}/out/${{steps.win_archivename_step.outputs.archive_name}}.zip
         asset_name: ${{steps.win_archivename_step.outputs.archive_name}}.zip
         asset_content_type: application/zip
+
+  build-linux:
+    name: Build Linux
+    needs: create_release
+    # Build on the oldest supported Ubuntu so the binaries run on older glibc
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+          ninja-build \
+          pkg-config \
+          libgdk-pixbuf-2.0-dev \
+          libglib2.0-dev \
+          libgtk-3-dev \
+          libfreetype-dev \
+          libfontconfig-dev \
+          libasound2-dev \
+          libjack-jackd2-dev \
+          libpulse-dev \
+          libgl-dev \
+          libx11-dev \
+          libx11-xcb-dev \
+          libxcb1-dev \
+          libxi-dev \
+          libxext-dev \
+          libxrender-dev \
+          libxrandr-dev \
+          libxfixes-dev \
+          libxcursor-dev
+
+    - name: Get SDKs
+      run: |
+        cd iPlug2/Dependencies/IPlug
+        ./download-iplug-sdks.sh
+
+    - name: Get Archive Name Linux
+      id: linux_archivename_step
+      run: |
+        ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} linux-$(uname -m) full`
+        echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
+
+    - name: Build Linux
+      run: |
+        cd ${{env.PROJECT_NAME}}/scripts
+        ./makedist-linux.sh full
+
+    - name: Upload Linux tar.gz release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      with:
+        upload_url: ${{needs.create_release.outputs.upload_url}}
+        asset_path: ${{env.PROJECT_NAME}}/build-linux/out/${{steps.linux_archivename_step.outputs.archive_name}}.tar.gz
+        asset_name: ${{steps.linux_archivename_step.outputs.archive_name}}.tar.gz
+        asset_content_type: application/gzip
