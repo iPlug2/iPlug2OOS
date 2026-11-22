@@ -108,20 +108,17 @@ cmake --build build/linux-make -- -j$(nproc)
 
 Output in `build/linux-ninja/out/`: `[ProjectName]` (standalone executable), `[ProjectName].vst3/` and `[ProjectName].clap`. Resources (fonts, images) are staged next to the binaries in `[ProjectName].resources/` (APP), `[ProjectName].clap.resources/` (CLAP) and `Contents/Resources/` (VST3), and must be shipped with them.
 
-### Web/WAM Build (Emscripten)
+### Web/Wasm Build (Emscripten)
 
 ```bash
-# Configure (requires EMSDK environment)
-cmake --preset wam
+# Configure (requires the Emscripten SDK environment: source emsdk_env.sh)
+cmake --preset web
 
-# Build
-cmake --build build/wam --target [ProjectName]-wam
-
-# Create distribution
-cmake --build build/wam --target [ProjectName]-wam-dist
+# Build the full web distribution (DSP + UI modules, HTML and scripts)
+cmake --build build/web --target [ProjectName]-wasm-dist
 ```
 
-Output in `build/wam/out/[ProjectName]-wam/`
+Output in `build/web/out/[ProjectName]/` (`index.html`, `scripts/`, `styles/`). See `iPlug2/Documentation/wasm.md` for serving it locally.
 
 ## Available Configure Presets
 
@@ -140,7 +137,7 @@ Output in `build/wam/out/[ProjectName]-wam/`
 | `windows-vs2022-arm64ec` | Windows | VS2022 | Windows ARM64EC builds |
 | `linux-ninja` | Linux | Ninja | Fast Linux command-line builds (NanoVG/GL3) |
 | `linux-make` | Linux | Make | Unix Makefiles (NanoVG/GL3) |
-| `wam` | Web | Ninja | Emscripten/WebAssembly builds |
+| `web` | Web | Ninja | Emscripten/WebAssembly builds |
 
 ## Available Targets
 
@@ -151,7 +148,7 @@ Output in `build/wam/out/[ProjectName]-wam/`
 - `[ProjectName]AU-framework` - AUv3 framework
 - `[ProjectName]AUv3-appex` - AUv3 app extension
 - `[ProjectName]-ios-app` - iOS standalone app
-- `[ProjectName]-wam` - Web Audio Module
+- `[ProjectName]-wasm-dist` - Web distribution (Wasm DSP + UI, `web` preset only)
 
 ## Graphics Backend and Renderer
 
