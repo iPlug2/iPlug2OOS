@@ -6,6 +6,14 @@ Instead of using the common-mac.xcconfig and common-win.xcconfig in the iPlug2 f
 
 https://github.com/iPlug2/iPlug2/wiki/Out-of-source-builds
 
+The iPlug2 submodule lives at `modules/iPlug2`. If you cloned the repo before it moved there from `iPlug2/`, run this after pulling:
+
+```bash
+git submodule sync && git submodule update --init
+```
+
+You can then delete the old top-level `iPlug2/` folder.
+
 Containerized development is documented [here](https://docs.google.com/document/d/e/2PACX-1vT6lYZ3vtYKWAty2g6DL994IO0_pfyGctDdKfPxF6MZwOgFWENfLuVtBW9J0-KzLsfPSKKN055UnAmj/pub)
 
 ## CMake

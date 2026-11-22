@@ -6,15 +6,11 @@ echo "Initializing submodule..."
 git submodule update --init
 
 echo "Downloading iPlug2 SDKs..."
-cd modules/iPlug2/Dependencies/IPlug/
-./download-iplug-sdks.sh
-cd ../../..
+(cd modules/iPlug2/Dependencies/IPlug && ./download-iplug-sdks.sh)
 
 # Not nessecary until we have WASM libs
 # echo "Downloading iPlug2 prebuilt libs..."
-# cd modules/iPlug2/Dependencies/
-# ./download-prebuilt-libs.sh
-# cd ../..
+# (cd modules/iPlug2/Dependencies && ./download-prebuilt-libs.sh)
 
 echo "Downloading mkcert..."
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64 -O mkcert

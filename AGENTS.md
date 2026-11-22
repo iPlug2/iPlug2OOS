@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 ## iPlug2OOS "Out of Source"
 
