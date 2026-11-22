@@ -195,7 +195,7 @@ jobs:
     name: Windows (VS2022)
     needs: parse-commands
     if: needs.parse-commands.outputs.should_run == 'true'
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -324,7 +324,7 @@ jobs:
     name: Windows (ARM64EC)
     needs: parse-commands
     if: needs.parse-commands.outputs.arm64ec == 'true'
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -691,7 +691,7 @@ jobs:
     name: Windows ${{ matrix.backend }}/${{ matrix.renderer }}
     needs: parse-commands
     if: needs.parse-commands.outputs.backends == 'true'
-    runs-on: windows-latest
+    runs-on: windows-2022
     strategy:
       fail-fast: false
       matrix:
