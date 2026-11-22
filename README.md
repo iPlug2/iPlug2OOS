@@ -1,4 +1,4 @@
-![Build WAM](https://github.com/iPlug2/iPlug2OOS/workflows/Build%20WAM/badge.svg)
+[![Build Wasm](https://github.com/iPlug2/iPlug2OOS/actions/workflows/build-wasm.yml/badge.svg)](https://github.com/iPlug2/iPlug2OOS/actions/workflows/build-wasm.yml)
 
 This repo contains an "out of source" iPlug2 template project, which is desirable when you need to keep all your project dependencies synchronised with version control and build it using CI/CD in the cloud. It set up for "containerized development" using [VSCode](https://code.visualstudio.com/docs/devcontainers/containers) and [github codespaces](https://github.com/features/codespaces).
 
