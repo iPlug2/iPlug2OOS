@@ -32,3 +32,5 @@ cmake --build --preset linux-ninja
 ```
 
 Binaries are written to `build/linux-ninja/out/`; the VST3 and CLAP are symlinked into `~/.vst3` and `~/.clap` (disable with `-DIPLUG_DEPLOY_PLUGINS=OFF`). CMake 3.25 or later is required.
+
+`TemplateProject/scripts/makedist-linux.sh` builds a release and packages it as a `.tar.gz` in `TemplateProject/build-linux/out/`; the Release Native workflow runs it and attaches the archive to the GitHub release.

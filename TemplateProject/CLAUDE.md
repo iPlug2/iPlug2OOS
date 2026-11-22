@@ -45,4 +45,4 @@ Controls that are not tagged (e.g. the panel background, corner resizer) are han
 - `projects/` — per-format IDE projects (Xcode, VS, WAM makefiles).
 - `resources/` — Info.plists, icons, fonts, images. Fonts referenced via `*_FN` macros in `config.h` (e.g. `ROBOTO_FN`).
 - `CMakeLists.txt` — alternative CMake build, and the only build system for Linux (see `build-cmake` skill).
-- `build-mac/`, `build-win/`, `installer/`, `manual/`, `scripts/` — build, packaging, and docs tooling.
+- `build-mac/`, `build-win/`, `build-linux/`, `installer/`, `manual/`, `scripts/` — build, packaging, and docs tooling.
