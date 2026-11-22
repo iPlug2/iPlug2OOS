@@ -96,13 +96,13 @@ sudo apt-get install -y \
 
 ```bash
 # Configure with Ninja
-cmake --preset linux-ninja -S [ProjectName]
+cmake --preset linux-ninja
 
 # Build
 cmake --build build/linux-ninja --target [ProjectName]-app
 
 # Or with Make
-cmake --preset linux-make -S [ProjectName]
+cmake --preset linux-make
 cmake --build build/linux-make -- -j$(nproc)
 ```
 
