@@ -51,6 +51,14 @@ jobs:
           test -f ${{env.PROJECT_NAME}}/build-web-wasm/scripts/${{env.PROJECT_NAME}}-processor.js
           echo "WASM distribution verified"
 
+      # Adds social-card.png (screenshot of the plug-in) and Open Graph/Twitter
+      # meta tags to index.html. Text is set in config/<project>-web.json
+      - name: Make social media card
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+          node ${{env.PROJECT_NAME}}/scripts/make_social_card.js ${{env.PROJECT_NAME}}/build-web-wasm
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
