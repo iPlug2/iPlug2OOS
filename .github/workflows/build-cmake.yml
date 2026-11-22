@@ -242,6 +242,82 @@ jobs:
           if-no-files-found: warn
 
   # ==========================================================================
+  # Linux - Ninja Generator (Default)
+  # ==========================================================================
+  linux-ninja:
+    name: Linux (Ninja)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.should_run == 'true'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build \
+            pkg-config \
+            libgdk-pixbuf-2.0-dev \
+            libglib2.0-dev \
+            libgtk-3-dev \
+            libfreetype-dev \
+            libfontconfig-dev \
+            libasound2-dev \
+            libjack-jackd2-dev \
+            libpulse-dev \
+            libgl-dev \
+            libx11-dev \
+            libx11-xcb-dev \
+            libxcb1-dev \
+            libxi-dev \
+            libxext-dev \
+            libxrender-dev \
+            libxrandr-dev \
+            libxfixes-dev \
+            libxcursor-dev
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=linux-ninja -DIPLUG_DEPLOY_PLUGINS=OFF
+
+      - name: Build
+        run: cmake --build --preset=linux-ninja
+
+      - name: Verify Binaries
+        run: |
+          test -x build/linux-ninja/out/${{env.PROJECT_NAME}}
+          test -f build/linux-ninja/out/${{env.PROJECT_NAME}}.vst3/Contents/$(uname -m)-linux/${{env.PROJECT_NAME}}.so
+          test -f build/linux-ninja/out/${{env.PROJECT_NAME}}.clap
+          echo "All binaries exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-ninja-artifacts
+          path: build/linux-ninja/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
   # Windows - Visual Studio 2022 ARM64EC - Optional: /ci arm64ec
   # ==========================================================================
   windows-arm64ec:
@@ -451,6 +527,81 @@ jobs:
         with:
           name: macos-make-artifacts
           path: build/macos-make/out/
+          if-no-files-found: warn
+
+  # ==========================================================================
+  # Linux - Unix Makefiles Generator - Optional: /ci all-generators
+  # ==========================================================================
+  linux-make:
+    name: Linux (Make)
+    needs: parse-commands
+    if: needs.parse-commands.outputs.all_generators == 'true'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.parse-commands.outputs.pr_sha || github.sha }}
+          submodules: recursive
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            pkg-config \
+            libgdk-pixbuf-2.0-dev \
+            libglib2.0-dev \
+            libgtk-3-dev \
+            libfreetype-dev \
+            libfontconfig-dev \
+            libasound2-dev \
+            libjack-jackd2-dev \
+            libpulse-dev \
+            libgl-dev \
+            libx11-dev \
+            libx11-xcb-dev \
+            libxcb1-dev \
+            libxi-dev \
+            libxext-dev \
+            libxrender-dev \
+            libxrandr-dev \
+            libxfixes-dev \
+            libxcursor-dev
+
+      - name: Cache IPlug SDKs
+        id: cache-sdks
+        uses: actions/cache@v4
+        with:
+          path: |
+            iPlug2/Dependencies/IPlug/VST3_SDK
+            iPlug2/Dependencies/IPlug/CLAP_SDK
+            iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+
+      - name: Get SDKs
+        if: steps.cache-sdks.outputs.cache-hit != 'true'
+        run: |
+          cd iPlug2/Dependencies/IPlug
+          ./download-iplug-sdks.sh
+
+      - name: CMake Configure
+        run: cmake --preset=linux-make -DIPLUG_DEPLOY_PLUGINS=OFF
+
+      - name: Build
+        run: cmake --build --preset=linux-make -- -j$(nproc)
+
+      - name: Verify Binaries
+        run: |
+          test -x build/linux-make/out/${{env.PROJECT_NAME}}
+          test -f build/linux-make/out/${{env.PROJECT_NAME}}.vst3/Contents/$(uname -m)-linux/${{env.PROJECT_NAME}}.so
+          test -f build/linux-make/out/${{env.PROJECT_NAME}}.clap
+          echo "All binaries exist"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-make-artifacts
+          path: build/linux-make/out/
           if-no-files-found: warn
 
   # ==========================================================================

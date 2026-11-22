@@ -80,6 +80,34 @@ cmake --preset windows-vs2022-arm64ec -S [ProjectName]
 cmake --build build/windows-vs2022-arm64ec --config Release
 ```
 
+### Linux Builds
+
+Builds APP, VST3 and CLAP (X11, NanoVG/GL3, ALSA/JACK/PulseAudio). Install the development libraries first (Ubuntu/Debian):
+
+```bash
+sudo apt-get install -y \
+  build-essential cmake ninja-build pkg-config \
+  libfreetype-dev libfontconfig-dev \
+  libx11-dev libx11-xcb-dev libxcb1-dev libxi-dev libxext-dev libxrender-dev \
+  libxrandr-dev libxfixes-dev libxcursor-dev \
+  libgl-dev libgtk-3-dev \
+  libasound2-dev libjack-jackd2-dev libpulse-dev
+```
+
+```bash
+# Configure with Ninja
+cmake --preset linux-ninja -S [ProjectName]
+
+# Build
+cmake --build build/linux-ninja --target [ProjectName]-app
+
+# Or with Make
+cmake --preset linux-make -S [ProjectName]
+cmake --build build/linux-make -- -j$(nproc)
+```
+
+Output in `build/linux-ninja/out/`: `[ProjectName]` (standalone executable), `[ProjectName].vst3/` and `[ProjectName].clap`. Resources (fonts, images) are staged next to the binaries in `[ProjectName].resources/` (APP), `[ProjectName].clap.resources/` (CLAP) and `Contents/Resources/` (VST3), and must be shipped with them.
+
 ### Web/WAM Build (Emscripten)
 
 ```bash
@@ -110,6 +138,8 @@ Output in `build/wam/out/[ProjectName]-wam/`
 | `windows-ninja` | Windows | Ninja | Fast Windows command-line builds |
 | `windows-vs2022` | Windows | VS2022 | Windows x64 builds |
 | `windows-vs2022-arm64ec` | Windows | VS2022 | Windows ARM64EC builds |
+| `linux-ninja` | Linux | Ninja | Fast Linux command-line builds (NanoVG/GL3) |
+| `linux-make` | Linux | Make | Unix Makefiles (NanoVG/GL3) |
 | `wam` | Web | Ninja | Emscripten/WebAssembly builds |
 
 ## Available Targets
@@ -125,7 +155,7 @@ Output in `build/wam/out/[ProjectName]-wam/`
 
 ## Graphics Backend and Renderer
 
-Default configuration uses NanoVG with Metal (macOS/iOS) or GL2 (Windows).
+Default configuration uses NanoVG with Metal (macOS/iOS), GL2 (Windows) or GL3 (Linux).
 
 To use Skia backend, add cache variables:
 
@@ -138,6 +168,7 @@ cmake --preset macos-ninja -S [ProjectName] \
 Valid combinations:
 - **NanoVG**: GL2, GL3, METAL
 - **Skia**: GL3, METAL, CPU
+- **Linux**: NanoVG/GL3, Skia/GL3 or Skia/CPU only (Skia must be built locally with `iPlug2/Dependencies/IGraphics/build-skia-linux.sh`)
 
 **Note:** Skia requires prebuilt libraries:
 ```bash
@@ -150,6 +181,14 @@ Valid combinations:
 - VST3: `~/Library/Audio/Plug-Ins/VST3/`
 - AU: `~/Library/Audio/Plug-Ins/Components/`
 - CLAP: `~/Library/Audio/Plug-Ins/CLAP/`
+
+## Build Locations (symlinked on Linux)
+
+- APP: stays in `build/linux-ninja/out/`
+- VST3: `~/.vst3/`
+- CLAP: `~/.clap/`
+
+Pass `-DIPLUG_DEPLOY_PLUGINS=OFF` at configure time to skip deployment (any platform).
 
 ## Clean Build
 

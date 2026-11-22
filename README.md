@@ -7,3 +7,28 @@ Instead of using the common-mac.xcconfig and common-win.xcconfig in the iPlug2 f
 https://github.com/iPlug2/iPlug2/wiki/Out-of-source-builds
 
 Containerized development is documented [here](https://docs.google.com/document/d/e/2PACX-1vT6lYZ3vtYKWAty2g6DL994IO0_pfyGctDdKfPxF6MZwOgFWENfLuVtBW9J0-KzLsfPSKKN055UnAmj/pub)
+
+## CMake
+
+The template can also be built with CMake on macOS, Windows, Linux and the web, using the presets in `CMakePresets.json` (`cmake --list-presets`).
+
+### Linux
+
+Linux builds (standalone app, VST3 and CLAP) are CMake-only. On Ubuntu/Debian:
+
+```bash
+sudo apt-get install -y \
+  build-essential cmake ninja-build pkg-config \
+  libfreetype-dev libfontconfig-dev \
+  libx11-dev libx11-xcb-dev libxcb1-dev libxi-dev libxext-dev libxrender-dev \
+  libxrandr-dev libxfixes-dev libxcursor-dev \
+  libgl-dev libgtk-3-dev \
+  libasound2-dev libjack-jackd2-dev libpulse-dev
+
+(cd iPlug2/Dependencies/IPlug && ./download-iplug-sdks.sh)
+
+cmake --preset linux-ninja
+cmake --build --preset linux-ninja
+```
+
+Binaries are written to `build/linux-ninja/out/`; the VST3 and CLAP are symlinked into `~/.vst3` and `~/.clap` (disable with `-DIPLUG_DEPLOY_PLUGINS=OFF`). CMake 3.25 or later is required.
