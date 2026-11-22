@@ -16,7 +16,7 @@ Use this skill when the user wants to build their plugin project using CMake.
 
 ## Using CMake Presets
 
-The project uses CMake presets for standardized builds. Prefer `--preset` instead of manual `-G` flags.
+The project uses CMake presets for standardized builds. Prefer `--preset` instead of manual `-G` flags. `CMakePresets.json` lives at the repository root, so run these commands from there; each project is selected by its build target (`[ProjectName]-app` etc.).
 
 ### List Available Presets
 
@@ -28,17 +28,17 @@ cmake --list-presets
 
 ```bash
 # Configure with Ninja (fast builds)
-cmake --preset macos-ninja -S [ProjectName]
+cmake --preset macos-ninja
 
 # Build
 cmake --build build/macos-ninja --target [ProjectName]-app
 
 # Or with Xcode (for debugging)
-cmake --preset macos-xcode -S [ProjectName]
+cmake --preset macos-xcode
 cmake --build build/macos-xcode --config Release --target [ProjectName]-app
 
 # Universal binary (arm64 + x86_64)
-cmake --preset macos-xcode-universal -S [ProjectName]
+cmake --preset macos-xcode-universal
 cmake --build build/macos-xcode-universal --config Release
 ```
 
@@ -46,11 +46,11 @@ cmake --build build/macos-xcode-universal --config Release
 
 ```bash
 # iOS Device
-cmake --preset ios-xcode -S [ProjectName]
+cmake --preset ios-xcode
 cmake --build build/ios-xcode --config Release
 
 # iOS Simulator
-cmake --preset ios-sim-xcode -S [ProjectName]
+cmake --preset ios-sim-xcode
 cmake --build build/ios-sim-xcode --config Release
 ```
 
@@ -60,11 +60,11 @@ For running in Simulator, use the `run-ios-simulator` skill.
 
 ```bash
 # visionOS Device
-cmake --preset visionos-xcode -S [ProjectName]
+cmake --preset visionos-xcode
 cmake --build build/visionos-xcode --config Release
 
 # visionOS Simulator
-cmake --preset visionos-sim-xcode -S [ProjectName]
+cmake --preset visionos-sim-xcode
 cmake --build build/visionos-sim-xcode --config Release
 ```
 
@@ -72,11 +72,11 @@ cmake --build build/visionos-sim-xcode --config Release
 
 ```bash
 # Visual Studio 2022 (x64)
-cmake --preset windows-vs2022 -S [ProjectName]
+cmake --preset windows-vs2022
 cmake --build build/windows-vs2022 --config Release
 
 # ARM64EC
-cmake --preset windows-vs2022-arm64ec -S [ProjectName]
+cmake --preset windows-vs2022-arm64ec
 cmake --build build/windows-vs2022-arm64ec --config Release
 ```
 
@@ -112,7 +112,7 @@ Output in `build/linux-ninja/out/`: `[ProjectName]` (standalone executable), `[P
 
 ```bash
 # Configure (requires EMSDK environment)
-cmake --preset wam -S [ProjectName]
+cmake --preset wam
 
 # Build
 cmake --build build/wam --target [ProjectName]-wam
@@ -160,7 +160,7 @@ Default configuration uses NanoVG with Metal (macOS/iOS), GL2 (Windows) or GL3 (
 To use Skia backend, add cache variables:
 
 ```bash
-cmake --preset macos-ninja -S [ProjectName] \
+cmake --preset macos-ninja \
   -DIGRAPHICS_BACKEND=SKIA \
   -DIGRAPHICS_RENDERER=METAL
 ```
@@ -195,20 +195,20 @@ Pass `-DIPLUG_DEPLOY_PLUGINS=OFF` at configure time to skip deployment (any plat
 ```bash
 # Remove build directory and reconfigure
 rm -rf build/macos-ninja
-cmake --preset macos-ninja -S [ProjectName]
+cmake --preset macos-ninja
 ```
 
 ## Example
 
 ```bash
 # Quick build of standalone app
-cmake --preset macos-ninja -S MySynth
+cmake --preset macos-ninja
 cmake --build build/macos-ninja --target MySynth-app
 
 # Open the built app
 open ~/Applications/MySynth.app
 
 # Build for iOS Simulator
-cmake --preset ios-sim-xcode -S MySynth
+cmake --preset ios-sim-xcode
 cmake --build build/ios-sim-xcode --config Release
 ```
