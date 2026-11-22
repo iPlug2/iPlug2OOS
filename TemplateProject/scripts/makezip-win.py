@@ -3,7 +3,7 @@ import zipfile, os, fileinput, string, sys, shutil
 scriptpath = os.path.dirname(os.path.realpath(__file__))
 projectpath = os.path.abspath(os.path.join(scriptpath, os.pardir))
 
-IPLUG2_ROOT = "..\..\iPlug2"
+IPLUG2_ROOT = "..\..\modules\iPlug2"
 
 sys.path.insert(0, os.path.join(scriptpath, IPLUG2_ROOT + '\Scripts'))
 

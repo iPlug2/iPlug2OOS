@@ -6,13 +6,13 @@ echo "Initializing submodule..."
 git submodule update --init
 
 echo "Downloading iPlug2 SDKs..."
-cd iPlug2/Dependencies/IPlug/
+cd modules/iPlug2/Dependencies/IPlug/
 ./download-iplug-sdks.sh
 cd ../../..
 
 # Not nessecary until we have WASM libs
 # echo "Downloading iPlug2 prebuilt libs..."
-# cd iPlug2/Dependencies/
+# cd modules/iPlug2/Dependencies/
 # ./download-prebuilt-libs.sh
 # cd ../..
 

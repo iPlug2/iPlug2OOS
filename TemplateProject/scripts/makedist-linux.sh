@@ -6,7 +6,7 @@
 # usage: makedist-linux.sh [full/demo]
 #
 # requires: cmake (3.25+), ninja, python3 and the iPlug2 Linux development
-# libraries (see iPlug2/Documentation/cmake.md)
+# libraries (see modules/iPlug2/Documentation/cmake.md)
 
 set -euo pipefail
 
@@ -17,7 +17,7 @@ cd "$BASEDIR/.."
 #---------------------------------------------------------------------------------------------------------
 #variables
 
-IPLUG2_ROOT=../iPlug2
+IPLUG2_ROOT=../modules/iPlug2
 SCRIPTS=$IPLUG2_ROOT/Scripts
 BUILD_DIR=build-linux
 PLUGIN_NAME=TemplateProject

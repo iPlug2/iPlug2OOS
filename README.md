@@ -25,7 +25,7 @@ sudo apt-get install -y \
   libgl-dev libgtk-3-dev \
   libasound2-dev libjack-jackd2-dev libpulse-dev
 
-(cd iPlug2/Dependencies/IPlug && ./download-iplug-sdks.sh)
+(cd modules/iPlug2/Dependencies/IPlug && ./download-iplug-sdks.sh)
 
 cmake --preset linux-ninja
 cmake --build --preset linux-ninja

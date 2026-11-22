@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <RTAUDIOMIDI_PATH>$(IPLUG_PATH)\APP\RTAudioMidi</RTAUDIOMIDI_PATH>
-    <IPLUG2_ROOT>$(ProjectDir)..\..\iPlug2</IPLUG2_ROOT>
+    <IPLUG2_ROOT>$(ProjectDir)..\..\modules\iPlug2</IPLUG2_ROOT>
     <WDL_PATH>$(IPLUG2_ROOT)\WDL</WDL_PATH>
     <IPLUG_PATH>$(IPLUG2_ROOT)\IPlug</IPLUG_PATH>
     <EXTRAS_PATH>$(IPLUG_PATH)\Extras</EXTRAS_PATH>

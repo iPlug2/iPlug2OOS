@@ -3,15 +3,15 @@ name: Build CMake
 on:
   push:
     paths:
-      - 'iPlug2/Scripts/cmake/**'
-      - 'iPlug2/iPlug2.cmake'
+      - 'modules/iPlug2/Scripts/cmake/**'
+      - 'modules/iPlug2/iPlug2.cmake'
       - '**/CMakeLists.txt'
       - 'CMakePresets.json'
       - '.github/workflows/build-cmake.yml'
   pull_request:
     paths:
-      - 'iPlug2/Scripts/cmake/**'
-      - 'iPlug2/iPlug2.cmake'
+      - 'modules/iPlug2/Scripts/cmake/**'
+      - 'modules/iPlug2/iPlug2.cmake'
       - '**/CMakeLists.txt'
       - 'CMakePresets.json'
   issue_comment:
@@ -147,15 +147,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -199,16 +199,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         shell: bash
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -277,15 +277,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -328,16 +328,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         shell: bash
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -381,15 +381,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -436,15 +436,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -488,15 +488,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -564,15 +564,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -634,15 +634,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: Cache Skia Prebuilt Libs
@@ -651,14 +651,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/Build/mac
-            iPlug2/Dependencies/Build/src/skia
-          key: skia-prebuilt-mac-${{ hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh') }}
+            modules/iPlug2/Dependencies/Build/mac
+            modules/iPlug2/Dependencies/Build/src/skia
+          key: skia-prebuilt-mac-${{ hashFiles('modules/iPlug2/Dependencies/download-prebuilt-libs.sh') }}
 
       - name: Get Skia Prebuilt Libs
         if: matrix.needs_skia && steps.cache-skia.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies
+          cd modules/iPlug2/Dependencies
           ./download-prebuilt-libs.sh mac
 
       - name: CMake Configure
@@ -712,16 +712,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         shell: bash
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: Cache Skia Prebuilt Libs
@@ -730,15 +730,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/Build/win
-            iPlug2/Dependencies/Build/src/skia
-          key: skia-prebuilt-win-${{ hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh') }}
+            modules/iPlug2/Dependencies/Build/win
+            modules/iPlug2/Dependencies/Build/src/skia
+          key: skia-prebuilt-win-${{ hashFiles('modules/iPlug2/Dependencies/download-prebuilt-libs.sh') }}
 
       - name: Get Skia Prebuilt Libs
         if: matrix.needs_skia && steps.cache-skia.outputs.cache-hit != 'true'
         shell: bash
         run: |
-          cd iPlug2/Dependencies
+          cd modules/iPlug2/Dependencies
           ./download-prebuilt-libs.sh win
 
       - name: CMake Configure
@@ -776,15 +776,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure
@@ -836,15 +836,15 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
-            iPlug2/Dependencies/IPlug/CLAP_SDK
-            iPlug2/Dependencies/IPlug/CLAP_HELPERS
-          key: iplug-sdks-${{ hashFiles('iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+            modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          key: iplug-sdks-${{ hashFiles('modules/iPlug2/Dependencies/IPlug/download-iplug-sdks.sh') }}
 
       - name: Get SDKs
         if: steps.cache-sdks.outputs.cache-hit != 'true'
         run: |
-          cd iPlug2/Dependencies/IPlug
+          cd modules/iPlug2/Dependencies/IPlug
           ./download-iplug-sdks.sh
 
       - name: CMake Configure

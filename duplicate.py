@@ -30,7 +30,7 @@ from os.path import join
 
 scriptpath = os.path.dirname(os.path.realpath(__file__))
 
-sys.path.insert(0, scriptpath + '/iPlug2/Scripts/')
+sys.path.insert(0, scriptpath + '/modules/iPlug2/Scripts/')
 
 from parse_config import parse_config, parse_xcconfig, set_uniqueid
 

@@ -4,7 +4,7 @@ REM - batch file to build Visual Studio project and zip the resulting binaries (
 REM - updating version numbers requires python and python path added to %PATH% env variable 
 REM - zipping requires 7zip in %ProgramFiles%\7-Zip\7z.exe
 REM - building installer requires innosetup 6 in "%ProgramFiles(x86)%\Inno Setup 6\iscc"
-REM - AAX codesigning requires wraptool tool added to %PATH% env variable and aax.key/.crt in .\..\..\iPlug2\Certificates\
+REM - AAX codesigning requires wraptool tool added to %PATH% env variable and aax.key/.crt in .\..\..\modules\iPlug2\Certificates\
 
 REM - two arguments are demo/full and zip/installer
 

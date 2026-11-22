@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 project(TemplateProject VERSION 1.0.0)
 
 if(NOT DEFINED IPLUG2_DIR)
-  set(IPLUG2_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../iPlug2" CACHE PATH "iPlug2 root directory")
+  set(IPLUG2_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../modules/iPlug2" CACHE PATH "iPlug2 root directory")
 endif()
 
 include(${IPLUG2_DIR}/iPlug2.cmake)

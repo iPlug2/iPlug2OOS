@@ -376,11 +376,11 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\iPlug2\Dependencies\IPlug\AAX_SDK\Interfaces\AAX_Exports.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\Controls\IControls.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\Controls\IPopupMenuControl.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\Controls\ITextEntryControl.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\Drawing\IGraphicsNanoVG.cpp">
+    <ClCompile Include="..\..\modules\iPlug2\Dependencies\IPlug\AAX_SDK\Interfaces\AAX_Exports.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\Controls\IControls.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\Controls\IPopupMenuControl.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\Controls\ITextEntryControl.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\Drawing\IGraphicsNanoVG.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Tracer|ARM64EC'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Tracer|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">true</ExcludedFromBuild>
@@ -388,7 +388,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\iPlug2\IGraphics\Drawing\IGraphicsSkia.cpp">
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\Drawing\IGraphicsSkia.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Tracer|ARM64EC'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64EC'">true</ExcludedFromBuild>
@@ -396,21 +396,21 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Tracer|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\iPlug2\IGraphics\IControl.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\IGraphics.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\IGraphicsEditorDelegate.cpp" />
-    <ClCompile Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsWin.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\AAX\IPlugAAX_Parameters.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\AAX\IPlugAAX_Describe.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\AAX\IPlugAAX.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\IPlugAPIBase.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\IPlugParameter.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\IPlugPaths.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\IPlugPluginBase.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\IPlugProcessor.cpp" />
-    <ClCompile Include="..\..\iPlug2\IPlug\IPlugTimer.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\IControl.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\IGraphics.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\IGraphicsEditorDelegate.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IGraphics\Platforms\IGraphicsWin.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\AAX\IPlugAAX_Parameters.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\AAX\IPlugAAX_Describe.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\AAX\IPlugAAX.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\IPlugAPIBase.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\IPlugParameter.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\IPlugPaths.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\IPlugPluginBase.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\IPlugProcessor.cpp" />
+    <ClCompile Include="..\..\modules\iPlug2\IPlug\IPlugTimer.cpp" />
     <ClCompile Include="..\TemplateProject.cpp" />
-    <ClCompile Include="..\..\iPlug2\WDL\win32_utf8.c" />
+    <ClCompile Include="..\..\modules\iPlug2\WDL\win32_utf8.c" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuildStep Include="..\..\AAX_SDK\Libs\Release\AAXLibrary.lib">
@@ -442,54 +442,54 @@
     </CustomBuildStep>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IControls.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IFPSDisplayControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IPopupMenuControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\ITextEntryControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IVKeyboardControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IVMeterControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IVMultiSliderControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Controls\IVScopeControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Drawing\IGraphicsNanoVG.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Drawing\IGraphicsSkia.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IControl.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsConstants.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsEditorDelegate.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsLiveEdit.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsPopupMenu.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsStructs.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsPrivate.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphicsUtilities.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_include_in_plug_hdr.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_include_in_plug_src.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\IGraphics_select.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\ISender.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsLinux.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsMac.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsMac_view.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsWeb.h" />
-    <ClInclude Include="..\..\iPlug2\IGraphics\Platforms\IGraphicsWin.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\AAX\IPlugAAX_Parameters.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\AAX\IPlugAAX_TaperDelegate.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\AAX\IPlugAAX.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugAPIBase.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugConstants.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugDelegate_select.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugEditorDelegate.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugLogger.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugMidi.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugParameter.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugPaths.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugPlatform.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugPluginBase.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugProcessor.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugQueue.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugStructs.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugTimer.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlugUtilities.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_hdr.h" />
-    <ClInclude Include="..\..\iPlug2\IPlug\IPlug_include_in_plug_src.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IControls.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IFPSDisplayControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IPopupMenuControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\ITextEntryControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IVKeyboardControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IVMeterControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IVMultiSliderControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Controls\IVScopeControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Drawing\IGraphicsNanoVG.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Drawing\IGraphicsSkia.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IControl.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphics.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsConstants.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsEditorDelegate.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsLiveEdit.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsPopupMenu.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsStructs.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsPrivate.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphicsUtilities.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphics_include_in_plug_hdr.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphics_include_in_plug_src.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\IGraphics_select.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\ISender.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Platforms\IGraphicsLinux.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Platforms\IGraphicsMac.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Platforms\IGraphicsMac_view.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Platforms\IGraphicsWeb.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IGraphics\Platforms\IGraphicsWin.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\AAX\IPlugAAX_Parameters.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\AAX\IPlugAAX_TaperDelegate.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\AAX\IPlugAAX.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugAPIBase.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugConstants.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugDelegate_select.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugEditorDelegate.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugLogger.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugMidi.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugParameter.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugPaths.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugPlatform.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugPluginBase.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugProcessor.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugQueue.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugStructs.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugTimer.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlugUtilities.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlug_include_in_plug_hdr.h" />
+    <ClInclude Include="..\..\modules\iPlug2\IPlug\IPlug_include_in_plug_src.h" />
     <ClInclude Include="..\config.h" />
     <ClInclude Include="..\TemplateProject.h" />
     <ClInclude Include="..\resources\resource.h" />
