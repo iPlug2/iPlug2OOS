@@ -118,7 +118,7 @@ cmake --preset web
 cmake --build build/web --target [ProjectName]-wasm-dist
 ```
 
-Output in `build/web/out/[ProjectName]/` (`index.html`, `scripts/`, `styles/`). See `iPlug2/Documentation/wasm.md` for serving it locally.
+Output in `build/web/out/[ProjectName]/` (`index.html`, `scripts/`, `styles/`). See `modules/iPlug2/Documentation/wasm.md` for serving it locally.
 
 ## Available Configure Presets
 
@@ -165,11 +165,11 @@ cmake --preset macos-ninja \
 Valid combinations:
 - **NanoVG**: GL2, GL3, METAL
 - **Skia**: GL3, METAL, CPU
-- **Linux**: NanoVG/GL3, Skia/GL3 or Skia/CPU only (Skia must be built locally with `iPlug2/Dependencies/IGraphics/build-skia-linux.sh`)
+- **Linux**: NanoVG/GL3, Skia/GL3 or Skia/CPU only (Skia must be built locally with `modules/iPlug2/Dependencies/IGraphics/build-skia-linux.sh`)
 
 **Note:** Skia requires prebuilt libraries:
 ```bash
-./iPlug2/Dependencies/download-prebuilt-libs.sh mac
+./modules/iPlug2/Dependencies/download-prebuilt-libs.sh mac
 ```
 
 ## Build Locations (symlinked on macOS)

@@ -59,7 +59,7 @@ msbuild [Project]/[Project].sln /p:Configuration=Release /p:Platform=x64
 
 - Build one scheme at a time; building all may fail if SDKs are missing
 - Check `build.log` for issues
-- If Skia backend is configured, run `iPlug2/Dependencies/download-prebuilt-libs.sh mac` first
+- If Skia backend is configured, run `modules/iPlug2/Dependencies/download-prebuilt-libs.sh mac` first
 - AUv3 requires code signing; use `macOS-AU` (AUv2) for simpler local testing
 - Use `xcodebuild -workspace [Project]/[Project].xcworkspace -list` to see all available schemes
 
