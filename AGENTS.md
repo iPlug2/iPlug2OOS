@@ -4,7 +4,7 @@
 
 This repo keeps plugin projects separate from the iPlug2 framework. Structure:
 
-- @iPlug2 - Framework as git submodule
+- @modules/iPlug2 - Framework as git submodule
 - TemplateProject - Base template for new plugins
 - duplicate.py - Script to create new projects by duplicating a template
 
@@ -24,5 +24,5 @@ git commit -m "created [PluginName] based on TemplateProject"
 
 ## Additional Context
 
-- iPlug2 framework: @iPlug2/CLAUDE.md
-- Project structure: @iPlug2/Documentation/structure.md
+- iPlug2 framework: @modules/iPlug2/CLAUDE.md
+- Project structure: @modules/iPlug2/Documentation/structure.md

@@ -21,8 +21,8 @@ fi
 #---------------------------------------------------------------------------------------------------------
 #variables
 
-IPLUG2_ROOT=../iPlug2
-XCCONFIG=$IPLUG2_ROOT/../common-mac.xcconfig
+IPLUG2_ROOT=../modules/iPlug2
+XCCONFIG=$IPLUG2_ROOT/../../common-mac.xcconfig
 SCRIPTS=$IPLUG2_ROOT/Scripts
 
 # CODESIGN disabled by default. 
@@ -379,7 +379,7 @@ sudo rm -R -f build-mac/*-auval.zip
 
 echo "packaging auval script"
 echo ""
-zip -j ./build-mac/$ARCHIVE_NAME-auval.zip ./config.h ./../iPlug2/Scripts/validate_audiounit.sh
+zip -j ./build-mac/$ARCHIVE_NAME-auval.zip ./config.h ./../modules/iPlug2/Scripts/validate_audiounit.sh
 
 #---------------------------------------------------------------------------------------------------------
 

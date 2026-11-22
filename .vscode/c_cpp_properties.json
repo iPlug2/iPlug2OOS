@@ -3,12 +3,12 @@
         "commonIncludePaths": [
             "${workspaceFolder}/TemplateProject/.",
             "${workspaceFolder}/TemplateProject/**",
-            "${workspaceFolder}/iPlug2/WDL/**",
-            "${workspaceFolder}/iPlug2/IPlug/**",
-            "${workspaceFolder}/iPlug2/IGraphics/**",
-            "${workspaceFolder}/iPlug2/Dependencies/IGraphics/glad_GL2/include/",
-            "${workspaceFolder}/iPlug2/Dependencies/IGraphics/NanoVG/src/",
-            "${workspaceFolder}/iPlug2/Dependencies/IGraphics/NanoSVG/src/"
+            "${workspaceFolder}/modules/iPlug2/WDL/**",
+            "${workspaceFolder}/modules/iPlug2/IPlug/**",
+            "${workspaceFolder}/modules/iPlug2/IGraphics/**",
+            "${workspaceFolder}/modules/iPlug2/Dependencies/IGraphics/glad_GL2/include/",
+            "${workspaceFolder}/modules/iPlug2/Dependencies/IGraphics/NanoVG/src/",
+            "${workspaceFolder}/modules/iPlug2/Dependencies/IGraphics/NanoSVG/src/"
         ],
         "commonDefs": [
             "APP_API",
@@ -23,8 +23,8 @@
             "name": "Mac",
             "includePath": [
                 "${commonIncludePaths}",
-                "${workspaceFolder}/iPlug2/Dependencies/Build/mac/include/**",
-                "${workspaceFolder}/iPlug2/Dependencies/IGraphics/MetalNanoVG/src/"
+                "${workspaceFolder}/modules/iPlug2/Dependencies/Build/mac/include/**",
+                "${workspaceFolder}/modules/iPlug2/Dependencies/IGraphics/MetalNanoVG/src/"
             ],
             "defines": [
                 "${commonDefs}",

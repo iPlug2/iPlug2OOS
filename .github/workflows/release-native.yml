@@ -59,13 +59,13 @@ jobs:
 
     - name: Get VST3 SDK
       run: |
-        cd iPlug2/Dependencies/IPlug
+        cd modules/iPlug2/Dependencies/IPlug
         ./download-iplug-sdks.sh
       shell: bash
 
     - name: Get Prebuilt Libs
       run: |
-        cd iPlug2/Dependencies
+        cd modules/iPlug2/Dependencies
         ./download-prebuilt-libs.sh
       shell: bash
 
@@ -73,7 +73,7 @@ jobs:
       id: mac_archivename_step
       if: matrix.os == 'macOS-latest'
       run: |
-        ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} mac full`
+        ARCHIVE_NAME=`python3 modules/iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} mac full`
         echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
@@ -121,7 +121,7 @@ jobs:
       id: win_archivename_step
       if: matrix.os == 'windows-2022'
       run: |
-        ARCHIVE_NAME=`python.exe iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
+        ARCHIVE_NAME=`python.exe modules/iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} win full`
         echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
       shell: bash
 
@@ -193,13 +193,13 @@ jobs:
 
     - name: Get SDKs
       run: |
-        cd iPlug2/Dependencies/IPlug
+        cd modules/iPlug2/Dependencies/IPlug
         ./download-iplug-sdks.sh
 
     - name: Get Archive Name Linux
       id: linux_archivename_step
       run: |
-        ARCHIVE_NAME=`python3 iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} linux-$(uname -m) full`
+        ARCHIVE_NAME=`python3 modules/iPlug2/Scripts/get_archive_name.py ${{env.PROJECT_NAME}} linux-$(uname -m) full`
         echo "archive_name=$ARCHIVE_NAME" >> $GITHUB_OUTPUT
 
     - name: Build Linux

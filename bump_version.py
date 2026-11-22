@@ -6,7 +6,7 @@
 import os, sys, shutil, subprocess, glob, fileinput, string
 import semver
 
-IPLUG2_ROOT = "iPlug2"
+IPLUG2_ROOT = "modules/iPlug2"
 PROJECT_ROOT = "TemplateProject"
 PROJECT_SCRIPTS = PROJECT_ROOT + "/scripts"
 

@@ -38,15 +38,15 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-          iPlug2/Dependencies/Build
-          iPlug2/Dependencies/iPlug
-        key: ${{runner.os}}-deps-${{hashFiles('iPlug2/Dependencies/download-prebuilt-libs.sh', 'iPlug2/Dependencies/IGraphics/build-igraphics-libs-mac.sh', 'iPlug2/Dependencies/IGraphics/build-skia-mac.sh')}}
+          modules/iPlug2/Dependencies/Build
+          modules/iPlug2/Dependencies/iPlug
+        key: ${{runner.os}}-deps-${{hashFiles('modules/iPlug2/Dependencies/download-prebuilt-libs.sh', 'modules/iPlug2/Dependencies/IGraphics/build-igraphics-libs-mac.sh', 'modules/iPlug2/Dependencies/IGraphics/build-skia-mac.sh')}}
 
     - name: Get Prebuilt Libs
       if: steps.cache-deps.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        cd iPlug2/Dependencies
+        cd modules/iPlug2/Dependencies
         ./download-prebuilt-libs.sh
 
     - name: Cache VST3 SDK
@@ -54,14 +54,14 @@ jobs:
       uses: actions/cache@v3
       with:
         path: |
-          iPlug2/Dependencies/IPlug/VST3_SDK
+          modules/iPlug2/Dependencies/IPlug/VST3_SDK
         key: ${{runner.os}}-vst3-${{env.VST3_VER}}
 
     - name: Get VST3 SDK
       if: steps.cache-vst3.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        cd iPlug2/Dependencies/IPlug
+        cd modules/iPlug2/Dependencies/IPlug
         ./download-vst3-sdk.sh ${{env.VST3_VER}} build-validator
 
     - name: Get VST2 SDK
@@ -73,22 +73,22 @@ jobs:
         mkdir tmp
         echo $VST2_SDK | base64 -d > tmp/tmp.zip
         unzip tmp/tmp.zip -d tmp
-        mv tmp/VST2_SDK/* iPlug2/Dependencies/IPlug/VST2_SDK
+        mv tmp/VST2_SDK/* modules/iPlug2/Dependencies/IPlug/VST2_SDK
 
     - name: Cache CLAP SDK
       id: cache-clap
       uses: actions/cache@v3
       with:
         path: |
-          iPlug2/Dependencies/IPlug/CLAP_SDK
-          iPlug2/Dependencies/IPlug/CLAP_HELPERS
+          modules/iPlug2/Dependencies/IPlug/CLAP_SDK
+          modules/iPlug2/Dependencies/IPlug/CLAP_HELPERS
         key: ${{runner.os}}-clap-${{env.CLAP_VER}}
 
     - name: Get CLAP SDK
       if: steps.cache-clap.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        cd iPlug2/Dependencies/IPlug
+        cd modules/iPlug2/Dependencies/IPlug
         ./download-clap-sdks.sh ${{env.CLAP_VER}}
 
     - name: Install pandoc
@@ -168,7 +168,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: |
-            iPlug2/Dependencies/IPlug/VST3_SDK
+            modules/iPlug2/Dependencies/IPlug/VST3_SDK
           key: ${{runner.os}}-vst3-${{env.VST3_VER}}
 
       - name: Cache CLAP Validator
@@ -193,7 +193,7 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
-          ./iPlug2/Dependencies/IPlug/VST3_SDK/validator ${{matrix.project}}.vst3
+          ./modules/iPlug2/Dependencies/IPlug/VST3_SDK/validator ${{matrix.project}}.vst3
 
       - name: Test CLAP with CLAP Validator
         shell: bash
